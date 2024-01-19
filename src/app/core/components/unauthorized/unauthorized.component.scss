@@ -1,0 +1,12 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.container {
+  text-align: center;
+  padding: 0;
+}
+
+.title {
+  font-size: 12rem;
+  color: variables.$error;
+}
