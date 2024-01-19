@@ -1,14 +1,30 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { KeycloakAngularModule } from 'keycloak-angular';
+
+import { SharedModule } from '@shared/shared.module';
+import { AppService } from '@core/services/app.service';
+import { FallbackComponent } from '@core/components/fallback/fallback.component';
+import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [RouterOutlet, SharedModule, KeycloakAngularModule, FallbackComponent, UnauthorizedComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'multi-site-dashboard';
+  constructor(
+    private contexts: ChildrenOutletContexts,
+    public app: AppService
+  ) {}
+
+  public getRouteAnimationData() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animationState'];
+  }
+
+  public onCloseDialog() {
+    this.app.appDialog = null;
+  }
 }

@@ -1,0 +1,107 @@
+@use 'variables';
+
+/*
+  You can add global styles to this file, and also import other style files.
+  However, as best practice, to avoid using global styles that are globally applied;
+  instead, use global styles that are locally applied with mixins.
+*/
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src:
+    local('Proxima Nova'),
+    url('../../../assets/fonts/ProximaNova.otf') format('opentype');
+  font-weight: 500;
+}
+
+@mixin container {
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+@mixin scaffold {
+  padding: 1.5rem;
+  background-color: variables.$light;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@mixin btn {
+  padding: 0.7rem 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  font-size: 0.6rem;
+}
+
+.btn-primary {
+  @include btn;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  @include btn;
+  border: 0.1rem solid #7A81AB;
+}
+
+.header:before { 
+  content: '';
+  font-size: inherit;
+  color: inherit;
+  width: 1.5em;
+  display: inline-block;
+  position: relative;
+  border: 0.1em solid;
+  margin-right: 0.2em;
+  vertical-align: middle;
+
+  @media (min-width: variables.$device-ios) {
+    width: 1.5em;
+  }
+  @media (min-width: variables.$device-android) {
+    width: 1.5em;
+  }
+  @media (min-width: variables.$device-tablet) {
+    width: 1.5em;
+  }
+  @media (min-width: variables.$device-laptop) {
+    width: 1.5em;
+  }
+  @media (min-width: variables.$device-desktop) {
+    width: 1.5em;
+  }
+}
+
+.flex-spacer {
+  flex: 1 0 auto;
+}
+
+.spacer {
+  height: 1rem;
+}
+
+.spinner {
+  font-size: 4rem;
+}
+
+.screen-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialog-notification__anchor {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.stepper__step--deactivated {
+  display: none;
+}

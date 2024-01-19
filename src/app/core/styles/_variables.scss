@@ -1,0 +1,67 @@
+// Typography.
+$font-size-base: 1rem;
+$font-size-xxxl: 2.5rem;
+$font-size-xxl: 2rem;
+$font-size-xl: 1.75rem;
+$font-size-lg: 1.25rem;
+$font-size-sm: 0.875rem;
+$font-size-xs: 0.75rem;
+$font-size-xxs: 0.65rem;
+$font-size-h1: 1.75rem;
+$font-size-h2: 1.25rem;
+$font-size-h3: 1.25rem;
+$font-size-h4: 1.25rem;
+$font-size-h5: 1.25rem;
+$font-size-h6: 1rem;
+
+// Colors.
+$app-bg: #04162C;
+$component-bg: #002135;
+$primary: #1262d8;
+$secondary: #3196BB;
+$tertiary: #D9D9D9;
+$quaternary: #8B8B8B;
+$info: #5965e7;
+$success: #21d794;
+$warning: #fab95c;
+$error: #fa5c5c;
+$dark: #000000;
+$light: #ffffff;
+
+$white: #ffffff;
+$gray-100: #ffffff;
+$gray-200: #f8f8fd;
+$gray-300: #f0f1fa;
+$gray-400: #e1e1e8;
+$gray-500: #cbcbd6;
+$gray-600: #9191a1;
+$gray-700: #676775;
+$gray-800: #393947;
+$gray-900: #000000;
+$black: #000000;
+
+// Graphs.
+$series-a: $primary;
+$series-b: $info;
+$series-c: #4eb89b;
+$series-d: #ff7562;
+$series-e: #c267ff;
+$series-f: $warning;
+
+// Screen sizes.
+$device-ios: 320px;
+$device-android: 481px;
+$device-tablet: 601px;
+$device-laptop: 769px;
+$device-desktop: 1025px;
+
+// Utilities.
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);

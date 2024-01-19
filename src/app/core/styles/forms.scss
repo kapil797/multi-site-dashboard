@@ -1,0 +1,72 @@
+@use 'core/styles/variables';
+
+kendo-label > .k-label {
+  font-size: variables.$font-size-xs;
+}
+
+.k-input-validation-icon {
+  color: variables.$success;
+}
+
+.k-input-solid, .k-input-solid:focus-within,
+.k-picker-solid, .k-picker-solid:focus-within {
+  border-color: #7A81AB;
+  background-color: #F5F7FA;
+}
+
+.k-input-solid.valid, .k-input-solid.valid:focus-within,
+.k-picker-solid.valid, .k-picker-solid.valid:focus-within,
+.k-upload.valid, .k-upload.valid:focus-within {
+  border-color: variables.$success;
+}
+
+.k-form-legend {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.k-picker-solid:hover, .k-picker-solid.k-hover {
+  background-color: unset;
+}
+
+.custom-validation-icon {
+  opacity: 0;
+}
+
+.valid {
+  color: variables.$success;
+}
+
+.invalid {
+  color: variables.$error;
+}
+
+.custom-validation-icon.valid {
+  opacity: 1;
+}
+
+.custom-validation-icon.invalid {
+  opacity: 1;
+}
+
+// workaround for adding suffix icons/buttons in dropdown
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-suffix {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex: none;
+  flex-flow: row nowrap;
+  box-sizing: border-box;
+  right: 1.7rem;
+  top: 0;
+  height: 100%;
+}
+
+.dropdown-suffix.multiselect {
+  right: 0.5rem;
+}

@@ -1,0 +1,10 @@
+<div
+  kendoTooltip
+  [title]="metadata.title"
+  class="icon-text-button-container d-flex flex-column text-center"
+  aria-hidden="true"
+  (click)="onClick()">
+  <span class="icon-text-button--shadow"></span>
+  <fa-icon class="icon mt-2" [icon]="metadata.icon"></fa-icon>
+  <div class="text mt-3">{{ trimTextWithEllipsis(metadata.title, 12) }}</div>
+</div>

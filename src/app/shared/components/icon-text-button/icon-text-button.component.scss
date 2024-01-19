@@ -1,0 +1,28 @@
+@use 'core/styles/variables';
+
+.icon-text-button-container {
+  width: 5rem;
+  height: 6rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: variables.$font-size-xxl;
+}
+
+.text {
+  font-size: variables.$font-size-xs;
+}
+
+.icon-text-button--shadow::before {
+  content: '';
+  position: absolute;
+  display: block;
+  left: calc(50% - 2rem);
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  background-color: #717171;
+  opacity: 0.1;
+}

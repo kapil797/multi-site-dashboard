@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+  Global styles are added in src/app/core/styles/_base.scss.
+  This file only contains css for body/html, and overrides for kendo.
+*/
+
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/utilities';
+@use 'bootstrap/scss/bootstrap-utilities';
+@use 'node_modules/animate.css/animate.min.css';
+@use '@progress/kendo-theme-default/dist/all.scss' with (
+  $kendo-color-primary: variables.$primary,
+  $kendo-color-success: variables.$success,
+  $kendo-color-warning: variables.$warning,
+  $kendo-color-error: variables.$error,
+);
+
+body {
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif;
+  font-size: variables.$font-size-base;
+  background: variables.$app-bg;
+  margin: 0px;
+
+  @media (min-width: variables.$device-ios) {
+    font-size: variables.$font-size-base;
+  }
+  @media (min-width: variables.$device-android) {
+    font-size: variables.$font-size-base;
+  }
+  @media (min-width: variables.$device-tablet) {
+    font-size: variables.$font-size-base;
+  }
+  @media (min-width: variables.$device-laptop) {
+    font-size: variables.$font-size-base;
+  }
+  @media (min-width: variables.$device-desktop) {
+    font-size: variables.$font-size-base;
+  }
+}
+
+.k-overlay {
+  background-color: variables.$primary;
+  opacity: 0.99;
+}
+
+.k-notification {
+  box-shadow: unset;
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 1rem;
+  max-width: 25rem;
+}
+
+.k-notification-group {
+  // To make notification global (stacking above dialog).
+  z-index: 100000;
+}
+
+.k-button-solid-base:hover {
+  background-color: unset;
+}
+
+.k-badge {
+  z-index: 1000;
+}
