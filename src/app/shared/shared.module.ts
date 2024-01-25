@@ -34,9 +34,12 @@ import { TabStripDirective } from '@shared/directives/tabstrip/tabstrip.directiv
 // Components.
 import { FormComponent } from '@shared/components/form/form.component';
 import { IconTextButtonComponent } from '@shared/components/icon-text-button/icon-text-button.component';
+import { NavbarComponent } from '@shared/components/navbar/navbar.component';
+import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directive';
+import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [FormComponent, IconTextButtonComponent],
+  declarations: [FormComponent, IconTextButtonComponent, NavbarComponent, SidebarComponent],
   imports: [
     // Modules.
     CommonModule,
@@ -65,6 +68,7 @@ import { IconTextButtonComponent } from '@shared/components/icon-text-button/ico
     // Directives.
     OverlayDirective,
     TabStripDirective,
+    DropdownDirective,
   ],
   providers: [NotificationService],
   exports: [
@@ -95,10 +99,13 @@ import { IconTextButtonComponent } from '@shared/components/icon-text-button/ico
     // Directives.
     OverlayDirective,
     TabStripDirective,
+    DropdownDirective,
 
     // Components.
     FormComponent,
     IconTextButtonComponent,
+    NavbarComponent,
+    SidebarComponent,
   ],
 })
 export class SharedModule {}

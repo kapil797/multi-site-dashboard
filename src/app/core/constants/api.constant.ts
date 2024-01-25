@@ -8,7 +8,9 @@ interface ErrorRes {
 }
 
 export class BaseApi {
-  getItems: string;
+  getMfSalesOrders: string;
+  getMfWorkOrders: string;
+  postMfExecutions: string;
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {
     /*
@@ -41,9 +43,13 @@ export class BaseApi {
 }
 
 export class DevApi extends BaseApi {
-  RPS = 'https://dev.mf.platform/tr-rps/product';
+  ORDERAPP = 'https://dev.mf.platform/orderapp/api';
+  RPS = 'https://dev.mf.platform/tr-rps/api';
+  RTD = 'http://172.20.115.150:55443/api';
 
-  override getItems = urlJoin(this.RPS, '/api/item');
+  override getMfSalesOrders = urlJoin(this.ORDERAPP, 'sales-orders');
+  override getMfWorkOrders = urlJoin(this.RPS, 'sales-orders');
+  override postMfExecutions = urlJoin(this.RTD, 'workorder/get/wo/process/execution/list');
 
   constructor() {
     super();
@@ -51,9 +57,13 @@ export class DevApi extends BaseApi {
 }
 
 export class ProdApi extends BaseApi {
-  RPS = 'https://prod.mf.platform/tr-rps/product';
+  ORDERAPP = 'https://prod.mf.platform/orderapp/api';
+  RPS = 'https://prod.mf.platform/tr-rps/api';
+  RTD = 'http://172.20.115.150:55443/api';
 
-  override getItems = urlJoin(this.RPS, '/api/item');
+  override getMfSalesOrders = urlJoin(this.ORDERAPP, 'sales-orders');
+  override getMfWorkOrders = urlJoin(this.RPS, 'workorder');
+  override postMfExecutions = urlJoin(this.RTD, 'workorder/get/wo/process/execution/list');
 
   constructor() {
     super();

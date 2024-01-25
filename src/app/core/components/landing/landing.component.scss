@@ -1,0 +1,20 @@
+@use 'core/styles/variables';
+
+.landing-scaffold {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.landing-container {
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: variables.$light;
+}
+
+.header {
+  font-size: variables.$font-size-lg;
+  font-weight: 700;
+}

@@ -14,61 +14,26 @@
   font-weight: 500;
 }
 
-@mixin container {
-  border-radius: 0.5rem;
-  padding: 1rem;
+.layer-one-scaffold__left {
+  display: grid;
+  grid-template-columns: 4rem auto; 
 }
 
-@mixin scaffold {
+.layer-one-scaffold__right {
+  display: grid;
+  grid-template-columns: auto 4rem ; 
+}
+
+.layer-two-scaffold {
+  display: grid;
+  grid-template-rows: auto auto; 
+}
+
+.container {
   padding: 1.5rem;
-  background-color: variables.$light;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  color: variables.$light;
 }
 
-@mixin btn {
-  padding: 0.7rem 1.4rem;
-  font-weight: 500;
-  letter-spacing: 0.05rem;
-  font-size: 0.6rem;
-}
-
-.btn-primary {
-  @include btn;
-  color: #ffffff;
-}
-
-.btn-secondary {
-  @include btn;
-  border: 0.1rem solid #7A81AB;
-}
-
-.header:before { 
-  content: '';
-  font-size: inherit;
-  color: inherit;
-  width: 1.5em;
-  display: inline-block;
-  position: relative;
-  border: 0.1em solid;
-  margin-right: 0.2em;
-  vertical-align: middle;
-
-  @media (min-width: variables.$device-ios) {
-    width: 1.5em;
-  }
-  @media (min-width: variables.$device-android) {
-    width: 1.5em;
-  }
-  @media (min-width: variables.$device-tablet) {
-    width: 1.5em;
-  }
-  @media (min-width: variables.$device-laptop) {
-    width: 1.5em;
-  }
-  @media (min-width: variables.$device-desktop) {
-    width: 1.5em;
-  }
-}
 
 .flex-spacer {
   flex: 1 0 auto;
@@ -98,10 +63,7 @@
   z-index: -1;
 }
 
-.action-buttons {
-  display: flex;
-}
-
 .stepper__step--deactivated {
   display: none;
 }
+

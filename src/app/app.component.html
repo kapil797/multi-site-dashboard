@@ -1,10 +1,11 @@
 <div kendoDialogContainer></div>
-<div class="p-3">
+<div>
   <div [@routeAnimations]="getRouteAnimationData()">
-    <div>hello world</div>
     <router-outlet></router-outlet>
   </div>
 </div>
 
 <!-- app dialogs are declared here -->
-<kendo-dialog appOverlay (toggleClose)="onCloseDialog()" *ngIf="app.appDialog === 'HELLO-WORLD'"> </kendo-dialog>
+<kendo-dialog appOverlay (toggleClose)="onCloseDialog()" *ngIf="app.appDialog === Dialogs.NAV_MENU">
+  <app-nav-menu></app-nav-menu>
+</kendo-dialog>

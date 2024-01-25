@@ -1,0 +1,43 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+/*
+  Override default CSS for Kendo-grid.
+*/
+
+.k-grid {
+  border: unset;
+}
+
+.k-grid table {
+  table-layout: fixed;
+}
+
+.k-grid-header {
+  font-weight: 700;
+  background-color: variables.$component-bg;
+  color: variables.$gray-500;
+}
+
+.k-master-row  {
+  background-color: variables.$component-bg;
+  color: variables.$gray-300;
+}
+
+.k-table-md {
+  font-size: variables.$font-size-lg;
+}
+
+.k-grid .k-table-row.k-table-alt-row {
+  background-color: variables.$component-alt-bg;
+}
+
+.k-grid tr:hover {
+  color: inherit;
+}
+
+.k-grid .k-table-td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

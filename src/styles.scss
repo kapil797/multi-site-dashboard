@@ -1,6 +1,6 @@
 /*
   Global styles are added in src/app/core/styles/_base.scss.
-  This file only contains css for body/html, and overrides for kendo.
+  This file only contains css for body/html, and global overrides for kendo.
 */
 
 @use 'core/styles/base';
@@ -17,29 +17,33 @@
 
 body {
   font-family: 'Proxima Nova', Helvetica, Arial, sans-serif;
-  font-size: variables.$font-size-base;
+  font-size: variables.$font-size-reg;
   background: variables.$app-bg;
   margin: 0px;
 
   @media (min-width: variables.$device-ios) {
-    font-size: variables.$font-size-base;
+    font-size: variables.$font-size-reg;
   }
   @media (min-width: variables.$device-android) {
-    font-size: variables.$font-size-base;
+    font-size: variables.$font-size-reg;
   }
   @media (min-width: variables.$device-tablet) {
-    font-size: variables.$font-size-base;
+    font-size: variables.$font-size-reg;
   }
   @media (min-width: variables.$device-laptop) {
-    font-size: variables.$font-size-base;
+    font-size: variables.$font-size-reg;
   }
   @media (min-width: variables.$device-desktop) {
-    font-size: variables.$font-size-base;
+    font-size: variables.$font-size-reg;
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.2rem;
+}
+
 .k-overlay {
-  background-color: variables.$primary;
+  background-color: variables.$app-bg;
   opacity: 0.99;
 }
 
@@ -51,8 +55,8 @@ body {
   max-width: 25rem;
 }
 
+// To make notification global (stacking above dialog).
 .k-notification-group {
-  // To make notification global (stacking above dialog).
   z-index: 100000;
 }
 
@@ -62,4 +66,19 @@ body {
 
 .k-badge {
   z-index: 1000;
+}
+
+// For dropdown.
+.dropdown {
+  background-color: variables.$app-bg;
+  color: variables.$light;
+}
+
+.k-list-item {
+  background-color: variables.$app-bg;
+  color: variables.$light;
+}
+
+.k-picker:hover {
+  background-color: unset;
 }

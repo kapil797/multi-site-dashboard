@@ -1,0 +1,36 @@
+<div class="layer-one-scaffold__left">
+  <app-sidebar header="ENTERPRISE" rotate="LEFT"></app-sidebar>
+  <div>
+    <app-navbar header="Production Tracking"></app-navbar>
+    <div class="container">
+      <kendo-grid scrollable="none" [kendoGridBinding]="salesOrderData">
+        <kendo-grid-column
+          *ngFor="let column of salesOrderCols"
+          field="{{ column.field }}"
+          title="{{ column.title.toUpperCase() }}"></kendo-grid-column>
+        <kendo-grid-column field="status" title="STATUS">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="d-flex align-items-center">
+              {{ dataItem.status }}
+              <img class="img ms-5" [src]="dataItem.isLate ? circleError : circleSuccess" alt="status" />
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+      <kendo-grid class="mt-5" scrollable="none" [kendoGridBinding]="workOrderData">
+        <kendo-grid-column
+          *ngFor="let column of workOrderCols"
+          field="{{ column.field }}"
+          title="{{ column.title.toUpperCase() }}"></kendo-grid-column>
+        <kendo-grid-column field="status" title="STATUS">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="d-flex align-items-center">
+              {{ dataItem.status }}
+              <img class="img ms-5" [src]="dataItem.isLate ? circleError : circleSuccess" alt="status" />
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+</div>

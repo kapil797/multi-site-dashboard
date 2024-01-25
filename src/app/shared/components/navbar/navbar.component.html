@@ -1,0 +1,13 @@
+<kendo-appbar position="top" themeColor="inherit" class="ps-4 pe-4">
+  <h1>{{ header.toUpperCase() }}</h1>
+  <kendo-appbar-spacer></kendo-appbar-spacer>
+  <div *ngIf="dropdownTwo" class="d-flex align-items-center me-3">
+    <kendo-label class="me-3" [text]="dropdownTwo.label + ':'"></kendo-label>
+    <kendo-dropdownlist appDropdown [data]="dropdownTwo.data" [(ngModel)]="dropdownTwoValue"></kendo-dropdownlist>
+  </div>
+  <div *ngIf="dropdownOne" class="d-flex align-items-center me-3">
+    <kendo-label class="me-3" [text]="dropdownOne.label + ':'"></kendo-label>
+    <kendo-dropdownlist appDropdown [data]="dropdownOne.data" [(ngModel)]="dropdownOneValue"></kendo-dropdownlist>
+  </div>
+  <img (click)="onOpenNavMenu()" class="img__tiles" [src]="tiles" alt="tiles" aria-hidden="true" />
+</kendo-appbar>

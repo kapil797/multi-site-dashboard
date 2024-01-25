@@ -1,0 +1,15 @@
+@use 'core/styles/variables';
+
+.sidebar {
+  background-color: variables.$tertiary;
+  height: 100%;
+  width: 4rem;
+  position: fixed;
+  writing-mode: vertical-rl;
+  color: variables.$light;
+  font-size: variables.$font-size-xxl;
+  text-align: center;
+  line-height: 4rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+}

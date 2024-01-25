@@ -1,0 +1,20 @@
+<kendo-tilelayout class="nav-menu-wrapper" [columns]="columns" [reorderable]="true" (reorder)="onReorder($event)">
+  <kendo-tilelayout-item
+    class="tile-container p-3"
+    *ngFor="let item of navItems"
+    [row]="item.row"
+    [col]="item.col"
+    (click)="onClick($event)">
+    <kendo-tilelayout-item-header class="tile-item">
+      <fa-icon class="tile-item__icon" [icon]="item.icon"></fa-icon>
+      <h3 class="tile-item__text">{{ item.name }}</h3>
+    </kendo-tilelayout-item-header>
+  </kendo-tilelayout-item>
+  <kendo-tilelayout-item class="tile-container" [row]="2" [col]="2" [reorderable]="false" [rowSpan]="2" [colSpan]="2">
+    <kendo-tilelayout-item-body class="img-container">
+      <img class="img__map" [src]="factoryMap" alt="factory-map" />
+      <img class="img__mf" [src]="mf" alt="factory-mf" />
+      <img class="img__umf" [src]="umf" alt="factory-umf" />
+    </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item>
+</kendo-tilelayout>

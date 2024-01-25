@@ -1,0 +1,63 @@
+@use 'core/styles/variables';
+
+.k-window {
+  background-color: variables.$app-bg;
+  box-shadow: unset;
+}
+
+.k-tilelayout {
+  gap: 0 !important;
+}
+
+.nav-menu-wrapper {
+  background-color: variables.$app-bg;
+}
+
+.tile-container {
+  border: 0.1rem solid #00DBA3;
+  border-radius: unset;
+  text-align: center;
+  background-color: variables.$app-bg;
+}
+
+.tile-item {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: variables.$light;
+}
+
+.tile-item__text {
+  font-weight: lighter;
+  text-transform: uppercase;
+  font-size: variables.$font-size-reg;
+}
+
+.tile-item__icon {
+  font-size: variables.$font-size-xl;
+}
+
+.img-container {
+  position: relative;
+}
+
+.img__map {
+  height: 100%;
+  width: 100%;
+}
+
+.img__mf {
+  height: 10%;
+  width: 10%;
+  position: absolute;
+  left: 20%;
+  top: 40%;
+}
+
+.img__umf {
+  height: 5%;
+  width: 5%;
+  position: absolute;
+  left: 30%;
+  top: 65%;
+}

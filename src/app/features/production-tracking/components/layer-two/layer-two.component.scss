@@ -1,0 +1,8 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.pt-scaffold {
+  display: grid;
+  grid-template-columns: 20rem auto;
+  grid-template-rows: 1fr 2fr;
+}

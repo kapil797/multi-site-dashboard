@@ -1,0 +1,13 @@
+@use 'core/styles/variables';
+
+.k-appbar {
+  box-shadow: none;
+  color: variables.$light;
+  position: relative;
+}
+
+.img__tiles {
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+}
