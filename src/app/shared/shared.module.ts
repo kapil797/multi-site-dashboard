@@ -37,6 +37,7 @@ import { IconTextButtonComponent } from '@shared/components/icon-text-button/ico
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directive';
 import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
+import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 
 @NgModule({
   declarations: [FormComponent, IconTextButtonComponent, NavbarComponent, SidebarComponent],
@@ -64,6 +65,7 @@ import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
     UploadsModule,
     MenusModule,
     PopupModule,
+    ScrollViewModule,
 
     // Directives.
     OverlayDirective,
@@ -95,6 +97,7 @@ import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
     UploadsModule,
     MenusModule,
     PopupModule,
+    ScrollViewModule,
 
     // Directives.
     OverlayDirective,

@@ -14,6 +14,7 @@ import { AppService } from '@core/services/app.service';
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
 import { NavMenuComponent } from '@core/components/nav-menu/nav-menu.component';
+import { dialogAnimation, routeAnimations } from '@shared/animations';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +32,11 @@ import { NavMenuComponent } from '@core/components/nav-menu/nav-menu.component';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  animations: [routeAnimations],
 })
 export class AppComponent {
   public Dialogs = Dialogs;
+  public dialogAnimation = dialogAnimation;
 
   constructor(
     private contexts: ChildrenOutletContexts,

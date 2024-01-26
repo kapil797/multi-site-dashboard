@@ -21,4 +21,8 @@ export class AppService {
     this.api = api;
     return of(true);
   }
+
+  public resetDialog() {
+    this.appDialog = null;
+  }
 }

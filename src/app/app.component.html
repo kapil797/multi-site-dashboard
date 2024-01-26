@@ -6,6 +6,10 @@
 </div>
 
 <!-- app dialogs are declared here -->
-<kendo-dialog appOverlay (toggleClose)="onCloseDialog()" *ngIf="app.appDialog === Dialogs.NAV_MENU">
+<kendo-dialog
+  [animation]="dialogAnimation"
+  appOverlay
+  (toggleClose)="onCloseDialog()"
+  *ngIf="app.appDialog === Dialogs.NAV_MENU">
   <app-nav-menu></app-nav-menu>
 </kendo-dialog>

@@ -41,6 +41,7 @@
     "@progress/kendo-angular-notification": "^14.3.0",
     "@progress/kendo-angular-popup": "14.3.0",
     "@progress/kendo-angular-progressbar": "14.3.0",
+    "@progress/kendo-angular-scrollview": "^14.3.0",
     "@progress/kendo-angular-toolbar": "^14.3.0",
     "@progress/kendo-angular-tooltip": "^14.3.0",
     "@progress/kendo-angular-treeview": "14.3.0",
@@ -62,7 +63,8 @@
     "vis-data": "^7.1.9",
     "vis-network": "^9.1.9",
     "vis-util": "^5.0.7",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.14.2",
+    "@angular/localize": "^17.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.3",

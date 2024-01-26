@@ -1,9 +1,14 @@
 @use 'core/styles/base';
 @use 'core/styles/variables';
 
-.container {
+.fallback-wrapper {
+  position: absolute;
   text-align: center;
   padding: 0;
+  color: variables.$light;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {

@@ -57,3 +57,8 @@ export interface WorkOrderStatus extends Status {
   workOrderNo: string;
   processStage: string;
 }
+
+export interface Product {
+  name: string;
+  processes: string[];
+}

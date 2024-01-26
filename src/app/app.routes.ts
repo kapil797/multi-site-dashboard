@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { AuthGuard } from '@core/auth/auth.guard';
-import { roles } from '@core/auth/roles.constant';
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { LandingComponent } from '@core/components/landing/landing.component';
 import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
@@ -21,12 +20,12 @@ export const routes: Routes = [
 
   // Lazy loading.
   {
-    path: urlJoin(routePaths.HOME, routePaths.PRODUCTION_TRACKING_ONE).substring(1),
+    path: urlJoin(routePaths.HOME, routePaths.PRODUCTION_TRACKING).substring(1),
     loadChildren: () => import('@pt/production-tracking.module').then(m => m.ProductionTrackingModule),
     canMatch: [routeGuard()],
     canActivate: [AuthGuard],
     data: {
-      roles: [roles.PUBLIC],
+      // roles: [roles.PUBLIC],
     },
   },
 

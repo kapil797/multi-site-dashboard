@@ -1,0 +1,29 @@
+<div class="d-flex flex-column nav-wrapper justify-content-center p-3 pb-5">
+  <h3>PRODUCTS</h3>
+  <kendo-scrollview
+    class="scroll-view"
+    [data]="products"
+    [pageable]="true"
+    [arrows]="true"
+    (itemChanged)="onChangeProduct($event)">
+    <ng-template let-item="item">
+      <div class="scroll-item">
+        {{ item.name?.toUpperCase() }}
+      </div>
+    </ng-template>
+  </kendo-scrollview>
+
+  <h3>PROCESSES</h3>
+  <kendo-scrollview
+    class="scroll-view"
+    [data]="processes"
+    [pageable]="true"
+    [arrows]="true"
+    (itemChanged)="onChangeProcess($event)">
+    <ng-template let-item="item">
+      <div class="scroll-item">
+        {{ String(item).toUpperCase() }}
+      </div>
+    </ng-template>
+  </kendo-scrollview>
+</div>

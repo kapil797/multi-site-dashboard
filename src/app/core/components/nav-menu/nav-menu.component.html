@@ -1,20 +1,35 @@
-<kendo-tilelayout class="nav-menu-wrapper" [columns]="columns" [reorderable]="true" (reorder)="onReorder($event)">
+<kendo-tilelayout
+  #tileLayout
+  class="nav-menu-wrapper p-5"
+  [gap]="0"
+  [columns]="columns"
+  [reorderable]="true"
+  (reorder)="onReorder($event)">
   <kendo-tilelayout-item
     class="tile-container p-3"
-    *ngFor="let item of navItems"
+    *ngFor="let item of navItems; index as idx"
     [row]="item.row"
     [col]="item.col"
-    (click)="onClick($event)">
+    [order]="idx"
+    (dblclick)="onNavigateToLayer(idx, routePaths.LAYER_ONE)">
     <kendo-tilelayout-item-header class="tile-item">
       <fa-icon class="tile-item__icon" [icon]="item.icon"></fa-icon>
-      <h3 class="tile-item__text">{{ item.name }}</h3>
+      <h3 draggable="true" class="tile-item__text">{{ item.name }}</h3>
     </kendo-tilelayout-item-header>
   </kendo-tilelayout-item>
-  <kendo-tilelayout-item class="tile-container" [row]="2" [col]="2" [reorderable]="false" [rowSpan]="2" [colSpan]="2">
+  <kendo-tilelayout-item
+    #dropzone
+    class="tile-container"
+    [row]="2"
+    [col]="2"
+    [reorderable]="false"
+    [rowSpan]="2"
+    [colSpan]="2"
+    [order]="dropzoneOrder">
     <kendo-tilelayout-item-body class="img-container">
       <img class="img__map" [src]="factoryMap" alt="factory-map" />
-      <img class="img__mf" [src]="mf" alt="factory-mf" />
-      <img class="img__umf" [src]="umf" alt="factory-umf" />
+      <img class="img__mf" [src]="mf" alt="factory-mf" (click)="onChangeSite('MF')" aria-hidden="true" />
+      <img class="img__umf" [src]="umf" alt="factory-umf" (click)="onChangeSite('UMF')" aria-hidden="true" />
     </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>
 </kendo-tilelayout>
