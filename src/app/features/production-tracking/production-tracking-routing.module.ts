@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { routePaths } from '@core/constants/routes.constant';
-import { LayerOneComponent } from '@pt/components/layer-one/layer-one.component';
-import { LayerTwoComponent } from '@pt/components/layer-two/layer-two.component';
+import { RoutePaths } from '@core/constants/routes.constant';
+import { LayerResolverComponent } from '@pt/components/layer-resolver/layer-resolver.component';
 
 const routes: Routes = [
   {
-    path: routePaths.LAYER_ONE,
-    component: LayerOneComponent,
-    data: { animationState: 'ProductionTrackingLayerOnePage' },
-  },
-  {
-    path: routePaths.LAYER_TWO,
-    component: LayerTwoComponent,
-    data: { animationState: 'ProductionTrackingLayerTwoPage' },
+    path: `:${RoutePaths.LAYER}`,
+    component: LayerResolverComponent,
+    data: { animationState: 'ProductionTrackingLayerPage' },
   },
 ];
 

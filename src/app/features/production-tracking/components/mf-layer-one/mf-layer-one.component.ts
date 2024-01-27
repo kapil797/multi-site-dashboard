@@ -4,16 +4,16 @@ import { ColumnSetting } from '@core/models/grid.model';
 import { AppService } from '@core/services/app.service';
 import { SalesOrderStatus, WorkOrderStatus } from '@pt/production-tracking.model';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { CancelSubscription } from '@shared/classes/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
 import { switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-layer-one',
-  templateUrl: './layer-one.component.html',
-  styleUrl: './layer-one.component.scss',
+  templateUrl: './mf-layer-one.component.html',
+  styleUrl: './mf-layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class MfLayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public circleError = 'assets/images/utilities/circle-error.png';
   public circleSuccess = 'assets/images/utilities/circle-success.png';

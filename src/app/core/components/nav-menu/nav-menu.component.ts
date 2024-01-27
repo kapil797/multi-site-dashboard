@@ -6,10 +6,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '@shared/shared.module';
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@shared/classes/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
 import { Factory } from '@core/models/factory.model';
 import { NavItem, mfNavItems, umfNavItems } from './nav-menu.constant';
-import { routePaths } from '@core/constants/routes.constant';
+import { RoutePaths } from '@core/constants/routes.constant';
 
 @Component({
   selector: 'app-nav-menu',
@@ -28,7 +28,7 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
   public dropzoneOrder: number; // Last element of navItems. 0-indexed.
   public mf = 'assets/images/factories/big.png';
   public umf = 'assets/images/factories/small.png';
-  public routePaths = routePaths;
+  public RoutePaths = RoutePaths;
   private observer: MutationObserver;
 
   constructor(
@@ -94,7 +94,7 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
     event.preventDefault();
 
     if (event.newIndex < this.navItems.length) return;
-    this.onNavigateToLayer(event.oldIndex, routePaths.LAYER_TWO);
+    this.onNavigateToLayer(event.oldIndex, RoutePaths.LAYER_TWO);
   }
 
   public onChangeSite(factory: Factory) {

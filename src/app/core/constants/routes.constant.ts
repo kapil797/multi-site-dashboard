@@ -1,9 +1,10 @@
-export const routePaths = {
+export const RoutePaths = {
   BASE: '',
-  HOME: ':factory',
+  HOME: 'factory',
   DEFAULT: 'mf',
   FALLBACK: 'fallback',
   UNAUTHORIZED: 'unauthorized',
+  LAYER: 'layer',
   LAYER_ONE: 'layer-one',
   LAYER_TWO: 'layer-two',
   LOGISTIC_TRACKING: 'logistic-tracking',

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormComponent } from './form.component';
+import { MfLayerOneComponent } from './mf-layer-one.component';
 
-describe('FormComponent', () => {
-  let component: FormComponent;
-  let fixture: ComponentFixture<FormComponent>;
+describe('MfLayerOneComponent', () => {
+  let component: MfLayerOneComponent;
+  let fixture: ComponentFixture<MfLayerOneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormComponent],
+      imports: [MfLayerOneComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FormComponent);
+    fixture = TestBed.createComponent(MfLayerOneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

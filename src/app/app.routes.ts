@@ -4,14 +4,14 @@ import { AuthGuard } from '@core/auth/auth.guard';
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { LandingComponent } from '@core/components/landing/landing.component';
 import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
-import { routePaths } from '@core/constants/routes.constant';
+import { RoutePaths } from '@core/constants/routes.constant';
 import { routeGuard } from '@core/guards/route.guard';
 import { urlJoin } from '@core/utils/routing';
 
 export const routes: Routes = [
   // Standalone.
   {
-    path: routePaths.HOME,
+    path: `:${RoutePaths.HOME}`,
     component: LandingComponent,
     canActivate: [AuthGuard],
     canMatch: [routeGuard()],
@@ -20,21 +20,21 @@ export const routes: Routes = [
 
   // Lazy loading.
   {
-    path: urlJoin(routePaths.HOME, routePaths.PRODUCTION_TRACKING).substring(1),
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.PRODUCTION_TRACKING).substring(1),
     loadChildren: () => import('@pt/production-tracking.module').then(m => m.ProductionTrackingModule),
     canMatch: [routeGuard()],
     canActivate: [AuthGuard],
     data: {
-      // roles: [roles.PUBLIC],
+      // roles: [Roles.PUBLIC],
     },
   },
 
   // Redirects.
-  { path: routePaths.BASE, redirectTo: routePaths.DEFAULT, pathMatch: 'full' },
+  { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },
 
   // Fallback.
   {
-    path: routePaths.UNAUTHORIZED,
+    path: RoutePaths.UNAUTHORIZED,
     component: UnauthorizedComponent,
     canActivate: [AuthGuard],
     data: { animationState: 'unauthorizedPage' },

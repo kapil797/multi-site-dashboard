@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
 import { take } from 'rxjs';
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
-import { routePaths } from '@core/constants/routes.constant';
+import { RoutePaths } from '@core/constants/routes.constant';
 import { AuthService } from '@core/auth/auth.service';
 
 @Injectable({
@@ -37,7 +37,7 @@ export class AuthGuard extends KeycloakAuthGuard {
     });
 
     if (!this.validateRoles(route)) {
-      this.router.navigate([routePaths.UNAUTHORIZED]);
+      this.router.navigate([RoutePaths.UNAUTHORIZED]);
       return false;
     }
     return true;

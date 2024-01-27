@@ -24,6 +24,11 @@ export class NavigationComponent implements OnInit {
     const item = event.item as Product;
     this.processes = item.processes;
     this.toggleProduct.emit(item.name);
+
+    // Updating the product will also change the process.
+    // To auto-select the first process.
+    event.item = item.processes[0];
+    this.onChangeProcess(event);
   }
 
   public onChangeProcess(event: ItemChangedEvent) {

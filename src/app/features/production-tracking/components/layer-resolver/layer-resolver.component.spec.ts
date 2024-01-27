@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayerOneComponent } from './layer-one.component';
+import { LayerResolverComponent } from './layer-resolver.component';
 
-describe('LayerOneComponent', () => {
-  let component: LayerOneComponent;
-  let fixture: ComponentFixture<LayerOneComponent>;
+describe('LayerResolverComponent', () => {
+  let component: LayerResolverComponent;
+  let fixture: ComponentFixture<LayerResolverComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayerOneComponent],
+      imports: [LayerResolverComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LayerOneComponent);
+    fixture = TestBed.createComponent(LayerResolverComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

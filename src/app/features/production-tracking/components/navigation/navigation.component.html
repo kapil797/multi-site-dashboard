@@ -5,6 +5,7 @@
     [data]="products"
     [pageable]="true"
     [arrows]="true"
+    [endless]="true"
     (itemChanged)="onChangeProduct($event)">
     <ng-template let-item="item">
       <div class="scroll-item">
@@ -19,6 +20,7 @@
     [data]="processes"
     [pageable]="true"
     [arrows]="true"
+    [endless]="true"
     (itemChanged)="onChangeProcess($event)">
     <ng-template let-item="item">
       <div class="scroll-item">

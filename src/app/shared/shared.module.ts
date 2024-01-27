@@ -30,9 +30,9 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 // Directives.
 import { OverlayDirective } from '@shared/directives/overlay/overlay.directive';
 import { TabStripDirective } from '@shared/directives/tabstrip/tabstrip.directive';
+import { ComponentDirective } from '@shared/directives/component/component.directive';
 
 // Components.
-import { FormComponent } from '@shared/components/form/form.component';
 import { IconTextButtonComponent } from '@shared/components/icon-text-button/icon-text-button.component';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directive';
@@ -40,7 +40,7 @@ import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 
 @NgModule({
-  declarations: [FormComponent, IconTextButtonComponent, NavbarComponent, SidebarComponent],
+  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent],
   imports: [
     // Modules.
     CommonModule,
@@ -71,6 +71,7 @@ import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
     OverlayDirective,
     TabStripDirective,
     DropdownDirective,
+    ComponentDirective,
   ],
   providers: [NotificationService],
   exports: [
@@ -103,9 +104,9 @@ import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
     OverlayDirective,
     TabStripDirective,
     DropdownDirective,
+    ComponentDirective,
 
     // Components.
-    FormComponent,
     IconTextButtonComponent,
     NavbarComponent,
     SidebarComponent,

@@ -1,12 +1,13 @@
-import { Component, OnDestroy, ViewContainerRef } from '@angular/core';
+import { ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray, AbstractControl } from '@angular/forms';
-import { Observable, Subject, of, takeUntil } from 'rxjs';
+import { Observable, of, takeUntil } from 'rxjs';
 import { NotificationRef, NotificationService } from '@progress/kendo-angular-notification';
 import { checkCircleIcon, infoCircleIcon, xCircleIcon } from '@progress/kendo-svg-icons';
 import { FileRestrictions } from '@progress/kendo-angular-upload';
 
 import { createNotif } from '@core/utils/notif';
 import { CustomValidatorError } from '@core/utils/validators';
+import { CancelSubscription } from '../cancell-subscription/cancel-subscription.class';
 
 export interface FormField {
   label: string;
@@ -66,12 +67,7 @@ export const FieldIdentifiers = {
   FILESELECT: Symbol('FILESELECT'),
 };
 
-@Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrl: './form.component.scss',
-})
-export class FormComponent implements OnDestroy {
+export class Form extends CancelSubscription {
   public checkCircleIcon = checkCircleIcon;
   public xCircleIcon = xCircleIcon;
   public infoCircleIcon = infoCircleIcon;
@@ -80,13 +76,9 @@ export class FormComponent implements OnDestroy {
   public fieldIdentifiers = FieldIdentifiers;
   public appendTo: ViewContainerRef;
   public notifRef: NotificationRef;
-  private ngUnsubscribe = new Subject<void>();
 
-  constructor(protected notificationService: NotificationService) {}
-
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+  constructor(protected notificationService: NotificationService) {
+    super();
   }
 
   public mapPrimitiveItemsForDropdown(items: string[] | number[]): Dropdown[] {

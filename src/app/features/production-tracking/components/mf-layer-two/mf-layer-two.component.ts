@@ -3,17 +3,17 @@ import { of, switchMap } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@shared/classes/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notif';
 import { Execution, Product } from '@pt/production-tracking.model';
 
 @Component({
   selector: 'app-layer-two',
-  templateUrl: './layer-two.component.html',
-  styleUrl: './layer-two.component.scss',
+  templateUrl: './mf-layer-two.component.html',
+  styleUrl: './mf-layer-two.component.scss',
 })
-export class LayerTwoComponent extends CancelSubscription implements OnInit {
+export class MfLayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public salesOrders: string[];
   public products: Product[] = [

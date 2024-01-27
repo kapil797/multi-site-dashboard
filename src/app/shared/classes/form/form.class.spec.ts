@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayerTwoComponent } from './layer-two.component';
+import { FormComponent } from './form.class';
 
-describe('LayerTwoComponent', () => {
-  let component: LayerTwoComponent;
-  let fixture: ComponentFixture<LayerTwoComponent>;
+describe('FormComponent', () => {
+  let component: FormComponent;
+  let fixture: ComponentFixture<FormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayerTwoComponent],
+      imports: [FormComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LayerTwoComponent);
+    fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
