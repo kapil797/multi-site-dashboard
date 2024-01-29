@@ -1,30 +1,28 @@
 @use 'core/styles/base';
 @use 'core/styles/variables';
 
+$height: 4.5rem;
+
 .nav-wrapper {
-  border-radius: 1rem;
+  border-radius: variables.$border-radius-0;
   border: 0.25rem solid rgb(18, 199, 209);
   text-align: center;
 }
 
 .scroll-view {
   border: unset;
-  border-radius: 0.5rem;
+  border-radius: variables.$border-radius-1;
   background-color: #324C64;
   color: variables.$light;
-  height: 7rem;
+  height: $height;
   width: 90%;
   margin: auto;
-  font-size: variables.$font-size-reg;
 }
 
 .scroll-item {
   margin: auto;
   text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   width: 60%;
-  height: 7rem;
-  line-height: 7rem;
+  height: $height;
+  line-height: $height;
 }

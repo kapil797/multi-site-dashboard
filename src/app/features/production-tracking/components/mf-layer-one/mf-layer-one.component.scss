@@ -1,5 +1,18 @@
-@use 'core/styles/grid';
+@use 'core/styles/base';
 @use 'core/styles/variables';
+@use 'core/styles/grid';
+
+app-sidebar {
+  grid-row: 1 / span 2;
+}
+
+.pt-1-scaffold {
+  @include base.layer-one-scaffold;
+}
+
+.pt-1-wrapper {
+  @include base.container;
+}
 
 .img {
   width: 1rem;

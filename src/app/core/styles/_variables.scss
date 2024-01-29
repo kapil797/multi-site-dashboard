@@ -66,3 +66,7 @@ $spacers: (
   4: $spacer * 1.5,
   5: $spacer * 3,
 );
+$border-radius-0: 0.5rem; // Outer.
+$border-radius-1: 0.25rem; // Inner.
+$border-radius-2: 0.125rem; // Nested inner.
+$grid-gap: 1.5rem;

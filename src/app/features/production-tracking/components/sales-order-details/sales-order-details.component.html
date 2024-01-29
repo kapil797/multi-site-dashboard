@@ -1,1 +1,26 @@
-<p>sales-order-details works!</p>
+<div class="sod-wrapper ps-3 pe-3 pb-1 pt-1">
+  <h3>SALES ORDER DETAILS</h3>
+  <div class="content-scaffold">
+    <div class="text-center p-3">
+      <kendo-circularprogressbar
+        style="width: 10rem; height: 10rem"
+        [animation]="true"
+        [progressColor]="progressColors"
+        [value]="progressValue">
+        <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
+          <span [style.color]="color">{{ value }}%</span>
+        </ng-template>
+      </kendo-circularprogressbar>
+      <h5>PRODUCTION PROGRESS</h5>
+    </div>
+    <div class="p-3 d-flex flex-column">
+      <app-custom-card [data]="salesOrderData"></app-custom-card>
+      <div class="flex-spacer"></div>
+      <app-custom-card [data]="customerData"></app-custom-card>
+    </div>
+    <div class="p-3 d-flex">
+      <app-custom-card [data]="orderData"></app-custom-card>
+    </div>
+    <app-projected-completion [dueDate]="dueDate"></app-projected-completion>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+@use 'core/styles/variables';
+
+.sod-wrapper {
+  border-radius: variables.$border-radius-0;
+  background-color: variables.$component-bg;
+}
+
+.content-scaffold {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

@@ -3,7 +3,7 @@ import { takeUntil } from 'rxjs';
 
 import { AppService } from '@core/services/app.service';
 import { SharedModule } from '@shared/shared.module';
-import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 
 @Component({
   selector: 'app-landing',

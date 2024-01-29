@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs';
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { RoutePaths } from '@core/constants/routes.constant';
 import { Factory } from '@core/models/factory.model';
-import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 import { MfLayerOneComponent } from '@pt/components/mf-layer-one/mf-layer-one.component';
 import { MfLayerTwoComponent } from '@pt/components/mf-layer-two/mf-layer-two.component';
 
@@ -26,7 +26,7 @@ export class LayerResolverComponent extends CancelSubscription implements OnInit
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
-      const factory = res.get('factory')?.toUpperCase() as Factory;
+      const factory = res.get(RoutePaths.HOME)?.toUpperCase() as Factory;
       const layer = res.get(RoutePaths.LAYER) as string;
       if (factory === 'MF') {
         switch (layer) {

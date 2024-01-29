@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '@shared/shared.module';
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 import { Factory } from '@core/models/factory.model';
 import { NavItem, mfNavItems, umfNavItems } from './nav-menu.constant';
 import { RoutePaths } from '@core/constants/routes.constant';

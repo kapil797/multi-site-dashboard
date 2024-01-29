@@ -23,6 +23,7 @@ import { TooltipsModule } from '@progress/kendo-angular-tooltip';
 import { UploadsModule } from '@progress/kendo-angular-upload';
 import { MenusModule } from '@progress/kendo-angular-menu';
 import { PopupModule } from '@progress/kendo-angular-popup';
+import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 
 // Providers.
 import { NotificationService } from '@progress/kendo-angular-notification';
@@ -66,6 +67,7 @@ import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
     MenusModule,
     PopupModule,
     ScrollViewModule,
+    ProgressBarModule,
 
     // Directives.
     OverlayDirective,
@@ -99,6 +101,7 @@ import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
     MenusModule,
     PopupModule,
     ScrollViewModule,
+    ProgressBarModule,
 
     // Directives.
     OverlayDirective,

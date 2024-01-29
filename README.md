@@ -72,3 +72,8 @@ Status of SO = completed RTD processes for all WOs / total RTD processes for all
 ## websocket-svc
 
 - Required as operation dashboard is hosted in HTTPS, but requires data from HTTP APIs
+
+## Changes
+
+1. Fixed bug in navigation menu for dropzone hint
+2. Removed paging in production tracking navigation

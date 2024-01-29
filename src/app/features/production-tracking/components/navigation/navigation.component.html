@@ -1,30 +1,32 @@
-<div class="d-flex flex-column nav-wrapper justify-content-center p-3 pb-5">
-  <h3>PRODUCTS</h3>
+<div class="d-flex flex-column nav-wrapper justify-content-center pb-4 align-vertical-center">
+  <h4>PRODUCTS</h4>
   <kendo-scrollview
     class="scroll-view"
     [data]="products"
-    [pageable]="true"
+    [pageable]="false"
     [arrows]="true"
     [endless]="true"
+    [(activeIndex)]="activeProductIndex"
     (itemChanged)="onChangeProduct($event)">
     <ng-template let-item="item">
-      <div class="scroll-item">
-        {{ item.name?.toUpperCase() }}
+      <div class="scroll-item text--ellipsis">
+        <strong> {{ item?.name?.toUpperCase() }}</strong>
       </div>
     </ng-template>
   </kendo-scrollview>
 
-  <h3>PROCESSES</h3>
+  <h4>PROCESSES</h4>
   <kendo-scrollview
     class="scroll-view"
     [data]="processes"
-    [pageable]="true"
+    [pageable]="false"
     [arrows]="true"
     [endless]="true"
+    [(activeIndex)]="activeProcessIndex"
     (itemChanged)="onChangeProcess($event)">
     <ng-template let-item="item">
-      <div class="scroll-item">
-        {{ String(item).toUpperCase() }}
+      <div class="scroll-item text--ellipsis">
+        <strong>{{ item && String(item).toUpperCase() }}</strong>
       </div>
     </ng-template>
   </kendo-scrollview>

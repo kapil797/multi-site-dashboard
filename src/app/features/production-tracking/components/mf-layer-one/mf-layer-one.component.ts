@@ -4,7 +4,7 @@ import { ColumnSetting } from '@core/models/grid.model';
 import { AppService } from '@core/services/app.service';
 import { SalesOrderStatus, WorkOrderStatus } from '@pt/production-tracking.model';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 import { switchMap, take } from 'rxjs';
 
 @Component({

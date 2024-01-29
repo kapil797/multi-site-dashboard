@@ -1,0 +1,26 @@
+@use 'core/styles/variables';
+
+.card {
+  background-color: unset;
+  color: variables.$light;
+}
+
+.card__header {
+  font-weight: bold;
+  color: variables.$light;
+  padding: unset;
+}
+
+.card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.card__body {
+  border-radius: variables.$border-radius-1;
+  background-color: variables.$component-alt-bg;
+}
+
+.space-filled {
+  flex-grow: 1;
+}

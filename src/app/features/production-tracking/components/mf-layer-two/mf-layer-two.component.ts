@@ -3,9 +3,9 @@ import { of, switchMap } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@shared/classes/cancell-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { createNotif } from '@core/utils/notif';
+import { createNotif } from '@shared/configs/notification';
 import { Execution, Product } from '@pt/production-tracking.model';
 
 @Component({
@@ -27,19 +27,15 @@ export class MfLayerTwoComponent extends CancelSubscription implements OnInit {
         'Cartridge Oven 2',
         'Cartridge Oven 3',
         'Laser Printing',
-      ],
-    },
-    {
-      name: 'MfConnect',
-      processes: [
-        'Laser Wielding',
-        'Cartridge Screen Printing',
-        'Cartridge Oven 1',
         'Screen Printing Silicon',
         'Cartridge Oven 2',
         'Cartridge Oven 3',
         'Laser Printing',
       ],
+    },
+    {
+      name: 'MfConnect',
+      processes: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
     },
   ];
   private factory: string;

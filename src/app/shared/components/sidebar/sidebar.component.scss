@@ -1,15 +1,19 @@
 @use 'core/styles/variables';
 
+/* 
+  Width is specified for sidebar as layer-one-scaffold grid is set to auto auto. 
+  However, sidebar can either be placed on left or right side.
+*/
+
 .sidebar {
   background-color: variables.$tertiary;
   height: 100%;
   width: 4rem;
-  position: fixed;
   writing-mode: vertical-rl;
   color: variables.$light;
   font-size: variables.$font-size-xxl;
   text-align: center;
-  line-height: 4rem;
   font-weight: 700;
+  line-height: 4rem;
   letter-spacing: 5px;
 }
