@@ -1,9 +1,9 @@
-<kendo-card class="card h-100">
-  <kendo-card-header class="d-flex align-items-center card__header pb-2">
-    <img class="card__icon me-2" [src]="data.srcImg" alt="card image" />
-    {{ data.header.toUpperCase() }}:
+<kendo-card class="card h-100 w-100 ps-3 pe-3 pb-3">
+  <kendo-card-header class="card__header d-flex align-items-center">
+    <fa-icon class="icon me-2" [icon]="icon"></fa-icon>
+    <h4>{{ header.toUpperCase() }}</h4>
   </kendo-card-header>
-  <kendo-card-body [ngClass]="data.fillSpace ? 'card__body space-filled' : 'card__body'">
-    <div *ngFor="let text of data.content" class="text--ellipsis">{{ text }}</div>
+  <kendo-card-body class="card__body">
+    <div>{{ content }}</div>
   </kendo-card-body>
 </kendo-card>

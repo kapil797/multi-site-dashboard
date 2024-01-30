@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 
 @Component({
@@ -9,6 +10,8 @@ import moment from 'moment';
 export class ProjectedCompletionComponent implements OnInit {
   @Input() dueDate: string;
   @Input() completedDate?: string;
+  @Output() late = new EventEmitter();
+  public icon = faClock;
   public displayedDate: string;
   public isLate = false;
   public timeDetails: string;
@@ -26,6 +29,7 @@ export class ProjectedCompletionComponent implements OnInit {
     }
     this.isLate = true;
     this.timeDetails = `LATE BY ${this.getTimeBreakdown(timeDiff * -1)}`;
+    this.late.emit();
   }
 
   private calcTimeDiff() {

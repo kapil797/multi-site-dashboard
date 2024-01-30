@@ -15,12 +15,12 @@
 
 .k-grid-header {
   font-weight: 700;
-  background-color: variables.$component-bg;
+  background-color: variables.$bg-1;
   color: variables.$gray-500;
 }
 
 .k-master-row  {
-  background-color: variables.$component-bg;
+  background-color: variables.$bg-1;
   color: variables.$gray-300;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .k-grid .k-table-row.k-table-alt-row {
-  background-color: variables.$component-alt-bg;
+  background-color: variables.$bg-2;
 }
 
 .k-grid tr:hover {

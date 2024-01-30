@@ -48,25 +48,29 @@
 
 .img-container {
   position: relative;
+  object-fit: contain;
 }
 
 .img__map {
   height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 .img__mf {
-  height: 10%;
-  width: 10%;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
   position: absolute;
-  left: 20%;
-  top: 40%;
+  left: calc(100% - 80%);
+  top: calc(100% - 60%);
 }
 
 .img__umf {
-  height: 5%;
-  width: 5%;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
   position: absolute;
-  left: 30%;
-  top: 65%;
+  left: calc(100% - 70%);
+  top: calc(100% - 35%);
 }

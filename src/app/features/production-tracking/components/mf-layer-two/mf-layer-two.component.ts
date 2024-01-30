@@ -7,6 +7,7 @@ import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-s
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@shared/configs/notification';
 import { Execution, Product } from '@pt/production-tracking.model';
+import { SalesOrderData } from '@pt/components/sales-order-details/sales-order-details.component';
 
 @Component({
   selector: 'app-layer-two',
@@ -38,6 +39,18 @@ export class MfLayerTwoComponent extends CancelSubscription implements OnInit {
       processes: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
     },
   ];
+  public salesOrderData: SalesOrderData = {
+    progress: 80,
+    customer: 'Some customer',
+    salesOrderNo: 'EX191108-0001',
+    dueDate: '2024-01-29T11:35:16.43',
+    lineItems: [
+      { name: 'E-Scentz Mold Insert', quantity: 2 },
+      { name: 'E-Scentz Mold Insert', quantity: 1 },
+      { name: 'E-Scentz Mold Insert', quantity: 5 },
+    ],
+  };
+
   private factory: string;
 
   constructor(

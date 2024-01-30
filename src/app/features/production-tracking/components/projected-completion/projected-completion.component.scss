@@ -10,22 +10,16 @@
   background-color: variables.$error;
 }
 
-.text {
-  border-radius: variables.$border-radius-2;
-  background-color: variables.$component-alt-bg;
+.header {
+  font-size: variables.$font-size-lg;
   font-weight: bold;
 }
 
-.date {
-  background-color: variables.$light;
-  color: variables.$dark;
-}
-
 .icon {
-  width: 2.5rem;
-  height: 2rem;
+  font-size: variables.$font-size-h3;
 }
 
-.space-filled {
-  flex-grow: 1;
+.text {
+  font-size: variables.$font-size-xs;
+  letter-spacing: variables.$letter-spacing-sm;
 }

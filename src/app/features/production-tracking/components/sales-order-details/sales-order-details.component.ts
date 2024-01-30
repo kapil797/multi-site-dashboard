@@ -1,7 +1,16 @@
-import { Component } from '@angular/core';
-import { progressColors } from '@shared/configs/progress-bars.config';
+import { Component, Input } from '@angular/core';
+import { faBars, faHashtag, faTriangleExclamation, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { CardData } from '@pt/components/custom-card/custom-card.component';
+import { LineItem } from '@pt/components/line-items/line-items.component';
+
+export interface SalesOrderData {
+  progress: number;
+  salesOrderNo: string;
+  customer: string;
+  dueDate: string;
+  completedDate?: string;
+  lineItems: LineItem[];
+}
 
 @Component({
   selector: 'app-sales-order-details',
@@ -9,26 +18,16 @@ import { CardData } from '@pt/components/custom-card/custom-card.component';
   styleUrl: './sales-order-details.component.scss',
 })
 export class SalesOrderDetailsComponent {
-  public progressValue = 80;
-  public progressColors = progressColors;
-  public imgOrderList = 'assets/images/production-tracking/products.png';
-  public salesOrderData: CardData = {
-    header: 'sales order',
-    srcImg: 'assets/images/production-tracking/hash.png',
-    content: ['this is some very long text this is some very long text'],
-  };
-  public customerData: CardData = {
-    header: 'customer',
-    srcImg: 'assets/images/production-tracking/customer.png',
-    content: ['Some customer'],
-  };
-  public orderData: CardData = {
-    header: 'order list',
-    srcImg: 'assets/images/production-tracking/products.png',
-    content: ['12 X eScentz(MTS)', '12 X eScentz(MTS)'],
-    fillSpace: true,
-  };
-  public dueDate = '2024-01-29T11:35:16.43';
+  @Input() data: SalesOrderData;
+  public isLate = false;
+  public faHashtag = faHashtag;
+  public faUser = faUser;
+  public faBars = faBars;
+  public faTriangleExclamation = faTriangleExclamation;
 
   constructor() {}
+
+  public onLate() {
+    this.isLate = true;
+  }
 }

@@ -1,11 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-export interface CardData {
-  srcImg: string;
-  header: string;
-  content: string[];
-  fillSpace?: boolean;
-}
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-custom-card',
@@ -13,6 +7,8 @@ export interface CardData {
   styleUrl: './custom-card.component.scss',
 })
 export class CustomCardComponent {
-  @Input() data: CardData;
+  @Input() header: string;
+  @Input() icon: IconDefinition;
+  @Input() content: string;
   constructor() {}
 }

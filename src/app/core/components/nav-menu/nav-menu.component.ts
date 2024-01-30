@@ -26,9 +26,11 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
   public navItems: NavItem[];
   public factoryMap: string;
   public dropzoneOrder: number; // Last element of navItems. 0-indexed.
-  public mf = 'assets/images/factories/big.png';
-  public umf = 'assets/images/factories/small.png';
   public RoutePaths = RoutePaths;
+  public imgMf: string;
+  public imgUmf: string;
+  private currentFactory = 'assets/images/factories/big.png';
+  private altFactory = 'assets/images/factories/small.png';
   private observer: MutationObserver;
 
   constructor(
@@ -45,10 +47,14 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
         this.navItems = mfNavItems;
         this.columns = 4;
         this.factoryMap = 'assets/images/factories/map-mf.png';
+        this.imgMf = this.currentFactory;
+        this.imgUmf = this.altFactory;
       } else if (res === 'UMF') {
         this.navItems = umfNavItems;
         this.columns = 3;
         this.factoryMap = 'assets/images/factories/map-umf.png';
+        this.imgUmf = this.currentFactory;
+        this.imgMf = this.altFactory;
       }
       this.dropzoneOrder = this.navItems.length;
     });

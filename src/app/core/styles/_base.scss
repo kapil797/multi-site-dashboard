@@ -62,10 +62,11 @@
   display: none;
 }
 
-.text--ellipsis {
+.truncate {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  flex-basis: 60%;
 }
 
 .align-vertical-center {

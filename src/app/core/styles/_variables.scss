@@ -7,12 +7,16 @@ $font-size-lg: 1.25rem;
 $font-size-xl: 1.75rem;
 $font-size-xxl: 2rem;
 $font-size-xxxl: 2.5rem;
-$font-size-h1: 2rem;
-$font-size-h2: 1.75rem;
-$font-size-h3: 1.5rem;
-$font-size-h4: 1.25rem;
-$font-size-h5: 1rem;
-$font-size-h6: 0.8rem;
+$font-size-h1: 1.75rem;
+$font-size-h2: 1.5rem;
+$font-size-h3: 1.25rem;
+$font-size-h4: 1rem;
+$font-size-h5: 0.75rem;
+$font-size-h6: 0.5rem;
+
+$letter-spacing-sm: 0.1rem;
+$letter-spacing-reg: 0.2rem;
+$letter-spacing-lg: 0.3rem;
 
 // Colors.
 $gray-100: #ffffff;
@@ -24,12 +28,14 @@ $gray-600: #9191a1;
 $gray-700: #676775;
 $gray-800: #393947;
 $gray-900: #000000;
-$white: #080303;
+$white: #FFFFFF;
 $black: #000000;
+$cyan: #93F7FF;
 
-$app-bg: #04162C;
-$component-bg: #002135;
-$component-alt-bg: #303E50;
+$bg-1: #04162C;
+$bg-2: #002135; 
+$bg-3: #002540;
+$bg-4: #303E50;
 $primary: #1262d8;
 $secondary: $gray-300; 
 $tertiary: #338183;
@@ -37,7 +43,7 @@ $quaternary: #8B8B8B;
 $info: #5965e7;
 $success: #21d794;
 $warning: #fab95c;
-$error: #fa5c5c;
+$error: #7E3644;
 $dark: #000000;
 $light: #ffffff;
 
@@ -57,16 +63,6 @@ $device-laptop: 769px;
 $device-desktop: 1025px;
 
 // Utilities.
-$spacer: 1rem;
-$spacers: (
-  0: 0,
-  1: $spacer * .25,
-  2: $spacer * .5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-);
 $border-radius-0: 0.5rem; // Outer.
-$border-radius-1: 0.25rem; // Inner.
+$border-radius-1: 0.75rem; // Inner.
 $border-radius-2: 0.125rem; // Nested inner.
-$grid-gap: 1.5rem;

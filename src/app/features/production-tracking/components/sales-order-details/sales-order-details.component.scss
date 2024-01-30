@@ -1,11 +1,36 @@
 @use 'core/styles/variables';
 
-.sod-wrapper {
-  border-radius: variables.$border-radius-0;
-  background-color: variables.$component-bg;
+app-progress {
+  grid-row: 1 / span 2;
 }
 
-.content-scaffold {
+app-projected-completion {
+  grid-row: 1;
+}
+
+app-line-items {
+  grid-row: 1 / span 2;
+}
+
+#salesOrder {
+  grid-row: 1;
+}
+
+#customer {
+  grid-row: 2;
+}
+
+#alerts {
+  grid-row: 2;
+}
+
+.sod-wrapper {
+  border-radius: variables.$border-radius-0;
+  background-color: variables.$bg-2;
+}
+
+.sod-content-scaffold {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }

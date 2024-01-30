@@ -1,0 +1,16 @@
+<div class="progress-wrapper ps-3 pe-3 pb-3">
+  <div class="d-flex align-items-center">
+    <fa-icon [icon]="icon" class="icon me-2"></fa-icon>
+    <h4>PRODUCTION PROGRESS</h4>
+  </div>
+  <kendo-circularprogressbar
+    class="align-horizontal-center"
+    style="width: 10rem; height: 10rem"
+    [animation]="true"
+    [progressColor]="progressColors"
+    [value]="progress">
+    <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
+      <span class="text" [style.color]="color">{{ value }}%</span>
+    </ng-template>
+  </kendo-circularprogressbar>
+</div>

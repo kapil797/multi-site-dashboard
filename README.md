@@ -77,3 +77,7 @@ Status of SO = completed RTD processes for all WOs / total RTD processes for all
 
 1. Fixed bug in navigation menu for dropzone hint
 2. Removed paging in production tracking navigation
+
+- Fixed size image in navigation
+- Change factoy
+- Clicking based on role

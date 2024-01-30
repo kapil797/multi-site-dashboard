@@ -3,9 +3,9 @@
   <kendo-scrollview
     class="scroll-view"
     [data]="products"
-    [pageable]="false"
+    [pageable]="true"
     [arrows]="true"
-    [endless]="true"
+    [endless]="false"
     [(activeIndex)]="activeProductIndex"
     (itemChanged)="onChangeProduct($event)">
     <ng-template let-item="item">
@@ -19,9 +19,9 @@
   <kendo-scrollview
     class="scroll-view"
     [data]="processes"
-    [pageable]="false"
+    [pageable]="true"
     [arrows]="true"
-    [endless]="true"
+    [endless]="false"
     [(activeIndex)]="activeProcessIndex"
     (itemChanged)="onChangeProcess($event)">
     <ng-template let-item="item">
