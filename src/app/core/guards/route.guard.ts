@@ -11,7 +11,7 @@ export const routeGuard = (): CanMatchFn => {
   return (_route: Route, segments: UrlSegment[]) => {
     const app = inject(AppService);
     if (segments.length === 0) return false;
-    const factory = segments[0].path.toUpperCase() as Factory;
+    const factory = segments[0].path as Factory;
     if (!factory || !factories.includes(factory)) return false;
     app.factory$.next(factory);
     return true;

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UmfLayerTwoComponent } from './umf-layer-two.component';
+import { LayerTwoComponent } from './layer-two.component';
 
-describe('UmfLayerTwoComponent', () => {
-  let component: UmfLayerTwoComponent;
-  let fixture: ComponentFixture<UmfLayerTwoComponent>;
+describe('LayerTwoComponent', () => {
+  let component: LayerTwoComponent;
+  let fixture: ComponentFixture<LayerTwoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UmfLayerTwoComponent],
+      imports: [LayerTwoComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UmfLayerTwoComponent);
+    fixture = TestBed.createComponent(LayerTwoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

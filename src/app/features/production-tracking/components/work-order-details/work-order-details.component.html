@@ -1,1 +1,33 @@
-<p>work-order-details works!</p>
+<div class="wod-wrapper ps-3 pe-3 pb-3 pt-1">
+  <h3>WORK ORDER DETAILS</h3>
+  <div class="wod-content-scaffold gap-3">
+    <app-custom-scroll
+      id="product"
+      header="product"
+      [icon]="faGift"
+      [data]="products"
+      (toggle)="onToggleProduct($event)"></app-custom-scroll>
+    <app-custom-card
+      id="workOrder"
+      header="work order"
+      [icon]="faHashtag"
+      [content]="curProcess?.woid"></app-custom-card>
+    <app-process-tracking></app-process-tracking>
+    <app-custom-card
+      id="process"
+      header="process"
+      [icon]="faGear"
+      [content]="curProcess?.process?.name"></app-custom-card>
+    <app-custom-card
+      id="machine"
+      header="machine"
+      [icon]="faRobot"
+      [content]="curProcess?.currMachine?.name"></app-custom-card>
+    <app-custom-card
+      id="parts"
+      header="parts completed"
+      [icon]="faPuzzlePiece"
+      [content]="partCompletionStatus"></app-custom-card>
+    <app-projected-completion [dueDate]="curProcess?.estimateCompleteTime"></app-projected-completion>
+  </div>
+</div>

@@ -8,7 +8,7 @@ import moment from 'moment';
   styleUrl: './projected-completion.component.scss',
 })
 export class ProjectedCompletionComponent implements OnInit {
-  @Input() dueDate: string;
+  @Input() dueDate?: string;
   @Input() completedDate?: string;
   @Output() late = new EventEmitter();
   public icon = faClock;
@@ -20,6 +20,10 @@ export class ProjectedCompletionComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    if (!this.dueDate) {
+      this.displayedDate = 'Not Available';
+      return;
+    }
     this.displayedDate = moment(this.dueDate).format('DD/MM/YYYY HH:mm');
 
     const timeDiff = this.calcTimeDiff();
@@ -33,7 +37,7 @@ export class ProjectedCompletionComponent implements OnInit {
   }
 
   private calcTimeDiff() {
-    const time1 = new Date(this.dueDate).getTime();
+    const time1 = new Date(this.dueDate as string).getTime();
     const time2 = this.completedDate ? new Date(this.completedDate).getTime() : Date.now();
     return time1 - time2;
   }

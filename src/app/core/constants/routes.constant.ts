@@ -1,7 +1,7 @@
 export const RoutePaths = {
   BASE: '',
   HOME: 'factory',
-  DEFAULT: 'mf',
+  DEFAULT: 'modelfactory',
   FALLBACK: 'fallback',
   UNAUTHORIZED: 'unauthorized',
   LAYER: 'layer',

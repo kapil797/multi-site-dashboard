@@ -9,6 +9,6 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 export class CustomCardComponent {
   @Input() header: string;
   @Input() icon: IconDefinition;
-  @Input() content: string;
+  @Input() content?: string;
   constructor() {}
 }

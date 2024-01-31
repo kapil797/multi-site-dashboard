@@ -1,0 +1,24 @@
+@use 'core/styles/variables';
+
+app-process-tracking {
+  grid-row: 1 / span 3;
+}
+
+#product {
+  grid-row: 1
+}
+
+#workOrder {
+  grid-row: 1
+}
+
+.wod-wrapper {
+  border-radius: variables.$border-radius-0;
+  background-color: variables.$bg-2;
+}
+
+.wod-content-scaffold {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: repeat(3, 1fr);
+}

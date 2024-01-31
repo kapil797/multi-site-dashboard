@@ -1,9 +1,14 @@
 @use 'core/styles/base';
 @use 'core/styles/variables';
 
+h4 {
+  letter-spacing: variables.$letter-spacing-sm;
+}
+
 .pc-wrapper {
   border-radius: variables.$border-radius-1;
   background-color: variables.$success;
+  box-sizing: border-box;
 }
 
 .late {
@@ -11,7 +16,7 @@
 }
 
 .header {
-  font-size: variables.$font-size-lg;
+  font-size: variables.$font-size-xl;
   font-weight: bold;
 }
 

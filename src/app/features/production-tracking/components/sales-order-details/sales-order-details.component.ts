@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { faBars, faHashtag, faTriangleExclamation, faUser } from '@fortawesome/free-solid-svg-icons';
-
-import { LineItem } from '@pt/components/line-items/line-items.component';
+import { LineItem } from '@pt/production-tracking.model';
 
 export interface SalesOrderData {
   progress: number;

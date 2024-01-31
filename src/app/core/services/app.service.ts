@@ -12,7 +12,7 @@ export class AppService {
   public config: Config;
   public api: BaseApi;
   public appDialog: string | null = null;
-  public factory$ = new BehaviorSubject<Factory>('MF');
+  public factory$ = new BehaviorSubject<Factory>('modelfactory');
 
   constructor() {}
 

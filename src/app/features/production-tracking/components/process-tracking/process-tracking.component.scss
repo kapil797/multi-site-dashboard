@@ -1,0 +1,16 @@
+@use 'core/styles/variables';
+
+h4 {
+  letter-spacing: variables.$letter-spacing-sm;
+}
+
+.pt-wrapper {
+  background-color: variables.$bg-3;
+  border-radius: variables.$border-radius-1;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+.icon {
+  font-size: variables.$font-size-h3;
+}

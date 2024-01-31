@@ -43,13 +43,13 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
 
   ngOnInit(): void {
     this.app.factory$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
-      if (res === 'MF') {
+      if (res === 'modelfactory') {
         this.navItems = mfNavItems;
         this.columns = 4;
         this.factoryMap = 'assets/images/factories/map-mf.png';
         this.imgMf = this.currentFactory;
         this.imgUmf = this.altFactory;
-      } else if (res === 'UMF') {
+      } else if (res === 'microfactory') {
         this.navItems = umfNavItems;
         this.columns = 3;
         this.factoryMap = 'assets/images/factories/map-umf.png';

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MfLayerOneComponent } from './mf-layer-one.component';
+import { LayerOneComponent } from './layer-one.component';
 
-describe('MfLayerOneComponent', () => {
-  let component: MfLayerOneComponent;
-  let fixture: ComponentFixture<MfLayerOneComponent>;
+describe('LayerOneComponent', () => {
+  let component: LayerOneComponent;
+  let fixture: ComponentFixture<LayerOneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MfLayerOneComponent],
+      imports: [LayerOneComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MfLayerOneComponent);
+    fixture = TestBed.createComponent(LayerOneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,11 +9,11 @@ import { switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'app-layer-one',
-  templateUrl: './mf-layer-one.component.html',
-  styleUrl: './mf-layer-one.component.scss',
+  templateUrl: './layer-one.component.html',
+  styleUrl: './layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class MfLayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public circleError = 'assets/images/utilities/circle-error.png';
   public circleSuccess = 'assets/images/utilities/circle-success.png';

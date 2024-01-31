@@ -29,8 +29,13 @@
     <kendo-tilelayout-item-body>
       <div class="img-container w-100 h-100">
         <img class="img__map" [src]="factoryMap" alt="factory-map" />
-        <img class="img__mf" [src]="imgMf" alt="factory-mf" (click)="onChangeSite('MF')" aria-hidden="true" />
-        <img class="img__umf" [src]="imgUmf" alt="factory-umf" (click)="onChangeSite('UMF')" aria-hidden="true" />
+        <img class="img__mf" [src]="imgMf" alt="factory-mf" (click)="onChangeSite('modelfactory')" aria-hidden="true" />
+        <img
+          class="img__umf"
+          [src]="imgUmf"
+          alt="factory-umf"
+          (click)="onChangeSite('microfactory')"
+          aria-hidden="true" />
       </div>
     </kendo-tilelayout-item-body>
   </kendo-tilelayout-item>

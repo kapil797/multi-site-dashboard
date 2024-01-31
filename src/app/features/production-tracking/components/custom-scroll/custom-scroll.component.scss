@@ -1,0 +1,77 @@
+@use 'core/styles/variables';
+
+h4 {
+  letter-spacing: variables.$letter-spacing-sm;
+}
+
+button {
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: unset;
+}
+
+$height: 7.7rem;
+$triangle-base: 1.7rem;
+$triangle-side: 2rem;
+
+.scrollview-wrapper {
+  background-color: variables.$bg-5;
+  border-radius: variables.$border-radius-1;
+  border: 0.1rem solid variables.$border;
+  color: variables.$light;
+  height: $height;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.scrollview-template-scaffold {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto 9rem;
+}
+
+.scroll-item {
+  margin: auto;
+  text-align: center;
+  width: 60%;
+  height: $height;
+  line-height: $height;
+}
+
+.icon {
+  font-size: variables.$font-size-h3;
+}
+
+.text {
+  color: variables.$cyan;
+  font-size: variables.$font-size-xl;
+  grid-row: 2;
+}
+
+.header {
+  grid-row: 1;
+}
+
+.arrows {
+  grid-row: 1 / span 2;
+}
+
+.arrow--left {
+  width: 0; 
+  height: 0; 
+  border-top: $triangle-side solid transparent;
+  border-bottom: $triangle-side solid transparent;
+  border-right: $triangle-base solid variables.$white;
+}
+
+.arrow--right {
+  width: 0; 
+  height: 0; 
+  border-top: $triangle-side solid transparent;
+  border-bottom: $triangle-side solid transparent;
+  border-left: $triangle-base solid variables.$white;
+}

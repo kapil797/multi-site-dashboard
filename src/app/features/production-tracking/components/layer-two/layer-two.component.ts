@@ -11,34 +11,12 @@ import { SalesOrderData } from '@pt/components/sales-order-details/sales-order-d
 
 @Component({
   selector: 'app-layer-two',
-  templateUrl: './mf-layer-two.component.html',
-  styleUrl: './mf-layer-two.component.scss',
+  templateUrl: './layer-two.component.html',
+  styleUrl: './layer-two.component.scss',
 })
-export class MfLayerTwoComponent extends CancelSubscription implements OnInit {
+export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public salesOrders: string[];
-  public products: Product[] = [
-    {
-      name: 'eScentz (MTS)',
-      processes: [
-        'Laser Wielding',
-        'Cartridge Screen Printing',
-        'Cartridge Oven 1',
-        'Screen Printing Silicon',
-        'Cartridge Oven 2',
-        'Cartridge Oven 3',
-        'Laser Printing',
-        'Screen Printing Silicon',
-        'Cartridge Oven 2',
-        'Cartridge Oven 3',
-        'Laser Printing',
-      ],
-    },
-    {
-      name: 'MfConnect',
-      processes: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
-    },
-  ];
   public salesOrderData: SalesOrderData = {
     progress: 80,
     customer: 'Some customer',
@@ -50,6 +28,11 @@ export class MfLayerTwoComponent extends CancelSubscription implements OnInit {
       { name: 'E-Scentz Mold Insert', quantity: 5 },
     ],
   };
+  public workOrderData: Product[] = [
+    { name: 'ESCENTZ', id: 'escentz', processes: [] },
+    { name: 'MFCONNECT', id: 'mfconnect', processes: [] },
+    { name: 'MFCONNECT+', id: 'mfconnect+', processes: [] },
+  ];
 
   private factory: string;
 

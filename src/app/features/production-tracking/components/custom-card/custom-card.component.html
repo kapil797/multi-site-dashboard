@@ -4,6 +4,8 @@
     <h4>{{ header.toUpperCase() }}</h4>
   </kendo-card-header>
   <kendo-card-body class="card__body">
-    <div>{{ content }}</div>
+    <div>
+      <strong>{{ content || 'Not Available' }}</strong>
+    </div>
   </kendo-card-body>
 </kendo-card>

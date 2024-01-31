@@ -3,7 +3,6 @@
 
 .pt-2-wrapper {
   @include base.container;
-  display: grid;
-  grid-template-rows: auto auto auto;
+  padding-top: unset;
 }
 

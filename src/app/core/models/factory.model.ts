@@ -1,2 +1,2 @@
-export type Factory = 'MF' | 'UMF';
-export const factories: Factory[] = ['MF', 'UMF'];
+export type Factory = 'modelfactory' | 'microfactory';
+export const factories: Factory[] = ['modelfactory', 'microfactory'];

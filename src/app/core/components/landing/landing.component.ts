@@ -21,8 +21,8 @@ export class LandingComponent extends CancelSubscription implements OnInit {
 
   ngOnInit(): void {
     this.app.factory$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
-      if (res === 'MF') this.header = 'Model Factory';
-      else if (res === 'UMF') this.header = 'Micro Factory';
+      if (res === 'modelfactory') this.header = 'Model Factory';
+      else if (res === 'microfactory') this.header = 'Micro Factory';
     });
   }
 }

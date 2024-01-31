@@ -7,6 +7,12 @@ export interface Status {
 export interface SalesOrder {
   salesOrderNo: string;
   customer: string;
+  lineItems?: unknown[];
+}
+
+export interface LineItem {
+  name: string;
+  quantity: number;
 }
 
 export interface WorkOrder {
@@ -41,10 +47,17 @@ export interface Execution {
   scrapQty: number;
   statusId: number;
   statusName: string;
+  currMachine: Machine;
 }
 
 export interface Process {
   id: number;
+  name: string;
+}
+
+export interface Machine {
+  id: number;
+  machineNo: string;
   name: string;
 }
 
@@ -60,5 +73,6 @@ export interface WorkOrderStatus extends Status {
 
 export interface Product {
   name: string;
-  processes: string[];
+  id: string;
+  processes: Execution[];
 }
