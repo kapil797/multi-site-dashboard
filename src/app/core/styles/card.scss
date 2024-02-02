@@ -4,6 +4,7 @@
   color: variables.$light;
   background-color: variables.$bg-3;
   border-radius: variables.$border-radius-1;
+  box-sizing: border-box;
 }
 
 .card__header {

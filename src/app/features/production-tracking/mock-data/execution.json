@@ -1,0 +1,594 @@
+[
+  {
+    "id": 31878,
+    "woid": "2401300003",
+    "process": {
+      "id": 18,
+      "name": "Cartridge Laser Welding",
+      "workCenter": {
+        "id": 13,
+        "name": "Laser Welding",
+        "description": "Laser Welding"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 16,
+      "machineNo": "M10",
+      "name": "Laser Welding"
+    },
+    "processExecMachine": null,
+    "processStartTime": "2024-01-30T09:09:30.867",
+    "processEndTime": "2024-01-30T09:18:27.137",
+    "estimateCompleteTime": "2024-01-30T09:39:30.867",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 1,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31879,
+    "woid": "2401300003",
+    "process": {
+      "id": 19,
+      "name": "Cartridge Screen Printing 1",
+      "workCenter": {
+        "id": 18,
+        "name": "Screen Printing Black",
+        "description": "Screen Printing Silver"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 11,
+      "machineNo": "M05",
+      "name": "Screen Printer 2"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:19:17.313",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 2,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31880,
+    "woid": "2401300003",
+    "process": {
+      "id": 20,
+      "name": "Cartridge Oven 1",
+      "workCenter": {
+        "id": 8,
+        "name": "Oven 01",
+        "description": "Oven 01"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 8,
+      "machineNo": "M02",
+      "name": "InfraRed Oven 1"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:21:50.84",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 3,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31881,
+    "woid": "2401300003",
+    "process": {
+      "id": 21,
+      "name": "Cartridge Screen Printing 2",
+      "workCenter": {
+        "id": 9,
+        "name": "Screen Printing Silver",
+        "description": "Screen Printing Black"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 10,
+      "machineNo": "M04",
+      "name": "Screen Printer 1"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:21:50.86",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 4,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31882,
+    "woid": "2401300003",
+    "process": {
+      "id": 22,
+      "name": "Cartridge Oven 2",
+      "workCenter": {
+        "id": 8,
+        "name": "Oven 01",
+        "description": "Oven 01"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 9,
+      "machineNo": "M03",
+      "name": "InfraRed Oven 2"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:21:50.873",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 5,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31883,
+    "woid": "2401300003",
+    "process": {
+      "id": 23,
+      "name": "Cartridge Screen Printing 3",
+      "workCenter": {
+        "id": 18,
+        "name": "Screen Printing Black",
+        "description": "Screen Printing Silver"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 11,
+      "machineNo": "M05",
+      "name": "Screen Printer 2"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:21:50.897",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 6,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31884,
+    "woid": "2401300003",
+    "process": {
+      "id": 24,
+      "name": "Cartridge Oven 3",
+      "workCenter": {
+        "id": 8,
+        "name": "Oven 01",
+        "description": "Oven 01"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 8,
+      "machineNo": "M02",
+      "name": "InfraRed Oven 1"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:21:50.917",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 7,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  },
+  {
+    "id": 31885,
+    "woid": "2401300003",
+    "process": {
+      "id": 1310,
+      "name": "Cartridge Laser Trimming P06",
+      "workCenter": {
+        "id": 14,
+        "name": "Laser Trimming",
+        "description": "Laser Trimming"
+      },
+      "processInputProducts": null,
+      "processOutputProducts": null
+    },
+    "currMachine": {
+      "id": 17,
+      "machineNo": "M11",
+      "name": "Laser Trimming"
+    },
+    "processExecMachine": null,
+    "processStartTime": null,
+    "processEndTime": "2024-01-30T09:21:50.94",
+    "estimateCompleteTime": "2024-01-31T15:19:02.735145+08:00",
+    "completeQty": 12,
+    "outStandingQty": 0,
+    "releasedQty": 12,
+    "step": 8,
+    "statusId": 4,
+    "statusName": "Completed",
+    "scrapQty": 0,
+    "hasScrap": false,
+    "availableMachines": [
+      {
+        "id": 16,
+        "machineNo": "M10",
+        "name": "Laser Welding"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 10,
+        "machineNo": "M04",
+        "name": "Screen Printer 1"
+      },
+      {
+        "id": 9,
+        "machineNo": "M03",
+        "name": "InfraRed Oven 2"
+      },
+      {
+        "id": 11,
+        "machineNo": "M05",
+        "name": "Screen Printer 2"
+      },
+      {
+        "id": 8,
+        "machineNo": "M02",
+        "name": "InfraRed Oven 1"
+      },
+      {
+        "id": 17,
+        "machineNo": "M11",
+        "name": "Laser Trimming"
+      }
+    ]
+  }
+]

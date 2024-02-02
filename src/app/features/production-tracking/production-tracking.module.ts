@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { ProductionTrackingRoutingModule } from '@pt/production-tracking-routing.module';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { NavigationComponent } from '@pt/components/navigation/navigation.component';
 import { CustomCardComponent } from '@pt/components/custom-card/custom-card.component';
 import { ProjectedCompletionComponent } from '@pt/components/projected-completion/projected-completion.component';
 import { ProgressComponent } from '@pt/components/progress/progress.component';
@@ -19,7 +18,6 @@ import { ProcessTrackingComponent } from '@pt/components/process-tracking/proces
   declarations: [
     LayerOneComponent,
     LayerTwoComponent,
-    NavigationComponent,
     CustomCardComponent,
     ProjectedCompletionComponent,
     ProgressComponent,

@@ -9,6 +9,6 @@ import { LineItem } from '@pt/production-tracking.model';
   styleUrl: './line-items.component.scss',
 })
 export class LineItemsComponent {
-  @Input() data: LineItem[];
+  @Input() data?: LineItem[];
   public faBars = faBars;
 }

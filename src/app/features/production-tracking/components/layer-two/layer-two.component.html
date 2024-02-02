@@ -1,5 +1,5 @@
 <app-navbar header="Enterprise - Production Tracking"></app-navbar>
 <div class="pt-2-wrapper d-flex gap-3 flex-column">
-  <app-sales-order-details [data]="salesOrderData"></app-sales-order-details>
-  <app-work-order-details [data]="workOrderData"></app-work-order-details>
+  <app-sales-order-details [data]="salesOrderDetails"></app-sales-order-details>
+  <app-work-order-details [factory]="factory" [data]="workOrderDetails"></app-work-order-details>
 </div>

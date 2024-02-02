@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 
@@ -7,9 +7,9 @@ import moment from 'moment';
   templateUrl: './projected-completion.component.html',
   styleUrl: './projected-completion.component.scss',
 })
-export class ProjectedCompletionComponent implements OnInit {
+export class ProjectedCompletionComponent implements OnChanges {
   @Input() dueDate?: string;
-  @Input() completedDate?: string;
+  @Input() completedDate?: string | null;
   @Output() late = new EventEmitter();
   public icon = faClock;
   public displayedDate: string;
@@ -19,16 +19,19 @@ export class ProjectedCompletionComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnChanges(_changes: SimpleChanges): void {
     if (!this.dueDate) {
       this.displayedDate = 'Not Available';
+      this.isLate = true;
       return;
     }
-    this.displayedDate = moment(this.dueDate).format('DD/MM/YYYY HH:mm');
 
+    // Check if order is late.
+    this.displayedDate = moment(this.dueDate).format('DD/MM/YYYY HH:mm');
     const timeDiff = this.calcTimeDiff();
     if (timeDiff > 0) {
       this.timeDetails = 'ON TIME';
+      this.isLate = false;
       return;
     }
     this.isLate = true;

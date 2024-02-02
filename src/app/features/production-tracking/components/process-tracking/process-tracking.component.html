@@ -3,4 +3,52 @@
     <fa-icon [icon]="icon" class="icon me-2"></fa-icon>
     <h4>PROCESS TRACKING</h4>
   </div>
+  <div class="text" *ngIf="!data">Not Available</div>
+  <div *ngIf="data">
+    <h3>{{ data.category }}</h3>
+    <div class="hexagon-wrapper d-flex justify-content-center p-5">
+      <div id="grid-container" #grid class="grid-container d-grid">
+        <svg width="100%" height="100%" preserveAspectRatio="none">
+          <line
+            *ngFor="let line of svgLines"
+            [attr.x1]="line.x1"
+            [attr.y1]="line.y1"
+            [attr.x2]="line.x2"
+            [attr.y2]="line.y2"
+            stroke="white"
+            stroke-width="3"></line>
+        </svg>
+        <div *ngFor="let column of gridItems; index as col" class="grid-col">
+          <div *ngFor="let item of column; index as row">
+            <div #hexagon [id]="item.htmlId" class="hexagon__outer" [ngClass]="!item.text ? 'hidden' : ''">
+              <div
+                aria-hidden="true"
+                class="hexagon d-flex align-items-center justify-content-center p-2"
+                [ngClass]="getHexStatusClass(item.statusId)"
+                (click)="onToggleProcess(hexagon, item)">
+                {{ item.text }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex mt-3">
+      <div class="flex-spacer"></div>
+      <div>
+        <div class="d-flex align-items-center">
+          <div class="hexagon hexagon-icon selected me-2"></div>
+          <div>Selected</div>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+          <div class="hexagon hexagon-icon ongoing me-2"></div>
+          <div>Ongoing</div>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+          <div class="hexagon hexagon-icon completed me-2"></div>
+          <div>Completed</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -33,7 +33,7 @@
       }
     },
     {
-      "files": ["*.html"],
+      "files": ["*.html", "*.json"],
       "extends": [
         "plugin:@angular-eslint/template/recommended",
         "plugin:@angular-eslint/template/accessibility",

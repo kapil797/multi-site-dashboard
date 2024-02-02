@@ -11,7 +11,6 @@ export const createNotif = (
   let msg: string = '';
   if (typeof content !== 'string') {
     msg = 'An unknown application error has occurred';
-    console.log(content);
   } else {
     msg = content;
   }

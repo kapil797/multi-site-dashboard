@@ -1,27 +1,20 @@
-<kendo-scrollview
-  class="scrollview-wrapper ps-3 pe-3 pb-3"
-  [data]="data"
-  [pageable]="true"
-  [arrows]="false"
-  [endless]="false"
-  [(activeIndex)]="activeIndex">
-  <ng-template let-item="item">
-    <div class="scrollview-template-scaffold">
-      <div class="header d-flex align-items-center">
-        <fa-icon class="icon me-2" [icon]="icon"></fa-icon>
-        <h4>{{ header.toUpperCase() }}</h4>
+<div #wrapper class="custom-scroll ps-3 pt-3 pe-3 h-100">
+  <div class="header d-flex align-items-center">
+    <fa-icon class="icon me-2" [icon]="icon"></fa-icon>
+    <h4>{{ header.toUpperCase() }}</h4>
+  </div>
+  <kendo-scrollview
+    class="scrollview-wrapper"
+    [data]="data || ['Not Available']"
+    [pageable]="true"
+    [arrows]="true"
+    [endless]="false"
+    [(activeIndex)]="activeIndex"
+    (itemChanged)="onChange($event)">
+    <ng-template let-item="item">
+      <div class="text truncate" [ngStyle]="getMarginOffset(wrapper)">
+        {{ item.name }}
       </div>
-      <div class="arrows d-flex gap-3 mt-4 align-items-center">
-        <button (click)="onToggle(-1)" [disabled]="activeIndex === 0">
-          <div class="arrow--left" [style.borderRightColor]="activeIndex === 0 ? '#FFFFFF80' : ''"></div>
-        </button>
-        <button (click)="onToggle(1)" [disabled]="activeIndex === data.length - 1">
-          <div class="arrow--right" [style.borderLeftColor]="activeIndex === data.length - 1 ? '#FFFFFF80' : ''"></div>
-        </button>
-      </div>
-      <div class="text text--ellipsis">
-        <strong> {{ item.text }}</strong>
-      </div>
-    </div>
-  </ng-template>
-</kendo-scrollview>
+    </ng-template>
+  </kendo-scrollview>
+</div>

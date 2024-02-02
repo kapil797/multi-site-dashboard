@@ -9,7 +9,7 @@ import { progressColors } from '@shared/configs/progress-bars.config';
   styleUrl: './progress.component.scss',
 })
 export class ProgressComponent {
-  @Input() progress: number;
+  @Input() progress?: number;
   public progressColors = progressColors;
   public icon = faArrowRotateRight;
 }

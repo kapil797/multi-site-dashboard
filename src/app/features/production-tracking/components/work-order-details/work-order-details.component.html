@@ -5,14 +5,14 @@
       id="product"
       header="product"
       [icon]="faGift"
-      [data]="products"
+      [data]="scrollProducts"
       (toggle)="onToggleProduct($event)"></app-custom-scroll>
     <app-custom-card
       id="workOrder"
       header="work order"
       [icon]="faHashtag"
       [content]="curProcess?.woid"></app-custom-card>
-    <app-process-tracking></app-process-tracking>
+    <app-process-tracking [data]="processTracking" (toggle)="onToggleProcess($event)"></app-process-tracking>
     <app-custom-card
       id="process"
       header="process"
@@ -27,7 +27,7 @@
       id="parts"
       header="parts completed"
       [icon]="faPuzzlePiece"
-      [content]="partCompletionStatus"></app-custom-card>
+      [content]="curProcess?.textStatus"></app-custom-card>
     <app-projected-completion [dueDate]="curProcess?.estimateCompleteTime"></app-projected-completion>
   </div>
 </div>

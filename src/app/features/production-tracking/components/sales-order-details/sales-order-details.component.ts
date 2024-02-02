@@ -1,14 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { faBars, faHashtag, faTriangleExclamation, faUser } from '@fortawesome/free-solid-svg-icons';
-import { LineItem } from '@pt/production-tracking.model';
 
-export interface SalesOrderData {
+import { SalesOrder } from '@pt/production-tracking.model';
+
+export interface SalesOrderDetails extends SalesOrder {
   progress: number;
-  salesOrderNo: string;
-  customer: string;
-  dueDate: string;
-  completedDate?: string;
-  lineItems: LineItem[];
+  estimateCompleteTime: string;
+  completedTime: string | null;
 }
 
 @Component({
@@ -17,7 +15,7 @@ export interface SalesOrderData {
   styleUrl: './sales-order-details.component.scss',
 })
 export class SalesOrderDetailsComponent {
-  @Input() data: SalesOrderData;
+  @Input() data?: SalesOrderDetails;
   public isLate = false;
   public faHashtag = faHashtag;
   public faUser = faUser;

@@ -7,9 +7,13 @@
   </kendo-card-header>
   <kendo-card-body class="card__body">
     <div class="d-flex" *ngFor="let item of data">
-      <div class="truncate me-3">{{ item.name }}</div>
+      <div class="truncate me-3">
+        <strong>{{ item.productName }}</strong>
+      </div>
       <div class="flex-spacer"></div>
-      <div class="text__quantity">X {{ item.quantity }}</div>
+      <div class="text__quantity">
+        <strong>X {{ item.quantity }}</strong>
+      </div>
     </div>
   </kendo-card-body>
 </kendo-card>

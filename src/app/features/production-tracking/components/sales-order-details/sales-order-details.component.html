@@ -1,15 +1,18 @@
 <div class="sod-wrapper ps-3 pe-3 pb-3 pt-1">
   <h3>SALES ORDER DETAILS</h3>
   <div class="sod-content-scaffold gap-3">
-    <app-progress class="d-flex" [progress]="80"></app-progress>
+    <app-progress class="d-flex" [progress]="data?.progress"></app-progress>
     <app-custom-card
       id="salesOrder"
       header="sales order"
       [icon]="faHashtag"
-      [content]="data.salesOrderNo"></app-custom-card>
-    <app-line-items [data]="data.lineItems"></app-line-items>
-    <app-projected-completion (late)="onLate()" [dueDate]="data.dueDate"></app-projected-completion>
-    <app-custom-card id="customer" header="customer" [icon]="faUser" [content]="data.customer"> </app-custom-card>
+      [content]="data?.salesOrderNumber"></app-custom-card>
+    <app-line-items [data]="data?.lineItems"></app-line-items>
+    <app-projected-completion
+      (late)="onLate()"
+      [dueDate]="data?.estimateCompleteTime"
+      [completedDate]="data?.completedTime"></app-projected-completion>
+    <app-custom-card id="customer" header="customer" [icon]="faUser" [content]="data?.customerName"> </app-custom-card>
     <app-custom-card
       id="alerts"
       *ngIf="isLate"

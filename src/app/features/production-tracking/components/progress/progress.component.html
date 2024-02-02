@@ -8,7 +8,7 @@
     style="width: 10rem; height: 10rem"
     [animation]="true"
     [progressColor]="progressColors"
-    [value]="progress">
+    [value]="progress || 0">
     <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
       <span class="text" [style.color]="color">{{ value }}%</span>
     </ng-template>

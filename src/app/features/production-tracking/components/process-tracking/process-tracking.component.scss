@@ -1,7 +1,15 @@
 @use 'core/styles/variables';
 
+$width: 6.5rem;
+
 h4 {
   letter-spacing: variables.$letter-spacing-sm;
+}
+
+svg {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .pt-wrapper {
@@ -13,4 +21,79 @@ h4 {
 
 .icon {
   font-size: variables.$font-size-h3;
+}
+
+.hexagon-wrapper {
+  background-color: #1E3552;
+  box-sizing: border-box;
+  border-radius: variables.$border-radius-2;
+}
+
+.grid-container {
+  position: relative;
+}
+
+@mixin hexagon {
+  background-color: variables.$bg-3;
+  font-size: variables.$font-size-sm;
+  text-align: center;
+  width: $width;
+  height: $width;
+  display: inline-block;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  box-sizing: border-box;
+  // margin: $margin;
+  // margin-top: calc($margin / 2 * -1);
+  // margin-right: calc($margin - $width * 0.2886);
+}
+
+.hexagon {
+  @include hexagon;
+  transform: scale(.9);
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  // line-height: calc($width * 1.11);
+  // left: -$margin;
+  // top: calc($margin / 2);
+  // margin-right: $margin;
+}
+
+.hexagon__outer {
+  @include hexagon;
+  background-color: variables.$white;
+}
+
+.grid-col:nth-child(odd) {
+  margin-top: calc($width / 2);
+}
+
+.hidden {transition: all 1s ease-out;
+  visibility: hidden;
+}
+
+.selected {
+  transition: all 0.5s ease-out;
+  background-color: variables.$cyan;
+}
+
+.ongoing {
+  transition: all 0.5s ease-out;
+  background-color: #DDEFEF;
+  color: #002540;
+}
+
+.completed {
+  transition: all 0.5s ease-out;
+  background-color: variables.$gray-700;
+}
+
+.hexagon-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.text {
+  color: variables.$cyan;
+  font-size: variables.$font-size-xl;
+  font-weight: bold;
 }

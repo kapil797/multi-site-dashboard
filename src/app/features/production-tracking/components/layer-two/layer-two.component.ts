@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { of, switchMap } from 'rxjs';
+import { concatMap, from, map, switchMap, throwError, toArray } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@shared/configs/notification';
-import { Execution, Product } from '@pt/production-tracking.model';
-import { SalesOrderData } from '@pt/components/sales-order-details/sales-order-details.component';
+import { LineItem, Product, SalesOrder, WorkOrder } from '@pt/production-tracking.model';
+import { Factory } from '@core/models/factory.model';
+import { SalesOrderDetails } from '../sales-order-details/sales-order-details.component';
 
 @Component({
   selector: 'app-layer-two',
@@ -16,25 +17,11 @@ import { SalesOrderData } from '@pt/components/sales-order-details/sales-order-d
 })
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
-  public salesOrders: string[];
-  public salesOrderData: SalesOrderData = {
-    progress: 80,
-    customer: 'Some customer',
-    salesOrderNo: 'EX191108-0001',
-    dueDate: '2024-01-29T11:35:16.43',
-    lineItems: [
-      { name: 'E-Scentz Mold Insert', quantity: 2 },
-      { name: 'E-Scentz Mold Insert', quantity: 1 },
-      { name: 'E-Scentz Mold Insert', quantity: 5 },
-    ],
-  };
-  public workOrderData: Product[] = [
-    { name: 'ESCENTZ', id: 'escentz', processes: [] },
-    { name: 'MFCONNECT', id: 'mfconnect', processes: [] },
-    { name: 'MFCONNECT+', id: 'mfconnect+', processes: [] },
-  ];
-
-  private factory: string;
+  public salesOrderIds: string[];
+  public salesOrderDetails?: SalesOrderDetails;
+  public workOrderDetails?: Product[];
+  public factory: Factory;
+  private salesOrderMap: Map<string, SalesOrder> = new Map();
 
   constructor(
     private app: AppService,
@@ -52,15 +39,20 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           return this.pt.fetchSalesOrders$(res);
         }),
         switchMap(res => {
-          this.salesOrders = res.map(row => row.salesOrderNo);
-          // Auto fetch the details for first sales order if any.
-          if (this.salesOrders.length > 0) this.fetchSalesOrderAggregate$(this.salesOrders[0]);
-          return of([] as Execution[]);
+          if (res.length === 0) return throwError(() => new Error('There are no SaleOrders to be retrieved'));
+
+          // Update SalesOrderMap.
+          res.forEach(row => this.salesOrderMap.set(row.salesOrderNumber, row));
+          this.salesOrderIds = res.map(row => row.salesOrderNumber);
+
+          // Fetch aggregate for first SalesOrder.
+          return this.constructSalesOrderAggregate$(res[0].salesOrderNumber);
         })
       )
       .subscribe({
-        next: _res => {
+        next: res => {
           this.isLoading = false;
+          this.salesOrderDetails = res;
         },
         error: error => {
           this.isLoading = false;
@@ -69,14 +61,114 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       });
   }
 
-  private fetchSalesOrderAggregate$(salesOrderId: string) {
+  private constructSalesOrderAggregate$(salesOrderId: string) {
+    /*
+      Each time a SalesOrder is changed, will need to fetch all related
+      WorkOrders and Executions.
+
+      This is because getting the projected completion and calculating 
+      the status of SalesOrder requires the details of all Executions.
+    */
+
+    // Each SalesOrder can have multiple line items (products).
+    //  To map each WorkOrder to their respective product.
+    const salesOrder = this.salesOrderMap.get(salesOrderId);
+    let releasedQty = 0;
+    let completedQty = 0;
+    let completedTime: number;
+    let estimatedCompleteTime: number;
+    if (!salesOrder) {
+      return throwError(() => new Error(`SalesOrder ${salesOrderId} is invalid`));
+    }
     return this.pt.fetchWorkOrders$(this.factory, [salesOrderId]).pipe(
       switchMap(res => {
-        return this.pt.fetchExecutions$(
-          this.factory,
-          res.map(row => row.workOrderNumber)
-        );
+        const products = salesOrder.lineItems.map(row => {
+          return this.constructProductAggregate$.bind(this, row, res);
+        });
+        return from(products);
+      }),
+      concatMap(f => {
+        return f();
+      }),
+      toArray(),
+      map(res => {
+        // Side effect.
+        this.workOrderDetails = res;
+
+        res.forEach(product => {
+          product.executions.forEach(row => {
+            // Update status.
+            releasedQty += row.releasedQty;
+            completedQty += row.completeQty;
+
+            // Update completedTime if any.
+            if (!completedTime && row.processEndTime) {
+              completedTime = new Date(row.processEndTime).getTime();
+            } else if (completedTime && row.processEndTime) {
+              completedTime = Math.max(completedTime, new Date(row.processEndTime).getTime());
+            }
+
+            // Updated estCompleteTime.
+            if (!estimatedCompleteTime) {
+              estimatedCompleteTime = new Date(row.estimateCompleteTime).getTime();
+            } else {
+              estimatedCompleteTime = Math.max(
+                new Date(estimatedCompleteTime).getTime(),
+                new Date(row.estimateCompleteTime).getTime()
+              );
+            }
+          });
+        });
+
+        return {
+          ...salesOrder,
+          progress: Math.round((completedQty / releasedQty) * 100),
+          estimateCompleteTime: new Date(estimatedCompleteTime).toISOString(),
+          completedTime: completedQty === releasedQty ? new Date(completedTime).toISOString() : null,
+        } as SalesOrderDetails;
       })
     );
+  }
+
+  private constructProductAggregate$(item: LineItem, workOrders: WorkOrder[]) {
+    // Sacrifice optimization for simplicity.
+    // Each product is required to loop through list of WorkOrders.
+    const product: Product = {
+      name: item.productName,
+      id: item.productId,
+      number: item.productNo,
+      workOrders: [],
+      executions: [],
+    };
+
+    const workOrderIds: string[] = [];
+    workOrders.forEach(row => {
+      if (row.productId === item.productId) {
+        product.workOrders.push(row);
+        workOrderIds.push(row.workOrderNumber);
+      }
+    });
+
+    return this.pt.fetchExecutions$(this.factory, workOrderIds).pipe(
+      map(res => {
+        product.executions.push(...res);
+        return product;
+      })
+    );
+  }
+
+  public onChangeSalesOrder(salesOrderId: string) {
+    this.constructSalesOrderAggregate$(salesOrderId).subscribe({
+      next: res => {
+        this.isLoading = false;
+        this.salesOrderDetails = res;
+      },
+      error: error => {
+        this.isLoading = false;
+        this.salesOrderDetails = undefined;
+        this.workOrderDetails = undefined;
+        this.notif.show(createNotif('error', error));
+      },
+    });
   }
 }

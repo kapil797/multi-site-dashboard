@@ -51,3 +51,7 @@ export function trimTextWithEllipsis(text: string, charCount: number) {
   if (text.length <= charCount) return text;
   return text.substring(0, charCount - 2) + '...';
 }
+
+export function isOdd(v: number) {
+  return v % 2 !== 0;
+}

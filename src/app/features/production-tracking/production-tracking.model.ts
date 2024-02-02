@@ -1,3 +1,7 @@
+export const ProcessStatus = Object.freeze({
+  4: 'COMPLETED',
+});
+
 export interface Status {
   status?: string;
   isLate?: boolean;
@@ -5,13 +9,17 @@ export interface Status {
 }
 
 export interface SalesOrder {
-  salesOrderNo: string;
-  customer: string;
-  lineItems?: unknown[];
+  id: number;
+  salesOrderNumber: string;
+  customerId: number;
+  customerName: string;
+  lineItems: LineItem[];
 }
 
 export interface LineItem {
-  name: string;
+  productId: number; // Created by RPS.
+  productNo: string;
+  productName: string;
   quantity: number;
 }
 
@@ -20,11 +28,18 @@ export interface WorkOrder {
   workOrderNumber: string;
   issueDate: string;
   committedDeliveryDate: string;
+  completionDate: string | null;
   createdBy: string;
   dueDate: string;
   customer: Customer;
-  poNumbers: string; // Sales order number.
+  poNumbers: string; // SalesOrder number created by OrderApp.
   soPriority: string;
+  urgentFlag: number;
+  priority: number;
+  status: number;
+  productId: number; // Created by RPS. required for mapping.
+  productNo: string; // i.e. 15ESZ-9010-AA-P06.
+  productName: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
 }
 
 export interface Customer {
@@ -36,9 +51,9 @@ export interface Customer {
 export interface Execution {
   id: number;
   woid: string;
-  step: number;
-  processStartTime: string;
-  processEndTime: string;
+  step: number; // Sequence number.
+  processStartTime: string | null;
+  processEndTime: string | null;
   estimateCompleteTime: string;
   process: Process;
   completeQty: number;
@@ -48,6 +63,7 @@ export interface Execution {
   statusId: number;
   statusName: string;
   currMachine: Machine;
+  textStatus?: string;
 }
 
 export interface Process {
@@ -72,7 +88,26 @@ export interface WorkOrderStatus extends Status {
 }
 
 export interface Product {
-  name: string;
-  id: string;
-  processes: Execution[];
+  id: string | number; // Created by RPS. required for mapping.
+  number: string; // i.e. 15ESZ-9010-AA-P06.
+  name: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
+  workOrders: WorkOrder[];
+  executions: Execution[];
+}
+
+export interface ProcessTracking {
+  productId: number;
+  category: string;
+  rows: number;
+  cols: number;
+  items: ProcessTrackingItem[];
+}
+
+export interface ProcessTrackingItem {
+  text: string;
+  processId: number;
+  row: number;
+  col: number;
+  toProcessId?: number;
+  statusId?: number;
 }

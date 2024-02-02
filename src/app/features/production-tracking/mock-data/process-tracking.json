@@ -1,0 +1,22 @@
+[
+  {
+    "rows": 2,
+    "cols": 11,
+    "category": "Made-to-Stock (MTS)",
+    "productId": 1445,
+    "items": [
+      { "text": "Reservoir Injection", "processId": 1234, "row": 0, "col": 0 },
+      { "text": "Membrane Assembly", "processId": 12345, "row": 0, "col": 1, "toId": 18 },
+      { "text": "Bottom Injection", "processId": 123456, "row": 1, "col": 0, "toId": 18 },
+      { "text": "Laser Wielding", "processId": 18, "row": 1, "col": 2 },
+      { "text": "Screen Printing (1)", "processId": 19, "row": 0, "col": 3 },
+      { "text": "Open Curing (1)", "processId": 20, "row": 1, "col": 4 },
+      { "text": "Screen Printing (2)", "processId": 21, "row": 0, "col": 5 },
+      { "text": "Open Curing (2)", "processId": 22, "row": 1, "col": 6 },
+      { "text": "Screen Printing (3)", "processId": 23, "row": 0, "col": 7 },
+      { "text": "Open Curing (3)", "processId": 24, "row": 1, "col": 8 },
+      { "text": "Laser Trimming", "processId": 1310, "row": 0, "col": 9 },
+      { "text": "Cartridge Testing", "processId": 1234567, "row": 1, "col": 10 }
+    ]
+  }
+]
