@@ -14,9 +14,9 @@ export class BaseApi {
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {
     /*
-          Handler for all kinds of HTTPErrorResponse i.e. string, object, etc.
-          For catch and rethrow strategy, use throwError(() => new Error(msg)) in catchError() handler.
-        */
+      Handler for all kinds of HTTPErrorResponse i.e. string, object, etc.
+      For catch and rethrow strategy, use throwError(() => new Error(msg)) in catchError() handler.
+    */
     let msg = 'An unknown error has occurred while making a request';
 
     if (typeof res === 'string') {

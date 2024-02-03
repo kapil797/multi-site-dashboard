@@ -9,6 +9,7 @@ import { createNotif } from '@shared/configs/notification';
 import { LineItem, Product, SalesOrder, WorkOrder } from '@pt/production-tracking.model';
 import { Factory } from '@core/models/factory.model';
 import { SalesOrderDetails } from '../sales-order-details/sales-order-details.component';
+import { Dropdown } from '@shared/classes/form/form.class';
 
 @Component({
   selector: 'app-layer-two',
@@ -17,7 +18,7 @@ import { SalesOrderDetails } from '../sales-order-details/sales-order-details.co
 })
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
-  public salesOrderIds: string[];
+  public salesOrderIds: Dropdown[];
   public salesOrderDetails?: SalesOrderDetails;
   public workOrderDetails?: Product[];
   public factory: Factory;
@@ -43,7 +44,12 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
           // Update SalesOrderMap.
           res.forEach(row => this.salesOrderMap.set(row.salesOrderNumber, row));
-          this.salesOrderIds = res.map(row => row.salesOrderNumber);
+          this.salesOrderIds = res.map(row => {
+            return {
+              text: row.salesOrderNumber,
+              value: row.salesOrderNumber,
+            };
+          });
 
           // Fetch aggregate for first SalesOrder.
           return this.constructSalesOrderAggregate$(res[0].salesOrderNumber);
@@ -54,7 +60,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           this.isLoading = false;
           this.salesOrderDetails = res;
         },
-        error: error => {
+        error: (error: string) => {
           this.isLoading = false;
           this.notif.show(createNotif('error', error));
         },
@@ -69,16 +75,13 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       This is because getting the projected completion and calculating 
       the status of SalesOrder requires the details of all Executions.
     */
-
-    // Each SalesOrder can have multiple line items (products).
-    //  To map each WorkOrder to their respective product.
     const salesOrder = this.salesOrderMap.get(salesOrderId);
     let releasedQty = 0;
     let completedQty = 0;
     let completedTime: number;
     let estimatedCompleteTime: number;
     if (!salesOrder) {
-      return throwError(() => new Error(`SalesOrder ${salesOrderId} is invalid`));
+      return throwError(() => `SalesOrder ${salesOrderId} is invalid`);
     }
     return this.pt.fetchWorkOrders$(this.factory, [salesOrderId]).pipe(
       switchMap(res => {
@@ -97,6 +100,9 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
         res.forEach(product => {
           product.executions.forEach(row => {
+            // Side effect mapping.
+            row.partsCompleted = `${row.completeQty} of ${row.releasedQty}`;
+
             // Update status.
             releasedQty += row.releasedQty;
             completedQty += row.completeQty;
@@ -157,8 +163,9 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
     );
   }
 
-  public onChangeSalesOrder(salesOrderId: string) {
-    this.constructSalesOrderAggregate$(salesOrderId).subscribe({
+  public onChangeSalesOrder(event: unknown) {
+    this.isLoading = true;
+    this.constructSalesOrderAggregate$(event as string).subscribe({
       next: res => {
         this.isLoading = false;
         this.salesOrderDetails = res;

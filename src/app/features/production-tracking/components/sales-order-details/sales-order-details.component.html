@@ -9,6 +9,7 @@
       [content]="data?.salesOrderNumber"></app-custom-card>
     <app-line-items [data]="data?.lineItems"></app-line-items>
     <app-projected-completion
+      header="projected completion"
       (late)="onLate()"
       [dueDate]="data?.estimateCompleteTime"
       [completedDate]="data?.completedTime"></app-projected-completion>

@@ -8,6 +8,7 @@ import moment from 'moment';
   styleUrl: './projected-completion.component.scss',
 })
 export class ProjectedCompletionComponent implements OnChanges {
+  @Input() header: string;
   @Input() dueDate?: string;
   @Input() completedDate?: string | null;
   @Output() late = new EventEmitter();

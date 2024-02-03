@@ -1,0 +1,15 @@
+@use 'core/styles/variables';
+
+div {
+  font-size: 7rem;
+}
+
+.viewport--center {
+  background-color: variables.$bg-1;
+  color: variables.$white;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}

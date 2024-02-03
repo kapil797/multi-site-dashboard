@@ -15,3 +15,9 @@
 .navbar-header {
   letter-spacing: variables.$letter-spacing-reg;
 }
+
+
+.dropdown-wrapper {
+  border: 1px solid variables.$white;
+  border-radius: unset;
+}

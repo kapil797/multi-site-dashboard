@@ -114,7 +114,6 @@ export class ProductionTrackingService {
 
   public fetchProcessTrackingMap$(_factory: Factory, productId: number | string) {
     return of(processTracking as ProcessTracking[]).pipe(
-      delay(1000),
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
         return res.find(row => row.productId === productId);

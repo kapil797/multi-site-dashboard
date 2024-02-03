@@ -1,4 +1,9 @@
-<app-navbar header="Enterprise - Production Tracking"></app-navbar>
+<app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
+<app-navbar
+  header="Enterprise - Production Tracking"
+  dropdownOneLabel="sales order"
+  [dropdownOne]="salesOrderIds"
+  (toggleDropdownOne)="onChangeSalesOrder($event)"></app-navbar>
 <div class="pt-2-wrapper d-flex gap-3 flex-column">
   <app-sales-order-details [data]="salesOrderDetails"></app-sales-order-details>
   <app-work-order-details [factory]="factory" [data]="workOrderDetails"></app-work-order-details>

@@ -6,7 +6,7 @@
   <div class="text" *ngIf="!data">Not Available</div>
   <div *ngIf="data">
     <h3>{{ data.category }}</h3>
-    <div class="hexagon-wrapper d-flex justify-content-center p-5">
+    <div class="hexagon-wrapper d-flex justify-content-center p-3">
       <div id="grid-container" #grid class="grid-container d-grid">
         <svg width="100%" height="100%" preserveAspectRatio="none">
           <line
@@ -16,7 +16,7 @@
             [attr.x2]="line.x2"
             [attr.y2]="line.y2"
             stroke="white"
-            stroke-width="3"></line>
+            stroke-width="2"></line>
         </svg>
         <div *ngFor="let column of gridItems; index as col" class="grid-col">
           <div *ngFor="let item of column; index as row">

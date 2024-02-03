@@ -106,5 +106,6 @@ export class WorkOrderDetailsComponent implements OnChanges {
   public onToggleProcess(event: string | number) {
     const process = this.curProduct?.executions.find(row => row.process.id === event);
     if (process) this.curProcess = process;
+    else this.curProcess = undefined;
   }
 }

@@ -27,7 +27,10 @@
       id="parts"
       header="parts completed"
       [icon]="faPuzzlePiece"
-      [content]="curProcess?.textStatus"></app-custom-card>
-    <app-projected-completion [dueDate]="curProcess?.estimateCompleteTime"></app-projected-completion>
+      [content]="curProcess?.partsCompleted"></app-custom-card>
+    <app-projected-completion
+      header="PROJECTED PROCESS COMPLETION"
+      [dueDate]="curProcess?.estimateCompleteTime"
+      [completedDate]="curProcess?.processEndTime"></app-projected-completion>
   </div>
 </div>

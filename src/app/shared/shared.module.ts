@@ -24,6 +24,7 @@ import { UploadsModule } from '@progress/kendo-angular-upload';
 import { MenusModule } from '@progress/kendo-angular-menu';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
+import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 
 // Providers.
 import { NotificationService } from '@progress/kendo-angular-notification';
@@ -38,10 +39,10 @@ import { IconTextButtonComponent } from '@shared/components/icon-text-button/ico
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directive';
 import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
-import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
+import { UiBlockerComponent } from '@shared/components/ui-blocker/ui-blocker.component';
 
 @NgModule({
-  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent],
+  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent, UiBlockerComponent],
   imports: [
     // Modules.
     CommonModule,
@@ -113,6 +114,7 @@ import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
     IconTextButtonComponent,
     NavbarComponent,
     SidebarComponent,
+    UiBlockerComponent,
   ],
 })
 export class SharedModule {}

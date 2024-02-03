@@ -63,7 +63,7 @@ export interface Execution {
   statusId: number;
   statusName: string;
   currMachine: Machine;
-  textStatus?: string;
+  partsCompleted?: string;
 }
 
 export interface Process {
