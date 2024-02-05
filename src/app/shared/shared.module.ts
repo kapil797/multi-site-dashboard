@@ -40,9 +40,10 @@ import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directive';
 import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
 import { UiBlockerComponent } from '@shared/components/ui-blocker/ui-blocker.component';
+import { CircleStatusComponent } from '@shared/components/circle-status/circle-status.component';
 
 @NgModule({
-  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent, UiBlockerComponent],
+  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent, UiBlockerComponent, CircleStatusComponent],
   imports: [
     // Modules.
     CommonModule,
@@ -115,6 +116,7 @@ import { UiBlockerComponent } from '@shared/components/ui-blocker/ui-blocker.com
     NavbarComponent,
     SidebarComponent,
     UiBlockerComponent,
+    CircleStatusComponent,
   ],
 })
 export class SharedModule {}

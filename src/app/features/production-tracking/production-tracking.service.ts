@@ -4,7 +4,14 @@ import { catchError, delay, map, of, throwError } from 'rxjs';
 
 import { AppService } from '@core/services/app.service';
 import { ProductionTrackingModule } from '@pt/production-tracking.module';
-import { Execution, ProcessTracking, SalesOrder, WorkOrder } from '@pt/production-tracking.model';
+import {
+  Execution,
+  ProcessTracking,
+  ProcessTrackingItem,
+  Product,
+  SalesOrder,
+  WorkOrder,
+} from '@pt/production-tracking.model';
 import { Factory } from '@core/models/factory.model';
 
 import salesOrder from './mock-data/sales-order.json';
@@ -84,7 +91,6 @@ export class ProductionTrackingService {
 
     // this.http.get<WorkOrder[]>(`${api}?salesOrderId=${salesOrderIds.join(',')}`)
     return of(mockData as WorkOrder[]).pipe(
-      delay(1000),
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err))))
     );
   }
@@ -107,12 +113,11 @@ export class ProductionTrackingService {
     if (workOrderIds.includes('2401300007')) mockData.push(...execution2);
     // this.http.post<Execution[]>(api, { ID: workOrderIds })
     return of(mockData as Execution[]).pipe(
-      delay(1000),
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err))))
     );
   }
 
-  public fetchProcessTrackingMap$(_factory: Factory, productId: number | string) {
+  public fetchProcessTrackingTemplateMap$(_factory: Factory, productId: number | string) {
     return of(processTracking as ProcessTracking[]).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
@@ -122,4 +127,35 @@ export class ProductionTrackingService {
   }
 
   public getOrderStatus() {}
+
+  public constructDynamicProcessTrackingMap(product: Product) {
+    // For SES products.
+    const items: ProcessTrackingItem[] = product.executions.map(row => {
+      return {
+        text: row.process.name,
+        processId: row.process.id,
+        statusId: row.statusId,
+        row: 0,
+        col: row.step - 1, // 0-indexed.
+      };
+    });
+    return {
+      productId: product.id,
+      category: 'Smart Engineering Systems (SES)',
+      rows: 1,
+      cols: items.length,
+      items,
+    } as ProcessTracking;
+  }
+
+  public constructProcessTrackingMapFromTemplate(product: Product, template: ProcessTracking) {
+    const processMap = new Map<number, Execution>();
+    product.executions.forEach(row => processMap.set(row.process.id, row));
+    template.items = template.items.map(row => {
+      const process = processMap.get(row.processId);
+      if (process) row.statusId = process.statusId;
+      return row;
+    });
+    return template;
+  }
 }

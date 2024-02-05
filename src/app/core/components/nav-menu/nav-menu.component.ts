@@ -29,7 +29,7 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
   public RoutePaths = RoutePaths;
   public imgMf: string;
   public imgUmf: string;
-  private currentFactory = 'assets/images/factories/big.png';
+  public currentFactory = 'assets/images/factories/big.png';
   private altFactory = 'assets/images/factories/small.png';
   private observer: MutationObserver;
 

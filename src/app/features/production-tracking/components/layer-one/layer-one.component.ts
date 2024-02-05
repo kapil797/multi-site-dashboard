@@ -15,8 +15,6 @@ import { switchMap, take } from 'rxjs';
 })
 export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
-  public circleError = 'assets/images/utilities/circle-error.png';
-  public circleSuccess = 'assets/images/utilities/circle-success.png';
 
   public salesOrderCols: ColumnSetting[] = [
     { title: 'SALES ORDER NO.', field: 'salesOrderNo' },

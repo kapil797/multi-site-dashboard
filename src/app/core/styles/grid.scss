@@ -14,13 +14,13 @@
 }
 
 .k-grid-header {
-  font-weight: 700;
-  background-color: variables.$bg-1;
+  background-color: variables.$bg-2;
   color: variables.$gray-500;
+  letter-spacing: variables.$letter-spacing-sm;
 }
 
 .k-master-row  {
-  background-color: variables.$bg-1;
+  background-color: variables.$bg-2;
   color: variables.$gray-300;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .k-grid .k-table-row.k-table-alt-row {
-  background-color: variables.$bg-2;
+  background-color: variables.$bg-6;
 }
 
 .k-grid tr:hover {
