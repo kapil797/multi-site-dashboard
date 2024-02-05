@@ -11,7 +11,7 @@
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="d-flex align-items-center">
             {{ dataItem.status }}
-            <img class="img ms-5" [src]="dataItem.isLate ? circleError : circleSuccess" alt="status" />
+            <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
           </div>
         </ng-template>
       </kendo-grid-column>
@@ -25,7 +25,7 @@
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="d-flex align-items-center">
             {{ dataItem.status }}
-            <img class="img ms-5" [src]="dataItem.isLate ? circleError : circleSuccess" alt="status" />
+            <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
           </div>
         </ng-template>
       </kendo-grid-column>

@@ -10,5 +10,6 @@ export class CustomCardComponent {
   @Input() header: string;
   @Input() icon: IconDefinition;
   @Input() content?: string;
+  @Input() status?: boolean;
   constructor() {}
 }

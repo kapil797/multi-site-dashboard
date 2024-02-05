@@ -1,0 +1,24 @@
+@use 'core/styles/variables';
+
+@mixin circle {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+}
+
+.circle--outer {
+  @include circle;
+}
+
+.circle--space {
+  @include circle;
+  transform: scale(.8);
+  border-radius: 50%;
+  background-color: variables.$bg-3;
+}
+
+.circle--inner {
+  @include circle;
+  transform: scale(.6);
+  border-radius: 50%;
+}

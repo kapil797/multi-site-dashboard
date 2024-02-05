@@ -2,6 +2,7 @@
   <kendo-card-header class="card__header d-flex align-items-center">
     <fa-icon class="icon me-2" [icon]="icon"></fa-icon>
     <h4>{{ header.toUpperCase() }}</h4>
+    <app-circle-status *ngIf="status" status="ERROR" class="ms-2"></app-circle-status>
   </kendo-card-header>
   <kendo-card-body class="card__body">
     <div>
