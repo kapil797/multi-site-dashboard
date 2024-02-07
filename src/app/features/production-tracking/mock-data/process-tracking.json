@@ -5,33 +5,33 @@
     "category": "Made-to-Stock (MTS)",
     "productId": 1445,
     "items": [
-      { "text": "Reservoir Injection", "processId": 10000, "row": 0, "col": 0 },
-      { "text": "Membrane Assembly", "processId": 10001, "row": 0, "col": 1, "toProcessId": 18 },
-      { "text": "Bottom Injection", "processId": 10002, "row": 1, "col": 0, "toProcessId": 18 },
-      { "text": "Laser Wielding", "processId": 18, "row": 1, "col": 2 },
-      { "text": "Screen Printing (1)", "processId": 19, "row": 0, "col": 3 },
-      { "text": "Open Curing (1)", "processId": 20, "row": 1, "col": 4 },
-      { "text": "Screen Printing (2)", "processId": 21, "row": 0, "col": 5 },
-      { "text": "Open Curing (2)", "processId": 22, "row": 1, "col": 6 },
-      { "text": "Screen Printing (3)", "processId": 23, "row": 0, "col": 7 },
-      { "text": "Open Curing (3)", "processId": 24, "row": 1, "col": 8 },
-      { "text": "Laser Trimming", "processId": 1310, "row": 0, "col": 9 },
-      { "text": "Cartridge Testing", "processId": 100003, "row": 1, "col": 10 }
+      { "text": "Reservoir Injection", "id": 10000, "row": 0, "col": 0, "toId": 10001 },
+      { "text": "Membrane Assembly", "id": 10001, "row": 0, "col": 1, "toId": 18 },
+      { "text": "Bottom Injection", "id": 10002, "row": 1, "col": 0, "toId": 18 },
+      { "text": "Laser Wielding", "id": 18, "row": 1, "col": 2, "toId": 19 },
+      { "text": "Screen Printing (1)", "id": 19, "row": 0, "col": 3, "toId": 20 },
+      { "text": "Open Curing (1)", "id": 20, "row": 1, "col": 4, "toId": 21 },
+      { "text": "Screen Printing (2)", "id": 21, "row": 0, "col": 5, "toId": 22 },
+      { "text": "Open Curing (2)", "id": 22, "row": 1, "col": 6, "toId": 23 },
+      { "text": "Screen Printing (3)", "id": 23, "row": 0, "col": 7, "toId": 24 },
+      { "text": "Open Curing (3)", "id": 24, "row": 1, "col": 8, "toId": 1310 },
+      { "text": "Laser Trimming", "id": 1310, "row": 0, "col": 9, "toId": 10003 },
+      { "text": "Cartridge Testing", "id": 10003, "row": 1, "col": 10 }
     ]
   },
   {
-    "rows": 4,
+    "rows": 3,
     "cols": 5,
     "category": "Made-to-Order (MTO)",
     "productId": 1621,
     "items": [
-      { "text": "Upper Case Paint", "processId": 10000, "row": 0, "col": 1 },
-      { "text": "Holder Assembly", "processId": 1027, "row": 1, "col": 2 },
-      { "text": "Holder Testing", "processId": 100001, "row": 1, "col": 3 },
-      { "text": "Lower Case Print", "processId": 1049, "row": 1, "col": 1 },
-      { "text": "Cartridge Print", "processId": 6, "row": 3, "col": 0 },
-      { "text": "Scent Filling", "processId": 7, "row": 3, "col": 1 },
-      { "text": "Lean Packaging", "processId": 1154, "row": 3, "col": 2, "toProcessId": 100001 }
+      { "text": "Upper Case Paint", "id": 10000, "row": 0, "col": 1, "toId": 1027 },
+      { "text": "Holder Assembly", "id": 1027, "row": 1, "col": 2, "toId": 100001 },
+      { "text": "Holder Testing", "id": 100001, "row": 1, "col": 3 },
+      { "text": "Lower Case Print", "id": 1049, "row": 1, "col": 1, "toId": 1027 },
+      { "text": "Cartridge Print", "id": 6, "row": 2, "col": 0, "toId": 7 },
+      { "text": "Scent Filling", "id": 7, "row": 2, "col": 1, "toId": 1154 },
+      { "text": "Lean Packaging", "id": 1154, "row": 2, "col": 2, "toId": 100001 }
     ]
   }
 ]

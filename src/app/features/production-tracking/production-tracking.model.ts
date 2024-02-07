@@ -105,9 +105,9 @@ export interface ProcessTracking {
 
 export interface ProcessTrackingItem {
   text: string;
-  processId: number;
+  id: number;
   row: number;
   col: number;
-  toProcessId?: number;
+  toId?: number;
   statusId?: number;
 }

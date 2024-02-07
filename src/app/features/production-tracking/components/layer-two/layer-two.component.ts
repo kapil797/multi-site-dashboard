@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { concatMap, from, map, switchMap, throwError, toArray } from 'rxjs';
+import { concatMap, from, map, switchMap, takeUntil, throwError, toArray } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
@@ -35,6 +35,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   ngOnInit(): void {
     this.app.factory$
       .pipe(
+        takeUntil(this.ngUnsubscribe),
         switchMap(res => {
           this.factory = res;
           return this.pt.fetchSalesOrders$(res);
@@ -64,6 +65,9 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           this.isLoading = false;
           this.notif.show(createNotif('error', error));
         },
+        complete: () => {
+          console.log('hello');
+        },
       });
   }
 
@@ -84,6 +88,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       return throwError(() => `SalesOrder ${salesOrderId} is invalid`);
     }
     return this.pt.fetchWorkOrders$(this.factory, [salesOrderId]).pipe(
+      takeUntil(this.ngUnsubscribe),
       switchMap(res => {
         const products = salesOrder.lineItems.map(row => {
           return this.constructProductAggregate$.bind(this, row, res);

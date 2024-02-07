@@ -71,7 +71,7 @@ export class ProcessTrackingComponent implements OnChanges {
       const temp: Hexagon[] = [];
       for (let j = 0; j < rows; j++) {
         const sentinel: Hexagon = {
-          processId: -1,
+          id: -1,
           row: j,
           col: i,
           text: '',
@@ -89,13 +89,13 @@ export class ProcessTrackingComponent implements OnChanges {
     for (const item of this.data.items) {
       const hexagon = this.gridItems[item.col][item.row];
       hexagon.htmlId = this.formatHtmlId(item.row, item.col);
-      hexagon.processId = item.processId;
+      hexagon.id = item.id;
       hexagon.text = item.text;
       hexagon.statusId = item.statusId;
 
       // Check if need to draw connecting lines.
-      if (item.toProcessId) {
-        const toEl = this.data.items.find(row => row.processId === item.toProcessId);
+      if (item.toId) {
+        const toEl = this.data.items.find(row => row.id === item.toId);
         if (!toEl) return;
         connectingItems.push([hexagon.htmlId, this.formatHtmlId(toEl.row, toEl.col)]);
       }
@@ -154,14 +154,14 @@ export class ProcessTrackingComponent implements OnChanges {
     if (!el) return;
     el.classList.add('selected');
     this.current = el;
-    this.toggle.emit(item.processId);
+    this.toggle.emit(item.id);
   }
 
   public onToggleProcess(event: HTMLDivElement, item: Hexagon) {
     if (this.current) this.current.classList.remove('selected');
     event.classList.add('selected');
     this.current = event;
-    this.toggle.emit(item.processId);
+    this.toggle.emit(item.id);
   }
 
   public getHexStatusClass(statusId?: number) {
