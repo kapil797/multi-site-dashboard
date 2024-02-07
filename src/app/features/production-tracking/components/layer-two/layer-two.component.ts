@@ -6,10 +6,17 @@ import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@shared/configs/notification';
-import { LineItem, Product, SalesOrder, WorkOrder } from '@pt/production-tracking.model';
+import { Execution, LineItem, Product, SalesOrder, WorkOrder } from '@pt/production-tracking.model';
 import { Factory } from '@core/models/factory.model';
 import { SalesOrderDetails } from '../sales-order-details/sales-order-details.component';
 import { Dropdown } from '@shared/classes/form/form.class';
+
+interface StatusMetadata {
+  releasedQty: number;
+  completedQty: number;
+  endTime?: string;
+  estimatedCompleteTime?: string;
+}
 
 @Component({
   selector: 'app-layer-two',
@@ -65,31 +72,40 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           this.isLoading = false;
           this.notif.show(createNotif('error', error));
         },
-        complete: () => {
-          console.log('hello');
-        },
       });
+  }
+
+  public onChangeSalesOrder(event: unknown) {
+    this.isLoading = true;
+    this.constructSalesOrderAggregate$(event as string).subscribe({
+      next: res => {
+        this.isLoading = false;
+        this.salesOrderDetails = res;
+      },
+      error: error => {
+        this.isLoading = false;
+        this.salesOrderDetails = undefined;
+        this.workOrderDetails = undefined;
+        this.notif.show(createNotif('error', error));
+      },
+    });
   }
 
   private constructSalesOrderAggregate$(salesOrderId: string) {
     /*
       Each time a SalesOrder is changed, will need to fetch all related
-      WorkOrders and Executions.
-
-      This is because getting the projected completion and calculating 
-      the status of SalesOrder requires the details of all Executions.
+      WorkOrders and Executions. This is because getting the projected 
+      completion and calculating the status of SalesOrder requires 
+      the details of all Executions.
     */
     const salesOrder = this.salesOrderMap.get(salesOrderId);
-    let releasedQty = 0;
-    let completedQty = 0;
-    let completedTime: number;
-    let estimatedCompleteTime: number;
     if (!salesOrder) {
       return throwError(() => `SalesOrder ${salesOrderId} is invalid`);
     }
     return this.pt.fetchWorkOrders$(this.factory, [salesOrderId]).pipe(
       takeUntil(this.ngUnsubscribe),
       switchMap(res => {
+        // Aggregate the WorkOrders to each lineItem, and fetch all related Executions.
         const products = salesOrder.lineItems.map(row => {
           return this.constructProductAggregate$.bind(this, row, res);
         });
@@ -100,42 +116,28 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       }),
       toArray(),
       map(res => {
-        // Side effect.
         this.workOrderDetails = res;
 
+        // To get the status of a SalesOrder, need to sum the releasedQty
+        // and completedQty for all related executions, regardless of lineItems.
+        const status: StatusMetadata = {
+          releasedQty: 0,
+          completedQty: 0,
+        };
         res.forEach(product => {
           product.executions.forEach(row => {
+            this.aggregateStatusOfExecutions(row, status);
+
             // Side effect mapping.
             row.partsCompleted = `${row.completeQty} of ${row.releasedQty}`;
-
-            // Update status.
-            releasedQty += row.releasedQty;
-            completedQty += row.completeQty;
-
-            // Update completedTime if any.
-            if (!completedTime && row.processEndTime) {
-              completedTime = new Date(row.processEndTime).getTime();
-            } else if (completedTime && row.processEndTime) {
-              completedTime = Math.max(completedTime, new Date(row.processEndTime).getTime());
-            }
-
-            // Updated estCompleteTime.
-            if (!estimatedCompleteTime) {
-              estimatedCompleteTime = new Date(row.estimateCompleteTime).getTime();
-            } else {
-              estimatedCompleteTime = Math.max(
-                new Date(estimatedCompleteTime).getTime(),
-                new Date(row.estimateCompleteTime).getTime()
-              );
-            }
           });
         });
 
         return {
           ...salesOrder,
-          progress: Math.round((completedQty / releasedQty) * 100),
-          estimateCompleteTime: new Date(estimatedCompleteTime).toISOString(),
-          completedTime: completedQty === releasedQty ? new Date(completedTime).toISOString() : null,
+          progress: Math.round((status.completedQty / status.releasedQty) * 100),
+          estimatedCompleteTime: status.estimatedCompleteTime ? status.estimatedCompleteTime : null,
+          completedTime: status.endTime && status.completedQty === status.releasedQty ? status.endTime : null,
         } as SalesOrderDetails;
       })
     );
@@ -168,19 +170,28 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
     );
   }
 
-  public onChangeSalesOrder(event: unknown) {
-    this.isLoading = true;
-    this.constructSalesOrderAggregate$(event as string).subscribe({
-      next: res => {
-        this.isLoading = false;
-        this.salesOrderDetails = res;
-      },
-      error: error => {
-        this.isLoading = false;
-        this.salesOrderDetails = undefined;
-        this.workOrderDetails = undefined;
-        this.notif.show(createNotif('error', error));
-      },
-    });
+  private aggregateStatusOfExecutions(row: Execution, status: StatusMetadata) {
+    // Update quantities.
+    status.releasedQty += row.releasedQty;
+    status.completedQty += row.completeQty;
+
+    // Update endTime if any; take the latest value.
+    if (!status.endTime && row.processEndTime) {
+      status.endTime = row.processEndTime;
+    } else if (status.endTime && row.processEndTime) {
+      const latest = Math.max(new Date(status.endTime).getTime(), new Date(row.processEndTime).getTime());
+      status.endTime = new Date(latest).toISOString();
+    }
+
+    // Updated estCompleteTime if any; take the latest value.
+    if (!status.estimatedCompleteTime) {
+      status.estimatedCompleteTime = row.estimateCompleteTime;
+    } else {
+      const latest = Math.max(
+        new Date(status.estimatedCompleteTime).getTime(),
+        new Date(row.estimateCompleteTime).getTime()
+      );
+      status.estimatedCompleteTime = new Date(latest).toISOString();
+    }
   }
 }
