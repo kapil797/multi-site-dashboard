@@ -11,7 +11,7 @@
     <app-projected-completion
       header="projected completion"
       (late)="onLate()"
-      [dueDate]="data?.estimateCompleteTime"
+      [dueDate]="data?.estimatedCompleteTime"
       [completedDate]="data?.completedTime"></app-projected-completion>
     <app-custom-card id="customer" header="customer" [icon]="faUser" [content]="data?.customerName"> </app-custom-card>
     <app-custom-card
