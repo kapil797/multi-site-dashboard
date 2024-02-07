@@ -133,7 +133,7 @@ export class ProductionTrackingService {
     const items: ProcessTrackingItem[] = product.executions.map(row => {
       return {
         text: row.process.name,
-        processId: row.process.id,
+        id: row.process.id,
         statusId: row.statusId,
         row: 0,
         col: row.step - 1, // 0-indexed.
@@ -152,7 +152,7 @@ export class ProductionTrackingService {
     const processMap = new Map<number, Execution>();
     product.executions.forEach(row => processMap.set(row.process.id, row));
     template.items = template.items.map(row => {
-      const process = processMap.get(row.processId);
+      const process = processMap.get(row.id);
       if (process) row.statusId = process.statusId;
       return row;
     });
