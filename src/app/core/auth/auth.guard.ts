@@ -26,7 +26,7 @@ export class AuthGuard extends KeycloakAuthGuard {
     // i.e. auto login required.
     if (!this.authenticated) {
       await this.keycloakService.login({
-        redirectUri: window.location.origin + state.url,
+        redirectUri: `${document.baseURI.slice(0, -1)}${state.url}`,
       });
     }
 
