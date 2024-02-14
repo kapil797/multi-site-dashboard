@@ -1,0 +1,419 @@
+[
+  {
+    "id": "M01",
+    "name": "Injection Moulding",
+    "power": 0,
+    "energy": 1,
+    "waste": 2,
+    "category": "MTS",
+    "x": 3,
+    "y": 30,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 0.3
+    }
+  },
+  {
+    "id": "M02",
+    "name": "Infrared Oven 1",
+    "power": 1,
+    "energy": 0,
+    "waste": -1,
+    "category": "MTS",
+    "x": 33.5,
+    "y": 26.5,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M03",
+    "name": "Infrared Oven 2",
+    "power": 3,
+    "energy": 2,
+    "waste": -1,
+    "category": "MTS",
+    "x": 44.5,
+    "y": 21.5,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M04",
+    "name": "Screen Printer 1",
+    "power": 1,
+    "energy": 1,
+    "waste": -1,
+    "category": "MTS",
+    "x": 65.5,
+    "y": 40,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M05",
+    "name": "Screen Printer 2",
+    "power": 1,
+    "energy": 0,
+    "waste": -1,
+    "category": "MTS",
+    "x": 42.5,
+    "y": 38,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M06",
+    "name": "Membrane Assembly",
+    "power": 3,
+    "energy": 2,
+    "waste": -1,
+    "category": "MTS",
+    "x": 32.5,
+    "y": 45,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M10",
+    "name": "Laser Welding",
+    "power": 1,
+    "energy": 1,
+    "waste": -1,
+    "category": "MTS",
+    "x": 52.5,
+    "y": 72.5,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M11",
+    "name": "Laser Trimming",
+    "power": 1,
+    "energy": 0,
+    "waste": -1,
+    "category": "MTS",
+    "x": 53,
+    "y": 47,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M12",
+    "name": "Holder Tester",
+    "power": 3,
+    "energy": 3,
+    "waste": -1,
+    "category": "MTS",
+    "x": 55.5,
+    "y": 30,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+
+  {
+    "id": "S1",
+    "name": "Milling",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 42.5,
+    "y": 56,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S2",
+    "name": "EDM",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 26.5,
+    "y": 56,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S3",
+    "name": "CMM",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 35,
+    "y": 80,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S4",
+    "name": "Robotic Arm",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 44,
+    "y": 69,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S5",
+    "name": "5 Axis Machining",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 17,
+    "y": 56,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S6",
+    "name": "Turn Mill",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 44,
+    "y": 80,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S7",
+    "name": "Carrier Station",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 28,
+    "y": 80,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "S8",
+    "name": "Washer",
+    "power": 0,
+    "energy": 0,
+    "waste": 0,
+    "category": "SES",
+    "x": 22,
+    "y": 80,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+
+  {
+    "id": "M08",
+    "name": "Holder Assembly",
+    "power": 1,
+    "energy": 1,
+    "waste": -1,
+    "category": "MTO",
+    "x": 82.5,
+    "y": 72.5,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+
+  {
+    "id": "M09",
+    "name": "Scent Filling",
+    "power": 1,
+    "energy": 0,
+    "waste": -1,
+    "category": "MTO",
+    "x": 72,
+    "y": 73,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M13",
+    "name": "Cartridge Tester",
+    "power": 1,
+    "energy": 0,
+    "waste": -1,
+    "category": "MTO",
+    "x": 68.5,
+    "y": 64,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M14",
+    "name": "Inkjet Printer",
+    "power": 1,
+    "energy": 0,
+    "waste": -1,
+    "category": "MTO",
+    "x": 65.5,
+    "y": 82.5,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 0.3
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 0.3
+    }
+  },
+  {
+    "id": "M15",
+    "name": "Lean Packaging",
+    "power": -1,
+    "energy": -1,
+    "waste": 1,
+    "category": "MTO",
+    "x": 58.5,
+    "y": 59,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M16",
+    "name": "Circular Mfg",
+    "power": 1,
+    "energy": 1,
+    "waste": -1,
+    "category": "MTO",
+    "x": 83,
+    "y": 62.5,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  }
+]

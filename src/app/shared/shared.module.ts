@@ -25,6 +25,8 @@ import { MenusModule } from '@progress/kendo-angular-menu';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import { GaugesModule } from '@progress/kendo-angular-gauges';
 
 // Providers.
 import { NotificationService } from '@progress/kendo-angular-notification';
@@ -70,6 +72,8 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
     PopupModule,
     ScrollViewModule,
     ProgressBarModule,
+    ChartsModule,
+    GaugesModule,
 
     // Directives.
     OverlayDirective,
@@ -104,6 +108,8 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
     PopupModule,
     ScrollViewModule,
     ProgressBarModule,
+    ChartsModule,
+    GaugesModule,
 
     // Directives.
     OverlayDirective,

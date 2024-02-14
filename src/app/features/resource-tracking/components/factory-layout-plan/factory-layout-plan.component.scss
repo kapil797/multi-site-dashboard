@@ -1,0 +1,55 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+h4 {
+  letter-spacing: variables.$letter-spacing-reg;
+}
+
+.flp-wrapper {
+  position: relative;
+}
+
+.level-one__img {
+  width: 100%;
+  height: 100%;
+}
+
+.level-one__img.umf {
+  width: 80%;
+  height: 80%;
+}
+
+.level-two {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  width: 20%;
+  height: 20%;
+}
+
+.level-two__img {
+  width: 100%;
+  height: 100%;
+}
+
+.machine {
+  position: absolute;
+  cursor: pointer;
+  border-radius: variables.$border-radius-2;
+}
+
+.success {
+  background-color: variables.$success;
+}
+
+.error {
+  background-color: variables.$error;
+}
+
+.warning {
+  background-color: variables.$warning;
+}
+
+.neutral {
+  background-color: variables.$gray-700;
+}

@@ -1,0 +1,7 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.rt-2-wrapper {
+  @include base.container;
+  grid-template-columns: repeat(2, 1fr);
+}

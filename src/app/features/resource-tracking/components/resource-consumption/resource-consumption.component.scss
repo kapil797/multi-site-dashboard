@@ -1,0 +1,28 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+h3 {
+  letter-spacing: variables.$letter-spacing-reg;
+}
+
+.k-table-md {
+  font-size: variables.$font-size-xs;
+}
+
+.rc-wrapper {
+  border-radius: variables.$border-radius-0;
+  background-color: variables.$bg-2;
+}
+
+.bar-chart {
+  background-color: unset;
+}
+
+.gauge-container {
+  height: 100%;
+}
+
+.gauge-width {
+  width: 10rem;
+}
