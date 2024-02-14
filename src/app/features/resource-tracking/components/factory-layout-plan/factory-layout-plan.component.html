@@ -1,0 +1,25 @@
+<div class="flp-wrapper">
+  <div *ngIf="factory === 'modelfactory'">
+    <div>
+      <img [src]="mfLevelOne" alt="mf-level-one" class="level-one__img" />
+      <h4>LEVEL TWO</h4>
+    </div>
+    <div class="level-two">
+      <img [src]="mfLevelTwo" alt="mf-level-two" class="level-two__img" />
+      <h4>LEVEL ONE</h4>
+    </div>
+  </div>
+  <div *ngIf="factory === 'microfactory'" class="text-center">
+    <img [src]="umfLevelOne" class="level-one__img umf" alt="umf-level-one" />
+  </div>
+  <div *ngFor="let item of data">
+    <div
+      aria-hidden="true"
+      (click)="onSelectMachine(item)"
+      class="machine p-2"
+      [ngClass]="resolveMachineBgColor(item)"
+      [ngStyle]="resolveMachineStyle(item)">
+      {{ item.id }}
+    </div>
+  </div>
+</div>

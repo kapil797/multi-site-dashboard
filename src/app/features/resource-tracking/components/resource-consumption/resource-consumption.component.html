@@ -1,0 +1,86 @@
+<div class="rc-wrapper p-3 h-100">
+  <div class="d-flex">
+    <h3>{{ title.toUpperCase() }}</h3>
+    <div class="flex-spacer"></div>
+    <h3>{{ lastUpdated }}</h3>
+  </div>
+  <kendo-chart>
+    <kendo-chart-axis-defaults [majorGridLines]="{ visible: false }"> </kendo-chart-axis-defaults>
+    <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
+    <!-- <kendo-chart-title align="left" text="POWER LOAD PROFILE (kW)" [color]="chartConfig.color"></kendo-chart-title> -->
+    <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item [categories]="categories">
+        <kendo-chart-category-axis-item-labels
+          format="HH:mm:ss"
+          [step]="9"
+          [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
+      </kendo-chart-category-axis-item>
+    </kendo-chart-category-axis>
+    <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item [title]="{ text: 'POWER LOAD PROFILE (kW)', color: chartConfig.color }">
+        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+    </kendo-chart-value-axis>
+    <kendo-chart-series>
+      <kendo-chart-series-item type="column" [gap]="0" [data]="series" field="value"> </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+  <div class="d-flex mt-5">
+    <div class="gauge-container me-5">
+      <h3 class="gauge-width">WASTE: {{ waste }}%</h3>
+      <kendo-radialgauge>
+        <kendo-radialgauge-scale
+          [majorTicks]="{ visible: false }"
+          [minorTicks]="{ visible: false }"
+          [startAngle]="0"
+          [endAngle]="180"
+          [rangeSize]="15"
+          [max]="100">
+          <kendo-radialgauge-scale-labels [visible]="false"> </kendo-radialgauge-scale-labels>
+          <kendo-radialgauge-scale-ranges>
+            <kendo-radialgauge-scale-range [from]="0" [to]="40" [color]="chartConfig.success">
+            </kendo-radialgauge-scale-range>
+            <kendo-radialgauge-scale-range [from]="40" [to]="80" [color]="chartConfig.warning">
+            </kendo-radialgauge-scale-range>
+            <kendo-radialgauge-scale-range [from]="80" [to]="100" [color]="chartConfig.error">
+            </kendo-radialgauge-scale-range>
+          </kendo-radialgauge-scale-ranges>
+          <kendo-radialgauge-pointers>
+            <kendo-radialgauge-pointer
+              [value]="waste"
+              [cap]="{ size: 0.125, color: 'white' }"
+              [color]="'white'"
+              [length]="30">
+            </kendo-radialgauge-pointer>
+          </kendo-radialgauge-pointers>
+        </kendo-radialgauge-scale>
+      </kendo-radialgauge>
+    </div>
+
+    <div>
+      <h3>MACHINE ALERT HISTORY</h3>
+      <kendo-grid scrollable="none" [kendoGridBinding]="alertHistoryData">
+        <kendo-grid-column field="issue" title="Issue">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <span>{{ dataItem.issue.toUpperCase() }}</span>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="createdDate" title="Date">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <span>{{ formatDateWithoutTime(dataItem.createdDate) }}</span>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="createdDate" title="Time">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <span>{{ formatDateToTime(dataItem.createdDate) }}</span>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="description" title="Description">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <span>{{ dataItem.description.toUpperCase() }}</span>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+</div>

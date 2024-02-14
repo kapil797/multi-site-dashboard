@@ -28,6 +28,15 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.RESOURCE_TRACKING).substring(1),
+    loadChildren: () => import('@rt/resource-tracking.module').then(m => m.ResourceTrackingModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },

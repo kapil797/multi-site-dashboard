@@ -5,8 +5,8 @@ import { SalesOrder } from '@pt/production-tracking.model';
 
 export interface SalesOrderDetails extends SalesOrder {
   progress: number;
-  estimatedCompleteTime: string | null;
-  completedTime: string | null;
+  estimatedCompleteTime: string | undefined;
+  completedTime: string | undefined;
 }
 
 @Component({

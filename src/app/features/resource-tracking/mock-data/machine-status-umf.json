@@ -1,0 +1,38 @@
+[
+  {
+    "id": "M01",
+    "name": "Diffuser Assembly Machine",
+    "power": 1,
+    "energy": 3,
+    "waste": 3,
+    "category": "MTO",
+    "x": 68,
+    "y": 65,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  },
+  {
+    "id": "M02",
+    "name": "Printing & Packaging",
+    "power": 0,
+    "energy": 3,
+    "waste": 1,
+    "category": "MTO",
+    "x": 52,
+    "y": 65,
+    "idlingThreshold": {
+      "eRed": 1.5,
+      "eGreen": 1
+    },
+    "productionThreshold": {
+      "eRed": 2,
+      "eGreen": 1
+    }
+  }
+]

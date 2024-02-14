@@ -26,6 +26,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## Screen display
+
+All components should fit in 90% zoom on Chrome, on 22.9" display.
+
 ## Clarifications
 
 1. Do we need to make each graph dynamic i.e. chart, histogram, pie chart?

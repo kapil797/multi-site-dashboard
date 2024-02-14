@@ -1,0 +1,43 @@
+<div class="k-grid k-table k-grid-header k-table-md p-2 justify-content-center">
+  {{ title.toUpperCase() }}
+</div>
+<kendo-grid scrollable="none" [kendoGridBinding]="data">
+  <kendo-grid-column
+    *ngFor="let column of dataCols"
+    field="{{ column.field }}"
+    title="{{ column.title }}"
+    [width]="formatWidth(column.width)"></kendo-grid-column>
+
+  <kendo-grid-column field="power" title="Power">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div class="text-center">
+        <fa-icon
+          class="machine-icon"
+          [icon]="resolveIcon(dataItem.power, faPowerOff)"
+          [ngClass]="resolveStatus(dataItem.power)"></fa-icon>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="energy" title="Energy">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div class="text-center">
+        <fa-icon
+          class="machine-icon"
+          [icon]="resolveIcon(dataItem.energy, faBolt)"
+          [ngClass]="resolveStatus(dataItem.energy)"></fa-icon>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+
+  <kendo-grid-column field="waste" title="Waste">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div class="text-center">
+        <fa-icon
+          class="machine-icon"
+          [icon]="resolveIcon(dataItem.waste, faTrash)"
+          [ngClass]="resolveStatus(dataItem.waste)"></fa-icon>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>

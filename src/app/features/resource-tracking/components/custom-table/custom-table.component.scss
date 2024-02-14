@@ -1,0 +1,35 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+.k-grid .k-header {
+  display: none;
+}
+
+.k-grid {
+  font-size: variables.$font-size-xs;
+}
+
+.k-table-md {
+  font-size: variables.$font-size-xs;
+}
+
+.machine-icon {
+  font-size: variables.$font-size-xs;
+}
+
+.icon-success {
+  color: variables.$success;
+}
+
+.icon-error {
+  color: variables.$error;
+}
+
+.icon-warning {
+  color: variables.$warning;
+}
+
+.icon-neutral {
+  color: variables.$white;
+}

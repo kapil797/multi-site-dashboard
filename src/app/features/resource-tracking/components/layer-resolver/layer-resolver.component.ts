@@ -5,11 +5,11 @@ import { takeUntil } from 'rxjs';
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { RoutePaths } from '@core/constants/routes.constant';
 import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
-import { LayerOneComponent } from '@pt/components/layer-one/layer-one.component';
-import { LayerTwoComponent } from '@pt/components/layer-two/layer-two.component';
+import { LayerOneComponent } from '@rt/components/layer-one/layer-one.component';
+import { LayerTwoComponent } from '@rt/components/layer-two/layer-two.component';
 
 @Component({
-  selector: 'app-pt-layer-resolver',
+  selector: 'app-rt-layer-resolver',
   templateUrl: './layer-resolver.component.html',
   styleUrl: './layer-resolver.component.scss',
 })
