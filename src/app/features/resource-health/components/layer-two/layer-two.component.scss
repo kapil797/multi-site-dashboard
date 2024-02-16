@@ -1,0 +1,8 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.rh-2-wrapper {
+  @include base.container;
+  display: grid;
+  grid-template-rows: auto auto;
+}

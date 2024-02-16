@@ -1,0 +1,32 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+.k-table-md {
+  font-size: variables.$font-size-sm;
+}
+
+.k-grid .k-column-title {
+  white-space: normal;
+}
+
+.k-grid-header {
+  letter-spacing: unset;
+}
+
+.k-grid .k-cell-inner {
+  // For column group header.
+  justify-content: center;
+}
+
+.success {
+  color: variables.$success;
+}
+
+.error {
+  color: variables.$error-alt;
+}
+
+.warning {
+  color: variables.$warning;
+}

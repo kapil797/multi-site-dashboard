@@ -31,6 +31,7 @@
       "@mk/*": ["./src/app/features/management-kpis/*"],
       "@lt/*": ["./src/app/features/logistic-tracking/*"],
       "@rt/*": ["./src/app/features/resource-tracking/*"],
+      "@rh/*": ["./src/app/features/resource-health/*"],
     },
   },
   "angularCompilerOptions": {

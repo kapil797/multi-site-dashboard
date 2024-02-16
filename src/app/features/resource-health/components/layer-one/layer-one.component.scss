@@ -1,0 +1,17 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+app-sidebar {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.rh-1-scaffold {
+  @include base.layer-one-scaffold;
+  grid-template-columns: auto 4rem; 
+}
+
+.rh-1-wrapper {
+  @include base.container;
+  grid-template-columns: repeat(3, 1fr);
+}

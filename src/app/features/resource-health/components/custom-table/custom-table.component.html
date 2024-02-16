@@ -1,0 +1,24 @@
+<kendo-grid scrollable="none" [kendoGridBinding]="gridData">
+  <kendo-grid-column field="name" title="Machines" [width]="200"></kendo-grid-column>
+  <kendo-grid-column field="category" title="Category"></kendo-grid-column>
+  <kendo-grid-column field="OEE" title="OEE">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span [ngClass]="formatClassColor(dataItem.OEE)">{{ formatValue(dataItem.OEE) }}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="availability" title="Availability">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span [ngClass]="formatClassColor(dataItem.availability)">{{ formatValue(dataItem.availability) }}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="performance" title="Performance">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span [ngClass]="formatClassColor(dataItem.performance)">{{ formatValue(dataItem.performance) }}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="quality" title="Quality">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span [ngClass]="formatClassColor(dataItem.quality)">{{ formatValue(dataItem.quality) }}</span>
+    </ng-template>
+  </kendo-grid-column>
+</kendo-grid>

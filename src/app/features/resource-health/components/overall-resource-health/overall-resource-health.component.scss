@@ -1,0 +1,24 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+h1 {
+  letter-spacing: variables.$letter-spacing-reg;
+}
+
+.k-grid .k-header {
+  display: none;
+}
+
+.k-table-md {
+  font-size: variables.$font-size-xxl;
+}
+
+.orh-wrapper {
+  background-color: variables.$bg-2;
+}
+
+.text {
+  font-size: variables.$font-size-xxxl;
+  font-weight: bold;
+}

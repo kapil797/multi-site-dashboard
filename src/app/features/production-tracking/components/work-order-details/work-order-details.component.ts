@@ -21,10 +21,10 @@ export class WorkOrderDetailsComponent implements OnChanges {
   public faRobot = faRobot;
   public faHashtag = faHashtag;
   public faPuzzlePiece = faPuzzlePiece;
-  public scrollProducts: ScrollItem[];
+  public scrollProducts?: ScrollItem[];
   public curProduct?: Product;
   public curProcess?: Execution;
-  public processTracking: ProcessTracking;
+  public processTracking?: ProcessTracking;
 
   constructor(
     private pt: ProductionTrackingService,
@@ -48,6 +48,11 @@ export class WorkOrderDetailsComponent implements OnChanges {
         };
       });
       this.onToggleProduct({ name: this.data[0].name, id: this.data[0].id });
+    } else {
+      this.curProduct = undefined;
+      this.curProcess = undefined;
+      this.processTracking = undefined;
+      this.scrollProducts = undefined;
     }
   }
 

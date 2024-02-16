@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import moment from 'moment';
 
-import { MachineAlertHistory, MachineStatus, ResourceConsumption } from '@rt/resource-tracking.model';
 import { getRandomInt } from '@core/utils/formatters';
+import { chartConfig } from '@shared/configs/charts';
+import { MachineAlertHistory, MachineStatus, ResourceConsumption } from '@rt/resource-tracking.model';
 
 interface SeriesDataItem {
   value: number;
@@ -24,14 +25,9 @@ export class ResourceConsumptionComponent implements OnChanges {
   public categories: Date[];
   public series: SeriesDataItem[];
   public waste: number;
-  public chartConfig = {
-    backgroundColor: '#002135',
-    color: '#ffffff',
-    success: '#21d794',
-    warning: '#fab95c',
-    error: '#7E3644',
-    neutral: '#bdbdbd',
-  };
+  public chartConfig = chartConfig;
+
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['resourceData']) {

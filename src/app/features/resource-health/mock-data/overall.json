@@ -1,0 +1,56 @@
+[
+  {
+    "id": 0,
+    "title": "Equipment Effectiveness",
+    "categories": [
+      {
+        "name": "SES",
+        "value": 0
+      },
+      {
+        "name": "MTS",
+        "value": 0
+      },
+      {
+        "name": "MTO",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Energy Efficiency",
+    "categories": [
+      {
+        "name": "SES",
+        "value": 0
+      },
+      {
+        "name": "MTS",
+        "value": 0
+      },
+      {
+        "name": "MTO",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Material Efficiency",
+    "categories": [
+      {
+        "name": "SES",
+        "value": 0
+      },
+      {
+        "name": "MTS",
+        "value": 0
+      },
+      {
+        "name": "MTO",
+        "value": 0
+      }
+    ]
+  }
+]

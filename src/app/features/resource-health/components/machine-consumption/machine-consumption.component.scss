@@ -1,0 +1,17 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.mc-wrapper {
+  grid-template-rows: auto auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.panel-bar {
+  grid-column: 1 / span 2;
+}
+
+.dropdown-wrapper {
+  border: 1px solid variables.$white;
+  border-radius: unset;
+  width: 18rem; // Fixed.
+}

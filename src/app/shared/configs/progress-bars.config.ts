@@ -4,7 +4,7 @@ export const progressColors: ProgressColor[] = [
   {
     from: 0,
     to: 25,
-    color: '#fa5c5c',
+    color: '#F24D4D',
   },
   {
     from: 25,
