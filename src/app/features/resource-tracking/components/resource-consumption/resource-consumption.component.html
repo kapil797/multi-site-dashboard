@@ -9,7 +9,7 @@
     <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
     <!-- <kendo-chart-title align="left" text="POWER LOAD PROFILE (kW)" [color]="chartConfig.color"></kendo-chart-title> -->
     <kendo-chart-category-axis>
-      <kendo-chart-category-axis-item [categories]="categories">
+      <kendo-chart-category-axis-item [categories]="categories || []">
         <kendo-chart-category-axis-item-labels
           format="HH:mm:ss"
           [step]="9"
@@ -22,7 +22,7 @@
       </kendo-chart-value-axis-item>
     </kendo-chart-value-axis>
     <kendo-chart-series>
-      <kendo-chart-series-item type="column" [gap]="0" [data]="series" field="value"> </kendo-chart-series-item>
+      <kendo-chart-series-item type="column" [gap]="0" [data]="series || []" field="value"> </kendo-chart-series-item>
     </kendo-chart-series>
   </kendo-chart>
   <div class="d-flex mt-5">

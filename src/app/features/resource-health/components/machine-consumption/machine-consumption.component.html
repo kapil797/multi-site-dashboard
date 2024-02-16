@@ -1,0 +1,85 @@
+<div class="mc-wrapper d-grid gap-5">
+  <div class="panel-bar d-flex">
+    <div class="flex-spacer"></div>
+    <div *ngIf="machines && machines.length > 0" class="dropdown-wrapper d-flex align-items-center me-5 p-2">
+      <kendo-label class="me-3" text="MACHINE:"></kendo-label>
+      <kendo-dropdownlist
+        appDropdown
+        (valueChange)="onToggleMachine($event)"
+        [data]="machines"
+        [(ngModel)]="dropdownValue"></kendo-dropdownlist>
+    </div>
+  </div>
+
+  <kendo-chart>
+    <kendo-chart-title text="ENERGY CONSUMPTION" [color]="chartConfig.color"></kendo-chart-title>
+    <kendo-chart-axis-defaults [majorGridLines]="{ visible: false }"> </kendo-chart-axis-defaults>
+    <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
+    <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item
+        [categories]="energyConsumptionData ? energyConsumptionData.categories : []"
+        [axisCrossingValue]="crossingValues">
+        <kendo-chart-category-axis-item-labels [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
+      </kendo-chart-category-axis-item>
+    </kendo-chart-category-axis>
+    <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item
+        name="series1"
+        [title]="{ text: 'Consumption Intensity (KWh/pc)', color: chartConfig.color }">
+        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+      <kendo-chart-value-axis-item name="series2" [title]="{ text: 'Amount (KW/h)', color: chartConfig.color }">
+        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+    </kendo-chart-value-axis>
+    <kendo-chart-series>
+      <kendo-chart-series-item
+        type="column"
+        [data]="energyConsumptionData ? energyConsumptionData.series1 : []"
+        axis="series1"
+        field="value">
+      </kendo-chart-series-item>
+      <kendo-chart-series-item
+        type="line"
+        axis="series2"
+        [data]="energyConsumptionData ? energyConsumptionData.series2 : []">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+
+  <kendo-chart>
+    <kendo-chart-title text="WASTE CONSUMPTION" [color]="chartConfig.color"></kendo-chart-title>
+    <kendo-chart-axis-defaults [majorGridLines]="{ visible: false }"> </kendo-chart-axis-defaults>
+    <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
+    <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item
+        [categories]="wasteConsumptionData ? wasteConsumptionData.categories : []"
+        [axisCrossingValue]="crossingValues">
+        <kendo-chart-category-axis-item-labels [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
+      </kendo-chart-category-axis-item>
+    </kendo-chart-category-axis>
+    <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item
+        name="series1"
+        [title]="{ text: 'Consumption Intensity (KWh/pc)', color: chartConfig.color }">
+        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+      <kendo-chart-value-axis-item name="series2" [title]="{ text: 'Amount (KW/h)', color: chartConfig.color }">
+        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+    </kendo-chart-value-axis>
+    <kendo-chart-series>
+      <kendo-chart-series-item
+        type="column"
+        axis="series1"
+        [data]="wasteConsumptionData ? wasteConsumptionData.series1 : []"
+        field="value">
+      </kendo-chart-series-item>
+      <kendo-chart-series-item
+        type="line"
+        axis="series2"
+        [data]="wasteConsumptionData ? wasteConsumptionData.series2 : []">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+</div>

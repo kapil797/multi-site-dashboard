@@ -61,3 +61,18 @@ export function getRandomInt(min: number, max: number) {
 export function getRandomNumber(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
+
+export function stringToCamelCase(v: string) {
+  let result: string = '';
+  let isCapitalized = false;
+  const regex = /[- ._]/;
+  for (const s of v) {
+    if (!s.match(regex)) {
+      result += isCapitalized ? s.toUpperCase() : s.toLowerCase();
+      isCapitalized = false;
+    } else {
+      isCapitalized = true;
+    }
+  }
+  return result;
+}

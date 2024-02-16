@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Overall",
+    "category": "",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Milling",
+    "category": "SES",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "EDM",
+    "category": "SES",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "CMM",
+    "category": "SES",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Robotic Arm",
+    "category": "SES",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Injection Modeling",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "InfraRed Oven 1",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "InfraRed Oven 2",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Screen Printer 1",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Screen Printer 2",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Membrane Assembly",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Laser Welding",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Laser Trimming",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Cartridge Tester",
+    "category": "MTS",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Scent Filling",
+    "category": "MTO",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Holder Assembly",
+    "category": "MTO",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Holder Tester",
+    "category": "MTO",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  },
+  {
+    "name": "Inkjet Printer",
+    "category": "MTO",
+    "OEE": 0,
+    "availability": 0,
+    "performance": 0,
+    "quality": 0
+  }
+]

@@ -1,6 +1,11 @@
 @use 'core/styles/variables';
 
-.k-appbar {
+.k-appbar .k-picker {
+  // For dropdown display.
+  width: 12rem;
+}
+
+.navbar {
   box-shadow: none;
   color: variables.$light;
   position: relative;

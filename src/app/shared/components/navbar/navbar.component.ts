@@ -29,10 +29,13 @@ export class NavbarComponent implements OnChanges {
   constructor(private app: AppService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dropdownOne'] && this.dropdownOne && this.dropdownOne.length > 0)
+    if (changes['dropdownOne'] && this.dropdownOne && this.dropdownOne.length > 0) {
       this.dropdownOneValue = this.dropdownOne[0];
-    if (changes['dropdownTwo'] && this.dropdownTwo && this.dropdownTwo.length > 0)
+    }
+
+    if (changes['dropdownTwo'] && this.dropdownTwo && this.dropdownTwo.length > 0) {
       this.dropdownTwoValue = this.dropdownTwo[0];
+    }
   }
 
   public onOpenNavMenu() {

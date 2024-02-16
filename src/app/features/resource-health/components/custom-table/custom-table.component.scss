@@ -1,0 +1,19 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+.success {
+  color: variables.$success;
+}
+
+.error {
+  color: variables.$error;
+}
+
+.warning {
+  color: variables.$warning;
+}
+
+.k-table-md {
+  font-size: variables.$font-size-sm;
+}
