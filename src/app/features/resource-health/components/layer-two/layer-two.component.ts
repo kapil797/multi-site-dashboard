@@ -3,9 +3,8 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { Factory } from '@core/models/factory.model';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
-import { createNotif } from '@shared/configs/notification';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { createNotif } from '@core/utils/notification';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { MachineResourceHealth, Period } from '@rh/resource-health.model';
 
@@ -16,7 +15,7 @@ import { MachineResourceHealth, Period } from '@rh/resource-health.model';
 })
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
-  public factory: Factory;
+  public factory: string;
   public gridData: MachineResourceHealth[];
   public period: Period;
   public machines: string[];

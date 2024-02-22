@@ -9,12 +9,13 @@ import { MachineStatus } from '@rt/resource-tracking.model';
   styleUrl: './factory-layout-plan.component.scss',
 })
 export class FactoryLayoutPlanComponent {
-  @Input() factory: Factory;
+  @Input() factory: string;
   @Input() data: MachineStatus[];
   @Output() machine = new EventEmitter<MachineStatus>();
   public mfLevelOne = 'assets/images/factories/mf-level-one.png';
   public mfLevelTwo = 'assets/images/factories/mf-level-two.png';
   public umfLevelOne = 'assets/images/factories/umf-level-one.png';
+  public Factory = Factory;
 
   constructor() {}
 

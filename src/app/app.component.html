@@ -9,7 +9,7 @@
 <kendo-dialog
   [animation]="dialogAnimation"
   appOverlay
-  (toggleClose)="onCloseDialog()"
+  (closeOverlay)="onCloseDialog()"
   *ngIf="app.appDialog === Dialogs.NAV_MENU">
   <app-nav-menu></app-nav-menu>
 </kendo-dialog>

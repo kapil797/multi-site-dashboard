@@ -2,10 +2,25 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ColumnSetting } from '@core/models/grid.model';
 import { AppService } from '@core/services/app.service';
-import { SalesOrderStatus, WorkOrderStatus } from '@pt/production-tracking.model';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { switchMap, take } from 'rxjs';
+
+interface Status {
+  status?: string;
+  isLate?: boolean;
+  lastUpdated?: string;
+}
+
+interface SalesOrderStatus extends Status {
+  salesOrderNo: string;
+  customer: string;
+}
+
+interface WorkOrderStatus extends Status {
+  workOrderNo: string;
+  processStage: string;
+}
 
 @Component({
   selector: 'app-layer-one',

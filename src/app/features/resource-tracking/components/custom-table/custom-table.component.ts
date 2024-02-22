@@ -4,6 +4,10 @@ import { IconDefinition, faBolt, faMinus, faPowerOff, faTrash } from '@fortaweso
 import { ColumnSetting } from '@core/models/grid.model';
 import { MachineStatus } from '@rt/resource-tracking.model';
 
+interface GridCol extends ColumnSetting {
+  icon?: IconDefinition;
+}
+
 @Component({
   selector: 'app-custom-table',
   templateUrl: './custom-table.component.html',
@@ -13,14 +17,19 @@ import { MachineStatus } from '@rt/resource-tracking.model';
 export class CustomTableComponent implements OnInit {
   @Input() data: MachineStatus[];
   @Input() title: string;
-  public dataCols: ColumnSetting[] = [
-    { title: 'Machine Id.', field: 'id', width: 50 },
-    { title: 'Name', field: 'name', width: 200 },
-  ];
   public faPowerOff = faPowerOff;
   public faBolt = faBolt;
   public faTrash = faTrash;
   public faMinus = faMinus;
+  public gridCols: GridCol[] = [
+    { title: 'Machine Id.', field: 'id', width: 50 },
+    { title: 'Name', field: 'name', width: 200 },
+    { title: 'Power', field: 'power', icon: faPowerOff },
+    { title: 'Energy', field: 'energy', icon: faBolt },
+    { title: 'Waste', field: 'waste', icon: faTrash },
+  ];
+
+  constructor() {}
 
   ngOnInit(): void {
     this.data = this.data.map(row => {

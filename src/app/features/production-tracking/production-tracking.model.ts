@@ -1,12 +1,12 @@
 export const ProcessStatus = Object.freeze({
+  1: 'QUEUING',
+  2: 'STANDBY',
+  3: 'READY',
   4: 'COMPLETED',
+  5: 'PAUSE',
+  6: 'CANCELLED',
+  8: 'PROCESSING',
 });
-
-export interface Status {
-  status?: string;
-  isLate?: boolean;
-  lastUpdated?: string;
-}
 
 export interface SalesOrder {
   id: number;
@@ -16,11 +16,25 @@ export interface SalesOrder {
   lineItems: LineItem[];
 }
 
+export interface SalesOrderAggregate extends SalesOrder {
+  lineItemAggregates: LineItemAggregate[];
+  progress?: number;
+  estimatedCompleteTime?: string;
+  completedTime?: string;
+}
+
 export interface LineItem {
+  // Individual transaction on a salesorder.
   productId: number; // Created by RPS.
-  productNo: string;
-  productName: string;
+  productNo: string; // i.e. 15ESZ-9010-AA-P06.
+  productName: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
   quantity: number;
+}
+
+export interface LineItemAggregate extends LineItem {
+  workOrders: WorkOrder[];
+  executions: Execution[];
+  processTrackingMap?: ProcessTrackingMap;
 }
 
 export interface WorkOrder {
@@ -77,25 +91,7 @@ export interface Machine {
   name: string;
 }
 
-export interface SalesOrderStatus extends Status {
-  salesOrderNo: string;
-  customer: string;
-}
-
-export interface WorkOrderStatus extends Status {
-  workOrderNo: string;
-  processStage: string;
-}
-
-export interface Product {
-  id: string | number; // Created by RPS. required for mapping.
-  number: string; // i.e. 15ESZ-9010-AA-P06.
-  name: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
-  workOrders: WorkOrder[];
-  executions: Execution[];
-}
-
-export interface ProcessTracking {
+export interface ProcessTrackingMap {
   productId: number;
   category: string;
   rows: number;
@@ -109,5 +105,24 @@ export interface ProcessTrackingItem {
   row: number;
   col: number;
   toId?: number;
-  statusId?: number;
+  statusId?: number; // Ongoing, completed, etc.
 }
+
+export interface WebsocketStream {
+  type: string;
+}
+
+export interface ExecutionStream extends WebsocketStream {
+  WOID: string;
+  SalesOrderID: string;
+  OutstandingQty: number;
+  ScrapQty: number;
+  CompletedQty: number;
+  ProdStartdate: string;
+  ProdEndDate: string;
+  WOProcessStatus: string;
+  CompletedDate: string;
+  ProcessName: string;
+}
+
+export interface SalesOrderStream extends WebsocketStream {}

@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { catchError, map, of, throwError } from 'rxjs';
 import moment from 'moment';
 
-import { Factory } from '@core/models/factory.model';
 import { getRandomNumber } from '@core/utils/formatters';
 import { AppService } from '@core/services/app.service';
-import { Dropdown } from '@shared/classes/form/form.class';
+import { Dropdown } from '@core/classes/form/form.class';
 import { ResourceHealthModule } from '@rh/resource-health.module';
 import {
   AggregatedResourceConsumption,
@@ -31,7 +30,7 @@ export class ResourceHealthService {
 
   constructor(private app: AppService) {}
 
-  public fetchOverallResourceHealth$(_factory: Factory) {
+  public fetchOverallResourceHealth$(_factory: string) {
     const data: OverallResourceHealth[] = overall.map(row => {
       row.categories.forEach(cat => {
         cat.value = this.getRandomNumberOrNull() as number;
@@ -41,7 +40,7 @@ export class ResourceHealthService {
     return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
   }
 
-  public fetchMachinesResourceHealth$(_factory: Factory) {
+  public fetchMachinesResourceHealth$(_factory: string) {
     const data: MachineResourceHealth[] = machines.map(row => {
       return {
         ...row,
@@ -54,7 +53,7 @@ export class ResourceHealthService {
     return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
   }
 
-  public fetchMachineEnergyConsumption$(_factory: Factory, period: Period, _machine: string) {
+  public fetchMachineEnergyConsumption$(_factory: string, period: Period, _machine: string) {
     const data: ResourceConsumption[] = this.getArrayOfDatesByPeriod(period).map(v => {
       return {
         createdDate: v,
@@ -70,7 +69,7 @@ export class ResourceHealthService {
     );
   }
 
-  public fetchMachineWasteConsumption$(_factory: Factory, period: Period, _machine: string) {
+  public fetchMachineWasteConsumption$(_factory: string, period: Period, _machine: string) {
     const data: ResourceConsumption[] = this.getArrayOfDatesByPeriod(period).map(v => {
       return {
         createdDate: v,

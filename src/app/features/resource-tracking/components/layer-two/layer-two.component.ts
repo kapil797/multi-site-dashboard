@@ -3,9 +3,8 @@ import { forkJoin, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { Factory } from '@core/models/factory.model';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
-import { createNotif } from '@shared/configs/notification';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { createNotif } from '@core/utils/notification';
 import { ResourceTrackingService } from '@rt/resource-tracking.service';
 import { MachineStatus, TrackedMachine } from '@rt/resource-tracking.model';
 
@@ -17,7 +16,7 @@ import { MachineStatus, TrackedMachine } from '@rt/resource-tracking.model';
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public machinesStatus: MachineStatus[];
-  public factory: Factory;
+  public factory: string;
   public trackedMachine: TrackedMachine;
 
   constructor(

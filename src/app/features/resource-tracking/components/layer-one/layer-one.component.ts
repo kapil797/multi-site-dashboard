@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap, takeUntil } from 'rxjs';
+import { switchMap, take, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { Factory } from '@core/models/factory.model';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
-import { createNotif } from '@shared/configs/notification';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { createNotif } from '@core/utils/notification';
 import { ResourceTrackingService } from '@rt/resource-tracking.service';
 import { MachineStatus } from '@rt/resource-tracking.model';
 
@@ -23,7 +22,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public machinesData: MachineData[] = [];
   public machinesStatus: MachineStatus[];
-  public factory: Factory;
+  public factory: string;
 
   constructor(
     private app: AppService,
@@ -36,11 +35,12 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   ngOnInit(): void {
     this.app.factory$
       .pipe(
-        takeUntil(this.ngUnsubscribe),
+        take(1),
         switchMap(res => {
           this.factory = res;
           return this.rt.fetchMachinesStatus$(res);
-        })
+        }),
+        takeUntil(this.ngUnsubscribe)
       )
       .subscribe({
         next: res => {

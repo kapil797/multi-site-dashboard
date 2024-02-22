@@ -3,7 +3,8 @@ import { takeUntil } from 'rxjs';
 
 import { AppService } from '@core/services/app.service';
 import { SharedModule } from '@shared/shared.module';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { Factory } from '@core/models/factory.model';
 
 @Component({
   selector: 'app-landing',
@@ -21,8 +22,8 @@ export class LandingComponent extends CancelSubscription implements OnInit {
 
   ngOnInit(): void {
     this.app.factory$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
-      if (res === 'modelfactory') this.header = 'Model Factory';
-      else if (res === 'microfactory') this.header = 'Micro Factory';
+      if (res === Factory.MODEL_FACTORY) this.header = 'Model Factory';
+      else if (res === Factory.MICRO_FACTORY) this.header = 'Micro Factory';
     });
   }
 }

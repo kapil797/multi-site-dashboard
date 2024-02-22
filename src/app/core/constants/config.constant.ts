@@ -7,4 +7,5 @@ export interface Config {
   KEYCLOAK_CLIENT: string;
   KEYCLOAK_DEFAULT_USER: string;
   KEYCLOAK_DEFAULT_PASSWORD: string;
+  DASHBOARD_WEBSOCKET_URL: string;
 }

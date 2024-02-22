@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewE
 
 import { Dialogs } from '@core/constants/dialogs.constant';
 import { AppService } from '@core/services/app.service';
-import { Dropdown } from '@shared/classes/form/form.class';
+import { Dropdown } from '@core/classes/form/form.class';
 
 @Component({
   selector: 'app-navbar',

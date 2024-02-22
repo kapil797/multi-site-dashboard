@@ -1,5 +1,5 @@
 <div class="flp-wrapper">
-  <div *ngIf="factory === 'modelfactory'">
+  <div *ngIf="factory === Factory.MODEL_FACTORY">
     <div>
       <img [src]="mfLevelOne" alt="mf-level-one" class="level-one__img" />
       <h4>LEVEL TWO</h4>
@@ -9,7 +9,7 @@
       <h4>LEVEL ONE</h4>
     </div>
   </div>
-  <div *ngIf="factory === 'microfactory'" class="text-center">
+  <div *ngIf="factory === Factory.MICRO_FACTORY" class="text-center">
     <img [src]="umfLevelOne" class="level-one__img umf" alt="umf-level-one" />
   </div>
   <div *ngFor="let item of data">

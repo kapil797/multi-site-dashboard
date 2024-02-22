@@ -2,10 +2,9 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ReplaySubject, forkJoin, switchMap, take, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
-import { Factory } from '@core/models/factory.model';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
-import { chartConfig } from '@shared/configs/charts';
-import { createNotif } from '@shared/configs/notification';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { chartConfig } from '@core/constants/charts.constant';
+import { createNotif } from '@core/utils/notification';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { AggregatedResourceConsumption, Period } from '@rh/resource-health.model';
 
@@ -26,7 +25,7 @@ interface InputArgs {
   styleUrl: './machine-consumption.component.scss',
 })
 export class MachineConsumptionComponent extends CancelSubscription implements OnInit, OnChanges {
-  @Input() factory: Factory;
+  @Input() factory: string;
   @Input() period: Period;
   @Input() machines: string[];
   public isLoading = true;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
-import { Dialogs } from '@core/constants/dialogs.constant';
+import { HttpClientModule } from '@angular/common/http';
 
 // Modules.
 import { SharedModule } from '@shared/shared.module';
@@ -14,7 +14,9 @@ import { AppService } from '@core/services/app.service';
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
 import { NavMenuComponent } from '@core/components/nav-menu/nav-menu.component';
-import { dialogAnimation, routeAnimations } from '@shared/animations';
+import { dialogAnimation, routeAnimations } from '@core/utils/animations';
+
+import { Dialogs } from '@core/constants/dialogs.constant';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,7 @@ import { dialogAnimation, routeAnimations } from '@shared/animations';
   imports: [
     RouterOutlet,
     // Modules.
+    HttpClientModule,
     SharedModule,
     KeycloakAngularModule,
     ProductionTrackingModule,
