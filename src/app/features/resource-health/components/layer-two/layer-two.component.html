@@ -6,9 +6,5 @@
   (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
 <div class="rh-2-wrapper">
   <app-transposed-table [data]="gridData"></app-transposed-table>
-  <app-machine-consumption
-    class="mt-5"
-    [period]="period"
-    [factory]="factory"
-    [machines]="machines"></app-machine-consumption>
+  <app-machine-consumption class="mt-5" [period]="period" [machines]="machines"></app-machine-consumption>
 </div>

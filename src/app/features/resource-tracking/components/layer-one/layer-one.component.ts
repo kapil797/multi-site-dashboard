@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap, take, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
@@ -33,15 +33,9 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
-    this.app.factory$
-      .pipe(
-        take(1),
-        switchMap(res => {
-          this.factory = res;
-          return this.rt.fetchMachinesStatus$(res);
-        }),
-        takeUntil(this.ngUnsubscribe)
-      )
+    this.rt
+      .fetchMachinesStatus$(this.app.factory())
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: res => {
           this.isLoading = false;

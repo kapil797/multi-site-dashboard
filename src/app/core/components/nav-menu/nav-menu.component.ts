@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, NgZone, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, NgZone, ViewChild, ViewEncapsulation, effect } from '@angular/core';
 import { Router } from '@angular/router';
 import { TileLayoutItemComponent, TileLayoutReorderEvent, TileLayoutComponent } from '@progress/kendo-angular-layout';
-import { take, takeUntil } from 'rxjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SharedModule } from '@shared/shared.module';
@@ -19,7 +18,7 @@ import { RoutePaths } from '@core/constants/routes.constant';
   styleUrl: './nav-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class NavMenuComponent extends CancelSubscription implements OnInit, AfterViewInit {
+export class NavMenuComponent extends CancelSubscription implements AfterViewInit {
   @ViewChild('dropzone') dropzone: TileLayoutItemComponent;
   @ViewChild('tileLayout') tileLayout: TileLayoutComponent;
   public columns: number;
@@ -40,17 +39,16 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
     private app: AppService
   ) {
     super();
-  }
 
-  ngOnInit(): void {
-    this.app.factory$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
-      if (res === Factory.MODEL_FACTORY) {
+    effect(() => {
+      const factory = this.app.factory();
+      if (factory === Factory.MODEL_FACTORY) {
         this.navItems = mfNavItems;
         this.columns = 4;
         this.factoryMap = 'assets/images/factories/map-mf.png';
         this.imgMf = this.currentFactory;
         this.imgUmf = this.altFactory;
-      } else if (res === Factory.MICRO_FACTORY) {
+      } else if (factory === Factory.MICRO_FACTORY) {
         this.navItems = umfNavItems;
         this.columns = 3;
         this.factoryMap = 'assets/images/factories/map-umf.png';
@@ -89,9 +87,7 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
     // Hence, using ActivatedRoute will have an empty routeTree.
     // Workaround is to pass an absolute path.
     this.zone.run(() => {
-      this.app.factory$.pipe(take(1)).subscribe(res => {
-        this.router.navigate([res.toLowerCase(), item.resource, layer]);
-      });
+      this.router.navigate([this.app.factory(), item.resource, layer]);
       this.app.resetDialog();
     });
   }
@@ -105,9 +101,6 @@ export class NavMenuComponent extends CancelSubscription implements OnInit, Afte
   }
 
   public onChangeSite(event: string) {
-    this.app.factory$.pipe(take(1)).subscribe(res => {
-      if (event === res) return;
-      this.router.navigate([event]);
-    });
+    this.router.navigate([event]);
   }
 }

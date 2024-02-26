@@ -13,7 +13,7 @@ export const routeGuard = (): CanMatchFn => {
     if (segments.length === 0) return false;
     const factory = segments[0].path;
     if (!factory || !Object.values(Factory).includes(factory as Factory)) return false;
-    app.factory$.next(factory);
+    app.setFactory(factory);
     return true;
   };
 };

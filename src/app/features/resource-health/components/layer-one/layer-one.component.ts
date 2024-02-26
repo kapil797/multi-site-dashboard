@@ -15,7 +15,6 @@ import { OverallResourceHealth } from '@rh/resource-health.model';
 })
 export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
-  public factory: string;
   public data: OverallResourceHealth[];
   private sub$ = new Subject();
 
@@ -32,11 +31,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
       .pipe(
         takeUntil(this.ngUnsubscribe),
         switchMap(_res => {
-          return this.app.factory$;
-        }),
-        switchMap(res => {
-          this.factory = res;
-          return this.rt.fetchOverallResourceHealth$(res);
+          return this.rt.fetchOverallResourceHealth$(this.app.factory());
         })
       )
       .subscribe({

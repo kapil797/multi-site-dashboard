@@ -4,7 +4,7 @@ import { ColumnSetting } from '@core/models/grid.model';
 import { AppService } from '@core/services/app.service';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
-import { switchMap, take } from 'rxjs';
+import { takeUntil } from 'rxjs';
 
 interface Status {
   status?: string;
@@ -76,11 +76,6 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
-    this.app.factory$.pipe(
-      take(1),
-      switchMap(res => {
-        return this.pt.fetchSalesOrders$(res);
-      })
-    );
+    this.pt.fetchSalesOrders$(this.app.factory()).pipe(takeUntil(this.ngUnsubscribe));
   }
 }

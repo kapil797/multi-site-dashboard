@@ -7,6 +7,7 @@ import { chartConfig } from '@core/constants/charts.constant';
 import { createNotif } from '@core/utils/notification';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { AggregatedResourceConsumption, Period } from '@rh/resource-health.model';
+import { AppService } from '@core/services/app.service';
 
 interface ChartData {
   categories: string[];
@@ -25,7 +26,6 @@ interface InputArgs {
   styleUrl: './machine-consumption.component.scss',
 })
 export class MachineConsumptionComponent extends CancelSubscription implements OnInit, OnChanges {
-  @Input() factory: string;
   @Input() period: Period;
   @Input() machines: string[];
   public isLoading = true;
@@ -38,6 +38,7 @@ export class MachineConsumptionComponent extends CancelSubscription implements O
 
   constructor(
     private rt: ResourceHealthService,
+    private app: AppService,
     private notif: NotificationService
   ) {
     super();
@@ -49,8 +50,8 @@ export class MachineConsumptionComponent extends CancelSubscription implements O
         takeUntil(this.ngUnsubscribe),
         switchMap(res => {
           return forkJoin([
-            this.rt.fetchMachineEnergyConsumption$(this.factory, res.period, res.machine),
-            this.rt.fetchMachineWasteConsumption$(this.factory, res.period, res.machine),
+            this.rt.fetchMachineEnergyConsumption$(this.app.factory(), res.period, res.machine),
+            this.rt.fetchMachineWasteConsumption$(this.app.factory(), res.period, res.machine),
           ]);
         })
       )

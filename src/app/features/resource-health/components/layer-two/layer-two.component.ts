@@ -15,7 +15,6 @@ import { MachineResourceHealth, Period } from '@rh/resource-health.model';
 })
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
-  public factory: string;
   public gridData: MachineResourceHealth[];
   public period: Period;
   public machines: string[];
@@ -34,11 +33,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       .pipe(
         takeUntil(this.ngUnsubscribe),
         switchMap(_res => {
-          return this.app.factory$;
-        }),
-        switchMap(res => {
-          this.factory = res;
-          return this.rt.fetchMachinesResourceHealth$(res);
+          return this.rt.fetchMachinesResourceHealth$(this.app.factory());
         })
       )
       .subscribe({

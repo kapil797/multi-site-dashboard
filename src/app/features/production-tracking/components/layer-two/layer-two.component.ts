@@ -72,13 +72,9 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       }
     });
 
-    this.app.factory$
+    this.pt
+      .fetchSalesOrders$(this.app.factory())
       .pipe(
-        takeUntil(this.ngUnsubscribe),
-        switchMap(res => {
-          this.factory = res;
-          return this.pt.fetchSalesOrders$(res);
-        }),
         switchMap(res => {
           if (res.length === 0) return throwError(() => new Error('SalesOrder entries are empty'));
 
@@ -93,7 +89,8 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
           // Fetch aggregate for first SalesOrder.
           return this.aggregateSalesOrderByLineItems$(res[0].salesOrderNumber);
-        })
+        }),
+        takeUntil(this.ngUnsubscribe)
       )
       .subscribe({
         next: res => {
