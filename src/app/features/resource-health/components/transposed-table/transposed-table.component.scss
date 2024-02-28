@@ -14,9 +14,13 @@
   letter-spacing: unset;
 }
 
-.k-grid .k-cell-inner {
-  // For column group header.
+.k-grid .k-grid-header .k-table-th {
   justify-content: center;
+  border: 1px solid variables.$bg-1;
+}
+
+.k-grid .k-table-td {
+  border: 1px solid variables.$bg-1;
 }
 
 .success {

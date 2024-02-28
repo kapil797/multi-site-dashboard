@@ -11,5 +11,7 @@ app-sidebar {
 
 .rt-1-wrapper {
   @include base.container;
-  grid-template-columns: 2fr 3fr;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  grid-template-columns: 1fr 2.5fr;
 }

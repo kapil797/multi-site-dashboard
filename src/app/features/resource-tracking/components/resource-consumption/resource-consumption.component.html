@@ -60,22 +60,22 @@
     <div>
       <h3>MACHINE ALERT HISTORY</h3>
       <kendo-grid scrollable="none" [kendoGridBinding]="alertHistoryData">
-        <kendo-grid-column field="issue" title="Issue">
+        <kendo-grid-column field="issue" title="ISSUE">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ dataItem.issue.toUpperCase() }}</span>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="createdDate" title="Date">
+        <kendo-grid-column field="createdDate" title="DATE">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ formatDateWithoutTime(dataItem.createdDate) }}</span>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="createdDate" title="Time">
+        <kendo-grid-column field="createdDate" title="TIME">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ formatDateToTime(dataItem.createdDate) }}</span>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="description" title="Description">
+        <kendo-grid-column field="description" title="DESCRIPTION">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ dataItem.description.toUpperCase() }}</span>
           </ng-template>

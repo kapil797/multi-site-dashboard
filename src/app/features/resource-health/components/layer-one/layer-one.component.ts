@@ -29,7 +29,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   ngOnInit(): void {
     this.sub$
       .pipe(
-        takeUntil(this.ngUnsubscribe),
+        takeUntil(this.ngUnsubscribe$),
         switchMap(_res => {
           return this.rt.fetchOverallResourceHealth$(this.app.factory());
         })

@@ -14,6 +14,14 @@ export interface SalesOrder {
   customerId: number;
   customerName: string;
   lineItems: LineItem[];
+  createdDate: string;
+}
+
+export interface SalesOrderStatus {
+  releasedQty: number;
+  completedQty: number;
+  lastUpdated: string;
+  estimatedCompleteTime?: string;
 }
 
 export interface SalesOrderAggregate extends SalesOrder {
@@ -21,6 +29,7 @@ export interface SalesOrderAggregate extends SalesOrder {
   progress?: number;
   estimatedCompleteTime?: string;
   completedTime?: string;
+  lastUpdated: string;
 }
 
 export interface LineItem {
@@ -32,7 +41,7 @@ export interface LineItem {
 }
 
 export interface LineItemAggregate extends LineItem {
-  workOrders: WorkOrder[];
+  workOrderFamily: RpsWorkOrder;
   executions: Execution[];
   processTrackingMap?: ProcessTrackingMap;
 }
@@ -43,10 +52,10 @@ export interface WorkOrder {
   issueDate: string;
   committedDeliveryDate: string;
   completionDate: string | null;
-  createdBy: string;
+  createdBy: string | null;
   dueDate: string;
   customer: Customer;
-  poNumbers: string; // SalesOrder number created by OrderApp.
+  poNumbers: string; // PoNumber same as SalesOrderNumber, created by OrderApp.
   soPriority: string;
   urgentFlag: number;
   priority: number;
@@ -59,12 +68,23 @@ export interface WorkOrder {
 export interface Customer {
   id: number;
   name: string;
-  description: string;
+  description: string | null;
+}
+
+export interface RpsWorkOrder {
+  id: number; // Id is required to fetch executions from RTD.
+  woid: string; // Work Order number e.g. 2402190003
+  subWorkOrders: RpsWorkOrder[];
+}
+
+export interface RpsRtdCorrelation {
+  correlationId: number;
+  workOrderNumber: string;
 }
 
 export interface Execution {
   id: number;
-  woid: string;
+  woid: string; // Work Order number e.g. 2402190003
   step: number; // Sequence number.
   processStartTime: string | null;
   processEndTime: string | null;

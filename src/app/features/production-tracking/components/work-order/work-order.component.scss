@@ -2,14 +2,20 @@
 
 app-process-tracking {
   grid-row: 1 / span 3;
+  grid-column: 3 / span 2;
 }
 
+h2 {
+  letter-spacing: variables.$letter-spacing-sm;
+}
+
+
 #product {
-  grid-row: 1
+  grid-row: 1;
 }
 
 #workOrder {
-  grid-row: 1
+  grid-row: 1;
 }
 
 .wod-wrapper {
@@ -19,6 +25,6 @@ app-process-tracking {
 
 .wod-content-scaffold {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }

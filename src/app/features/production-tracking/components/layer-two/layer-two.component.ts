@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, concatMap, delay, from, map, retry, switchMap, takeUntil, throwError, toArray } from 'rxjs';
+import { Observable, switchMap, takeUntil, throwError } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
-import {
-  Execution,
-  ExecutionStream,
-  LineItem,
-  LineItemAggregate,
-  SalesOrder,
-  SalesOrderAggregate,
-  WebsocketStream,
-  WorkOrder,
-} from '@pt/production-tracking.model';
+import { ExecutionStream, SalesOrder, SalesOrderAggregate, WebsocketStream } from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
 import { webSocket } from 'rxjs/webSocket';
 
-interface SalesOrderStatus {
-  releasedQty: number;
-  completedQty: number;
-  endTime?: string;
-  estimatedCompleteTime?: string;
-}
+/*
+  Each SalesOrder can consist of multiple LineItems.
+  Each LineItem will correspond to a parent WorkOrder, and can have 
+  multiple subWorkOrders.
+
+  Consolidation of SalesOrder aggregate is as follows:
+  1. Aggregate each LineItem, and perform each request in parallel (by chunk)
+
+  Consolidation of LineItem aggregate is as follows:
+  1. Get parent WorkOrder from RPS
+  2. Get WorkOrderFamily from RTD by parent WorkOrderNumber
+  3. WorkOrderFamily consists of correlationId, which is used to map WorkOrderNumber to Id in RPS
+  4. Currently, correlationId to WorkOrderNumber is 1:1 mapping
+  5. Fetch all related executions for each correlationId (by chunk)
+*/
 
 @Component({
   selector: 'app-layer-two',
@@ -34,10 +34,10 @@ interface SalesOrderStatus {
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public salesOrderIds: Dropdown[];
-  public factory: string;
   public salesOrderAggregate?: SalesOrderAggregate;
   private salesOrderMap: Map<string, SalesOrder> = new Map();
   private executionStreamFromRtd$: Observable<unknown>;
+  private chunkLineItems = 3;
 
   constructor(
     private app: AppService,
@@ -50,16 +50,18 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   ngOnInit(): void {
     this.initWebSocketStreams();
 
-    this.executionStreamFromRtd$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(msg => {
+    // Subscribe to websocket streams.
+    this.executionStreamFromRtd$.pipe(takeUntil(this.ngUnsubscribe$)).subscribe(msg => {
       // Update by LineItem if change is relevant.
       const res = msg as ExecutionStream;
       console.log(res);
       const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
-        const temp = row.workOrders.find(wo => wo.workOrderNumber === res.WOID);
-        return temp ? true : false;
+        const parentWoId = row.workOrderFamily.woid;
+        if (res.WOID.includes(parentWoId)) return true;
+        return false;
       });
       if (lineItemAgg) {
-        this.constructLineItemAggregate$(lineItemAgg, lineItemAgg.workOrders).subscribe({
+        this.pt.populateExecutionsForLineItemAggregate$(lineItemAgg).subscribe({
           next: res => {
             const idx = this.salesOrderAggregate?.lineItemAggregates.findIndex(row => row.productId === res.productId);
             this.salesOrderAggregate?.lineItemAggregates.splice(idx as number, 0, res);
@@ -72,11 +74,12 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       }
     });
 
+    // Fetch all SalesOrders and aggregate first SalesOrder.
     this.pt
       .fetchSalesOrders$(this.app.factory())
       .pipe(
         switchMap(res => {
-          if (res.length === 0) return throwError(() => new Error('SalesOrder entries are empty'));
+          if (res.length === 0) return throwError(() => new Error('There are no SalesOrder outstanding'));
 
           // Update SalesOrderMap.
           res.forEach(row => this.salesOrderMap.set(row.salesOrderNumber, row));
@@ -86,11 +89,12 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
               value: row.salesOrderNumber,
             };
           });
+          if (res.length === 0) return throwError(() => 'There are no SalesOrder outstanding');
 
           // Fetch aggregate for first SalesOrder.
-          return this.aggregateSalesOrderByLineItems$(res[0].salesOrderNumber);
+          return this.pt.aggregateSalesOrderByLineItems$(res[0], this.chunkLineItems);
         }),
-        takeUntil(this.ngUnsubscribe)
+        takeUntil(this.ngUnsubscribe$)
       )
       .subscribe({
         next: res => {
@@ -124,9 +128,16 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   }
 
   public onChangeSalesOrder(event: unknown) {
+    const salesOrder = this.salesOrderMap.get(event as string);
+    if (!salesOrder) {
+      this.notif.show(createNotif('error', `SalesOrder ${event} is invalid`));
+      return;
+    }
+
     this.isLoading = true;
-    this.aggregateSalesOrderByLineItems$(event as string)
-      .pipe(takeUntil(this.ngUnsubscribe))
+    this.pt
+      .aggregateSalesOrderByLineItems$(salesOrder, this.chunkLineItems)
+      .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe({
         next: res => {
           this.salesOrderAggregate = res;
@@ -138,111 +149,5 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           this.notif.show(createNotif('error', error));
         },
       });
-  }
-
-  private aggregateSalesOrderByLineItems$(salesOrderId: string) {
-    // For each SalesOrder, in order to get the progress and completion time,
-    // will need to aggregate from all LineItems.
-    const salesOrder = this.salesOrderMap.get(salesOrderId);
-    if (!salesOrder) {
-      return throwError(() => `SalesOrder ${salesOrderId} is invalid`);
-    }
-    return this.pt.fetchWorkOrders$(this.factory, [salesOrderId]).pipe(
-      delay(1000),
-      switchMap(res => {
-        const parallelRequests = salesOrder.lineItems.map(row => {
-          return this.constructLineItemAggregate$.bind(this, row, res);
-        });
-        return from(parallelRequests);
-      }),
-      concatMap(f => {
-        return f();
-      }),
-      toArray(),
-      map(res => {
-        let salesOrderAgg = salesOrder as SalesOrderAggregate;
-        salesOrderAgg.lineItemAggregates = res;
-
-        // Update status.
-        salesOrderAgg = this.aggregateSalesOrderStatus(salesOrderAgg);
-        return salesOrderAgg;
-      })
-    );
-  }
-
-  private constructLineItemAggregate$(item: LineItem, workOrders: WorkOrder[]) {
-    // Sacrifice optimization for simplicity.
-    // Each product is required to loop through list of WorkOrders.
-    const agg: LineItemAggregate = {
-      ...item,
-      workOrders: [],
-      executions: [],
-    };
-
-    const workOrderNumbers: string[] = [];
-    workOrders.forEach(row => {
-      if (row.productId === item.productId) {
-        agg.workOrders.push(row);
-        workOrderNumbers.push(row.workOrderNumber);
-      }
-    });
-    return this.pt.fetchExecutions$(this.factory, workOrderNumbers).pipe(
-      retry(2),
-      switchMap(res => {
-        res.forEach(row => {
-          row.partsCompleted = `${row.completeQty} of ${row.releasedQty}`;
-          agg.executions.push(row);
-        });
-        return this.pt.fetchProcessTrackingMap$(this.factory, agg);
-      }),
-      map(res => {
-        agg.processTrackingMap = res;
-        return agg;
-      })
-    );
-  }
-
-  private aggregateSalesOrderStatus(agg: SalesOrderAggregate) {
-    // To get the status of a SalesOrder, need to sum the releasedQty
-    // and completedQty for all related executions, regardless of lineItems.
-    const status: SalesOrderStatus = {
-      releasedQty: 0,
-      completedQty: 0,
-    };
-    agg.lineItemAggregates.forEach(product => {
-      product.executions.forEach(row => {
-        this.aggregateStatusFromExecution(row, status);
-      });
-    });
-
-    agg.progress = Math.round((status.completedQty / status.releasedQty) * 100);
-    agg.estimatedCompleteTime = status.estimatedCompleteTime ? status.estimatedCompleteTime : undefined;
-    agg.completedTime = status.endTime && status.completedQty === status.releasedQty ? status.endTime : undefined;
-    return agg;
-  }
-
-  private aggregateStatusFromExecution(row: Execution, status: SalesOrderStatus) {
-    // Update quantities.
-    status.releasedQty += row.releasedQty;
-    status.completedQty += row.completeQty;
-
-    // Update endTime if any; take the latest value.
-    if (!status.endTime && row.processEndTime) {
-      status.endTime = row.processEndTime;
-    } else if (status.endTime && row.processEndTime) {
-      const latest = Math.max(new Date(status.endTime).getTime(), new Date(row.processEndTime).getTime());
-      status.endTime = new Date(latest).toISOString();
-    }
-
-    // Updated estCompleteTime if any; take the latest value.
-    if (!status.estimatedCompleteTime) {
-      status.estimatedCompleteTime = row.estimateCompleteTime;
-    } else {
-      const latest = Math.max(
-        new Date(status.estimatedCompleteTime).getTime(),
-        new Date(row.estimateCompleteTime).getTime()
-      );
-      status.estimatedCompleteTime = new Date(latest).toISOString();
-    }
   }
 }

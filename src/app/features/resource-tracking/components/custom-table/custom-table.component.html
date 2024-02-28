@@ -8,10 +8,12 @@
     title="{{ column.title }}"
     [width]="formatWidth(column.width)">
     <ng-template *ngIf="column.icon" kendoGridCellTemplate let-dataItem>
-      <fa-icon
-        class="machine-icon"
-        [icon]="resolveIcon(dataItem[column.field], column.icon)"
-        [ngClass]="resolveStatus(dataItem[column.field])"></fa-icon>
+      <div class="text-center">
+        <fa-icon
+          class="machine-icon"
+          [icon]="resolveIcon(dataItem[column.field], column.icon)"
+          [ngClass]="resolveStatus(dataItem[column.field])"></fa-icon>
+      </div>
     </ng-template>
   </kendo-grid-column>
 </kendo-grid>
