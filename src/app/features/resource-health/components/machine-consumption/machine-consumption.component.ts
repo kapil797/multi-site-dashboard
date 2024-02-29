@@ -2,12 +2,12 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ReplaySubject, forkJoin, switchMap, take, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
-import { Factory } from '@core/models/factory.model';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
-import { chartConfig } from '@shared/configs/charts';
-import { createNotif } from '@shared/configs/notification';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { chartConfig } from '@core/constants/charts.constant';
+import { createNotif } from '@core/utils/notification';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { AggregatedResourceConsumption, Period } from '@rh/resource-health.model';
+import { AppService } from '@core/services/app.service';
 
 interface ChartData {
   categories: string[];
@@ -26,7 +26,6 @@ interface InputArgs {
   styleUrl: './machine-consumption.component.scss',
 })
 export class MachineConsumptionComponent extends CancelSubscription implements OnInit, OnChanges {
-  @Input() factory: Factory;
   @Input() period: Period;
   @Input() machines: string[];
   public isLoading = true;
@@ -39,6 +38,7 @@ export class MachineConsumptionComponent extends CancelSubscription implements O
 
   constructor(
     private rt: ResourceHealthService,
+    private app: AppService,
     private notif: NotificationService
   ) {
     super();
@@ -50,8 +50,8 @@ export class MachineConsumptionComponent extends CancelSubscription implements O
         takeUntil(this.ngUnsubscribe),
         switchMap(res => {
           return forkJoin([
-            this.rt.fetchMachineEnergyConsumption$(this.factory, res.period, res.machine),
-            this.rt.fetchMachineWasteConsumption$(this.factory, res.period, res.machine),
+            this.rt.fetchMachineEnergyConsumption$(this.app.factory(), res.period, res.machine),
+            this.rt.fetchMachineWasteConsumption$(this.app.factory(), res.period, res.machine),
           ]);
         })
       )

@@ -15,21 +15,20 @@ import { getRandomInt, getRandomNumber } from '@core/utils/formatters';
 export class ResourceTrackingService {
   constructor(private app: AppService) {}
 
-  public fetchMachinesStatus$(factory: Factory) {
-    let data: MachineStatus[];
+  public fetchMachinesStatus$(factory: string) {
+    let data: MachineStatus[] = [];
     switch (factory) {
-      case 'modelfactory':
+      case Factory.MODEL_FACTORY:
         data = machineStatusMf;
         break;
-      case 'microfactory':
+      case Factory.MICRO_FACTORY:
         data = machineStatusUmf;
         break;
     }
-
     return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
   }
 
-  public fetchMachineResourceConsumption$(_factory: Factory, _machine: MachineStatus) {
+  public fetchMachineResourceConsumption$(_factory: string, _machine: MachineStatus) {
     // Generate a random set of 20 items.
     // Interval of 3 secs.
     const today = Date.now();
@@ -47,7 +46,7 @@ export class ResourceTrackingService {
     return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
   }
 
-  public fetchMachineAlertHistory$(_factory: Factory, _machine: MachineStatus) {
+  public fetchMachineAlertHistory$(_factory: string, _machine: MachineStatus) {
     const data: MachineAlertHistory[] = [];
     const today = Date.now();
     const description = ['Stop', 'Auto', 'Initialize', 'Disconnected'];

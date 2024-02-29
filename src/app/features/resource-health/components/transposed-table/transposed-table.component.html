@@ -1,103 +1,14 @@
 <kendo-grid scrollable="none" [kendoGridBinding]="gridData">
   <kendo-grid-column field="machines" title="Machines"></kendo-grid-column>
-  <kendo-grid-column-group title="Smart Engineering System (SES)">
-    <kendo-grid-column field="overall" title="OVERALL">
+  <kendo-grid-column field="overall" title="OVERALL">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span [ngClass]="formatClassColor(dataItem.overall)">{{ formatValue(dataItem.overall) }}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column-group *ngFor="let group of gridColGroups" [title]="group.title">
+    <kendo-grid-column *ngFor="let col of group.columns" [field]="col.field" [title]="col.title">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.overall)">{{ formatValue(dataItem.overall) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="milling" title="Milling">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.milling)">{{ formatValue(dataItem.milling) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="edm" title="EDM">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.edm)">{{ formatValue(dataItem.edm) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="cmm" title="CMM">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.cmm)">{{ formatValue(dataItem.cmm) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="roboticArm" title="Robotic Arm">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.roboticArm)">{{ formatValue(dataItem.roboticArm) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-  </kendo-grid-column-group>
-  <kendo-grid-column-group title="Make to Stock (MTS)">
-    <kendo-grid-column field="injectionModeling" title="Injection Modeling">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.injectionModeling)">{{
-          formatValue(dataItem.injectionModeling)
-        }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="infraredOven1" title="InfraRed Oven 1">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.infraredOven1)">{{ formatValue(dataItem.infraredOven1) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="infraredOven2" title="InfraRed Oven 2">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.infraredOven2)">{{ formatValue(dataItem.infraredOven2) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="screenPrinter1" title="Screen Printer 1">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.screenPrinter1)">{{ formatValue(dataItem.screenPrinter1) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="screenPrinter2" title="Screen Printer 2">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.screenPrinter2)">{{ formatValue(dataItem.screenPrinter2) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="membraneAssembly" title="Membrane Assembly">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.membraneAssembly)">{{
-          formatValue(dataItem.membraneAssembly)
-        }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="laserWelding" title="Laser Welding">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.laserWelding)">{{ formatValue(dataItem.laserWelding) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="laserTrimming" title="Laser Trimming">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.laserTrimming)">{{ formatValue(dataItem.laserTrimming) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="cartridgeTester" title="Cartridge Tester">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.cartridgeTester)">{{ formatValue(dataItem.cartridgeTester) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-  </kendo-grid-column-group>
-
-  <kendo-grid-column-group title="Make to Order (MTO)">
-    <kendo-grid-column field="scentFilling" title="Scent Filling">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.scentFilling)">{{ formatValue(dataItem.scentFilling) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="holderAssembly" title="Holder Assembly">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.holderAssembly)">{{ formatValue(dataItem.holderAssembly) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="holderTester" title="Holder Tester">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.holderTester)">{{ formatValue(dataItem.holderTester) }}</span>
-      </ng-template>
-    </kendo-grid-column>
-    <kendo-grid-column field="inkjetPrinter" title="Inkjet Printer">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <span [ngClass]="formatClassColor(dataItem.inkjetPrinter)">{{ formatValue(dataItem.inkjetPrinter) }}</span>
+        <span [ngClass]="formatClassColor(dataItem[col.field])">{{ formatValue(dataItem[col.field]) }}</span>
       </ng-template>
     </kendo-grid-column>
   </kendo-grid-column-group>

@@ -1,4 +1,4 @@
-export const RoutePaths = {
+export const RoutePaths = Object.freeze({
   BASE: '',
   HOME: 'factory',
   DEFAULT: 'modelfactory',
@@ -14,4 +14,4 @@ export const RoutePaths = {
   PRODUCTION_INVENTORY: 'production-inventory',
   RESOURCE_TRACKING: 'resource-tracking',
   RESOURCE_HEALTH: 'resource-health',
-};
+});

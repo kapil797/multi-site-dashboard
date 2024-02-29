@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, delay, map, of, throwError } from 'rxjs';
+import { ReplaySubject, catchError, map, of, throwError } from 'rxjs';
 
 import { AppService } from '@core/services/app.service';
 import { ProductionTrackingModule } from '@pt/production-tracking.module';
 import {
   Execution,
-  ProcessTracking,
+  ProcessTrackingMap,
   ProcessTrackingItem,
-  Product,
   SalesOrder,
   WorkOrder,
+  LineItemAggregate,
+  SalesOrderAggregate,
 } from '@pt/production-tracking.model';
-import { Factory } from '@core/models/factory.model';
 
 import salesOrder from './mock-data/sales-order.json';
 import workOrder1 from './mock-data/work-order.json';
@@ -20,43 +20,48 @@ import workOrder2 from './mock-data/work-order2.json';
 import execution1 from './mock-data/execution.json';
 import execution2 from './mock-data/execution2.json';
 import processTracking from './mock-data/process-tracking.json';
+import { Factory } from '@core/models/factory.model';
 
 /*
   SalesOrder has one-to-many relationship with WorkOrders.
   WorkOrder has one-to-many relationship with Executions.
   Each execution is tied to a process.
 
-  Each product will have a separate WorkOrder.
-  If a product has parallel processes, it will have multiple WorkOrders.
+  Each LineItem will have a separate WorkOrder.
+  If a LineItem has parallel processes, it will have multiple WorkOrders.
   i.e. 2401300007, 2401300007.01, 2401300007.01.01, 2401300007.01.02
 
   Tree structure of a sales order aggregate:
   SalesOrder 
-    -> WorkOrder
-    -> WorkOrder
-    -> WorkOrder  
-      -> Execution (step 1)
-      -> Execution (step 2)
-      -> Execution (step 3)
+    -> LineItemAgg
+      -> WorkOrder
+      -> WorkOrder
+      -> WorkOrder  
+        -> Execution (step 1)
+        -> Execution (step 2)
+        -> Execution (step 3)
   */
 
 @Injectable({
   providedIn: ProductionTrackingModule,
 })
 export class ProductionTrackingService {
+  // Source of truth.
+  public salesOrderAggregate$ = new ReplaySubject<SalesOrderAggregate | null>();
+
   constructor(
     private http: HttpClient,
     private app: AppService
   ) {}
 
-  public fetchSalesOrders$(factory: Factory, limit?: number) {
-    let api: string;
+  public fetchSalesOrders$(factory: string, limit?: number) {
+    let api = '';
     let queryParams = '';
     switch (factory) {
-      case 'modelfactory':
+      case Factory.MODEL_FACTORY:
         api = this.app.api.getMfSalesOrders;
         break;
-      case 'microfactory':
+      case Factory.MICRO_FACTORY:
         api = this.app.api.getMfSalesOrders;
         break;
     }
@@ -68,18 +73,17 @@ export class ProductionTrackingService {
     console.log(queryParams);
     // this.http.get<SalesOrder[]>(`${api}${queryParams}`)
     return of(salesOrder as SalesOrder[]).pipe(
-      delay(1000),
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err))))
     );
   }
 
-  public fetchWorkOrders$(factory: Factory, salesOrderIds: string[]) {
-    let api: string;
+  public fetchWorkOrders$(factory: string, salesOrderIds: string[]) {
+    let api = '';
     switch (factory) {
-      case 'modelfactory':
+      case Factory.MODEL_FACTORY:
         api = this.app.api.getMfWorkOrders;
         break;
-      case 'microfactory':
+      case Factory.MICRO_FACTORY:
         api = this.app.api.getMfWorkOrders;
         break;
     }
@@ -95,13 +99,13 @@ export class ProductionTrackingService {
     );
   }
 
-  public fetchExecutions$(factory: Factory, workOrderIds: string[]) {
-    let api: string;
+  public fetchExecutions$(factory: string, workOrderIds: string[]) {
+    let api = '';
     switch (factory) {
-      case 'modelfactory':
+      case Factory.MODEL_FACTORY:
         api = this.app.api.postMfExecutions;
         break;
-      case 'microfactory':
+      case Factory.MICRO_FACTORY:
         api = this.app.api.postMfExecutions;
         break;
     }
@@ -117,20 +121,20 @@ export class ProductionTrackingService {
     );
   }
 
-  public fetchProcessTrackingTemplateMap$(_factory: Factory, productId: number | string) {
-    return of(processTracking as ProcessTracking[]).pipe(
+  public fetchProcessTrackingMap$(_factory: string, lineItem: LineItemAggregate) {
+    return of(processTracking as ProcessTrackingMap[]).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
-        return res.find(row => row.productId === productId);
+        const template = res.find(row => row.productId === lineItem.productId);
+        if (!template) return this.constructDynamicProcessTrackingMap(lineItem);
+        return this.updateProcessTrackingMap(lineItem, template);
       })
     );
   }
 
-  public getOrderStatus() {}
-
-  public constructDynamicProcessTrackingMap(product: Product) {
+  public constructDynamicProcessTrackingMap(lineItem: LineItemAggregate) {
     // For SES products.
-    const items: ProcessTrackingItem[] = product.executions.map(row => {
+    const items: ProcessTrackingItem[] = lineItem.executions.map(row => {
       return {
         text: row.process.name,
         id: row.process.id,
@@ -140,17 +144,17 @@ export class ProductionTrackingService {
       };
     });
     return {
-      productId: product.id,
+      productId: lineItem.productId,
       category: 'Smart Engineering Systems (SES)',
       rows: 1,
       cols: items.length,
       items,
-    } as ProcessTracking;
+    } as ProcessTrackingMap;
   }
 
-  public constructProcessTrackingMapFromTemplate(product: Product, template: ProcessTracking) {
+  public updateProcessTrackingMap(lineItem: LineItemAggregate, template: ProcessTrackingMap) {
     const processMap = new Map<number, Execution>();
-    product.executions.forEach(row => processMap.set(row.process.id, row));
+    lineItem.executions.forEach(row => processMap.set(row.process.id, row));
     template.items = template.items.map(row => {
       const process = processMap.get(row.id);
       if (process) row.statusId = process.statusId;

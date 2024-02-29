@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -49,7 +48,6 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
   imports: [
     // Modules.
     CommonModule,
-    HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
@@ -85,7 +83,6 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
   exports: [
     // Modules.
     CommonModule,
-    HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,

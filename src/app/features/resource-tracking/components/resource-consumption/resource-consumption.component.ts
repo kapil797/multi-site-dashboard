@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@
 import moment from 'moment';
 
 import { getRandomInt } from '@core/utils/formatters';
-import { chartConfig } from '@shared/configs/charts';
+import { chartConfig } from '@core/constants/charts.constant';
 import { MachineAlertHistory, MachineStatus, ResourceConsumption } from '@rt/resource-tracking.model';
 
 interface SeriesDataItem {

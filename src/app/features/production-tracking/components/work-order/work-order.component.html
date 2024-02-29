@@ -5,14 +5,16 @@
       id="product"
       header="product"
       [icon]="faGift"
-      [data]="scrollProducts"
-      (toggle)="onToggleProduct($event)"></app-custom-scroll>
+      [data]="lineItems"
+      (toggle)="onToggleLineItem($event)"></app-custom-scroll>
     <app-custom-card
       id="workOrder"
       header="work order"
       [icon]="faHashtag"
       [content]="curProcess?.woid"></app-custom-card>
-    <app-process-tracking [data]="processTracking" (toggle)="onToggleProcess($event)"></app-process-tracking>
+    <app-process-tracking
+      [data]="curLineItemAggregate?.processTrackingMap"
+      (toggle)="onToggleProcess($event)"></app-process-tracking>
     <app-custom-card
       id="process"
       header="process"

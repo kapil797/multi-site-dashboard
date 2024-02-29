@@ -5,7 +5,7 @@ import { NotificationRef, NotificationService } from '@progress/kendo-angular-no
 import { checkCircleIcon, infoCircleIcon, xCircleIcon } from '@progress/kendo-svg-icons';
 import { FileRestrictions } from '@progress/kendo-angular-upload';
 
-import { createNotif } from '@shared/configs/notification';
+import { createNotif } from '@core/utils/notification';
 import { CustomValidatorError } from '@core/utils/validators';
 import { CancelSubscription } from '../cancel-subscription/cancel-subscription.class';
 

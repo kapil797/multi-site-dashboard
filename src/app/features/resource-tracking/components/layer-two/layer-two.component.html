@@ -1,10 +1,7 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
 <app-navbar header="Shopfloor - Resource Tracking"></app-navbar>
 <div class="rt-2-wrapper d-grid gap-5">
-  <app-factory-layout-plan
-    [factory]="factory"
-    [data]="machinesStatus"
-    (machine)="onChangeMachine($event)"></app-factory-layout-plan>
+  <app-factory-layout-plan [data]="machinesStatus" (machine)="onChangeMachine($event)"></app-factory-layout-plan>
   <app-resource-consumption
     [metadata]="trackedMachine.metadata"
     [resourceData]="trackedMachine.resourceData"
