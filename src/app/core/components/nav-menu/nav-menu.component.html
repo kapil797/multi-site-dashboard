@@ -34,14 +34,14 @@
           [ngClass]="imgMf === currentFactory ? 'selected' : ''"
           [src]="imgMf"
           alt="factory-mf"
-          (click)="onChangeSite('modelfactory')"
+          (click)="onChangeSite(Factory.MODEL_FACTORY)"
           aria-hidden="true" />
         <img
           class="img__umf"
           [ngClass]="imgUmf === currentFactory ? 'selected' : ''"
           [src]="imgUmf"
           alt="factory-umf"
-          (click)="onChangeSite('microfactory')"
+          (click)="onChangeSite(Factory.MICRO_FACTORY)"
           aria-hidden="true" />
       </div>
     </kendo-tilelayout-item-body>

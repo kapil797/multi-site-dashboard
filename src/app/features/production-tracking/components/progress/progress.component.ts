@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-import { progressColors } from '@shared/configs/progress-bars.config';
+import { progressColors } from '@core/constants/progress-bar.constant';
 
 @Component({
   selector: 'app-progress',

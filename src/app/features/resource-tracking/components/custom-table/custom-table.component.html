@@ -3,41 +3,15 @@
 </div>
 <kendo-grid scrollable="none" [kendoGridBinding]="data">
   <kendo-grid-column
-    *ngFor="let column of dataCols"
+    *ngFor="let column of gridCols"
     field="{{ column.field }}"
     title="{{ column.title }}"
-    [width]="formatWidth(column.width)"></kendo-grid-column>
-
-  <kendo-grid-column field="power" title="Power">
-    <ng-template kendoGridCellTemplate let-dataItem>
-      <div class="text-center">
-        <fa-icon
-          class="machine-icon"
-          [icon]="resolveIcon(dataItem.power, faPowerOff)"
-          [ngClass]="resolveStatus(dataItem.power)"></fa-icon>
-      </div>
-    </ng-template>
-  </kendo-grid-column>
-
-  <kendo-grid-column field="energy" title="Energy">
-    <ng-template kendoGridCellTemplate let-dataItem>
-      <div class="text-center">
-        <fa-icon
-          class="machine-icon"
-          [icon]="resolveIcon(dataItem.energy, faBolt)"
-          [ngClass]="resolveStatus(dataItem.energy)"></fa-icon>
-      </div>
-    </ng-template>
-  </kendo-grid-column>
-
-  <kendo-grid-column field="waste" title="Waste">
-    <ng-template kendoGridCellTemplate let-dataItem>
-      <div class="text-center">
-        <fa-icon
-          class="machine-icon"
-          [icon]="resolveIcon(dataItem.waste, faTrash)"
-          [ngClass]="resolveStatus(dataItem.waste)"></fa-icon>
-      </div>
+    [width]="formatWidth(column.width)">
+    <ng-template *ngIf="column.icon" kendoGridCellTemplate let-dataItem>
+      <fa-icon
+        class="machine-icon"
+        [icon]="resolveIcon(dataItem[column.field], column.icon)"
+        [ngClass]="resolveStatus(dataItem[column.field])"></fa-icon>
     </ng-template>
   </kendo-grid-column>
 </kendo-grid>

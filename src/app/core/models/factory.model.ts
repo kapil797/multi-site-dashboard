@@ -1,2 +1,4 @@
-export type Factory = 'modelfactory' | 'microfactory';
-export const factories: Factory[] = ['modelfactory', 'microfactory'];
+export enum Factory {
+  MODEL_FACTORY = 'modelfactory',
+  MICRO_FACTORY = 'microfactory',
+}

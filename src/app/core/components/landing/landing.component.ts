@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { Component, effect } from '@angular/core';
 
 import { AppService } from '@core/services/app.service';
 import { SharedModule } from '@shared/shared.module';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { Factory } from '@core/models/factory.model';
 
 @Component({
   selector: 'app-landing',
@@ -12,17 +12,21 @@ import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-s
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',
 })
-export class LandingComponent extends CancelSubscription implements OnInit {
+export class LandingComponent extends CancelSubscription {
   public header: string;
 
   constructor(private app: AppService) {
     super();
-  }
 
-  ngOnInit(): void {
-    this.app.factory$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
-      if (res === 'modelfactory') this.header = 'Model Factory';
-      else if (res === 'microfactory') this.header = 'Micro Factory';
+    effect(() => {
+      switch (this.app.factory()) {
+        case Factory.MODEL_FACTORY:
+          this.header = 'Model Factory';
+          break;
+        case Factory.MICRO_FACTORY:
+          this.header = 'Micro Factory';
+          break;
+      }
     });
   }
 }

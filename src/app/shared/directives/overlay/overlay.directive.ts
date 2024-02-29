@@ -10,7 +10,7 @@ export class OverlayDirective {
     If clicked on the overlay, it will trigger a close event.
     Can be used for dialog, window, etc.
   */
-  @Output() toggleClose = new EventEmitter();
+  @Output() closeOverlay = new EventEmitter();
   private onFirstLoad = true;
 
   constructor(private elRef: ElementRef) {}
@@ -18,7 +18,7 @@ export class OverlayDirective {
   @HostListener('document:keydown', ['$event'])
   public keydown(event: KeyboardEvent): void {
     if (event.code === 'Escape') {
-      this.toggleClose.emit();
+      this.closeOverlay.emit();
     }
   }
 
@@ -30,12 +30,18 @@ export class OverlayDirective {
       this.onFirstLoad = false;
       return;
     }
-    if (event.target && !this.contains(event.target)) {
-      this.toggleClose.emit();
+    const tagName = this.elRef.nativeElement.tagName;
+    const target = event.target as unknown as HTMLElement;
+
+    if (!target) return;
+    if (tagName === 'KENDO-DIALOG') {
+      if (target.classList.contains('k-overlay')) this.closeOverlay.emit();
+      return;
     }
+    if (!this.contains(target)) this.closeOverlay.emit();
   }
 
-  private contains(target: EventTarget): boolean {
+  private contains(target: HTMLElement): boolean {
     if (this.elRef.nativeElement.contains(target)) return true;
     return false;
   }

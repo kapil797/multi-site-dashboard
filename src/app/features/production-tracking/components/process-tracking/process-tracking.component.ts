@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
-import { ProcessTracking, ProcessTrackingItem } from '@pt/production-tracking.model';
+import { ProcessTrackingMap, ProcessTrackingItem } from '@pt/production-tracking.model';
 
 interface SvgLine {
   x1: number;
@@ -27,7 +27,7 @@ export class ProcessTrackingComponent implements OnChanges {
     Indexing of rows and cols is 0-based.
   */
   @ViewChild('grid') grid: ElementRef;
-  @Input() data?: ProcessTracking;
+  @Input() data?: ProcessTrackingMap;
   @Output() toggle = new EventEmitter<number>();
   public icon = faEllipsis;
   public gridItems: Hexagon[][];

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
-import { progressColors } from '@shared/configs/progress-bars.config';
+import { progressColors } from '@core/constants/progress-bar.constant';
 import { CategoryResourceHealth, OverallResourceHealth } from '@rh/resource-health.model';
 
 @Component({

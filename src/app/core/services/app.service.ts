@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { of } from 'rxjs';
 
 import { BaseApi } from '@core/constants/api.constant';
 import { Config } from '@core/constants/config.constant';
-import { Factory } from '@core/models/factory.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +11,8 @@ export class AppService {
   public config: Config;
   public api: BaseApi;
   public appDialog: string | null = null;
-  public factory$ = new BehaviorSubject<Factory>('modelfactory');
+  private factorySignal = signal<string>('');
+  readonly factory = this.factorySignal.asReadonly();
 
   constructor() {}
 
@@ -24,5 +24,9 @@ export class AppService {
 
   public resetDialog() {
     this.appDialog = null;
+  }
+
+  public setFactory(v: string) {
+    this.factorySignal.set(v);
   }
 }

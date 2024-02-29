@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs';
 
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { RoutePaths } from '@core/constants/routes.constant';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { LayerOneComponent } from '@rh/components/layer-one/layer-one.component';
 import { LayerTwoComponent } from '@rh/components/layer-two/layer-two.component';
 

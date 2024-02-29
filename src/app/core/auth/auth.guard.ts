@@ -12,10 +12,10 @@ import { AuthService } from '@core/auth/auth.service';
 export class AuthGuard extends KeycloakAuthGuard {
   constructor(
     override readonly router: Router,
-    private readonly keycloakService: KeycloakService,
-    private authService: AuthService
+    private readonly keycloak: KeycloakService,
+    private auth: AuthService
   ) {
-    super(router, keycloakService);
+    super(router, keycloak);
   }
 
   public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -25,15 +25,15 @@ export class AuthGuard extends KeycloakAuthGuard {
     // refreshes page. Not able to perform silent login and discard if failed
     // i.e. auto login required.
     if (!this.authenticated) {
-      await this.keycloakService.login({
+      await this.keycloak.login({
         redirectUri: `${document.baseURI.slice(0, -1)}${state.url}`,
       });
     }
 
     // To initialize variables after first login only.
-    this.authService.userProfile$.pipe(take(1)).subscribe(res => {
+    this.auth.userProfile$.pipe(take(1)).subscribe(res => {
       if (res) return;
-      this.authService.initAfterLogIn();
+      this.auth.initAfterLogIn();
     });
 
     if (!this.validateRoles(route)) {
