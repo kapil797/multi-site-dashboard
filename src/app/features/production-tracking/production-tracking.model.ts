@@ -17,19 +17,17 @@ export interface SalesOrder {
   createdDate: string;
 }
 
-export interface SalesOrderStatus {
+export interface StatusAggregate {
   releasedQty: number;
   completedQty: number;
   lastUpdated: string;
-  estimatedCompleteTime?: string;
+  estimatedCompleteDate?: string;
+  completedDate?: string;
+  progress: number;
 }
 
-export interface SalesOrderAggregate extends SalesOrder {
+export interface SalesOrderAggregate extends SalesOrder, StatusAggregate {
   lineItemAggregates: LineItemAggregate[];
-  progress?: number;
-  estimatedCompleteTime?: string;
-  completedTime?: string;
-  lastUpdated: string;
 }
 
 export interface LineItem {
@@ -41,8 +39,7 @@ export interface LineItem {
 }
 
 export interface LineItemAggregate extends LineItem {
-  workOrderFamily: RpsWorkOrder;
-  executions: Execution[];
+  workOrderAggregates: WorkOrderAggregate[];
   processTrackingMap?: ProcessTrackingMap;
 }
 
@@ -72,14 +69,23 @@ export interface Customer {
 }
 
 export interface RpsWorkOrder {
-  id: number; // Id is required to fetch executions from RTD.
+  id: number; // correlationId is required to fetch executions from RTD.
   woid: string; // Work Order number e.g. 2402190003
   subWorkOrders: RpsWorkOrder[];
+  issueTime: string;
+  dueTime: string;
 }
 
 export interface RpsRtdCorrelation {
   correlationId: number;
   workOrderNumber: string;
+}
+
+export interface WorkOrderAggregate extends StatusAggregate {
+  workOrderNumber: string;
+  correlationId: number;
+  executions: Execution[];
+  executionStage?: string;
 }
 
 export interface Execution {

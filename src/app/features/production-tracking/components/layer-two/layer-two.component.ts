@@ -56,12 +56,12 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       const res = msg as ExecutionStream;
       console.log(res);
       const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
-        const parentWoId = row.workOrderFamily.woid;
-        if (res.WOID.includes(parentWoId)) return true;
+        const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
+        if (res.WOID.includes(parentWorkOrderNumber)) return true;
         return false;
       });
       if (lineItemAgg) {
-        this.pt.populateExecutionsForLineItemAggregate$(lineItemAgg).subscribe({
+        this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber).subscribe({
           next: res => {
             const idx = this.salesOrderAggregate?.lineItemAggregates.findIndex(row => row.productId === res.productId);
             this.salesOrderAggregate?.lineItemAggregates.splice(idx as number, 0, res);

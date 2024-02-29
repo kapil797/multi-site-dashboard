@@ -58,9 +58,17 @@ export class WorkOrderComponent implements OnChanges {
     this.curLineItemAggregate = item;
   }
 
-  public onToggleProcess(event: string | number) {
-    const process = this.curLineItemAggregate?.executions.find(row => row.process.id === event);
-    if (process) this.curProcess = process;
-    else this.curProcess = undefined;
+  public onToggleExecution(event: number) {
+    // Event is the processId, not the executionId from the processTrackingMap.
+    if (!this.curLineItemAggregate) return;
+    let execution: Execution | undefined;
+    for (const row of this.curLineItemAggregate.workOrderAggregates) {
+      execution = row.executions.find(x => x.process.id === event);
+      if (execution) {
+        this.curProcess = execution;
+        return;
+      }
+    }
+    this.curProcess = undefined;
   }
 }

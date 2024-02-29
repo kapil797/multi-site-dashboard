@@ -9,10 +9,10 @@
       [content]="data?.salesOrderNumber"></app-custom-card>
     <app-line-items [data]="data?.lineItems"></app-line-items>
     <app-projected-completion
-      header="projected completion"
+      header="COMPLETION"
       (late)="onLate()"
-      [dueDate]="data?.estimatedCompleteTime"
-      [completedDate]="data?.completedTime"></app-projected-completion>
+      [dueDate]="data?.estimatedCompleteDate"
+      [completedDate]="data?.completedDate"></app-projected-completion>
     <app-custom-card id="customer" header="customer" [icon]="faUser" [content]="data?.customerName"> </app-custom-card>
     <app-custom-card
       id="alerts"

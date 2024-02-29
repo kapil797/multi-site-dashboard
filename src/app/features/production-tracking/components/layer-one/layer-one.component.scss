@@ -3,12 +3,12 @@
 @use 'core/styles/grid';
 
 .k-grid .k-table-td {
-  font-size: variables.$font-size-xxl;
+  font-size: variables.$font-size-xl;
   letter-spacing: variables.$letter-spacing-sm;
 }
 
 .k-grid-header {
-  font-size: variables.$font-size-xxl;
+  font-size: variables.$font-size-xl;
 }
 
 app-sidebar {

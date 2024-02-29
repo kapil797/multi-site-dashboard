@@ -19,14 +19,13 @@ import { ProductionTrackingModule } from '@pt/production-tracking.module';
 import {
   Execution,
   ProcessTrackingMap,
-  ProcessTrackingItem,
   SalesOrder,
   WorkOrder,
   LineItemAggregate,
   RpsWorkOrder,
   SalesOrderAggregate,
-  SalesOrderStatus,
   LineItem,
+  WorkOrderAggregate,
 } from '@pt/production-tracking.model';
 
 import salesOrder from './mock-data/sales-order.json';
@@ -83,7 +82,7 @@ export class ProductionTrackingService {
         const parallelLineItems = salesOrder.lineItems.map(row => {
           const parentWorkOrder = res.find(x => x.productId === row.productId);
           if (!parentWorkOrder) return throwError(() => `Unable to find parent WorkOrder for ${row.productName}`);
-          return this.constructLineItemAggregate$.bind(this, row, parentWorkOrder, workOrderFamilies);
+          return this.aggregateLineItem$.bind(this, row, parentWorkOrder.workOrderNumber, workOrderFamilies);
         });
         const chunked = chunk(parallelLineItems, chunkSize) as (() => Observable<LineItemAggregate>)[][];
         return from(chunked);
@@ -99,114 +98,169 @@ export class ProductionTrackingService {
           return prev;
         }, []);
 
-        let salesOrderAgg = salesOrder as SalesOrderAggregate;
-        salesOrderAgg.lineItemAggregates = flatten;
+        const agg = salesOrder as SalesOrderAggregate;
+        agg.lineItemAggregates = flatten;
+        agg.releasedQty = 0;
+        agg.completedQty = 0;
+        agg.lastUpdated = agg.createdDate;
 
         // Update status.
-        salesOrderAgg = this.aggregateSalesOrderStatus(salesOrderAgg);
-        return salesOrderAgg;
+        agg.lineItemAggregates.forEach(product => {
+          this.aggregateSalesOrderStatus(agg, product.workOrderAggregates);
+        });
+
+        // Update progress and completedDate if applicable.
+        agg.progress = Math.round((agg.completedQty / agg.releasedQty) * 100);
+        if (agg.progress === 100) agg.completedDate = agg.lastUpdated;
+        return agg;
       })
     );
   }
 
-  private constructLineItemAggregate$(item: LineItem, parentWorkOrder: WorkOrder, workOrderFamily?: RpsWorkOrder[]) {
+  public aggregateLineItem$(item: LineItem, parentWorkOrderNumber: string, workOrderFamily?: RpsWorkOrder[]) {
+    let agg: LineItemAggregate;
+
     // Each parent WorkOrder should have 1:1 mapping with workOrderFamily.
     const obs$ = workOrderFamily
       ? of(workOrderFamily)
-      : this.fetchWorkOrderFamilies$(this.app.factory(), parentWorkOrder.workOrderNumber);
+      : this.fetchWorkOrderFamilies$(this.app.factory(), parentWorkOrderNumber);
 
     return obs$.pipe(
       switchMap(res => {
-        const workOrderFamily = res.find(row => row.woid === parentWorkOrder.workOrderNumber);
+        const workOrderFamily = res.find(row => row.woid === parentWorkOrderNumber);
         if (!workOrderFamily) return throwError(() => `Unable to find WorkOrder family for ${item.productName}`);
 
-        const agg: LineItemAggregate = {
+        // Cannot dfs WorkOrderFamily and make HTTP calls.
+        const hashmap = new Map<string, WorkOrderAggregate>();
+        const correlationIds: number[] = [];
+        const workOrderAggregates: WorkOrderAggregate[] = [];
+        this.dfsWorkOrderAggregate(workOrderFamily, hashmap, workOrderAggregates, correlationIds);
+        return this.populateExecutionsInWorkOrderAggregate$(workOrderAggregates, hashmap, correlationIds);
+      }),
+      switchMap(res => {
+        agg = {
           ...item,
-          workOrderFamily,
-          executions: [],
+          workOrderAggregates: res,
         };
-        return this.populateExecutionsForLineItemAggregate$(agg);
+        return this.fetchProcessTrackingMap$(this.app.factory(), agg.productId);
+      }),
+      map(res => {
+        if (!res) {
+          agg.processTrackingMap = this.constructDynamicProcessTrackingMap(agg.productId, agg.workOrderAggregates);
+        } else {
+          agg.processTrackingMap = res;
+        }
+        this.updateStatusOfProcessTrackingItems(agg);
+        return agg;
       })
     );
   }
 
-  public populateExecutionsForLineItemAggregate$(agg: LineItemAggregate) {
-    // Fetch all executions for each line item in chunks in parallel.
-    // Each line item can have multiple WorkOrders.
+  private dfsWorkOrderAggregate(
+    node: RpsWorkOrder,
+    hashmap: Map<string, WorkOrderAggregate>,
+    workOrderAggregates: WorkOrderAggregate[],
+    correlationIds: number[]
+  ) {
+    const agg: WorkOrderAggregate = {
+      correlationId: node.id,
+      workOrderNumber: node.woid,
+      executions: [],
+      releasedQty: 0,
+      completedQty: 0,
+      lastUpdated: node.issueTime,
+      estimatedCompleteDate: node.dueTime,
+      progress: 0,
+    };
+    workOrderAggregates.push(agg);
+
+    // Side effect.
+    hashmap.set(node.woid, agg);
+    correlationIds.push(node.id);
+
+    node.subWorkOrders.forEach(row => {
+      this.dfsWorkOrderAggregate(row, hashmap, workOrderAggregates, correlationIds);
+    });
+  }
+
+  private populateExecutionsInWorkOrderAggregate$(
+    workOrderAggregates: WorkOrderAggregate[],
+    hashmap: Map<string, WorkOrderAggregate>,
+    correlationIds: number[]
+  ) {
     const chunkSize = 5;
-    const correlationIds: number[] = [];
-    this.dfsRpsWorkOrder(agg.workOrderFamily, 'id', correlationIds);
     const parallelRequests = correlationIds.map(id => this.fetchExecutions$.bind(this, this.app.factory(), id));
-    return from(chunk(parallelRequests, chunkSize) as (() => Observable<Execution[]>)[][]).pipe(
+    const chunked = chunk(parallelRequests, chunkSize) as (() => Observable<Execution[]>)[][];
+    return from(chunked).pipe(
       concatMap(chunk => {
         return forkJoin(chunk.map(f => f()));
       }),
       toArray(),
-      switchMap(res => {
-        // Flatten response and update each execution process.
-        res.forEach(chunk =>
-          chunk.forEach(executions =>
-            executions.forEach(row => {
-              row.partsCompleted = `${row.completeQty} of ${row.releasedQty}`;
-              agg.executions.push(row);
-            })
-          )
-        );
-        return this.fetchProcessTrackingMap$(this.app.factory(), agg);
-      }),
       map(res => {
-        agg.processTrackingMap = res;
-        return agg;
-      }),
-      retry(2)
+        res.forEach(chunk => {
+          chunk.forEach(group => {
+            if (group.length > 0) {
+              const workOrderAgg = hashmap.get(group[0].woid) as WorkOrderAggregate;
+              group.sort((a, b) => a.step - b.step);
+              workOrderAgg.executions.push(...group);
+              this.aggregateWorkOrderStatus(workOrderAgg);
+            }
+          });
+        });
+        return workOrderAggregates;
+      })
     );
   }
 
-  public aggregateSalesOrderStatus(agg: SalesOrderAggregate) {
+  public aggregateSalesOrderStatus(agg: SalesOrderAggregate, workOrderAggregates: WorkOrderAggregate[]) {
     // To get the status of a SalesOrder, need to sum the releasedQty
-    // and completedQty for all related executions, regardless of lineItems.
-    const status: SalesOrderStatus = {
-      releasedQty: 0,
-      completedQty: 0,
-      lastUpdated: '',
-    };
-    agg.lineItemAggregates.forEach(product => {
-      product.executions.forEach(row => {
-        this.aggregateStatusFromExecution(row, status);
-      });
-    });
+    // and completedQty for all WorkOrders, regardless of lineItems.
 
-    agg.progress = Math.round((status.completedQty / status.releasedQty) * 100);
-    agg.estimatedCompleteTime = status.estimatedCompleteTime ? status.estimatedCompleteTime : undefined;
-    agg.completedTime =
-      status.lastUpdated && status.completedQty === status.releasedQty ? status.lastUpdated : undefined;
-    agg.lastUpdated = status.lastUpdated;
-    return agg;
+    workOrderAggregates.forEach(row => {
+      agg.releasedQty += row.releasedQty;
+      agg.completedQty += row.completedQty;
+
+      // For lastUpdated.
+      let time1 = new Date(agg.lastUpdated as string).getTime();
+      let time2 = new Date(row.lastUpdated as string).getTime();
+      if (time1 < time2) agg.lastUpdated = row.lastUpdated;
+
+      // For dueDate.
+      if (!agg.estimatedCompleteDate) {
+        agg.estimatedCompleteDate = row.estimatedCompleteDate;
+      } else {
+        time1 = new Date(agg.estimatedCompleteDate as string).getTime();
+        time2 = new Date(row.estimatedCompleteDate as string).getTime();
+        if (time1 < time2) agg.estimatedCompleteDate = row.estimatedCompleteDate;
+      }
+    });
   }
 
-  private aggregateStatusFromExecution(row: Execution, status: SalesOrderStatus) {
-    // Update quantities.
-    status.releasedQty += row.releasedQty;
-    status.completedQty += row.completeQty;
+  private aggregateWorkOrderStatus(node: WorkOrderAggregate) {
+    // Each execution is sorted in order of step, and steps must be completed
+    // in sequential order.
+    // Hence, calculation involving lastUpdated can make use of the above assumption.
+    node.executions.forEach(row => {
+      // Update quantities.
+      node.releasedQty += row.releasedQty;
+      node.completedQty += row.completeQty;
 
-    // Update endTime if any; take the latest value.
-    if (!status.lastUpdated) {
-      status.lastUpdated = row.processEndTime || row.processStartTime || '';
-    } else if (status.lastUpdated && row.processEndTime) {
-      const latest = Math.max(new Date(status.lastUpdated).getTime(), new Date(row.processEndTime).getTime());
-      status.lastUpdated = new Date(latest).toISOString();
-    }
+      // Get last updated.
+      if (row.processEndTime) node.lastUpdated = row.processEndTime;
+      if (!row.processEndTime && !node.executionStage) node.executionStage = row.process.name;
+    });
 
-    // Updated estCompleteTime if any; take the latest value.
-    if (!status.estimatedCompleteTime) {
-      status.estimatedCompleteTime = row.estimateCompleteTime;
-    } else {
-      const latest = Math.max(
-        new Date(status.estimatedCompleteTime).getTime(),
-        new Date(row.estimateCompleteTime).getTime()
-      );
-      status.estimatedCompleteTime = new Date(latest).toISOString();
-    }
+    // Take last execution stage if all are completed.
+    if (!node.executionStage && node.executions.length > 0) node.executionStage = node.executions[0].process.name;
+
+    // Update progress and completedDate if applicable.
+    node.progress = Math.round((node.completedQty / node.releasedQty) * 100);
+    if (node.progress === 100) node.completedDate = node.lastUpdated;
+  }
+
+  private formatProgress(v?: number) {
+    if (!v) return '0%';
+    return `${v}%`;
   }
 
   public fetchSalesOrders$(factory: string, limit?: number) {
@@ -253,14 +307,6 @@ export class ProductionTrackingService {
     );
   }
 
-  public dfsRpsWorkOrder(node: RpsWorkOrder, key: string, results: unknown[]) {
-    if (key === 'id') results.push(node.id);
-    else if (key === 'workOrderNumber') results.push(node.woid);
-    node.subWorkOrders.forEach(row => {
-      this.dfsRpsWorkOrder(row, key, results);
-    });
-  }
-
   public fetchExecutions$(factory: string, correlationId?: number, startDateTime?: string) {
     // Fetching the list by correlationId is much faster than querying by startDateTime.
     // i.e. 30ms vs 5s.
@@ -276,6 +322,7 @@ export class ProductionTrackingService {
       };
     }
     return this.http.post<LegacyRpsResponse>(api, payload).pipe(
+      retry(2),
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
         const data = res.data as Execution[];
@@ -284,46 +331,56 @@ export class ProductionTrackingService {
     );
   }
 
-  public fetchProcessTrackingMap$(_factory: string, lineItem: LineItemAggregate) {
+  private fetchProcessTrackingMap$(_factory: string, productId: number) {
     return of(processTracking as ProcessTrackingMap[]).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
-        const template = res.find(row => row.productId === lineItem.productId);
-        if (!template) return this.constructDynamicProcessTrackingMap(lineItem);
-        return this.updateProcessTrackingMap(lineItem, template);
+        const template = res.find(row => row.productId === productId);
+        return template;
       })
     );
   }
 
-  public constructDynamicProcessTrackingMap(lineItem: LineItemAggregate) {
+  private constructDynamicProcessTrackingMap(productId: number, workOrderAggregates: WorkOrderAggregate[]) {
     // For SES products.
-    const items: ProcessTrackingItem[] = lineItem.executions.map(row => {
-      return {
-        text: row.process.name,
-        id: row.process.id,
-        statusId: row.statusId,
-        row: 0,
-        col: row.step - 1, // 0-indexed.
-      };
-    });
-    return {
-      productId: lineItem.productId,
+    const data: ProcessTrackingMap = {
+      productId: productId,
       category: 'Smart Engineering Systems (SES)',
       rows: 1,
-      cols: items.length,
-      items,
-    } as ProcessTrackingMap;
+      cols: 0,
+      items: [],
+    };
+
+    workOrderAggregates.forEach(row => {
+      row.executions.forEach(exec => {
+        const temp = {
+          text: exec.process.name,
+          id: exec.process.id,
+          statusId: exec.statusId,
+          row: 0,
+          col: exec.step - 1, // 0-indexed.
+        };
+        data.items.push(temp);
+      });
+    });
+    return data;
   }
 
-  public updateProcessTrackingMap(lineItem: LineItemAggregate, template: ProcessTrackingMap) {
+  private updateStatusOfProcessTrackingItems(lineItem: LineItemAggregate) {
     const processMap = new Map<number, Execution>();
-    lineItem.executions.forEach(row => processMap.set(row.process.id, row));
-    template.items = template.items.map(row => {
+
+    lineItem.workOrderAggregates.forEach(row => {
+      row.executions.forEach(x => {
+        processMap.set(x.process.id, x);
+      });
+    });
+
+    if (!lineItem.processTrackingMap) return;
+    lineItem.processTrackingMap.items = lineItem.processTrackingMap.items.map(row => {
       const process = processMap.get(row.id);
       if (process) row.statusId = process.statusId;
       return row;
     });
-    return template;
   }
 
   public getParentWorkOrder(v: string) {
