@@ -1,0 +1,83 @@
+{
+  "message": "Success",
+  "statusCode": 200,
+  "data": [
+    {
+      "id": 24241,
+      "woid": "2401300003",
+      "subWorkOrders": [],
+      "productName": "15ESZ-9010-AA-P06",
+      "totalQty": 12,
+      "completeQty": 12,
+      "routeID": 1268,
+      "priority": 50,
+      "issueTime": "2024-01-30T09:03:05.52",
+      "dueTime": "2024-02-01T23:59:59",
+      "statusID": 4,
+      "statusName": "Completed",
+      "salesOrderID": "40900"
+    },
+    {
+      "id": 24248,
+      "woid": "2401300007",
+      "subWorkOrders": [
+        {
+          "id": 24249,
+          "woid": "2401300007.01",
+          "subWorkOrders": [
+            {
+              "id": 24251,
+              "woid": "2401300007.01.01",
+              "subWorkOrders": [],
+              "productName": "15ESZ-9014-AA-BL",
+              "totalQty": 2,
+              "completeQty": 2,
+              "routeID": 1016,
+              "priority": 88,
+              "issueTime": "2024-01-30T15:38:53.36",
+              "dueTime": "2024-01-30T16:56:47",
+              "statusID": 4,
+              "statusName": "Completed",
+              "salesOrderID": "40909"
+            }
+          ],
+          "productName": "15ESZ-1001-AC-BL-WT-BLK",
+          "totalQty": 2,
+          "completeQty": 2,
+          "routeID": 1022,
+          "priority": 88,
+          "issueTime": "2024-01-30T15:38:53.15",
+          "dueTime": "2024-01-30T16:56:47",
+          "statusID": 4,
+          "statusName": "Completed",
+          "salesOrderID": "40908"
+        },
+        {
+          "id": 24250,
+          "woid": "2401300007.02",
+          "subWorkOrders": [],
+          "productName": "15ESZ-1002-AB-L-C",
+          "totalQty": 4,
+          "completeQty": 4,
+          "routeID": 9,
+          "priority": 88,
+          "issueTime": "2024-01-30T15:38:53.25",
+          "dueTime": "2024-01-30T16:56:47",
+          "statusID": 4,
+          "statusName": "Completed",
+          "salesOrderID": "40910"
+        }
+      ],
+      "productName": "15ESZ-0001-AC-BL-WT-BLK-L-C",
+      "totalQty": 2,
+      "completeQty": 2,
+      "routeID": 1084,
+      "priority": 88,
+      "issueTime": "2024-01-30T15:38:53.06",
+      "dueTime": "2024-01-30T16:56:47",
+      "statusID": 4,
+      "statusName": "Completed",
+      "salesOrderID": "40907"
+    }
+  ]
+}

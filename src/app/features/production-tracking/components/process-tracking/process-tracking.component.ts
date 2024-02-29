@@ -32,7 +32,7 @@ export class ProcessTrackingComponent implements OnChanges {
   public icon = faEllipsis;
   public gridItems: Hexagon[][];
   public svgLines: SvgLine[];
-  private width = 6.5; // Need to match in CSS file.
+  private width = 5; // Need to match in CSS file.
   private marginOffset = 1;
   private current: HTMLDivElement;
 

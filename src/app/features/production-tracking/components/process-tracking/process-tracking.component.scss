@@ -1,8 +1,8 @@
 @use 'core/styles/variables';
 
-$width: 6.5rem;
+$width: 5rem;
 
-h4 {
+h3 {
   letter-spacing: variables.$letter-spacing-sm;
 }
 
@@ -20,7 +20,7 @@ svg {
 }
 
 .icon {
-  font-size: variables.$font-size-h3;
+  font-size: variables.$font-size-h2;
 }
 
 .hexagon-wrapper {
@@ -35,7 +35,7 @@ svg {
 
 @mixin hexagon {
   background-color: variables.$bg-3;
-  font-size: variables.$font-size-sm;
+  font-size: variables.$font-size-xs;
   text-align: center;
   width: $width;
   height: $width;

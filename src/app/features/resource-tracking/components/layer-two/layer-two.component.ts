@@ -30,7 +30,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   ngOnInit(): void {
     this.rt
       .fetchMachinesStatus$(this.app.factory())
-      .pipe(takeUntil(this.ngUnsubscribe))
+      .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe({
         next: res => {
           this.isLoading = false;
@@ -55,7 +55,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
     };
 
     forkJoin(requests$)
-      .pipe(takeUntil(this.ngUnsubscribe))
+      .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe({
         next: res => {
           this.trackedMachine = {

@@ -6,7 +6,7 @@
     "energy": 3,
     "waste": 3,
     "category": "MTO",
-    "x": 68,
+    "x": 65,
     "y": 65,
     "idlingThreshold": {
       "eRed": 1.5,

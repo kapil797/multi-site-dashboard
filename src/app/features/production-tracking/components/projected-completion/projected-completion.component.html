@@ -1,7 +1,7 @@
 <div class="pc-wrapper ps-3 pe-3 pb-3 h-100" [ngClass]="isLate ? 'late' : ''">
   <div class="d-flex align-items-center">
     <fa-icon [icon]="icon" class="icon me-2"></fa-icon>
-    <h4>{{ header.toUpperCase() }}</h4>
+    <h3>{{ title }}</h3>
   </div>
   <div class="header mb-2">{{ displayedDate }}</div>
   <div class="text">{{ timeDetails }}</div>

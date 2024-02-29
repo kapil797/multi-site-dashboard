@@ -166,7 +166,7 @@ export class Form extends CancelSubscription {
     this.isDisabled = true;
 
     this.sendRequest$(formGroup)
-      .pipe(takeUntil(this.ngUnsubscribe))
+      .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe({
         next: res => {
           this.isLoading = false;

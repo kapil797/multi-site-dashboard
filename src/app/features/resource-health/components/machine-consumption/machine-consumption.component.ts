@@ -47,7 +47,7 @@ export class MachineConsumptionComponent extends CancelSubscription implements O
   ngOnInit(): void {
     this.inputArgs$
       .pipe(
-        takeUntil(this.ngUnsubscribe),
+        takeUntil(this.ngUnsubscribe$),
         switchMap(res => {
           return forkJoin([
             this.rt.fetchMachineEnergyConsumption$(this.app.factory(), res.period, res.machine),

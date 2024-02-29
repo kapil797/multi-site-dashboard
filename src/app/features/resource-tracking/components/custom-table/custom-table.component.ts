@@ -22,8 +22,8 @@ export class CustomTableComponent implements OnInit {
   public faTrash = faTrash;
   public faMinus = faMinus;
   public gridCols: GridCol[] = [
-    { title: 'Machine Id.', field: 'id', width: 50 },
-    { title: 'Name', field: 'name', width: 200 },
+    { title: 'Machine Id.', field: 'id', width: 70 },
+    { title: 'Name', field: 'name', width: 230 },
     { title: 'Power', field: 'power', icon: faPowerOff },
     { title: 'Energy', field: 'energy', icon: faBolt },
     { title: 'Waste', field: 'waste', icon: faTrash },

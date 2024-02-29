@@ -16,6 +16,7 @@ export class ProjectedCompletionComponent implements OnChanges {
   public displayedDate: string;
   public isLate = false;
   public timeDetails: string;
+  public title: string;
   public alertImg = 'assets/images/production-tracking/alert.png';
 
   constructor() {}
@@ -28,7 +29,13 @@ export class ProjectedCompletionComponent implements OnChanges {
     }
 
     // Check if order is late.
-    this.displayedDate = moment(this.dueDate).format('DD/MM/YYYY HH:mm');
+    if (this.completedDate) {
+      this.displayedDate = moment(this.completedDate).format('DD/MM/YYYY HH:mm');
+      this.title = `${this.header.toUpperCase()}`;
+    } else {
+      this.displayedDate = moment(this.dueDate).format('DD/MM/YYYY HH:mm');
+      this.title = `PROJECTED ${this.header.toUpperCase()}`;
+    }
     const timeDiff = this.calcTimeDiff();
     if (timeDiff > 0) {
       this.timeDetails = 'ON TIME';

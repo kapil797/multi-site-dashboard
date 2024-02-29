@@ -31,7 +31,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   ngOnInit(): void {
     this.placeholder$
       .pipe(
-        takeUntil(this.ngUnsubscribe),
+        takeUntil(this.ngUnsubscribe$),
         switchMap(_res => {
           return this.rt.fetchMachinesResourceHealth$(this.app.factory());
         })

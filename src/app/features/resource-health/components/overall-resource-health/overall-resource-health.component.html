@@ -1,4 +1,4 @@
-<div class="orh-wrapper d-flex flex-column p-3 justify-content-center gap-5">
+<div class="orh-wrapper d-flex flex-column p-3 justify-content-center gap-5 h-100">
   <h1>{{ data.title.toUpperCase() }}</h1>
   <kendo-circularprogressbar
     class="align-horizontal-center"
@@ -19,7 +19,9 @@
     </kendo-grid-column>
     <kendo-grid-column field="value" title="Value" [width]="150">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <span>{{ formatValue(dataItem.value) }}</span>
+        <div class="text-end">
+          {{ formatValue(dataItem.value) }}
+        </div>
       </ng-template>
     </kendo-grid-column>
   </kendo-grid>

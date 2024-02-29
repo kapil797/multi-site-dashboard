@@ -7,22 +7,25 @@ h4 {
 
 .flp-wrapper {
   position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 95%;
 }
 
 .level-one__img {
+  object-fit: cover;
   width: 100%;
-  height: 100%;
-}
 
-.level-one__img.umf {
-  width: 80%;
-  height: 80%;
+  &.umf {
+    width: 70%;
+  }
 }
 
 .level-two {
   position: absolute;
-  left: 0;
-  top: 15%;
+  top: 10%;
   width: 20%;
   height: 20%;
 }

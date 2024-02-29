@@ -1,7 +1,11 @@
 @use 'core/styles/base';
 @use 'core/styles/variables';
 
+.rt-2-scaffold {
+  @include base.layer-two-scaffold;
+}
+
 .rt-2-wrapper {
-  @include base.container;
+  @include base.container;;
   grid-template-columns: repeat(2, 1fr);
 }

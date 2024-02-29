@@ -1,10 +1,12 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
-<app-navbar
-  header="Enterprise - Production Tracking"
-  dropdownOneLabel="sales order"
-  [dropdownOne]="salesOrderIds"
-  (toggleDropdownOne)="onChangeSalesOrder($event)"></app-navbar>
-<div class="pt-2-wrapper d-flex gap-3 flex-column">
-  <app-sales-order [data]="salesOrderAggregate"></app-sales-order>
-  <app-work-order [data]="salesOrderAggregate"></app-work-order>
+<div class="pt-2-scaffold">
+  <app-navbar
+    header="Enterprise - Production Tracking"
+    dropdownOneLabel="sales order"
+    [dropdownOne]="salesOrderIds"
+    (toggleDropdownOne)="onChangeSalesOrder($event)"></app-navbar>
+  <div class="pt-2-wrapper d-flex gap-3 flex-column">
+    <app-sales-order [data]="salesOrderAggregate"></app-sales-order>
+    <app-work-order [data]="salesOrderAggregate"></app-work-order>
+  </div>
 </div>
