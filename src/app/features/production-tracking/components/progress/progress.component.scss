@@ -1,6 +1,6 @@
 @use 'core/styles/variables';
 
-h4 {
+h3 {
   letter-spacing: variables.$letter-spacing-sm;
 }
 
@@ -11,7 +11,7 @@ h4 {
 }
 
 .icon {
-  font-size: variables.$font-size-h3;
+  font-size: variables.$font-size-h2;
 }
 
 .text {

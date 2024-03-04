@@ -1,5 +1,5 @@
 <div class="wod-wrapper ps-3 pe-3 pb-3 pt-1">
-  <h3>WORK ORDER DETAILS</h3>
+  <h2>WORK ORDER DETAILS</h2>
   <div class="wod-content-scaffold gap-3">
     <app-custom-scroll
       id="product"
@@ -14,7 +14,7 @@
       [content]="curProcess?.woid"></app-custom-card>
     <app-process-tracking
       [data]="curLineItemAggregate?.processTrackingMap"
-      (toggle)="onToggleProcess($event)"></app-process-tracking>
+      (toggle)="onToggleExecution($event)"></app-process-tracking>
     <app-custom-card
       id="process"
       header="process"
@@ -32,7 +32,7 @@
       [icon]="faPuzzlePiece"
       [content]="curProcess?.partsCompleted"></app-custom-card>
     <app-projected-completion
-      header="PROJECTED PROCESS COMPLETION"
+      header="PROCESS COMPLETION"
       [dueDate]="curProcess?.estimateCompleteTime"
       [completedDate]="curProcess?.processEndTime"></app-projected-completion>
   </div>

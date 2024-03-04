@@ -2,6 +2,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
 
+## Standards
+
+### Table
+
+- Text is left-aligned, numbers are right-aligned, icons are centered
+
+## First time setup
+
+1. Run npm install
+
+```sh
+npm install
+```
+
+2. Setup Husky
+
+```sh
+npm run husky install
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -85,3 +105,9 @@ Status of SO = completed RTD processes for all WOs / total RTD processes for all
 - Fixed size image in navigation
 - Change factoy
 - Clicking based on role
+
+- Text is left align, numbers are right align in tables
+
+## Todo
+
+- Websocket for production tracking

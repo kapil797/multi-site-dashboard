@@ -1,13 +1,13 @@
 <kendo-card class="card h-100 w-100 ps-3 pe-3 pb-3">
   <kendo-card-header class="card__header d-flex align-items-center">
     <fa-icon class="icon me-2" [icon]="faBars"></fa-icon>
-    <h4>LINE ITEMS</h4>
+    <h3>LINE ITEMS</h3>
     <div class="flex-spacer"></div>
-    <h4>QUANTITY</h4>
+    <h3>QTY</h3>
   </kendo-card-header>
   <kendo-card-body class="card__body">
     <div class="d-flex" *ngFor="let item of data">
-      <div class="truncate me-3">
+      <div class="me-3">
         <strong>{{ item.productName }}</strong>
       </div>
       <div class="flex-spacer"></div>

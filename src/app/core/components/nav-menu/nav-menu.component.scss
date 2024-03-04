@@ -39,11 +39,12 @@
 .tile-item__text {
   font-weight: lighter;
   text-transform: uppercase;
-  font-size: variables.$font-size-reg;
+  font-size: variables.$font-size-xl;
+  letter-spacing: variables.$letter-spacing-reg;
 }
 
 .tile-item__icon {
-  font-size: variables.$font-size-xl;
+  font-size: variables.$font-size-xxl;
 }
 
 .img-container {

@@ -1,34 +1,38 @@
 <div class="pt-1-scaffold">
   <app-sidebar header="ENTERPRISE" rotate="LEFT"></app-sidebar>
-  <app-navbar header="Production Tracking"></app-navbar>
-  <div class="pt-1-wrapper">
-    <kendo-grid scrollable="none" [kendoGridBinding]="salesOrderData">
-      <kendo-grid-column
-        *ngFor="let column of salesOrderCols"
-        field="{{ column.field }}"
-        title="{{ column.title.toUpperCase() }}"></kendo-grid-column>
-      <kendo-grid-column field="status" title="STATUS">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <div class="d-flex align-items-center">
-            {{ dataItem.status }}
-            <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
-          </div>
-        </ng-template>
-      </kendo-grid-column>
-    </kendo-grid>
-    <kendo-grid class="mt-5" scrollable="none" [kendoGridBinding]="workOrderData">
-      <kendo-grid-column
-        *ngFor="let column of workOrderCols"
-        field="{{ column.field }}"
-        title="{{ column.title.toUpperCase() }}"></kendo-grid-column>
-      <kendo-grid-column field="status" title="STATUS">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <div class="d-flex align-items-center">
-            {{ dataItem.status }}
-            <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
-          </div>
-        </ng-template>
-      </kendo-grid-column>
-    </kendo-grid>
+  <div>
+    <app-navbar header="Production Tracking"></app-navbar>
+    <div class="pt-1-wrapper">
+      <kendo-grid scrollable="none" [kendoGridBinding]="salesOrderData">
+        <kendo-grid-column
+          *ngFor="let column of salesOrderCols"
+          field="{{ column.field }}"
+          title="{{ column.title.toUpperCase() }}"
+          [width]="getWidth(column.width)"></kendo-grid-column>
+        <kendo-grid-column field="status" title="STATUS" [width]="250">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="d-flex align-items-center">
+              {{ dataItem.progress }}
+              <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+      <kendo-grid class="mt-5" scrollable="none" [kendoGridBinding]="workOrderData">
+        <kendo-grid-column
+          *ngFor="let column of workOrderCols"
+          field="{{ column.field }}"
+          title="{{ column.title.toUpperCase() }}"
+          [width]="getWidth(column.width)"></kendo-grid-column>
+        <kendo-grid-column field="status" title="STATUS" [width]="250">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="d-flex align-items-center">
+              {{ dataItem.progress }}
+              <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </div>
   </div>
 </div>

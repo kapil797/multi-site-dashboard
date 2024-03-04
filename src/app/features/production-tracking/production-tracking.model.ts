@@ -14,13 +14,20 @@ export interface SalesOrder {
   customerId: number;
   customerName: string;
   lineItems: LineItem[];
+  createdDate: string;
 }
 
-export interface SalesOrderAggregate extends SalesOrder {
+export interface StatusAggregate {
+  releasedQty: number;
+  completedQty: number;
+  lastUpdated: string;
+  estimatedCompleteDate?: string;
+  completedDate?: string;
+  progress: number;
+}
+
+export interface SalesOrderAggregate extends SalesOrder, StatusAggregate {
   lineItemAggregates: LineItemAggregate[];
-  progress?: number;
-  estimatedCompleteTime?: string;
-  completedTime?: string;
 }
 
 export interface LineItem {
@@ -32,8 +39,7 @@ export interface LineItem {
 }
 
 export interface LineItemAggregate extends LineItem {
-  workOrders: WorkOrder[];
-  executions: Execution[];
+  workOrderAggregates: WorkOrderAggregate[];
   processTrackingMap?: ProcessTrackingMap;
 }
 
@@ -43,10 +49,10 @@ export interface WorkOrder {
   issueDate: string;
   committedDeliveryDate: string;
   completionDate: string | null;
-  createdBy: string;
+  createdBy: string | null;
   dueDate: string;
   customer: Customer;
-  poNumbers: string; // SalesOrder number created by OrderApp.
+  poNumbers: string; // PoNumber same as SalesOrderNumber, created by OrderApp.
   soPriority: string;
   urgentFlag: number;
   priority: number;
@@ -59,12 +65,32 @@ export interface WorkOrder {
 export interface Customer {
   id: number;
   name: string;
-  description: string;
+  description: string | null;
+}
+
+export interface RpsWorkOrder {
+  id: number; // correlationId is required to fetch executions from RTD.
+  woid: string; // Work Order number e.g. 2402190003
+  subWorkOrders: RpsWorkOrder[];
+  issueTime: string;
+  dueTime: string;
+}
+
+export interface RpsRtdCorrelation {
+  correlationId: number;
+  workOrderNumber: string;
+}
+
+export interface WorkOrderAggregate extends StatusAggregate {
+  workOrderNumber: string;
+  correlationId: number;
+  executions: Execution[];
+  executionStage?: string;
 }
 
 export interface Execution {
   id: number;
-  woid: string;
+  woid: string; // Work Order number e.g. 2402190003
   step: number; // Sequence number.
   processStartTime: string | null;
   processEndTime: string | null;

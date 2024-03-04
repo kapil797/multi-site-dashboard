@@ -1,8 +1,11 @@
 @use 'core/styles/base';
 @use 'core/styles/variables';
 
+.pt-2-scaffold {
+  @include base.layer-two-scaffold;
+}
+
 .pt-2-wrapper {
   @include base.container;
-  padding-top: unset;
 }
 

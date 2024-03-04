@@ -2,22 +2,32 @@
 
 app-progress {
   grid-row: 1 / span 2;
+  grid-column: 1;
 }
 
 app-projected-completion {
   grid-row: 1;
+  grid-column: 4;
 }
 
 app-line-items {
   grid-row: 1 / span 2;
+  grid-column: 3;
+}
+
+h2 {
+  letter-spacing: variables.$letter-spacing-sm;
 }
 
 #salesOrder {
   grid-row: 1;
+  grid-column: 2;
+  
 }
 
 #customer {
   grid-row: 2;
+  grid-column: 2;
 }
 
 #alerts {

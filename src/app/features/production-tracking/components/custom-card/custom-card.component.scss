@@ -1,11 +1,11 @@
 @use 'core/styles/variables';
 @use 'core/styles/card';
 
-h4 {
+h3 {
   letter-spacing: variables.$letter-spacing-sm;
 }
 
 .icon {
-  font-size: variables.$font-size-h3;
+  font-size: variables.$font-size-h2;
 }
 

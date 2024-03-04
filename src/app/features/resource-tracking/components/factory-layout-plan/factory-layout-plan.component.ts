@@ -31,13 +31,20 @@ export class FactoryLayoutPlanComponent implements OnInit {
   }
 
   public resolveMachineStyle(item: MachineStatus) {
+    const relativeSize = this.applyRelativeSizing(item.x, item.y);
     return {
-      left: `${item.x}%`,
-      top: `${item.y}%`,
+      left: `${relativeSize[0]}%`,
+      top: `${relativeSize[1]}%`,
     };
   }
 
   public onSelectMachine(event: MachineStatus) {
     this.machine.emit(event);
+  }
+
+  private applyRelativeSizing(x: number, y: number) {
+    // Current X/Y coordinates saved are relative to an initial size of factory image.
+    // To change accordingly when image size changes.
+    return [x + 2, y];
   }
 }

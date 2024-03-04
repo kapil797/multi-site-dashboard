@@ -15,19 +15,18 @@
 }
 
 @mixin container {
-  padding: 1.5rem;
+  padding: 1rem;
   color: variables.$light;
 }
 
 @mixin layer-one-scaffold {
   display: grid;
-  grid-template-rows: 6rem auto;
   grid-template-columns: auto auto; 
 }
 
 @mixin layer-two-scaffold {
   display: grid;
-  grid-template-rows: 6rem auto; 
+  grid-template-rows: auto auto; 
 }
 
 .flex-spacer {

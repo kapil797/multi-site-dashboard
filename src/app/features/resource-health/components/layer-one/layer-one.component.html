@@ -1,12 +1,14 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
 <div class="rh-1-scaffold">
-  <app-navbar
-    header="Resource Health"
-    [dropdownOne]="rt.periods"
-    dropdownOneLabel="PERIOD"
-    (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
-  <app-sidebar header="SHOPFLOOR" rotate="RIGHT"></app-sidebar>
-  <div class="rh-1-wrapper d-grid gap-5">
-    <app-overall-resource-health [data]="item" *ngFor="let item of data"></app-overall-resource-health>
+  <div>
+    <app-navbar
+      header="Resource Health"
+      [dropdownOne]="rt.periods"
+      dropdownOneLabel="PERIOD"
+      (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
+    <div class="rh-1-wrapper d-grid gap-4 mt-5">
+      <app-overall-resource-health [data]="item" *ngFor="let item of data"></app-overall-resource-health>
+    </div>
   </div>
+  <app-sidebar header="SHOPFLOOR" rotate="RIGHT"></app-sidebar>
 </div>
