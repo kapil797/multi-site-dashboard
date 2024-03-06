@@ -5,6 +5,7 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
+import { periods } from '@core/constants/period.constant';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { MachineResourceHealth, Period } from '@rh/resource-health.model';
 
@@ -18,6 +19,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public gridData: MachineResourceHealth[];
   public period: Period;
   public machines: string[];
+  public periods = periods;
   private placeholder$ = new Subject();
 
   constructor(

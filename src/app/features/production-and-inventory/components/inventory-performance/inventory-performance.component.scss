@@ -1,0 +1,7 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.gauge-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

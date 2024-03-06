@@ -19,9 +19,14 @@
   color: variables.$light;
 }
 
-@mixin layer-one-scaffold {
+@mixin layer-one-left-scaffold {
   display: grid;
-  grid-template-columns: auto auto; 
+  grid-template-columns: 5rem auto; 
+}
+
+@mixin layer-one-right-scaffold {
+  display: grid;
+  grid-template-columns: auto 5rem; 
 }
 
 @mixin layer-two-scaffold {

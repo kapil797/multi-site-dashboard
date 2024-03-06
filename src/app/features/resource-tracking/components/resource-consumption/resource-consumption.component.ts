@@ -2,13 +2,8 @@ import { Component, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@
 import moment from 'moment';
 
 import { getRandomInt } from '@core/utils/formatters';
-import { chartConfig } from '@core/constants/charts.constant';
 import { MachineAlertHistory, MachineStatus, ResourceConsumption } from '@rt/resource-tracking.model';
-
-interface SeriesDataItem {
-  value: number;
-  color: string;
-}
+import { SeriesDataItem, chartConfig } from '@core/models/charts.model';
 
 @Component({
   selector: 'app-resource-consumption',
@@ -44,7 +39,7 @@ export class ResourceConsumptionComponent implements OnChanges {
     this.resourceData.forEach(row => {
       this.categories.push(new Date(row.receivedDate));
       const item: SeriesDataItem = {
-        value: row.powerLoad,
+        yValue: row.powerLoad,
         color: this.setBarColorByWindowedModeAndThreshold(row),
       };
       this.series.push(item);

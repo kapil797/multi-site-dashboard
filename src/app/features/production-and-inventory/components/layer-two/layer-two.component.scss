@@ -1,0 +1,46 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+$triangle-base: 2rem;
+$triangle-side: 2.5rem;
+
+h2 {
+  letter-spacing: variables.$letter-spacing-reg;
+}
+
+h3 {
+  letter-spacing: variables.$letter-spacing-sm;
+}
+
+.pi-2-scaffold {
+  @include base.layer-two-scaffold;
+}
+
+.pi-2-wrapper {
+  @include base.container;;
+  grid-template-rows: repeat(2, 1fr);
+  padding-top: unset;
+}
+
+.inventory-container {
+  grid-template-columns: 1fr 0.25fr 1fr 0.25fr 1fr;
+}
+
+.production-container {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.shape__arrow {
+  width: 0; 
+  height: 0; 
+  border-top: $triangle-side solid transparent;
+  border-bottom: $triangle-side solid transparent;
+
+  &--left {
+    border-right: $triangle-base solid variables.$white;
+  }
+
+  &--right {
+    border-left: $triangle-base solid variables.$white;
+  }
+}

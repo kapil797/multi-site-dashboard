@@ -1,7 +1,7 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
 <app-navbar
   header="Shopfloor - Resource Health"
-  [dropdownOne]="rt.periods"
+  [dropdownOne]="periods"
   dropdownOneLabel="PERIOD"
   (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
 <div class="rh-2-wrapper">

@@ -1,0 +1,16 @@
+<app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
+<div class="dp-1-scaffold">
+  <div>
+    <app-navbar header="Demand Profile"></app-navbar>
+    <div class="dp-1-wrapper mt-5">
+      <h1>DEMAND SPIKES AND PLUMMETS FOR ATTENTION</h1>
+      <div class="profile-charts-container d-grid gap-4">
+        <app-profile-chart title="DEMAND FOR E-SCENTZ (PCS)" [data]="demandProfiles.eScentz"></app-profile-chart>
+        <app-profile-chart
+          title="DEMAND FOR MFCONNECT+ (PCS)"
+          [data]="demandProfiles.mfConnectPlus"></app-profile-chart>
+      </div>
+    </div>
+  </div>
+  <app-sidebar header="SUPPLY CHAIN" rotate="RIGHT"></app-sidebar>
+</div>

@@ -1,0 +1,24 @@
+<div class="pp-wrapper ps-3 pe-3 pt-1 pb-1">
+  <h3>{{ category.toUpperCase() }}</h3>
+  <kendo-chart>
+    <kendo-chart-axis-defaults [majorGridLines]="{ visible: false }"> </kendo-chart-axis-defaults>
+    <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
+    <!-- <kendo-chart-title align="left" text="POWER LOAD PROFILE (kW)" [color]="chartConfig.color"></kendo-chart-title> -->
+    <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item>
+        <kendo-chart-category-axis-item-labels
+          [rotation]="-25"
+          [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
+      </kendo-chart-category-axis-item>
+    </kendo-chart-category-axis>
+    <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item>
+        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+    </kendo-chart-value-axis>
+    <kendo-chart-series>
+      <kendo-chart-series-item type="column" [gap]="1" [data]="series || []" field="yValue" categoryField="xValue">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+</div>
