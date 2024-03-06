@@ -1,8 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from '@shared/shared.module';
+import { ProductionAndInventoryRoutingModule } from '@pi/production-and-inventory-routing.module';
+
+import { ProductionAndInventoryService } from '@pi/production-and-inventory.service';
+
+import { LayerOneComponent } from '@pi/components/layer-one/layer-one.component';
+import { LayerTwoComponent } from '@pi/components/layer-two/layer-two.component';
+import { LayerResolverComponent } from '@pi/components/layer-resolver/layer-resolver.component';
+import { InventoryPerformanceComponent } from '@pi/components/inventory-performance/inventory-performance.component';
+import { ProductionPerformanceComponent } from '@pi/components/production-performance/production-performance.component';
+import { ProgressPerformanceComponent } from '@pi/components/progress-performance/progress-performance.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  declarations: [
+    LayerOneComponent,
+    LayerTwoComponent,
+    LayerResolverComponent,
+    InventoryPerformanceComponent,
+    ProductionPerformanceComponent,
+    ProgressPerformanceComponent,
+  ],
+  imports: [SharedModule, ProductionAndInventoryRoutingModule],
+  providers: [ProductionAndInventoryService],
 })
 export class ProductionAndInventoryModule {}

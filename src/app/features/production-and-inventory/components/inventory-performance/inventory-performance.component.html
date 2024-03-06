@@ -1,0 +1,35 @@
+<div *ngFor="let item of gaugeData">
+  <div class="gauge-container p-2">
+    <div class="text-center" [style]="inlineStyles.text">
+      <h3>{{ item.title }}:</h3>
+      <div [style.color]="item.textColor">{{ item.text }}</div>
+    </div>
+    <kendo-radialgauge [style]="inlineStyles.gauge" class="mx-auto">
+      <kendo-radialgauge-scale
+        [majorTicks]="{ visible: false }"
+        [minorTicks]="{ visible: false }"
+        [startAngle]="0"
+        [endAngle]="180"
+        [rangeSize]="15"
+        [max]="item.maxValue">
+        <kendo-radialgauge-scale-labels [visible]="false"> </kendo-radialgauge-scale-labels>
+        <kendo-radialgauge-scale-ranges>
+          <kendo-radialgauge-scale-range
+            *ngFor="let range of item.gaugeRange"
+            [from]="range.from"
+            [to]="range.to"
+            [color]="range.color">
+          </kendo-radialgauge-scale-range>
+        </kendo-radialgauge-scale-ranges>
+        <kendo-radialgauge-pointers>
+          <kendo-radialgauge-pointer
+            [value]="item.value"
+            [cap]="{ size: 0.125, color: 'white' }"
+            [color]="'white'"
+            [length]="30">
+          </kendo-radialgauge-pointer>
+        </kendo-radialgauge-pointers>
+      </kendo-radialgauge-scale>
+    </kendo-radialgauge>
+  </div>
+</div>

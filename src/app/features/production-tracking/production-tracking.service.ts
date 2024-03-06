@@ -258,11 +258,6 @@ export class ProductionTrackingService {
     if (node.progress === 100) node.completedDate = node.lastUpdated;
   }
 
-  private formatProgress(v?: number) {
-    if (!v) return '0%';
-    return `${v}%`;
-  }
-
   public fetchSalesOrders$(factory: string, limit?: number) {
     const api = this.app.api.concatOrderappApiByFactory(factory, [this.app.api.ORDERAPP_SALES_ORDER]);
     const queryParams = limit ? `?limit=${limit}` : '';

@@ -4,7 +4,6 @@ import moment from 'moment';
 
 import { getRandomNumber } from '@core/utils/formatters';
 import { AppService } from '@core/services/app.service';
-import { Dropdown } from '@core/classes/form/form.class';
 import { ResourceHealthModule } from '@rh/resource-health.module';
 import {
   AggregatedResourceConsumption,
@@ -21,13 +20,6 @@ import machines from './mock-data/machines.json';
   providedIn: ResourceHealthModule,
 })
 export class ResourceHealthService {
-  public periods: Dropdown[] = ['WEEKLY', 'MONTHLY', 'QUARTERLY', 'HALF-YEARLY', 'YEARLY'].map(row => {
-    return {
-      text: row,
-      value: row,
-    };
-  });
-
   constructor(private app: AppService) {}
 
   public fetchOverallResourceHealth$(_factory: string) {

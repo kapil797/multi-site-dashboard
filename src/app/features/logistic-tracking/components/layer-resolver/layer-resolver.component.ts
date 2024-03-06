@@ -4,12 +4,12 @@ import { takeUntil } from 'rxjs';
 
 import { FallbackComponent } from '@core/components/fallback/fallback.component';
 import { RoutePaths } from '@core/constants/routes.constant';
-import { CancelSubscription } from '@shared/classes/cancel-subscription/cancel-subscription.class';
+import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { LayerOneComponent } from '@lt/components/layer-one/layer-one.component';
 import { LayerTwoComponent } from '@lt/components/layer-two/layer-two.component';
 
 @Component({
-  selector: 'app-rh-layer-resolver',
+  selector: 'app-pt-layer-resolver',
   templateUrl: './layer-resolver.component.html',
   styleUrl: './layer-resolver.component.scss',
 })
@@ -21,7 +21,7 @@ export class LayerResolverComponent extends CancelSubscription implements OnInit
   }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
+    this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe$)).subscribe(res => {
       const layer = res.get(RoutePaths.LAYER) as string;
       switch (layer) {
         case RoutePaths.LAYER_ONE:

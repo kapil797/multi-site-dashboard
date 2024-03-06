@@ -37,7 +37,7 @@
         type="column"
         [data]="energyConsumptionData ? energyConsumptionData.series1 : []"
         axis="series1"
-        field="value">
+        field="yValue">
       </kendo-chart-series-item>
       <kendo-chart-series-item
         type="line"
@@ -73,7 +73,7 @@
         type="column"
         axis="series1"
         [data]="wasteConsumptionData ? wasteConsumptionData.series1 : []"
-        field="value">
+        field="yValue">
       </kendo-chart-series-item>
       <kendo-chart-series-item
         type="line"

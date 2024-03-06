@@ -47,6 +47,24 @@ export const routes: Routes = [
     },
   },
   {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.PRODUCTION_INVENTORY).substring(1),
+    loadChildren: () => import('@pi/production-and-inventory.module').then(m => m.ProductionAndInventoryModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.DEMAND_PROFILE).substring(1),
+    loadChildren: () => import('@dp/demand-profile.module').then(m => m.DemandProfileModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
     path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.LOGISTIC_TRACKING).substring(1),
     loadChildren: () => import('@lt/logistic-tracking.module').then(m => m.LogisticTrackingModule),
     canMatch: [routeGuard()],

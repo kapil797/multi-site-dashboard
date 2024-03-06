@@ -1,0 +1,12 @@
+<app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
+<div class="dp-2-scaffold">
+  <app-navbar
+    header="Supply Chain - Demand Profile"
+    [dropdownOne]="products"
+    dropdownOneLabel="PRODUCT"
+    [dropdownTwo]="algos"
+    dropdownTwoLabel="FORECASTING ALGO"
+    (toggleDropdownOne)="onToggleProduct($event)"
+    (toggleDropdownTwo)="onToggleAlgo($event)"></app-navbar>
+  <div class="dp-2-wrapper"></div>
+</div>

@@ -1,0 +1,40 @@
+<app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
+<div class="pi-2-scaffold">
+  <app-navbar
+    header="Enterprise - Production & Inventory"
+    [dropdownOne]="periods"
+    dropdownOneLabel="PERIOD"
+    (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
+  <div class="pi-2-wrapper">
+    <div>
+      <h2>INVENTORY PERFORMANCE</h2>
+      <div class="inventory-container d-grid gap-3 ps-3 pe-3">
+        <app-inventory-performance layer="LAYER2" [data]="inventoryCategories.rawMaterial"></app-inventory-performance>
+        <div class="d-flex justify-content-center align-items-center">
+          <h3>Raw Material</h3>
+          <div class="shape__arrow shape__arrow--right"></div>
+        </div>
+        <app-inventory-performance layer="LAYER2" [data]="inventoryCategories.overall"></app-inventory-performance>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="shape__arrow shape__arrow--left"></div>
+          <h3 class="text-end">Semi Finished (MTS)</h3>
+        </div>
+        <app-inventory-performance layer="LAYER2" [data]="inventoryCategories.mts"></app-inventory-performance>
+      </div>
+    </div>
+    <div>
+      <h2>PRODUCTION PERFORMANCE</h2>
+      <div class="production-container d-grid gap-3 ps-3 pe-3">
+        <app-production-performance
+          category="CYCLE TIME DEVIATION"
+          [data]="productionCategories.cycleTimeDeviation"></app-production-performance>
+        <app-production-performance
+          category="PRODUCTION YIELD"
+          [data]="productionCategories.productionYield"></app-production-performance>
+        <app-production-performance
+          category="SPARE CAPACITY"
+          [data]="productionCategories.spareCapacity"></app-production-performance>
+      </div>
+    </div>
+  </div>
+</div>
