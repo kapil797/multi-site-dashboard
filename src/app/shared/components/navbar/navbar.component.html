@@ -1,6 +1,16 @@
 <kendo-appbar position="top" themeColor="inherit" class="navbar ps-4 pe-4">
   <div class="navbar-header">{{ header.toUpperCase() }}</div>
   <kendo-appbar-spacer></kendo-appbar-spacer>
+  <div *ngIf="dropdownThree && dropdownThree.length > 0" class="dropdown-wrapper d-flex align-items-center me-3 p-2">
+    <kendo-label class="me-3" [text]="dropdownThreeLabel?.toUpperCase() + ':'"></kendo-label>
+    <kendo-dropdownlist
+      appDropdown
+      (valueChange)="onChangeDropdownThree($event)"
+      [data]="dropdownThree"
+      textField="text"
+      valueField="value"
+      [(ngModel)]="dropdownThreeValue"></kendo-dropdownlist>
+  </div>
   <div *ngIf="dropdownTwo && dropdownTwo.length > 0" class="dropdown-wrapper d-flex align-items-center me-3 p-2">
     <kendo-label class="me-3" [text]="dropdownTwoLabel?.toUpperCase() + ':'"></kendo-label>
     <kendo-dropdownlist

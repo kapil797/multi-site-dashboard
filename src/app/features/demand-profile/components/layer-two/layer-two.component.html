@@ -4,9 +4,14 @@
     header="Supply Chain - Demand Profile"
     [dropdownOne]="products"
     dropdownOneLabel="PRODUCT"
-    [dropdownTwo]="algos"
-    dropdownTwoLabel="FORECASTING ALGO"
     (toggleDropdownOne)="onToggleProduct($event)"
-    (toggleDropdownTwo)="onToggleAlgo($event)"></app-navbar>
-  <div class="dp-2-wrapper"></div>
+    [dropdownTwo]="algos"
+    dropdownTwoLabel="ALGO"
+    (toggleDropdownTwo)="onToggleAlgo($event)"
+    [dropdownThree]="forecastingHorizon"
+    dropdownThreeLabel="HORIZON"
+    (toggleDropdownThree)="onToggleHorizon($event)"></app-navbar>
+  <div class="dp-2-wrapper">
+    <app-profile-chart [title]="title" [data]="demandProfile"></app-profile-chart>
+  </div>
 </div>

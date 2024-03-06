@@ -26,11 +26,13 @@ import {
   SalesOrderAggregate,
   LineItem,
   WorkOrderAggregate,
+  WebsocketStream,
 } from '@pt/production-tracking.model';
 
 import salesOrder from './mock-data/sales-order.json';
 import processTracking from './mock-data/process-tracking.json';
 import { chunk } from '@core/utils/formatters';
+import { webSocket } from 'rxjs/webSocket';
 
 /*
   SalesOrder has one-to-many relationship with WorkOrders.
@@ -381,5 +383,28 @@ export class ProductionTrackingService {
   public getParentWorkOrder(v: string) {
     // 2402190003.01.01 to 2402190003
     return v.split('.')[0];
+  }
+
+  public initWebSocketStreams() {
+    const websocket$ = webSocket({
+      url: this.app.config.DASHBOARD_WEBSOCKET_URL,
+    });
+
+    const executionStreamFromRtd$ = websocket$.multiplex(
+      () => ({
+        // On subscribing to websocket.
+        message: 'subscribing to RTD execution stream',
+      }),
+      () => ({
+        // On destroy.
+        message: 'unsubscribing from RTD execution stream',
+      }),
+      message => {
+        // Filter messages.
+        const msg = message as WebsocketStream;
+        return !!msg.type && msg.type.toUpperCase() === 'RTD';
+      }
+    );
+    return executionStreamFromRtd$;
   }
 }

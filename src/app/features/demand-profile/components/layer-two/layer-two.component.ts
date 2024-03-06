@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, switchMap, take, takeUntil } from 'rxjs';
+import { ReplaySubject, switchMap, take, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
 import { DemandProfileService } from '@dp/demand-profile.service';
-import { Product } from '@dp/demand-profile.model';
+import { DemandProfile, Product } from '@dp/demand-profile.model';
 import { Dropdown } from '@core/classes/form/form.class';
 
 interface Forecast {
@@ -22,6 +22,8 @@ interface Forecast {
 })
 export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
+  public demandProfile: DemandProfile;
+  public title: string;
   public products: Dropdown[] = ['ESCENTZ', 'MFCONNECT+'].map(row => {
     return {
       text: row,
@@ -34,7 +36,17 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       value: row,
     };
   });
-  private sub$ = new Subject<Forecast>();
+  public forecastingHorizon: Dropdown[] = [
+    {
+      text: '1 MONTH',
+      value: 1,
+    },
+    {
+      text: '6 MONTHS',
+      value: 6,
+    },
+  ];
+  private sub$ = new ReplaySubject<Forecast>();
 
   constructor(
     private app: AppService,
@@ -48,12 +60,14 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
     this.sub$
       .pipe(
         switchMap(res => {
+          this.title = `DEMAND FOR ${res.product} (PCS)`;
           return this.dp.fetchDemandProfile$(this.app.factory(), res.product, res.horizonMonths);
         }),
         takeUntil(this.ngUnsubscribe$)
       )
       .subscribe({
-        next: _res => {
+        next: res => {
+          this.demandProfile = res;
           this.isLoading = false;
         },
         error: (error: Error) => {
@@ -85,6 +99,16 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
         product: res.product,
         horizonMonths: res.horizonMonths,
         algo: event as string,
+      });
+    });
+  }
+
+  public onToggleHorizon(event: unknown) {
+    this.sub$.pipe(take(1)).subscribe(res => {
+      this.sub$.next({
+        product: res.product,
+        horizonMonths: event as number,
+        algo: res.algo,
       });
     });
   }

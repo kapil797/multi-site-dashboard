@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 import moment from 'moment';
 
@@ -9,6 +9,8 @@ import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
 import {
+  ExecutionStream,
+  LineItemAggregate,
   RpsWorkOrder,
   SalesOrder,
   SalesOrderAggregate,
@@ -24,7 +26,7 @@ import {
   Total: 6*3*5 = 90 (to optimize as required).
 */
 
-interface MinSalesOrder {
+interface CompactedSalesOrder {
   salesOrderNumber: string;
   customerName: string;
   lastUpdated: string;
@@ -32,7 +34,7 @@ interface MinSalesOrder {
   isLate: boolean;
 }
 
-interface MinWorkOrder {
+interface CompactedWorkOrder {
   workOrderNumber: string;
   executionStage: string;
   lastUpdated: string;
@@ -47,11 +49,12 @@ interface MinWorkOrder {
   encapsulation: ViewEncapsulation.None,
 })
 export class LayerOneComponent extends CancelSubscription implements OnInit {
-  public isLoading = true;
   private placeholder$ = new BehaviorSubject<boolean>(true);
   private rowCount = 6;
   private chunkLineItems = 3;
-
+  private executionStreamFromRtd$: Observable<unknown>;
+  private salesOrderAggregates: SalesOrderAggregate[];
+  public isLoading = true;
   public salesOrderCols: ColumnSetting[] = [
     { title: 'SALES ORDER NO.', field: 'salesOrderNumber', width: 450 },
     { title: 'CUSTOMER NAME', field: 'customerName' },
@@ -62,8 +65,8 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
     { title: 'PROCESS STAGE', field: 'executionStage' },
     { title: 'LAST UPDATED', field: 'lastUpdated', width: 450 },
   ];
-  public salesOrderData: MinSalesOrder[];
-  public workOrderData: MinWorkOrder[];
+  public salesOrderData: CompactedSalesOrder[];
+  public workOrderData: CompactedWorkOrder[];
   public getWidth = getWidth;
 
   constructor(
@@ -75,6 +78,53 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
+    this.executionStreamFromRtd$ = this.pt.initWebSocketStreams();
+
+    // Subscribe to websocket stream.
+    this.executionStreamFromRtd$
+      .pipe(
+        switchMap(msg => {
+          const res = msg as ExecutionStream;
+          if (!this.salesOrderAggregates) return of(null);
+
+          let lineItemAgg: LineItemAggregate | undefined;
+          for (const so of this.salesOrderAggregates) {
+            const temp = so.lineItemAggregates.find(row => {
+              const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
+              if (res.WOID.includes(parentWorkOrderNumber)) return true;
+              return false;
+            });
+            if (temp) {
+              lineItemAgg = temp;
+              break;
+            }
+          }
+
+          if (!lineItemAgg) {
+            // Refetch everything in the placeholder$ subscription.
+            this.placeholder$.next(true);
+            return of(null);
+          }
+          return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
+        }),
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe({
+        next: res => {
+          if (!res) return;
+          for (const so of this.salesOrderAggregates) {
+            const idx = so.lineItemAggregates.findIndex(row => row.productId === res.productId);
+            if (!idx) continue;
+            so.lineItemAggregates.splice(idx, 1, res);
+            break;
+          }
+          this.displayCompactedSalesOrdersAndWorkOrders(this.salesOrderAggregates);
+        },
+        error: (err: Error) => {
+          this.notif.show(createNotif('error', err.message));
+        },
+      });
+
     this.placeholder$
       .pipe(
         switchMap(_ => {
@@ -97,28 +147,13 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
       )
       .subscribe({
         next: res => {
+          this.salesOrderAggregates = res;
           this.isLoading = false;
           this.salesOrderData = [];
           this.workOrderData = [];
 
           res.sort((a, b) => this.compareDate(a.lastUpdated, b.lastUpdated));
-          res.forEach(row => {
-            // Get SalesOrders.
-            const temp: MinSalesOrder = {
-              customerName: row.customerName.toUpperCase(),
-              salesOrderNumber: row.salesOrderNumber,
-              isLate: this.isLatePredicate(row),
-              lastUpdated: this.formatDisplayedTime(row.lastUpdated),
-              progress: this.formatProgress(row.progress),
-            };
-            this.salesOrderData.push(temp);
-
-            // Get WorkOrders, sorted by SalesOrders.
-            for (const lineItem of row.lineItemAggregates) {
-              if (this.workOrderData.length === this.rowCount) return;
-              this.populateMinWorkOrders(lineItem.workOrderAggregates);
-            }
-          });
+          this.displayCompactedSalesOrdersAndWorkOrders(res);
         },
         error: error => {
           this.isLoading = false;
@@ -135,9 +170,33 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
       .pipe(catchError(() => of(this.constructSalesOrderAggregate(row))));
   }
 
-  private populateMinWorkOrders(workOrderAggregates: WorkOrderAggregate[]) {
+  private displayCompactedSalesOrdersAndWorkOrders(salesOrderAggregates: SalesOrderAggregate[]) {
+    salesOrderAggregates.forEach(row => {
+      // add SalesOrders.
+      this.addCompactedSalesOrder(row);
+
+      // Get WorkOrders, sorted by SalesOrders.
+      for (const lineItem of row.lineItemAggregates) {
+        if (this.workOrderData.length === this.rowCount) return;
+        this.addCompactedWorkOrdersForEachSalesOrder(lineItem.workOrderAggregates);
+      }
+    });
+  }
+
+  private addCompactedSalesOrder(so: SalesOrderAggregate) {
+    const temp: CompactedSalesOrder = {
+      customerName: so.customerName.toUpperCase(),
+      salesOrderNumber: so.salesOrderNumber,
+      isLate: this.isLatePredicate(so),
+      lastUpdated: this.formatDisplayedTime(so.lastUpdated),
+      progress: this.formatProgress(so.progress),
+    };
+    this.salesOrderData.push(temp);
+  }
+
+  private addCompactedWorkOrdersForEachSalesOrder(workOrderAggregates: WorkOrderAggregate[]) {
     for (const row of workOrderAggregates) {
-      const workOrder: MinWorkOrder = {
+      const workOrder: CompactedWorkOrder = {
         workOrderNumber: row.workOrderNumber,
         executionStage: row.executionStage || '-',
         lastUpdated: this.formatDisplayedTime(row.lastUpdated),

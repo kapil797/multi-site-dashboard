@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import {
   chartConfig,
@@ -15,18 +15,20 @@ import { Element } from '@progress/kendo-drawing';
   templateUrl: './profile-chart.component.html',
   styleUrl: './profile-chart.component.scss',
 })
-export class ProfileChartComponent implements OnInit {
+export class ProfileChartComponent implements OnChanges {
   @Input() data: DemandProfile;
   @Input() title: string;
   public chartConfig = chartConfig;
   public seriesColor: string;
   public majorGridLines = { visible: true, color: chartConfig.color, width: 0.1 };
 
-  ngOnInit(): void {
-    if (this.title.includes('E-SCENTZ')) {
-      this.seriesColor = 'rgb(255, 240, 31)';
-    } else {
-      this.seriesColor = 'rgb(138, 38, 255)';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['title']) {
+      if (this.title.includes('ESCENTZ')) {
+        this.seriesColor = 'rgb(255, 240, 31)';
+      } else {
+        this.seriesColor = 'rgb(138, 38, 255)';
+      }
     }
   }
 
