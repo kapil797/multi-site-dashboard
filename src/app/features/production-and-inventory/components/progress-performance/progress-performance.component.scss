@@ -1,0 +1,11 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.pp-wrapper {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.text {
+  white-space: pre-wrap;
+  font-size: variables.$font-size-xxl;
+}

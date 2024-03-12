@@ -1,0 +1,10 @@
+[
+  { "process": "Cartridge Print", "value": 0 },
+  { "process": "Scent Filling", "value": 0 },
+  { "process": "Lower Case Print GR", "value": 0 },
+  { "process": "Holder Assy GR", "value": 0 },
+  { "process": "Lean Packaging", "value": 0 },
+  { "process": "Lower Case Print", "value": 0 },
+  { "process": "Lower Case PRint BL", "value": 0 },
+  { "process": "Membrane Assembly", "value": 0 }
+]

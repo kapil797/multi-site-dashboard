@@ -46,6 +46,24 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.PRODUCTION_INVENTORY).substring(1),
+    loadChildren: () => import('@pi/production-and-inventory.module').then(m => m.ProductionAndInventoryModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.DEMAND_PROFILE).substring(1),
+    loadChildren: () => import('@dp/demand-profile.module').then(m => m.DemandProfileModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },

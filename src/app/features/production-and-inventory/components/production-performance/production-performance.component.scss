@@ -1,0 +1,6 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.pp-wrapper {
+  background-color: variables.$bg-2;
+}

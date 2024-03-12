@@ -3,6 +3,7 @@ import { Subject, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
+import { periods } from '@core/constants/period.constant';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
 import { ResourceHealthService } from '@rh/resource-health.service';
@@ -17,6 +18,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public data: OverallResourceHealth[];
   private sub$ = new Subject();
+  public periods = periods;
 
   constructor(
     private app: AppService,
