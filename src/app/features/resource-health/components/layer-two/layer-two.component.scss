@@ -6,3 +6,14 @@
   display: grid;
   grid-template-rows: auto auto;
 }
+
+.dropdown-wrapper {
+  border: 1px solid variables.$white;
+  border-radius: unset;
+  width: 18rem; // Fixed.
+}
+
+
+.charts-wrapper {
+  grid-template-columns: repeat(2, 1fr);
+}

@@ -6,6 +6,11 @@ import { getRandomInt } from '@core/utils/formatters';
 import { DemandProfile, DemandSeries, Product } from '@dp/demand-profile.model';
 import { DemandProfileModule } from '@dp/demand-profile.module';
 
+interface Zone {
+  value: number;
+  direction: string;
+}
+
 @Injectable({
   providedIn: DemandProfileModule,
 })
@@ -24,13 +29,48 @@ export class DemandProfileService {
     let current = new Date(start);
     let initial: number;
     let range: number;
+    let zones: Zone[];
 
     if (product === 'ESCENTZ') {
       initial = 4125;
-      range = 120;
+      range = 200;
+      zones = [
+        {
+          value: 0.1,
+          direction: 'UP',
+        },
+        {
+          value: 0.5,
+          direction: 'DOWN',
+        },
+        {
+          value: 0.3,
+          direction: 'UP',
+        },
+        { value: 0.2, direction: 'DOWN' },
+      ];
     } else {
       initial = 409;
-      range = 37;
+      range = 50;
+      zones = [
+        {
+          value: 0.1,
+          direction: 'DOWN',
+        },
+        {
+          value: 0.1,
+          direction: 'UP',
+        },
+        {
+          value: 0.3,
+          direction: 'DOWN',
+        },
+        {
+          value: 0.3,
+          direction: 'UP',
+        },
+        { value: 0.2, direction: 'DOWN' },
+      ];
     }
 
     // Get previous forecast.
@@ -45,7 +85,14 @@ export class DemandProfileService {
     // Get future forecast.
     current = new Date(today);
     const futureForecast: DemandSeries[] = [];
-    this.generateMockData(current, end, pastForecast[pastForecast.length - 1].demand, range, futureForecast);
+    this.generateSpikesAndPlummetsData(
+      current,
+      end,
+      pastForecast[pastForecast.length - 1].demand,
+      range,
+      zones,
+      futureForecast
+    );
 
     const data: DemandProfile = {
       pastForecast,
@@ -56,7 +103,7 @@ export class DemandProfileService {
   }
 
   private generateMockData(currentDate: Date, endDate: Date, initial: number, range: number, results: DemandSeries[]) {
-    const changeAmt = getRandomInt(0, range);
+    const changeAmt = getRandomInt(range / 2, range);
     while (currentDate.getTime() < endDate.getTime()) {
       if (results.length === 0) {
         results.push({ createdDate: new Date(currentDate), demand: initial });
@@ -67,6 +114,27 @@ export class DemandProfileService {
       }
       currentDate.setDate(currentDate.getDate() + 1);
       continue;
+    }
+  }
+
+  private generateSpikesAndPlummetsData(
+    currentDate: Date,
+    endDate: Date,
+    initial: number,
+    range: number,
+    zones: Zone[],
+    results: DemandSeries[]
+  ) {
+    const numberOfDays = Math.ceil((endDate.getTime() - currentDate.getTime()) / (60 * 60 * 24 * 1000));
+    let curDemand = initial;
+    for (const zone of zones) {
+      const count = Math.floor(numberOfDays * zone.value);
+      for (let i = 0; i < count; i++) {
+        const amt = zone.direction === 'UP' ? getRandomInt(range, range * 2) : -getRandomInt(0, range);
+        curDemand += amt;
+        results.push({ createdDate: new Date(currentDate), demand: curDemand });
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
     }
   }
 }

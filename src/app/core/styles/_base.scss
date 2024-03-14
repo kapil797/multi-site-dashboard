@@ -34,6 +34,11 @@
   grid-template-rows: auto auto; 
 }
 
+@mixin scrollbar {
+  scrollbar-color: variables.$bg-6 variables.$white;
+  scrollbar-width: thin;
+}
+
 .flex-spacer {
   flex: 1 0 auto;
 }
@@ -66,11 +71,12 @@
   display: none;
 }
 
-.truncate {
+.text--truncate {
+  // Need to define explicit width or use flex.
+  // For grid, use minmax(0, 1fr) when defining grid-template-column.
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  flex-basis: 80%;
 }
 
 .align-vertical-center {

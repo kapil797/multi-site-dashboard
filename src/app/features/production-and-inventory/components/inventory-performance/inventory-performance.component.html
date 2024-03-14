@@ -1,8 +1,10 @@
 <div *ngFor="let item of gaugeData">
   <div class="gauge-container p-2">
-    <div class="text-center" [style]="inlineStyles.text">
-      <h3>{{ item.title }}:</h3>
-      <div [style.color]="item.textColor">{{ item.text }}</div>
+    <div class="text-center">
+      <div [style]="inlineStyles.textHeader">
+        <strong>{{ item.title }}:</strong>
+      </div>
+      <div class="box" [style]="inlineStyles.textNumber" [style.color]="item.textColor">{{ item.text }}</div>
     </div>
     <kendo-radialgauge [style]="inlineStyles.gauge" class="mx-auto">
       <kendo-radialgauge-scale

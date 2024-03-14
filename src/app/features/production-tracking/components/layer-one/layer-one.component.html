@@ -1,9 +1,10 @@
+<app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
 <div class="pt-1-scaffold">
   <app-sidebar header="ENTERPRISE" rotate="LEFT"></app-sidebar>
   <div>
     <app-navbar header="Production Tracking"></app-navbar>
-    <div class="pt-1-wrapper">
-      <kendo-grid scrollable="none" [kendoGridBinding]="salesOrderData">
+    <div class="pt-1-wrapper d-grid gap-5">
+      <kendo-grid scrollable="none" [kendoGridBinding]="salesOrderData" class="h-100">
         <kendo-grid-column
           *ngFor="let column of salesOrderCols"
           field="{{ column.field }}"
@@ -18,7 +19,7 @@
           </ng-template>
         </kendo-grid-column>
       </kendo-grid>
-      <kendo-grid class="mt-5" scrollable="none" [kendoGridBinding]="workOrderData">
+      <kendo-grid class="mt-5" scrollable="none" [kendoGridBinding]="workOrderData" class="h-100">
         <kendo-grid-column
           *ngFor="let column of workOrderCols"
           field="{{ column.field }}"

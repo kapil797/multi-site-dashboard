@@ -4,6 +4,8 @@
 
 kendo-card {
   overflow-y: auto;
+  max-height: 17rem;
+  @include base.scrollbar;
 }
 
 h3 {

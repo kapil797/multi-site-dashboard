@@ -18,6 +18,7 @@ import { Element } from '@progress/kendo-drawing';
 export class ProfileChartComponent implements OnChanges {
   @Input() data: DemandProfile;
   @Input() title: string;
+  @Input() alert: string;
   public chartConfig = chartConfig;
   public seriesColor: string;
   public majorGridLines = { visible: true, color: chartConfig.color, width: 0.1 };

@@ -6,5 +6,19 @@
   (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
 <div class="rh-2-wrapper">
   <app-transposed-table [data]="gridData"></app-transposed-table>
-  <app-machine-consumption class="mt-5" [period]="period" [machines]="machines"></app-machine-consumption>
+  <div class="d-flex mt-4">
+    <div class="flex-spacer"></div>
+    <div *ngIf="machines && machines.length > 0" class="dropdown-wrapper d-flex align-items-center me-5 p-2">
+      <kendo-label class="me-3" text="MACHINE:"></kendo-label>
+      <kendo-dropdownlist
+        appDropdown
+        (valueChange)="onToggleMachine($event)"
+        [data]="machines"
+        [(ngModel)]="machine"></kendo-dropdownlist>
+    </div>
+  </div>
+  <div class="charts-wrapper d-grid gap-4 mt-4">
+    <app-machine-consumption title="ENERGY CONSUMPTION" [data]="energyConsumptionData"></app-machine-consumption>
+    <app-machine-consumption title="WASTE CONSUMPTION" [data]="wasteConsumptionData"></app-machine-consumption>
+  </div>
 </div>

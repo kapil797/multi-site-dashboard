@@ -12,7 +12,7 @@
     [(activeIndex)]="activeIndex"
     (itemChanged)="onChange($event)">
     <ng-template let-item="item">
-      <div class="text truncate" [ngStyle]="getMarginOffset(wrapper)">
+      <div class="text text--truncate" [ngStyle]="getMarginOffset(wrapper)">
         {{ item.name }}
       </div>
     </ng-template>
