@@ -17,8 +17,8 @@ export class ProgressPerformanceComponent {
   public progressColors = progressColors;
   public progressStyle = { width: '250px', height: '250px' };
 
-  public formatText(prefix: string, v?: number) {
+  public formatText(v?: number) {
     if (v === undefined) return '';
-    return `${prefix} \n \n ${v.toFixed(2)}%`;
+    return `${v.toFixed(2)}%`;
   }
 }

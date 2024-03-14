@@ -16,9 +16,9 @@ export class ProductionAndInventoryService {
 
   public fetchInventoryPerformance$(_factory: string) {
     const data: InventoryPerformance = {
-      fillRate: getRandomNumber(0, 100),
-      turns: getRandomNumber(0.1, 1),
-      value: getRandomInt(5000, 25000),
+      fillRate: getRandomNumber(75, 100),
+      turns: getRandomNumber(3, 12),
+      value: getRandomInt(10000, 20000),
     };
     return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
   }
@@ -26,7 +26,7 @@ export class ProductionAndInventoryService {
   public fetchProductionPerformance$(_factory: string) {
     const data: ProductionPerformance[] = productionPerformance.map(row => {
       return {
-        value: getRandomNumber(0, 100),
+        value: getRandomNumber(30, 100),
         process: row.process,
       };
     });

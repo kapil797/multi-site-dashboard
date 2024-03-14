@@ -5,8 +5,12 @@
     <div class="dp-1-wrapper">
       <h1>DEMAND SPIKES AND PLUMMETS FOR ATTENTION</h1>
       <div class="profile-charts-container d-grid gap-4">
-        <app-profile-chart title="DEMAND FOR ESCENTZ (PCS)" [data]="demandProfiles.eScentz"></app-profile-chart>
         <app-profile-chart
+          alert="Spike detected: > 10000 pcs"
+          title="DEMAND FOR ESCENTZ (PCS)"
+          [data]="demandProfiles.eScentz"></app-profile-chart>
+        <app-profile-chart
+          alert="Spike detected: > 2000 pcs"
           title="DEMAND FOR MFCONNECT+ (PCS)"
           [data]="demandProfiles.mfConnectPlus"></app-profile-chart>
       </div>

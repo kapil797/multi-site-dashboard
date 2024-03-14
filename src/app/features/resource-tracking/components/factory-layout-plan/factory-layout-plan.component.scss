@@ -35,10 +35,12 @@ h4 {
   height: 100%;
 }
 
-.machine {
+.machine-tag-container {
   position: absolute;
   cursor: pointer;
-  border-radius: variables.$border-radius-2;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: variables.$border-radius-3;
 }
 
 .success {
@@ -54,5 +56,5 @@ h4 {
 }
 
 .neutral {
-  background-color: variables.$gray-700;
+  background-color: variables.$gray-800;
 }

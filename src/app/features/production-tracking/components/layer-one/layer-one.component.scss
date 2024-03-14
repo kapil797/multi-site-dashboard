@@ -9,6 +9,7 @@
 
 .k-grid-header {
   font-size: variables.$font-size-xl;
+  font-weight: bold;
 }
 
 app-sidebar {
@@ -21,6 +22,7 @@ app-sidebar {
 
 .pt-1-wrapper {
   @include base.container;
+  grid-template-rows: repeat(2, 1fr);
 }
 
 .img {

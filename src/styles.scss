@@ -39,8 +39,7 @@ body {
 }
 
 html {
-  scrollbar-color: variables.$bg-6 variables.$white;
-  scrollbar-width: thin;
+  @include base.scrollbar;
 }
 
 // ::-webkit-scrollbar {

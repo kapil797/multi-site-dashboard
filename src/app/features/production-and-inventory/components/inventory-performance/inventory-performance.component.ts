@@ -14,7 +14,8 @@ interface PerformanceGauge {
 }
 
 interface InlineStyles {
-  text: CSSStyle;
+  textHeader: CSSStyle;
+  textNumber: CSSStyle;
   gauge: CSSStyle;
 }
 
@@ -22,6 +23,7 @@ interface CSSStyle {
   fontSize?: string;
   width?: string;
   height?: string;
+  padding?: string;
 }
 
 type Layer = 'LAYER1' | 'LAYER2';
@@ -65,7 +67,7 @@ export class InventoryPerformanceComponent implements OnInit, OnChanges {
       this.gaugeData.push({
         title: 'Turns',
         value: this.data.turns,
-        maxValue: 1,
+        maxValue: 15,
         text: this.formatValueByCategory(Category.TURNS, this.data.turns),
         textColor: this.textColorByRange(Category.TURNS, this.data.turns),
         gaugeRange: this.gaugeRangeByCategory(Category.TURNS),
@@ -86,12 +88,14 @@ export class InventoryPerformanceComponent implements OnInit, OnChanges {
   private inlineStylesByLayer() {
     if (this.layer === 'LAYER1') {
       this.inlineStyles = {
-        text: { fontSize: '2rem' },
+        textHeader: { fontSize: '2rem', padding: '1rem' },
+        textNumber: { fontSize: '2.5rem', padding: '1rem' },
         gauge: { width: '265px', height: '200px' },
       };
     } else {
       this.inlineStyles = {
-        text: { fontSize: '1.25rem' },
+        textHeader: { fontSize: '1.25rem', padding: '0.5rem' },
+        textNumber: { fontSize: '1.5rem', padding: '0.5rem' },
         gauge: { width: '200px', height: '100px' },
       };
     }
@@ -128,9 +132,11 @@ export class InventoryPerformanceComponent implements OnInit, OnChanges {
         ] as GaugeRange[];
       case Category.TURNS:
         return [
-          { from: 0, to: 0.3, color: chartConfig.error },
-          { from: 0.3, to: 0.5, color: chartConfig.warning },
-          { from: 0.5, to: 1, color: chartConfig.success },
+          { from: 0, to: 1, color: chartConfig.error },
+          { from: 1, to: 5, color: chartConfig.warning },
+          { from: 5, to: 10, color: chartConfig.success },
+          { from: 10, to: 14, color: chartConfig.warning },
+          { from: 14, to: 15, color: chartConfig.error },
         ] as GaugeRange[];
       case Category.VALUE:
         return [

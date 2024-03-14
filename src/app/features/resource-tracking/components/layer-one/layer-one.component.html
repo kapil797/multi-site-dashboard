@@ -5,7 +5,7 @@
     <app-navbar header="Resource Tracking"></app-navbar>
     <div class="rt-1-wrapper d-grid gap-5">
       <div>
-        <div *ngFor="let item of machinesData" class="mb-3">
+        <div *ngFor="let item of machinesData" class="mb-5">
           <app-custom-table [title]="item.title" [data]="item.data"></app-custom-table>
         </div>
       </div>

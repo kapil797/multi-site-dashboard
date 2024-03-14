@@ -31,8 +31,9 @@ export class ResourceTrackingService {
   public fetchMachineResourceConsumption$(_factory: string, _machine: MachineStatus) {
     // Generate a random set of 20 items.
     // Interval of 3 secs.
-    const today = Date.now();
-    const earliest = today - 20 * 3 * 1000;
+    const today = new Date();
+    const lastMaintained = new Date().setDate(today.getDate() - 14);
+    const earliest = lastMaintained - 20 * 3 * 1000;
     const data: ResourceConsumption[] = [];
     for (let i = 0; i < 20; i++) {
       const temp: ResourceConsumption = {

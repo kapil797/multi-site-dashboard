@@ -1,14 +1,16 @@
 <kendo-grid scrollable="none" [kendoGridBinding]="gridData">
-  <kendo-grid-column field="machines" title="Machines"></kendo-grid-column>
+  <kendo-grid-column field="machines" title="Machines" [width]="125"></kendo-grid-column>
   <kendo-grid-column field="overall" title="Overall">
     <ng-template kendoGridCellTemplate let-dataItem>
-      <span [ngClass]="formatClassColor(dataItem.overall)">{{ formatValue(dataItem.overall) }}</span>
+      <div class="text__number text-end" [ngClass]="formatClassColor(dataItem.overall)">
+        {{ formatValue(dataItem.overall) }}
+      </div>
     </ng-template>
   </kendo-grid-column>
   <kendo-grid-column-group *ngFor="let group of gridColGroups" [title]="group.title" class="text-center">
     <kendo-grid-column *ngFor="let col of group.columns" [field]="col.field" [title]="col.title">
       <ng-template kendoGridCellTemplate let-dataItem>
-        <div [ngClass]="formatClassColor(dataItem[col.field])">
+        <div class="text__number text-end" [ngClass]="formatClassColor(dataItem[col.field])">
           {{ formatValue(dataItem[col.field]) }}
         </div>
       </ng-template>

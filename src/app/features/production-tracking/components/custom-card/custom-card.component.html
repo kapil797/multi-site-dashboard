@@ -4,9 +4,10 @@
     <h3>{{ header.toUpperCase() }}</h3>
     <app-circle-status *ngIf="status" status="ERROR" class="ms-2"></app-circle-status>
   </kendo-card-header>
-  <kendo-card-body class="card__body">
-    <div>
+  <kendo-card-body class="card__body d-flex">
+    <div class="text text--truncate">
       <strong>{{ content || 'Not Available' }}</strong>
+      <!-- <strong>{{ formatContent(content) }}</strong> -->
     </div>
   </kendo-card-body>
 </kendo-card>

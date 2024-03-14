@@ -12,4 +12,12 @@ export class CustomCardComponent {
   @Input() content?: string;
   @Input() status?: boolean;
   constructor() {}
+
+  public formatContent(v?: string) {
+    // CSS text ellipsis must be constrained by width.
+    // To use custom formatter instead, but won't be responsive.
+    if (!v) return 'Not Available';
+    if (v.length > 30) return v.substring(0, 30) + '...';
+    return v;
+  }
 }

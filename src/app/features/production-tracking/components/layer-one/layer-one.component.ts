@@ -58,12 +58,12 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   public salesOrderCols: ColumnSetting[] = [
     { title: 'SALES ORDER NO.', field: 'salesOrderNumber', width: 450 },
     { title: 'CUSTOMER NAME', field: 'customerName' },
-    { title: 'LAST UPDATED', field: 'lastUpdated', width: 450 },
+    { title: 'LAST UPDATED', field: 'lastUpdated', width: 370 },
   ];
   public workOrderCols: ColumnSetting[] = [
     { title: 'WORK ORDER NO.', field: 'workOrderNumber', width: 450 },
     { title: 'PROCESS STAGE', field: 'executionStage' },
-    { title: 'LAST UPDATED', field: 'lastUpdated', width: 450 },
+    { title: 'LAST UPDATED', field: 'lastUpdated', width: 370 },
   ];
   public salesOrderData: CompactedSalesOrder[];
   public workOrderData: CompactedWorkOrder[];
@@ -178,7 +178,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
       // Get WorkOrders, sorted by SalesOrders.
       for (const lineItem of row.lineItemAggregates) {
         if (this.workOrderData.length === this.rowCount) return;
-        this.addCompactedWorkOrdersForEachSalesOrder(lineItem.workOrderAggregates);
+        this.addCompactedWorkOrdersForEachSalesOrder(lineItem.workOrderAggregates, row.salesOrderNumber);
       }
     });
   }
@@ -194,10 +194,10 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
     this.salesOrderData.push(temp);
   }
 
-  private addCompactedWorkOrdersForEachSalesOrder(workOrderAggregates: WorkOrderAggregate[]) {
+  private addCompactedWorkOrdersForEachSalesOrder(workOrderAggregates: WorkOrderAggregate[], salesOrderNumber: string) {
     for (const row of workOrderAggregates) {
       const workOrder: CompactedWorkOrder = {
-        workOrderNumber: row.workOrderNumber,
+        workOrderNumber: this.formatWorkOrderNumber(row.workOrderNumber, salesOrderNumber),
         executionStage: row.executionStage || '-',
         lastUpdated: this.formatDisplayedTime(row.lastUpdated),
         progress: this.formatProgress(row.progress),
@@ -241,5 +241,9 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
     const time2 = data.completedDate ? new Date(data.completedDate).getTime() : Date.now();
     if (time1 - time2 > 0) return false;
     return true;
+  }
+
+  private formatWorkOrderNumber(workOrderNumber: string, salesOrderNumber: string) {
+    return `${salesOrderNumber}/${workOrderNumber.substring(6)}`;
   }
 }

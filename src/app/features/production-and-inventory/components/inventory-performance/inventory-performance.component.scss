@@ -5,3 +5,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
+.box {
+  box-sizing: border-box;
+  border: 0.2rem solid variables.$gray-700;
+}

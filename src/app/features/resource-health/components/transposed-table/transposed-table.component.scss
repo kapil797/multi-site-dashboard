@@ -3,7 +3,7 @@
 @use 'core/styles/grid';
 
 .k-table-md {
-  font-size: variables.$font-size-sm;
+  font-size: variables.$font-size-reg;
 }
 
 .k-grid .k-column-title {
@@ -12,13 +12,13 @@
 
 .k-grid-header {
   letter-spacing: unset;
+  background-color: #1e3552;
 }
 
 .k-grid .k-grid-header .k-table-th {
   justify-content: center;
   border: 1px solid variables.$bg-1;
 }
-
 .k-grid .k-table-td {
   border: 1px solid variables.$bg-1;
 }
@@ -33,4 +33,8 @@
 
 .warning {
   color: variables.$warning;
+}
+
+.text__number {
+  font-size: variables.$font-size-lg;
 }

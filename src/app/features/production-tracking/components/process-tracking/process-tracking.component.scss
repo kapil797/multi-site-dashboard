@@ -34,7 +34,6 @@ svg {
 }
 
 @mixin hexagon {
-  background-color: variables.$bg-3;
   font-size: variables.$font-size-xs;
   text-align: center;
   width: $width;
@@ -49,18 +48,14 @@ svg {
 
 .hexagon {
   @include hexagon;
+  background-color: variables.$white;
+}
+
+.hexagon__inner {
   transform: scale(.9);
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  // line-height: calc($width * 1.11);
-  // left: -$margin;
-  // top: calc($margin / 2);
-  // margin-right: $margin;
-}
-
-.hexagon__outer {
-  @include hexagon;
-  background-color: variables.$white;
+  background-color: variables.$bg-3;
 }
 
 .grid-col:nth-child(odd) {
@@ -73,23 +68,30 @@ svg {
 
 .selected {
   transition: all 0.5s ease-out;
-  background-color: variables.$cyan;
+  background-color: variables.$cyan !important;
 }
 
 .ongoing {
   transition: all 0.5s ease-out;
-  background-color: #DDEFEF;
+  background-color: #DDEFEF !important;
   color: #002540;
 }
 
 .completed {
   transition: all 0.5s ease-out;
-  background-color: variables.$gray-700;
+  background-color: variables.$gray-700 !important;
 }
 
-.hexagon-icon {
+.hexagon-legend {
+  @include hexagon;
   width: 1.5rem;
   height: 1.5rem;
+  background-color: variables.$white;
+}
+
+.hexagon-legend__inner {
+  transform: scale(.75);
+  background-color: variables.$bg-3;
 }
 
 .text {
