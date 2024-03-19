@@ -281,7 +281,7 @@ pipeline {
                     }
                     steps {
                         sh '''
-                        chmod 766 $WORKSPACE
+                        chmod 777 $WORKSPACE
                         docker run --name owasp-$SERVICE_NAME-$BUILD_NUMBER \
                         -v $WORKSPACE:/zap/wrk/:rw \
                         -t owasp/zap2docker-stable \
@@ -315,7 +315,7 @@ pipeline {
                     }
                     steps {
                         sh '''
-                        chmod 766 $WORKSPACE
+                        chmod 777 $WORKSPACE
                         docker run --name owasp-$SERVICE_NAME-$BUILD_NUMBER \
                         -v $WORKSPACE:/zap/wrk/:rw \
                         -t owasp/zap2docker-stable \
