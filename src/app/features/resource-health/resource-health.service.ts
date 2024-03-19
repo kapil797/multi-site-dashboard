@@ -4,7 +4,6 @@ import moment from 'moment';
 
 import { getRandomNumber } from '@core/utils/formatters';
 import { AppService } from '@core/services/app.service';
-import { ResourceHealthModule } from '@rh/resource-health.module';
 import {
   AggregatedResourceConsumption,
   MachineResourceHealth,
@@ -17,7 +16,7 @@ import overall from './mock-data/overall.json';
 import machines from './mock-data/machines.json';
 
 @Injectable({
-  providedIn: ResourceHealthModule,
+  providedIn: 'any',
 })
 export class ResourceHealthService {
   constructor(private app: AppService) {}

@@ -1,8 +1,14 @@
-<div class="rc-wrapper p-3 h-100">
-  <div class="d-flex">
-    <h3>{{ title.toUpperCase() }}</h3>
-    <div class="flex-spacer"></div>
-    <h3>LAST MAINTENANCE: {{ lastUpdated }}</h3>
+<div class="rc-wrapper p-4 pt-2 h-100">
+  <div class="d-flex flex-column">
+    <div class="d-flex">
+      <h2>{{ title.toUpperCase() }}</h2>
+      <div class="flex-spacer"></div>
+      <h2>LAST MAINTENANCE</h2>
+    </div>
+    <div class="d-flex">
+      <div class="flex-spacer"></div>
+      <div class="header">{{ lastUpdated }}</div>
+    </div>
   </div>
   <kendo-chart>
     <kendo-chart-axis-defaults [majorGridLines]="{ visible: false }"> </kendo-chart-axis-defaults>
@@ -25,9 +31,9 @@
       <kendo-chart-series-item type="column" [gap]="0" [data]="series || []" field="yValue"> </kendo-chart-series-item>
     </kendo-chart-series>
   </kendo-chart>
-  <div class="d-flex mt-5">
-    <div class="gauge-container me-5">
-      <h3 class="gauge-width">WASTE: {{ waste }}%</h3>
+  <div class="d-flex mt-4 gap-4">
+    <div class="gauge-container">
+      <h2>WASTE: {{ waste }}%</h2>
       <kendo-radialgauge>
         <kendo-radialgauge-scale
           [majorTicks]="{ visible: false }"
@@ -58,7 +64,7 @@
     </div>
 
     <div>
-      <h3>MACHINE ALERT HISTORY</h3>
+      <h2>MACHINE ALERT HISTORY</h2>
       <kendo-grid scrollable="none" [kendoGridBinding]="alertHistoryData">
         <kendo-grid-column field="issue" title="ISSUE">
           <ng-template kendoGridCellTemplate let-dataItem>

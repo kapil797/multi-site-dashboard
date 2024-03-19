@@ -39,9 +39,9 @@ function validateInput(
 
   // check duplicate values
   if (values.length > new Set(values).size) {
-    return { message: `Remove duplicate ${identifier}s` };
+    return { message: `Remove duplicate ${identifier}` };
   } else if (maxCount && values.length > maxCount) {
-    return { message: `Maximum of ${maxCount} ${identifier}s are allowed` };
+    return { message: `Maximum of ${maxCount} ${identifier} is allowed` };
   }
 
   const invalid: string[] = [];

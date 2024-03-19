@@ -54,15 +54,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## Architecture
-
-- old MF services? .NET?
-- websocket middleware (express JS)
-- Why this architeture is because of HTTP CORS issue; most backend services are using HTTP, but dashboard is using HTTPS
-- websocket is used to push data from rabbitMQ
-- Get the list of APIs required
-- Work order 2401120002, 2401120002.01, .02?
-
 ## PoC
 
 - MF: Wang li

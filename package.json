@@ -1,5 +1,5 @@
 {
-  "name": "multi-site-dashboard",
+  "name": "single-site-dashboard",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,8 +7,8 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "prepare": "husky install"
+    "test:ci": "ng test --code-coverage --no-progress --browsers=ChromeHeadlessNoSandbox --watch=false",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {

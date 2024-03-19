@@ -15,7 +15,6 @@ import {
 } from 'rxjs';
 
 import { AppService } from '@core/services/app.service';
-import { ProductionTrackingModule } from '@pt/production-tracking.module';
 import {
   Execution,
   ProcessTrackingMap,
@@ -61,7 +60,7 @@ interface LegacyRpsResponse {
 }
 
 @Injectable({
-  providedIn: ProductionTrackingModule,
+  providedIn: 'any',
 })
 export class ProductionTrackingService {
   // Source of truth.
@@ -261,7 +260,7 @@ export class ProductionTrackingService {
   }
 
   public fetchSalesOrders$(factory: string, limit?: number) {
-    const api = this.app.api.concatOrderappApiByFactory(factory, [this.app.api.ORDERAPP_SALES_ORDER]);
+    const api = this.app.api.concatOrderappApiByFactory(factory, this.app.api.ORDERAPP_SALES_ORDER);
     const queryParams = limit ? `?limit=${limit}` : '';
     console.log(api, queryParams);
     // this.http.get<SalesOrder[]>(`${api}${queryParams}`)
@@ -274,11 +273,12 @@ export class ProductionTrackingService {
     // If a SalesOrder has multiple line items, each line item will have a parent WorkOrder.
     // Function should return N WorkOrders, where N == number of line items.
     // TODO: Unsure if RPS API can handle this, to monitor further.
-    const api = this.app.api.concatRpsApiByFactory(factory, [
+    const api = this.app.api.concatRpsApiByFactory(
+      factory,
       this.app.api.RPS_WORK_ORDER,
       'salesorders',
-      String(salesOrderId),
-    ]);
+      String(salesOrderId)
+    );
     return this.http
       .get<WorkOrder[]>(api)
       .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
@@ -289,7 +289,7 @@ export class ProductionTrackingService {
     // a slightly longer time than querying by WorkOrderNumber i.e. 7s vs 5s.
     // Fetching the entire list may be faster as you can execute parallel requests
     // without requiring the WorkOrderNumber from RPS API.
-    const api = this.app.api.concatRtdApiByFactory(factory, [this.app.api.RTD_WORK_ORDER]);
+    const api = this.app.api.concatRtdApiByFactory(factory, this.app.api.RTD_WORK_ORDER);
     let payload = {};
     if (workOrderNumber) {
       payload = {
@@ -307,7 +307,7 @@ export class ProductionTrackingService {
   public fetchExecutions$(factory: string, correlationId?: number, startDateTime?: string) {
     // Fetching the list by correlationId is much faster than querying by startDateTime.
     // i.e. 30ms vs 5s.
-    const api = this.app.api.concatRtdApiByFactory(factory, [this.app.api.RTD_EXECUTION]);
+    const api = this.app.api.concatRtdApiByFactory(factory, this.app.api.RTD_EXECUTION);
     let payload = {};
     if (correlationId) {
       payload = {
@@ -387,7 +387,7 @@ export class ProductionTrackingService {
 
   public initWebSocketStreams() {
     const websocket$ = webSocket({
-      url: this.app.config.DASHBOARD_WEBSOCKET_URL,
+      url: this.app.api.MF_DASHBOARD_WEBSOCKET_URL,
     });
 
     const executionStreamFromRtd$ = websocket$.multiplex(
@@ -402,6 +402,7 @@ export class ProductionTrackingService {
       message => {
         // Filter messages.
         const msg = message as WebsocketStream;
+        console.log(msg);
         return !!msg.type && msg.type.toUpperCase() === 'RTD';
       }
     );
