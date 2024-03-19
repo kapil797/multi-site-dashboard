@@ -15,7 +15,7 @@ pipeline {
         PROJECT_NAME = "dashboard"
         SERVICE_NAME = "single-site-dashboard-angular"
         LANGUAGE = 'angular' // angular, dotnet, nodejs, go, python
-        K8S_MANIFESTS_URL = "http://tools.mf.platform/bitbucket/scm/oa/kubernetes-manifests.git"
+        K8S_MANIFESTS_URL = "http://tools.mf.platform/bitbucket/scm/dash/kubernetes-manifests.git"
 
         // Image.
         IMAGE_BUILD_TAG_PREFIX = "harbor.mf.platform/$PROJECT_NAME/$SERVICE_NAME"
