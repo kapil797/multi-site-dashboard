@@ -1,15 +1,22 @@
 import { Routes } from '@angular/router';
 
 import { AuthGuard } from '@core/auth/auth.guard';
-import { FallbackComponent } from '@core/components/fallback/fallback.component';
-import { LandingComponent } from '@core/components/landing/landing.component';
-import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
 import { RoutePaths } from '@core/constants/routes.constant';
 import { routeGuard } from '@core/guards/route.guard';
 import { urlJoin } from '@core/utils/routing';
 
+import { FallbackComponent } from '@core/components/fallback/fallback.component';
+import { HeartbeatComponent } from '@core/components/heartbeat/heartbeat.component';
+import { LandingComponent } from '@core/components/landing/landing.component';
+import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorized.component';
+
 export const routes: Routes = [
   // Standalone.
+  {
+    path: RoutePaths.HEARTBEAT,
+    component: HeartbeatComponent,
+    data: { animationState: 'heartbeatPage' },
+  },
   {
     path: `:${RoutePaths.HOME}`,
     component: LandingComponent,
