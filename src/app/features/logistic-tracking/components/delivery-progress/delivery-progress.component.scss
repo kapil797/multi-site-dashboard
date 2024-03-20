@@ -1,25 +1,26 @@
 @use 'core/styles/base';
 @use 'core/styles/variables';
 
-.content-wrapper{
+.content-wrapper {
   background-color: #002135;
   padding: 1rem;
   letter-spacing: variables.$letter-spacing-sm;
+  box-sizing: border-box;
 }
 .table .topline td {
-    vertical-align: middle; 
-    padding-top: 0.5rem; 
-    padding-bottom: 0.5rem;
-  }
+  vertical-align: middle;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
 
-  .table thead th {
-    border-bottom: 2px solid #dee2e6; 
-  }
+.table thead th {
+  border-bottom: 2px solid #dee2e6;
+}
 
-  .table tbody tr {
-    border-bottom: 1px solid #e9ecef; 
-  }
-  
-  .spacer-cell {
-    width: 1rem; 
-  }
+.table tbody tr {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.spacer-cell {
+  width: 1rem;
+}

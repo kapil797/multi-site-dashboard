@@ -63,6 +63,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
       zoom: 11,
       center: [this.lng, this.lat],
     });
+    this.map.resize();
   }
   loadMapInfos(token: string) {
     this.lt

@@ -10,4 +10,5 @@ app-sidebar {
 
 .lt-1-wrapper {
   @include base.container;
+  height: 80vh;
 }

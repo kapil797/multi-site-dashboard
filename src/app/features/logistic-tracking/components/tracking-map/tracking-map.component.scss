@@ -3,31 +3,36 @@
   width: 100%;
   height: 100%;
 }
-#map{
-position: relative;
-border: 3px solid variables.$gray-700;
-border-radius: 0.5rem;
+#map {
+  position: relative;
+  border: 3px solid variables.$gray-700;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
 }
 
+.map-wrapper {
+  height: 21rem;
+  box-sizing: border-box;
+}
 
 .menu {
   position: absolute;
-  bottom: 10px; 
+  bottom: 10px;
   right: 10px;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .status-list {
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-  display: flex; 
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
   flex-direction: row;
   gap: 10px;
-  align-items: center; 
-  border-radius: 5px; 
-  padding: 5px; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .status-list li {
@@ -35,8 +40,18 @@ border-radius: 0.5rem;
   display: flex;
   align-items: center;
 }
-.red{color: #E02D1B;}
-.blue{color: #3887BE}
-.orange{color: #F1962A}
-.green{color: #8ACB08}
-.red-orange{color: #C87008}
+.red {
+  color: #e02d1b;
+}
+.blue {
+  color: #3887be;
+}
+.orange {
+  color: #f1962a;
+}
+.green {
+  color: #8acb08;
+}
+.red-orange {
+  color: #c87008;
+}
