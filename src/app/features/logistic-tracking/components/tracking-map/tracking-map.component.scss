@@ -1,0 +1,42 @@
+@use 'core/styles/variables';
+.match-parent {
+  width: 100%;
+  height: 100%;
+}
+#map{
+position: relative;
+border: 3px solid variables.$gray-700;
+border-radius: 0.5rem;
+}
+
+
+.menu {
+  position: absolute;
+  bottom: 10px; 
+  right: 10px;
+  z-index: 1; 
+}
+
+.status-list {
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: row;
+  gap: 10px;
+  align-items: center; 
+  border-radius: 5px; 
+  padding: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.status-list li {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+.red{color: #E02D1B;}
+.blue{color: #3887BE}
+.orange{color: #F1962A}
+.green{color: #8ACB08}
+.red-orange{color: #C87008}

@@ -262,6 +262,7 @@ export class ProductionTrackingService {
     const api = this.app.api.concatOrderappApiByFactory(factory, [this.app.api.ORDERAPP_SALES_ORDER]);
     const queryParams = limit ? `?limit=${limit}` : '';
     console.log(api, queryParams);
+
     // this.http.get<SalesOrder[]>(`${api}${queryParams}`)
     return of(salesOrder as SalesOrder[]).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err))))

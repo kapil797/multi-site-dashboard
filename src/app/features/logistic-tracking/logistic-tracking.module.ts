@@ -5,9 +5,22 @@ import { LayerResolverComponent } from '@lt/components/layer-resolver/layer-reso
 import { TrackingMapComponent } from '@lt/components/tracking-map/tracking-map.component';
 import { LogisticTrackingRoutingModule } from '@lt/logistic-tracking-routing.module';
 import { SharedModule } from '@shared/shared.module';
+import { LogisticTrackingService } from './logistic-tracking-service';
+import { DeliveryProgressComponent } from '@lt/components/delivery-progress/delivery-progress.component';
+import { OrderStatusIndividualComponent } from '@lt/components/order-status-individual/order-status-individual.component';
+import { OrderStatusOverviewComponent } from '@lt/components/order-status-overview/order-status-overview.component';
 
 @NgModule({
-  declarations: [LayerOneComponent, LayerTwoComponent, LayerResolverComponent, TrackingMapComponent],
+  declarations: [
+    LayerOneComponent,
+    LayerTwoComponent,
+    LayerResolverComponent,
+    TrackingMapComponent,
+    DeliveryProgressComponent,
+    OrderStatusIndividualComponent,
+    OrderStatusOverviewComponent,
+  ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
+  providers: [LogisticTrackingService],
 })
 export class LogisticTrackingModule {}

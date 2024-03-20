@@ -1,0 +1,11 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.content-wrapper{
+    letter-spacing: variables.$letter-spacing-sm;
+    background-color: #002135;
+    padding: 1rem;
+}
+.chart{
+    height: 22vh;
+}

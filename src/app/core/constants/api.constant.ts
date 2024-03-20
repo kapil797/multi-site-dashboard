@@ -1,5 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http';
-
 import { Factory } from '@core/models/factory.model';
 import { urlJoin } from '@core/utils/routing';
 
@@ -13,6 +12,7 @@ export class BaseApi {
   public RPS_MF_BASE_URL: string;
   public RTD_MF_BASE_URL: string;
   public ORDERAPP_MF_BASE_URL: string;
+  public MIDDLEWARE_URL: string;
 
   public RPS_UMF_BASE_URL: string;
   public RTD_UMF_BASE_URL: string;
@@ -57,9 +57,13 @@ export class BaseApi {
         return '';
     }
   }
+  public concatMiddleWareApiWithSuffixes(apiSuffix: string) {
+    return urlJoin(this.MIDDLEWARE_URL, apiSuffix);
+  }
 
   public initApis() {
     // For APIs that are independent of factory,
+    this.MIDDLEWARE_URL = 'https://dev.mf.platform/dashboard/operation-api-svc';
   }
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {

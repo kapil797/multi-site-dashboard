@@ -9,7 +9,7 @@ import { LayerOneComponent } from '@lt/components/layer-one/layer-one.component'
 import { LayerTwoComponent } from '@lt/components/layer-two/layer-two.component';
 
 @Component({
-  selector: 'app-pt-layer-resolver',
+  selector: 'app-lt-layer-resolver',
   templateUrl: './layer-resolver.component.html',
   styleUrl: './layer-resolver.component.scss',
 })

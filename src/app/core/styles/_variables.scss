@@ -71,3 +71,84 @@ $device-desktop: 1025px;
 $border-radius-0: 0.5rem; // Outer.
 $border-radius-1: 0.75rem; // Inner.
 $border-radius-2: 0.25rem; // Nested inner.
+
+
+
+
+// // Map style
+$assetPath: '/assets/images/map-pins';
+$marker-start-img: '#{$assetPath}/start-marker.png';
+$marker-end-img: '#{$assetPath}/end-marker.png';
+$marker-driver-img: '#{$assetPath}/driver.png';
+
+
+$marker-job-pending: '#{$assetPath}/blue.png';
+$marker-job-late: '#{$assetPath}/orange.png';
+$marker-job-ontime: '#{$assetPath}/green.png';
+$marker-job-fail: '#{$assetPath}/red.png';
+$marker-job-expected-late: '#{$assetPath}/orange-hexagon.png';
+ 
+  .marker-pending {
+    background-image: url($marker-job-pending);
+  
+  }
+  
+  .marker-late {
+    background-image: url($marker-job-late);
+  }
+  
+  .marker-ontime {
+    background-image: url($marker-job-ontime);
+  }
+  
+  .marker-fail {
+    background-image: url($marker-job-fail);
+  }
+  
+  .marker-expect-late {
+    background-image: url($marker-job-expected-late);
+  }
+  .marker-driver {
+    background-image: url($marker-driver-img);
+    background-size: cover;
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .marker {
+    background-size: cover;
+    width: 20px;
+    height: 31px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .marker-start {
+    background-image: url($marker-start-img);
+    background-size: cover;
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .marker-end {
+    background-image: url($marker-end-img);
+    background-size: cover;
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  
+  .mapboxgl-popup {
+    max-width: 200px;
+  }
+  .mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+  }
+

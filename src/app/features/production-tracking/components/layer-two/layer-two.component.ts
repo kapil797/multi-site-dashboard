@@ -54,7 +54,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
     this.executionStreamFromRtd$.pipe(takeUntil(this.ngUnsubscribe$)).subscribe(msg => {
       // Update by LineItem if change is relevant.
       const res = msg as ExecutionStream;
-      console.log(res);
+
       const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
         const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
         if (res.WOID.includes(parentWorkOrderNumber)) return true;
