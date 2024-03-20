@@ -1,0 +1,90 @@
+<app-navbar
+  header="Management KPI"
+  [dropdownOne]="projection"
+  dropdownOneLabel="PROJECTION"
+  (toggleDropdownOne)="onToggleProjection($event)"
+  [dropdownTwo]="period"
+  dropdownTwoLabel="PERIOD"
+  (toggleDropdownTwo)="onTogglePeriod($event)"></app-navbar>
+<div>
+  <div class="kpi-selection">
+    <button (click)="onKPIChange(1)" [ngClass]="{ selected: selectedKPI === 1 }" class="tab">Financials</button>
+    <button (click)="onKPIChange(2)" [ngClass]="{ selected: selectedKPI === 2 }" class="tab">Inventory</button>
+    <button (click)="onKPIChange(3)" [ngClass]="{ selected: selectedKPI === 3 }" class="tab">Operations</button>
+    <button (click)="onKPIChange(4)" [ngClass]="{ selected: selectedKPI === 4 }" class="tab">Productivity</button>
+    <button (click)="onKPIChange(5)" [ngClass]="{ selected: selectedKPI === 5 }" class="tab">
+      Customer Satisfaction
+    </button>
+    <button (click)="onKPIChange(6)" [ngClass]="{ selected: selectedKPI === 6 }" class="tab">Safety</button>
+  </div>
+  <div class="kpi-wrapper d-grid gap-4">
+    <app-pie-chart
+      [chartTitle]="'Current Revenue'"
+      [data]="pieData"
+      [displayNoValueMessage]="displayCurrentNoValueMessage"></app-pie-chart>
+    <app-pie-chart
+      [chartTitle]="'Projected Revenue'"
+      [data]="projectedData"
+      [displayNoValueMessage]="displayProjectedNoValueMessage"></app-pie-chart>
+    <!-- <div class="current-wrapper"> 
+      <h2 class="chart-title">Current Revenue</h2>
+      <kendo-chart *ngIf="!displayCurrentNoValueMessage" title="" style="height: 62.5vh">
+        <kendo-chart-area background="{{ chartConstant.BACKGROUND }}"></kendo-chart-area>
+        <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+        <kendo-chart-series>
+          <kendo-chart-series-item
+            type="donut"
+            [data]="pieData"
+            field="value"
+            [autoFit]="true"
+            [border]="{ color: chartConstant.BACKGROUND, width: 5, dashType: 'solid' }"
+            categoryField="category"
+            [labels]="{
+              visible: true,
+              content: labelContent,
+              color: labelColor,
+              background: chartConstant.BACKGROUND,
+              position: 'outsideEnd'
+            }">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+      <div
+        style="height: 62.5vh"
+        class="d-flex flex-column justify-content-center align-items-center"
+        *ngIf="displayCurrentNoValueMessage">
+        <span>No Data Available</span>
+      </div>
+    </div> -->
+    <!-- <div class="projected-wrapper">
+      <h2 class="chart-title">Projected Revenue</h2>
+      <kendo-chart *ngIf="!displayProjectedNoValueMessage" title="" style="height: 62.5vh">
+        <kendo-chart-area background="{{ chartConstant.BACKGROUND }}"></kendo-chart-area>
+        <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+        <kendo-chart-series>
+          <kendo-chart-series-item
+            type="donut"
+            [data]="projectedData"
+            field="value"
+            [autoFit]="true"
+            categoryField="category"
+            [border]="{ color: chartConstant.BACKGROUND, width: 5, dashType: 'solid' }"
+            [labels]="{
+              visible: true,
+              content: labelContent,
+              color: labelColor,
+              background: chartConstant.BACKGROUND,
+              position: 'outsideEnd'
+            }">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+      <div
+        style="height: 62.5vh"
+        class="d-flex flex-column justify-content-center align-items-center"
+        *ngIf="displayProjectedNoValueMessage">
+        <span>No Data Available</span>
+      </div>
+    </div> -->
+  </div>
+</div>

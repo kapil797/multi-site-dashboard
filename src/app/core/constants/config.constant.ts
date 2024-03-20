@@ -9,4 +9,7 @@ export interface Config {
   MF_RPS_URL: string;
   MF_RTD_URL: string;
   MF_ORDERAPP_URL: string;
+  MF_DASHBOARD_MIDDLEWARE_URL: string;
+  MAP_ACCESS_TOKEN: string;
+  MAP_API_URL: string;
 }

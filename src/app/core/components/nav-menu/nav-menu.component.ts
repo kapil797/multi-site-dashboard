@@ -87,7 +87,10 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
     // Hence, using ActivatedRoute will have an empty routeTree.
     // Workaround is to pass an absolute path.
     this.zone.run(() => {
-      this.router.navigate([this.app.factory(), item.resource, layer]);
+      this.router.navigate([this.app.factory(), item.resource, layer], {
+        queryParams: { kpiSide: item.kpiSide },
+      });
+
       this.app.resetDialog();
     });
   }

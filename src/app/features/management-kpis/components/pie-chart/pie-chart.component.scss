@@ -1,0 +1,17 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+.current-wrapper {
+    letter-spacing: variables.$letter-spacing-sm;
+    padding: 0 2rem;
+    background: variables.$bg-1;
+    width: 90%;
+    height: 75vh;
+    border-radius: 0.5rem;
+
+  
+    .chart-title{
+      margin-top: 1rem;
+      text-transform: uppercase;
+      color: #E5E9EE;
+    }
+}

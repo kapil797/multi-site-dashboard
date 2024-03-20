@@ -1,5 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http';
-
 import { Factory } from '@core/models/factory.model';
 import { urlJoin } from '@core/utils/routing';
 import { Config } from '@core/constants/config.constant';
@@ -15,11 +14,16 @@ export class BaseApi {
   public MF_RTD_URL: string;
   public MF_ORDERAPP_URL: string;
   public MF_DASHBOARD_WEBSOCKET_URL: string;
+  public MF_DASHBOARD_MIDDLEWARE_URL: string;
 
   public UMF_RPS_URL: string;
   public UMF_RTD_URL: string;
   public UMF_ORDERAPP_URL: string;
   public UMF_DASHBOARD_WEBSOCKET_URL: string;
+  public UMF_DASHBOARD_MIDDLEWARE_URL: string;
+
+  // Independent of factories.
+  public MAP_API_URL: string;
 
   // Define API endpoints here.
   // Override in different environments if necessary,
@@ -67,11 +71,24 @@ export class BaseApi {
     }
   }
 
+  public concatMiddleWareApiByFactory(factory: string, ...apiSuffixes: string[]) {
+    switch (factory) {
+      case Factory.MODEL_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+      case Factory.MICRO_FACTORY:
+        return urlJoin(this.UMF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+      default:
+        return '';
+    }
+  }
+
   public init(config: Config) {
     this.MF_RPS_URL = config.MF_RPS_URL;
     this.MF_RTD_URL = config.MF_RTD_URL;
     this.MF_ORDERAPP_URL = config.MF_ORDERAPP_URL;
     this.MF_DASHBOARD_WEBSOCKET_URL = config.MF_DASHBOARD_WEBSOCKET_URL;
+    this.MF_DASHBOARD_MIDDLEWARE_URL = config.MF_DASHBOARD_MIDDLEWARE_URL;
+    this.MAP_API_URL = config.MAP_API_URL;
   }
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {
