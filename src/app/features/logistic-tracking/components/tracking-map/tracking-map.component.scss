@@ -1,7 +1,7 @@
 @use 'core/styles/variables';
 
 // // Map style
-$assetPath: 'assets/images/map-pins';
+$assetPath: 'src/assets/images/map-pins';
 $marker-start-img: '#{$assetPath}/start-marker.png';
 $marker-end-img: '#{$assetPath}/end-marker.png';
 $marker-driver-img: '#{$assetPath}/driver.png';
@@ -89,7 +89,6 @@ $marker-job-expected-late: '#{$assetPath}/orange-hexagon.png';
 }
 
 .map-wrapper {
-  height: 21rem;
   box-sizing: border-box;
 }
 

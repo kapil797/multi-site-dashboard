@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Dropdown } from '@core/classes/form/form.class';
+import { AppService } from '@core/services/app.service';
 import { faArrowTrendUp, faArrowTrendDown, faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { ManagementLayerOneData } from '@mk/management-kpis-model';
 import { ManagementKpisService } from '@mk/management-kpis-service';
@@ -35,6 +36,7 @@ export class LayerOneComponent {
   });
 
   constructor(
+    private app: AppService,
     private mk: ManagementKpisService,
     private route: ActivatedRoute
   ) {}
@@ -49,19 +51,21 @@ export class LayerOneComponent {
   }
   retrieveKPIData() {
     this.$subscription.add(
-      this.mk.fetchManagementKPILayerOneData(this.frequency).subscribe((res: ManagementLayerOneData[]) => {
-        if (this.kpiSide === 'left') {
-          this.displayDataSetOne = res.slice(0, 4);
-        } else {
-          this.displayDataSetOne = res.slice(4, 8);
-          this.displayDataSetOne = this.displayDataSetOne.map(item => {
-            if (item.Category === 'Capacity Utilization') {
-              return { ...item, Category: 'Capacity Utilisation' };
-            }
-            return item;
-          });
-        }
-      })
+      this.mk
+        .fetchManagementKPILayerOneData$(this.app.factory(), this.frequency)
+        .subscribe((res: ManagementLayerOneData[]) => {
+          if (this.kpiSide === 'left') {
+            this.displayDataSetOne = res.slice(0, 4);
+          } else {
+            this.displayDataSetOne = res.slice(4, 8);
+            this.displayDataSetOne = this.displayDataSetOne.map(item => {
+              if (item.Category === 'Capacity Utilization') {
+                return { ...item, Category: 'Capacity Utilisation' };
+              }
+              return item;
+            });
+          }
+        })
     );
   }
 

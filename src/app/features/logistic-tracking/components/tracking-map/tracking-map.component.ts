@@ -34,7 +34,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
   color = ['red', 'orange', 'yellow', 'purple', 'violet', 'pink', '#006400', 'green', '#00ff00', 'black'];
   delivery: Delivery[] = [];
   @Output() driverInfoEvent = new EventEmitter();
-  @Input() height: number;
+  @Input() height: string;
   @ViewChild('map') private mapElement: ElementRef;
 
   constructor(

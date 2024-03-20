@@ -1,3 +1,5 @@
+import * as mapboxgl from 'mapbox-gl';
+
 export interface MapToken {
   userName?: string;
   userRole?: string;

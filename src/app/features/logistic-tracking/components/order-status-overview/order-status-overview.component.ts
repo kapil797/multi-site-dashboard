@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { AppService } from '@core/services/app.service';
 import { OrderStatusSummary } from '@lt/logistic-tracking-model';
 import { LogisticTrackingService } from '@lt/logistic-tracking-service';
 import { takeUntil } from 'rxjs';
@@ -14,12 +15,15 @@ export class OrderStatusOverviewComponent extends CancelSubscription implements 
   BACKGROUND: '#002135';
   orderStatusCategory: string[];
   orderStatusData: number[][];
-  constructor(private lt: LogisticTrackingService) {
+  constructor(
+    private app: AppService,
+    private lt: LogisticTrackingService
+  ) {
     super();
   }
   ngOnInit() {
     this.lt
-      .fetchOrderStatusSummary()
+      .fetchOrderStatusSummary$(this.app.factory())
       .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe((res: OrderStatusSummary[]) => {
         this.orderStatusCategory = res.map(item => item.OrderStatus.replace(' ', '\n'));

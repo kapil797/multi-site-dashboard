@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DateTime } from 'luxon';
 import { IndividualOrderStatus } from '@lt/logistic-tracking-model';
+import { AppService } from '@core/services/app.service';
 
 @Component({
   selector: 'app-order-status-individual',
@@ -16,7 +17,10 @@ export class OrderStatusIndividualComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   individualOrder: IndividualOrderStatus[] = [];
 
-  constructor(private ltService: LogisticTrackingService) {}
+  constructor(
+    private app: AppService,
+    private ltService: LogisticTrackingService
+  ) {}
 
   ngOnInit(): void {
     this.fetchAndFilterOrders();
@@ -35,7 +39,7 @@ export class OrderStatusIndividualComponent implements OnInit, OnDestroy {
 
   private fetchAndFilterOrders(): void {
     this.ltService
-      .fetchIndividualOrderStatus()
+      .fetchIndividualOrderStatus$(this.app.factory())
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: res => {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Dropdown } from '@core/classes/form/form.class';
 import { chartConstant } from '@core/constants/chart.constant';
+import { AppService } from '@core/services/app.service';
 import { ApiResponse, InventoryKPI } from '@mk/management-kpis-model';
 import { ManagementKpisService } from '@mk/management-kpis-service';
 import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
@@ -26,6 +27,7 @@ export class LayerTwoComponent {
   labelColor: string = 'rgb(255,255,255)';
   chartConstant = chartConstant;
   constructor(
+    private app: AppService,
     private intl: IntlService,
     private mk: ManagementKpisService
   ) {
@@ -43,19 +45,19 @@ export class LayerTwoComponent {
   getApiCallBasedOnKPI(kpi: number, transMonth: number) {
     switch (kpi) {
       case 1:
-        return this.mk.fetchFinancialKPI(this.frequency);
+        return this.mk.fetchFinancialKPI$(this.app.factory(), this.frequency);
       case 2:
-        return this.mk.fetchInventoryKPI(transMonth);
+        return this.mk.fetchInventoryKPI$(this.app.factory(), transMonth);
       case 3:
-        return this.mk.fetchOperationKPI(this.frequency);
+        return this.mk.fetchOperationKPI$(this.app.factory(), this.frequency);
       case 4:
-        return this.mk.fetchProductivityKPI(this.frequency);
+        return this.mk.fetchProductivityKPI$(this.app.factory(), this.frequency);
       case 5:
-        return this.mk.fetchCustomerSatisfaction(this.frequency);
+        return this.mk.fetchCustomerSatisfaction$(this.app.factory(), this.frequency);
       case 6:
-        return this.mk.fetchSafetyKPI(this.frequency);
+        return this.mk.fetchSafetyKPI$(this.app.factory(), this.frequency);
       default:
-        return this.mk.fetchFinancialKPI(this.frequency);
+        return this.mk.fetchFinancialKPI$(this.app.factory(), this.frequency);
     }
   }
   async onKPIChange(kpi: number) {
