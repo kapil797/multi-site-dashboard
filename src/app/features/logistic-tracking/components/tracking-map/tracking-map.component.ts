@@ -1,4 +1,3 @@
-import { mapConstants } from '@core/constants/map.constant';
 import * as mapboxgl from 'mapbox-gl';
 import { Component, EventEmitter, OnInit, Output, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { IconDefinition, faMapPin } from '@fortawesome/free-solid-svg-icons';
@@ -61,7 +60,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
   }
   mapInitial() {
     this.map = new mapboxgl.Map({
-      accessToken: mapConstants.MAP_ACCESS_TOKEN,
+      accessToken: this.app.config.MAP_ACCESS_TOKEN,
       container: 'map',
       style: this.style,
       zoom: 11,
@@ -187,7 +186,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     const [endLng, endLat] = getLngLat(end);
     return (
       `${this.routeApiRoot}/${startLng},${startLat};${endLng},${endLat}` +
-      `?steps=true&geometries=geojson&access_token=${mapConstants.MAP_ACCESS_TOKEN}`
+      `?steps=true&geometries=geojson&access_token=${this.app.config.MAP_ACCESS_TOKEN}`
     );
   }
   addMarker(point: Point, markerType: MarkerType) {
