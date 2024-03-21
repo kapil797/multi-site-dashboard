@@ -1,5 +1,15 @@
 import * as mapboxgl from 'mapbox-gl';
-import { Component, EventEmitter, OnInit, Output, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  Input,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { IconDefinition, faMapPin } from '@fortawesome/free-solid-svg-icons';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { LogisticTrackingService } from '@lt/logistic-tracking-service';
@@ -37,6 +47,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
   @ViewChild('map') private mapElement: ElementRef;
 
   constructor(
+    private renderer: Renderer2,
     private app: AppService,
     private lt: LogisticTrackingService
   ) {
@@ -122,6 +133,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     const query = await fetch(this.routeApiGen(route.startPoint.coordinates, route.endPoint.coordinates), {
       method: 'GET',
     });
+    console.log('query', query);
     const json = await query.json();
     const data = json.routes[0];
     const routeCoordinates = data.geometry.coordinates;
@@ -190,14 +202,12 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     );
   }
   addMarker(point: Point, markerType: MarkerType) {
-    //new mapboxgl.Marker().setLngLat(point.coordinates).addTo(this.map);
-
-    const el = document.createElement('div');
+    const el = this.renderer.createElement('div');
     if (markerType != MarkerType.driver) {
       if (markerType == MarkerType.start) {
-        el.className = 'marker-start';
+        this.renderer.addClass(el, 'marker-start');
       } else if (markerType == MarkerType.end) {
-        el.className = 'marker-end';
+        this.renderer.addClass(el, 'marker-end');
       }
       // make a marker for each route and add it to the map
       new mapboxgl.Marker(el)
@@ -210,7 +220,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     }
     // dirver icon
     else {
-      el.className = 'marker-driver';
+      this.renderer.addClass(el, 'marker-driver');
       new mapboxgl.Marker(el).setLngLat(point.coordinates).addTo(this.map);
     }
   }
@@ -237,19 +247,11 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
         break;
     }
 
-    const el = document.createElement('div');
-    el.className = `marker ${classname}`;
+    const el = this.renderer.createElement('div');
+    this.renderer.addClass(el, 'marker');
+    this.renderer.addClass(el, classname);
 
-    new mapboxgl.Marker(el)
-      .setLngLat(coordinate)
-      .setPopup
-      // TODO: activate this
-      // new mapboxgl.Popup({ offset: 25 }) // add popups
-      //   .setHTML(
-      //     `<h3>${point.title}</h3><p>${point.description}</p>`
-      //   )
-      ()
-      .addTo(this.map);
+    new mapboxgl.Marker(el).setLngLat(coordinate).addTo(this.map);
   }
   emitDriverInfoEvent(vehicles: Vehicle[], jobs: DeliveryDetail[]) {
     vehicles.forEach(item => {
