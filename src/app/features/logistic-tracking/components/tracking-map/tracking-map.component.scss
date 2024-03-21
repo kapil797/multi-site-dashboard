@@ -1,6 +1,6 @@
 @use 'core/styles/variables';
 
-$assetPath: '/assets/images/map-pins';
+$assetPath: 'src/assets/images/map-pins';
 $marker-start-img: '#{$assetPath}/start-marker.png';
 $marker-end-img: '#{$assetPath}/end-marker.png';
 $marker-driver-img: '#{$assetPath}/driver.png';
