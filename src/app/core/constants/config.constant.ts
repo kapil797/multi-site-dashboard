@@ -12,4 +12,5 @@ export interface Config {
   MF_DASHBOARD_MIDDLEWARE_URL: string;
   MAP_ACCESS_TOKEN: string;
   MAP_API_URL: string;
+  ROUTE_API_URL: string;
 }

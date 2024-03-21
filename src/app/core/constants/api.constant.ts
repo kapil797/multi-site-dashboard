@@ -24,6 +24,8 @@ export class BaseApi {
 
   // Independent of factories.
   public MAP_API_URL: string;
+  public MAP_ACCESS_TOKEN: string;
+  public ROUTE_API_URL: string;
 
   // Define API endpoints here.
   // Override in different environments if necessary,
@@ -89,6 +91,8 @@ export class BaseApi {
     this.MF_DASHBOARD_WEBSOCKET_URL = config.MF_DASHBOARD_WEBSOCKET_URL;
     this.MF_DASHBOARD_MIDDLEWARE_URL = config.MF_DASHBOARD_MIDDLEWARE_URL;
     this.MAP_API_URL = config.MAP_API_URL;
+    this.MAP_ACCESS_TOKEN = config.MAP_ACCESS_TOKEN;
+    this.ROUTE_API_URL = config.ROUTE_API_URL;
   }
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {
