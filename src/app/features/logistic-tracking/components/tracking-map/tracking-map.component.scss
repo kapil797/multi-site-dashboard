@@ -1,0 +1,130 @@
+@use 'core/styles/variables';
+
+$assetPath: '/assets/images/map-pins';
+$marker-start-img: '#{$assetPath}/start-marker.png';
+$marker-end-img: '#{$assetPath}/end-marker.png';
+$marker-driver-img: '#{$assetPath}/driver.png';
+
+$marker-job-pending: '#{$assetPath}/blue.png';
+$marker-job-late: '#{$assetPath}/orange.png';
+$marker-job-ontime: '#{$assetPath}/green.png';
+$marker-job-fail: '#{$assetPath}/red.png';
+$marker-job-expected-late: '#{$assetPath}/orange-hexagon.png';
+
+.marker-pending {
+  background-image: url($marker-job-pending);
+}
+
+.marker-late {
+  background-image: url($marker-job-late);
+}
+
+.marker-ontime {
+  background-image: url($marker-job-ontime);
+}
+
+.marker-fail {
+  background-image: url($marker-job-fail);
+}
+
+.marker-expect-late {
+  background-image: url($marker-job-expected-late);
+}
+.marker-driver {
+  background-image: url($marker-driver-img);
+  background-size: cover;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.marker {
+  background-size: cover;
+  width: 20px;
+  height: 31px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.marker-start {
+  background-image: url($marker-start-img);
+  background-size: cover;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.marker-end {
+  background-image: url($marker-end-img);
+  background-size: cover;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #000000;
+}
+
+.match-parent {
+  width: 100%;
+  height: 100%;
+}
+#map {
+  position: relative;
+  border: 3px solid variables.$gray-700;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+}
+
+.map-wrapper {
+  box-sizing: border-box;
+}
+
+.menu {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.status-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.status-list li {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+.red {
+  color: #e02d1b;
+}
+.blue {
+  color: #3887be;
+}
+.orange {
+  color: #f1962a;
+}
+.green {
+  color: #8acb08;
+}
+.red-orange {
+  color: #c87008;
+}

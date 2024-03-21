@@ -1,0 +1,30 @@
+<div class="current-wrapper">
+  <h2 class="chart-title">{{ chartTitle }}</h2>
+  <kendo-chart *ngIf="!displayNoValueMessage" title="" style="height: 62.5vh">
+    <kendo-chart-area background="{{ chartConstant.BACKGROUND }}"></kendo-chart-area>
+    <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+    <kendo-chart-series>
+      <kendo-chart-series-item
+        type="donut"
+        [data]="data"
+        field="value"
+        [autoFit]="true"
+        [border]="{ color: chartConstant.BACKGROUND, width: 5, dashType: 'solid' }"
+        categoryField="category"
+        [labels]="{
+          visible: true,
+          content: labelContent,
+          color: labelColor,
+          background: chartConstant.BACKGROUND,
+          position: 'outsideEnd'
+        }">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+  <div
+    style="height: 62.5vh"
+    class="d-flex flex-column justify-content-center align-items-center"
+    *ngIf="displayNoValueMessage">
+    <span>No Data Available</span>
+  </div>
+</div>

@@ -71,6 +71,24 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.LOGISTIC_TRACKING).substring(1),
+    loadChildren: () => import('@lt/logistic-tracking.module').then(m => m.LogisticTrackingModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS).substring(1),
+    loadChildren: () => import('@mk/management-kpis.module').then(m => m.ManagementKpisModule),
+    canMatch: [routeGuard()],
+    canActivate: [AuthGuard],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },
