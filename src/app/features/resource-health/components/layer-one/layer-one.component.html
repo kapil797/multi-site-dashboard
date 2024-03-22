@@ -1,5 +1,5 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
-<div class="rh-1-scaffold">
+<div class="rh-1-scaffold" *ngIf="!isOverlay">
   <div>
     <app-navbar
       header="Resource Health"
@@ -12,3 +12,4 @@
   </div>
   <app-sidebar header="SHOPFLOOR" rotate="RIGHT"></app-sidebar>
 </div>
+<div *ngIf="isOverlay" class="black-screen-overlay"></div>

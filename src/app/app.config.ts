@@ -2,11 +2,9 @@ import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { KeycloakService } from 'keycloak-angular';
 
 import { initApp } from '@core/init/app.factory';
 import { AppService } from '@core/services/app.service';
-import { initKeycloak } from '@core/init/keycloak.factory';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -14,8 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient(),
-    KeycloakService,
+    // KeycloakService,
     { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true },
-    { provide: APP_INITIALIZER, useFactory: initKeycloak, deps: [KeycloakService, AppService], multi: true },
   ],
 };

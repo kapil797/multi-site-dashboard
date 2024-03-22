@@ -133,7 +133,6 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     const query = await fetch(this.routeApiGen(route.startPoint.coordinates, route.endPoint.coordinates), {
       method: 'GET',
     });
-    console.log('query', query);
     const json = await query.json();
     const data = json.routes[0];
     const routeCoordinates = data.geometry.coordinates;

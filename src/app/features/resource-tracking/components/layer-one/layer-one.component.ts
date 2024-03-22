@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
@@ -7,6 +7,8 @@ import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-sub
 import { createNotif } from '@core/utils/notification';
 import { ResourceTrackingService } from '@rt/resource-tracking.service';
 import { MachineStatus } from '@rt/resource-tracking.model';
+import { changeFactoryInUrl } from '@core/utils/formatters';
+import { Router } from '@angular/router';
 
 interface MachineData {
   title: string;
@@ -18,21 +20,33 @@ interface MachineData {
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends CancelSubscription implements OnInit, OnDestroy {
   public isLoading = true;
   public machinesData: MachineData[] = [];
   public machinesStatus: MachineStatus[];
   public factory: string;
+  private bc = new BroadcastChannel('factoryChannel');
 
   constructor(
     private app: AppService,
     private rt: ResourceTrackingService,
-    private notif: NotificationService
+    private notif: NotificationService,
+    private route: Router,
+    private zone: NgZone
   ) {
     super();
   }
 
   ngOnInit(): void {
+    this.bc.onmessage = event => {
+      this.zone.run(() => {
+        this.route.navigate(changeFactoryInUrl(this.route, event.data), {
+          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
+          queryParamsHandling: 'merge',
+        });
+      });
+    };
+
     this.rt
       .fetchMachinesStatus$(this.app.factory())
       .pipe(takeUntil(this.ngUnsubscribe$))
@@ -61,6 +75,11 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
           this.notif.show(createNotif('error', error));
         },
       });
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this.bc.close();
   }
 
   private groupMachinesByCategory(res: MachineStatus[]) {

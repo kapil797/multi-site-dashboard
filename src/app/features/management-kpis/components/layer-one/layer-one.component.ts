@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Dropdown } from '@core/classes/form/form.class';
 import { AppService } from '@core/services/app.service';
+import { changeFactoryInUrl } from '@core/utils/formatters';
 import { faArrowTrendUp, faArrowTrendDown, faRightLong } from '@fortawesome/free-solid-svg-icons';
 import { ManagementLayerOneData } from '@mk/management-kpis-model';
 import { ManagementKpisService } from '@mk/management-kpis-service';
@@ -12,7 +13,7 @@ import { Subscription, Observable, map } from 'rxjs';
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent {
+export class LayerOneComponent implements OnInit, OnDestroy {
   displayDataSetOne: ManagementLayerOneData[];
   faTrendUp = faArrowTrendUp;
   faTrendDown = faArrowTrendDown;
@@ -34,16 +35,28 @@ export class LayerOneComponent {
       value: row,
     };
   });
+  private bc = new BroadcastChannel('factoryChannel');
 
   constructor(
     private app: AppService,
     private mk: ManagementKpisService,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private route: Router,
+    private zone: NgZone
   ) {}
 
   ngOnInit() {
+    this.bc.onmessage = event => {
+      this.zone.run(() => {
+        this.route.navigate(changeFactoryInUrl(this.route, event.data), {
+          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
+          queryParamsHandling: 'merge',
+        });
+      });
+    };
+
     // this.period.forEach(item => item.text.toUpperCase());
-    this.filter$ = this.route.queryParamMap.pipe(map((params: ParamMap) => params.get('kpiSide') ?? ''));
+    this.filter$ = this.activatedRoute.queryParamMap.pipe(map((params: ParamMap) => params.get('kpiSide') ?? ''));
     this.filter$.subscribe(side => {
       this.kpiSide = side;
       this.retrieveKPIData(); // Move data retrieval inside subscription to ensure kpiSide is set before fetching
@@ -71,6 +84,7 @@ export class LayerOneComponent {
 
   ngOnDestroy(): void {
     this.$subscription.unsubscribe();
+    this.bc.close();
   }
 
   public onTogglePeriod(event: unknown) {
@@ -78,7 +92,6 @@ export class LayerOneComponent {
     // Check if the new frequency is different to avoid unnecessary fetching
     if (newFrequency !== this.frequency) {
       this.frequency = newFrequency;
-      console.log('Selected frequency:', this.frequency);
       // Unsubscribe from any existing subscription to prevent memory leaks
       this.$subscription.unsubscribe();
       // Create a new subscription for the new data

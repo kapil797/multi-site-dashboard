@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import moment from 'moment';
 
 export function separateStringByDelimiter(input: string, delimiter: RegExp) {
@@ -75,4 +76,13 @@ export function stringToCamelCase(v: string) {
     }
   }
   return result;
+}
+
+export function changeFactoryInUrl(router: Router, factory: string) {
+  const targets = router.routerState.snapshot.url.split('/');
+  // Remove existing query params if any.
+  const lastTarget = targets[targets.length - 1];
+  targets.splice(targets.length - 1, 1, lastTarget.split('?')[0]);
+  targets.splice(0, 2, factory);
+  return targets;
 }

@@ -17,14 +17,17 @@
     <kendo-chart-category-axis>
       <kendo-chart-category-axis-item [categories]="categories || []">
         <kendo-chart-category-axis-item-labels
+          [font]="chartConfig.fontSize"
           format="HH:mm:ss"
           [step]="9"
           [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
       </kendo-chart-category-axis-item>
     </kendo-chart-category-axis>
     <kendo-chart-value-axis>
-      <kendo-chart-value-axis-item [title]="{ text: 'POWER LOAD PROFILE (kW)', color: chartConfig.color }">
-        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      <kendo-chart-value-axis-item
+        [title]="{ text: 'POWER LOAD PROFILE (kW)', color: chartConfig.color, font: chartConfig.fontSize }">
+        <kendo-chart-value-axis-item-labels [font]="chartConfig.fontSize" [color]="chartConfig.color">
+        </kendo-chart-value-axis-item-labels>
       </kendo-chart-value-axis-item>
     </kendo-chart-value-axis>
     <kendo-chart-series>
@@ -66,17 +69,17 @@
     <div>
       <h2>MACHINE ALERT HISTORY</h2>
       <kendo-grid scrollable="none" [kendoGridBinding]="alertHistoryData">
-        <kendo-grid-column field="issue" title="ISSUE">
+        <kendo-grid-column field="issue" title="ISSUE" [width]="160">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ dataItem.issue.toUpperCase() }}</span>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="createdDate" title="DATE">
+        <kendo-grid-column field="createdDate" title="DATE" [width]="110">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ formatDateWithoutTime(dataItem.createdDate) }}</span>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="createdDate" title="TIME">
+        <kendo-grid-column field="createdDate" title="TIME" [width]="110">
           <ng-template kendoGridCellTemplate let-dataItem>
             <span>{{ formatDateToTime(dataItem.createdDate) }}</span>
           </ng-template>

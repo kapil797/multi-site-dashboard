@@ -6,18 +6,14 @@
   display: none;
 }
 
-.k-grid {
-  font-size: variables.$font-size-reg;
-  letter-spacing: variables.$letter-spacing-sm;
-}
-
 .k-grid .k-table-td {
   padding: 0.2rem;
   padding-left: 0.5rem;
 }
 
 .k-table-md {
-  font-size: variables.$font-size-reg;
+  font-size: variables.$font-size-lg;
+  letter-spacing: variables.$letter-spacing-sm;
 }
 
 .machine-icon {
