@@ -5,6 +5,13 @@
   width: 10rem;
 }
 
+.k-label,
+.k-input-value-text,
+.k-animation-container li,
+.k-animation-container-shown li {
+  font-size: variables.$font-size-lg;
+}
+
 .navbar {
   box-shadow: none;
   color: variables.$light;
@@ -12,17 +19,16 @@
 }
 
 .img__tiles {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2rem;
+  width: 2rem;
   cursor: pointer;
 }
 
 .navbar-header {
-  font-size: variables.$font-size-xxxl;
+  font-size: variables.$font-size-4xl;
   letter-spacing: variables.$letter-spacing-reg;
   font-weight: bold;
 }
-
 
 .dropdown-wrapper {
   border: 1px solid variables.$white;

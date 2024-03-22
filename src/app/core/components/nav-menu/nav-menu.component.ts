@@ -9,6 +9,7 @@ import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-sub
 import { Factory } from '@core/models/factory.model';
 import { NavItem, mfNavItems, umfNavItems } from './nav-menu.constant';
 import { RoutePaths } from '@core/constants/routes.constant';
+import { changeFactoryInUrl } from '@core/utils/formatters';
 
 @Component({
   selector: 'app-nav-menu',
@@ -32,6 +33,7 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   public currentFactory = 'assets/images/factories/big.png';
   private altFactory = 'assets/images/factories/small.png';
   private observer: MutationObserver;
+  private bc = new BroadcastChannel('factoryChannel');
 
   constructor(
     private zone: NgZone,
@@ -87,8 +89,13 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
     // Hence, using ActivatedRoute will have an empty routeTree.
     // Workaround is to pass an absolute path.
     this.zone.run(() => {
+      // In modelfactory, need to change screens when switching between
+      // MF and UMF using broadcastChannel.
+      const isBroadcast = this.router.routerState.snapshot.root.children[0].queryParams['broadcast'];
+      const defaultQueryParams = isBroadcast ? { broadcast: 'true' } : {};
+
       this.router.navigate([this.app.factory(), item.resource, layer], {
-        queryParams: { kpiSide: item.kpiSide },
+        queryParams: { ...item.queryParams, ...defaultQueryParams },
       });
 
       this.app.resetDialog();
@@ -104,6 +111,13 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   }
 
   public onChangeSite(event: string) {
-    this.router.navigate([event]);
+    const queryParams = this.router.routerState.snapshot.root.children[0].queryParams;
+    if (queryParams['broadcast']) {
+      this.bc.postMessage(event);
+    }
+    this.router.navigate(changeFactoryInUrl(this.router, event), {
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 }

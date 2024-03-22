@@ -6,8 +6,13 @@ app-sidebar {
   grid-row: 1 / span 2;
 }
 
-h1, h2 {
+h1,
+h2 {
   letter-spacing: variables.$letter-spacing-reg;
+}
+
+.header {
+  font-size: variables.$font-size-xxxl;
 }
 
 .pi-1-scaffold {

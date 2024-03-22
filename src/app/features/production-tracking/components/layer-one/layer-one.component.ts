@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 import moment from 'moment';
@@ -17,6 +17,8 @@ import {
   StatusAggregate,
   WorkOrderAggregate,
 } from '@pt/production-tracking.model';
+import { changeFactoryInUrl } from '@core/utils/formatters';
+import { Router } from '@angular/router';
 
 /*
   Total maximum number of parallel requests:
@@ -48,12 +50,13 @@ interface CompactedWorkOrder {
   styleUrl: './layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends CancelSubscription implements OnInit, OnDestroy {
   private placeholder$ = new BehaviorSubject<boolean>(true);
   private rowCount = 6;
   private chunkLineItems = 3;
   private executionStreamFromRtd$: Observable<unknown>;
   private salesOrderAggregates: SalesOrderAggregate[];
+  private bc = new BroadcastChannel('factoryChannel');
   public isLoading = true;
   public salesOrderCols: ColumnSetting[] = [
     { title: 'SALES ORDER NO.', field: 'salesOrderNumber', width: 450 },
@@ -72,12 +75,23 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   constructor(
     private app: AppService,
     private notif: NotificationService,
-    private pt: ProductionTrackingService
+    private pt: ProductionTrackingService,
+    private route: Router,
+    private zone: NgZone
   ) {
     super();
   }
 
   ngOnInit(): void {
+    this.bc.onmessage = event => {
+      this.zone.run(() => {
+        this.route.navigate(changeFactoryInUrl(this.route, event.data), {
+          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
+          queryParamsHandling: 'merge',
+        });
+      });
+    };
+
     this.executionStreamFromRtd$ = this.pt.initWebSocketStreams();
 
     // Subscribe to websocket stream.
@@ -160,6 +174,11 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
           this.notif.show(createNotif('error', error));
         },
       });
+  }
+
+  override ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this.bc.close();
   }
 
   private aggregateSalesOrderByLineItemsWithErrorWrapper(row: SalesOrder, workOrderFamilies: RpsWorkOrder[]) {

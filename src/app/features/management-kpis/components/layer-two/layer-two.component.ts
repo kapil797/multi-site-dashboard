@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Dropdown } from '@core/classes/form/form.class';
-import { chartConstant } from '@core/constants/chart.constant';
 import { AppService } from '@core/services/app.service';
 import { ApiResponse, InventoryKPI } from '@mk/management-kpis-model';
 import { ManagementKpisService } from '@mk/management-kpis-service';
@@ -16,7 +15,7 @@ export interface DataItem {
   templateUrl: './layer-two.component.html',
   styleUrl: './layer-two.component.scss',
 })
-export class LayerTwoComponent {
+export class LayerTwoComponent implements OnInit {
   frequency = 'Monthly';
   projectedData: DataItem[] = [];
   pieData: DataItem[] = [];
@@ -25,7 +24,6 @@ export class LayerTwoComponent {
   selectedKPI = 1;
   inventoryPeriod = 1;
   labelColor: string = 'rgb(255,255,255)';
-  chartConstant = chartConstant;
   constructor(
     private app: AppService,
     private intl: IntlService,

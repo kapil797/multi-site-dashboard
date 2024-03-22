@@ -1,9 +1,9 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
-<div class="dp-1-scaffold">
+<div class="dp-1-scaffold" *ngIf="!isOverlay">
   <div>
     <app-navbar header="Demand Profile"></app-navbar>
     <div class="dp-1-wrapper">
-      <h1>DEMAND SPIKES AND PLUMMETS FOR ATTENTION</h1>
+      <h1 class="header">DEMAND SPIKES AND PLUMMETS FOR ATTENTION</h1>
       <div class="profile-charts-container d-grid gap-4">
         <app-profile-chart
           alert="Spike detected: > 10000 pcs"
@@ -18,3 +18,4 @@
   </div>
   <app-sidebar header="SUPPLY CHAIN" rotate="RIGHT"></app-sidebar>
 </div>
+<div *ngIf="isOverlay" class="black-screen-overlay"></div>
