@@ -1,4 +1,4 @@
-import { Component, NgZone, OnDestroy, OnInit, effect } from '@angular/core';
+import { Component, NgZone, OnInit, effect } from '@angular/core';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
@@ -11,19 +11,23 @@ import { OverallResourceHealth } from '@rh/resource-health.model';
 import { Router } from '@angular/router';
 import { changeFactoryInUrl } from '@core/utils/formatters';
 import { Factory } from '@core/models/factory.model';
+import {
+  WsFactoryDisplayStream,
+  consumerStreams,
+  filterStreamFromWebsocketGateway$,
+} from '@core/models/websocket.model';
 
 @Component({
   selector: 'app-layer-one',
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit, OnDestroy {
+export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public data: OverallResourceHealth[];
   public periods = periods;
   public isOverlay: boolean;
   private sub$ = new Subject();
-  private bc = new BroadcastChannel('factoryChannel');
 
   constructor(
     private app: AppService,
@@ -44,14 +48,15 @@ export class LayerOneComponent extends CancelSubscription implements OnInit, OnD
   }
 
   ngOnInit(): void {
-    this.bc.onmessage = event => {
+    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
+      const msg = res.data as WsFactoryDisplayStream;
       this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, event.data), {
+        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
           queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
           queryParamsHandling: 'merge',
         });
       });
-    };
+    });
 
     this.sub$
       .pipe(
@@ -72,11 +77,6 @@ export class LayerOneComponent extends CancelSubscription implements OnInit, OnD
       });
 
     this.onTogglePeriod(null);
-  }
-
-  override ngOnDestroy(): void {
-    super.ngOnDestroy();
-    this.bc.close();
   }
 
   public onTogglePeriod(_event: unknown) {

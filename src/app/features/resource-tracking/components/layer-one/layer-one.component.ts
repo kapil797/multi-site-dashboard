@@ -1,6 +1,7 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { Component, NgZone, OnInit, effect } from '@angular/core';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
+import { Router } from '@angular/router';
 
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
@@ -8,7 +9,11 @@ import { createNotif } from '@core/utils/notification';
 import { ResourceTrackingService } from '@rt/resource-tracking.service';
 import { MachineStatus } from '@rt/resource-tracking.model';
 import { changeFactoryInUrl } from '@core/utils/formatters';
-import { Router } from '@angular/router';
+import {
+  WsFactoryDisplayStream,
+  consumerStreams,
+  filterStreamFromWebsocketGateway$,
+} from '@core/models/websocket.model';
 
 interface MachineData {
   title: string;
@@ -20,12 +25,12 @@ interface MachineData {
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit, OnDestroy {
+export class LayerOneComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public machinesData: MachineData[] = [];
   public machinesStatus: MachineStatus[];
   public factory: string;
-  private bc = new BroadcastChannel('factoryChannel');
+  private placeholder$ = new Subject();
 
   constructor(
     private app: AppService,
@@ -35,21 +40,30 @@ export class LayerOneComponent extends CancelSubscription implements OnInit, OnD
     private zone: NgZone
   ) {
     super();
+
+    effect(() => {
+      this.placeholder$.next(this.app.factory());
+    });
   }
 
   ngOnInit(): void {
-    this.bc.onmessage = event => {
+    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
+      const msg = res.data as WsFactoryDisplayStream;
       this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, event.data), {
+        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
           queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
           queryParamsHandling: 'merge',
         });
       });
-    };
+    });
 
-    this.rt
-      .fetchMachinesStatus$(this.app.factory())
-      .pipe(takeUntil(this.ngUnsubscribe$))
+    this.placeholder$
+      .pipe(
+        switchMap(_ => {
+          return this.rt.fetchMachinesStatus$(this.app.factory());
+        }),
+        takeUntil(this.ngUnsubscribe$)
+      )
       .subscribe({
         next: res => {
           this.isLoading = false;
@@ -58,6 +72,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit, OnD
           this.machinesStatus = res;
 
           // For displaying tables.
+          this.machinesData = [];
           const hashmap = this.groupMachinesByCategory(res);
           // Output machine data by order.
           const catOrder = ['MTS', 'MTO', 'SES'];
@@ -75,11 +90,8 @@ export class LayerOneComponent extends CancelSubscription implements OnInit, OnD
           this.notif.show(createNotif('error', error));
         },
       });
-  }
 
-  override ngOnDestroy(): void {
-    super.ngOnDestroy();
-    this.bc.close();
+    this.placeholder$.next(true);
   }
 
   private groupMachinesByCategory(res: MachineStatus[]) {

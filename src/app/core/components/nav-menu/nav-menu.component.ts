@@ -10,6 +10,11 @@ import { Factory } from '@core/models/factory.model';
 import { NavItem, mfNavItems, umfNavItems } from './nav-menu.constant';
 import { RoutePaths } from '@core/constants/routes.constant';
 import { changeFactoryInUrl } from '@core/utils/formatters';
+import { HttpClient } from '@angular/common/http';
+import { WsBroadcastMsg, consumerStreams } from '@core/models/websocket.model';
+import { catchError, throwError } from 'rxjs';
+import { NotificationService } from '@progress/kendo-angular-notification';
+import { createNotif } from '@core/utils/notification';
 
 @Component({
   selector: 'app-nav-menu',
@@ -33,12 +38,13 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   public currentFactory = 'assets/images/factories/big.png';
   private altFactory = 'assets/images/factories/small.png';
   private observer: MutationObserver;
-  private bc = new BroadcastChannel('factoryChannel');
 
   constructor(
     private zone: NgZone,
     private router: Router,
-    private app: AppService
+    private app: AppService,
+    private http: HttpClient,
+    private notif: NotificationService
   ) {
     super();
 
@@ -113,11 +119,24 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   public onChangeSite(event: string) {
     const queryParams = this.router.routerState.snapshot.root.children[0].queryParams;
     if (queryParams['broadcast']) {
-      this.bc.postMessage(event);
+      this.broadcastMsgForFactoryDisplay$(event).subscribe({
+        next: () => {},
+        error: _ => {
+          this.notif.show(createNotif('error', 'Unable to broadcast message for factory display'));
+        },
+      });
     }
     this.router.navigate(changeFactoryInUrl(this.router, event), {
       queryParams: queryParams,
       queryParamsHandling: 'merge',
     });
+  }
+
+  private broadcastMsgForFactoryDisplay$(newFactory: string) {
+    const payload: WsBroadcastMsg = { consumer: consumerStreams.FACTORY_DISPLAY, message: { factory: newFactory } };
+    const url = this.app.api.concatWebsocketSvcApiByFactory(this.app.factory(), this.app.api.WEBSOCKET_BROADCAST);
+    return this.http
+      .post(url, payload)
+      .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
   }
 }

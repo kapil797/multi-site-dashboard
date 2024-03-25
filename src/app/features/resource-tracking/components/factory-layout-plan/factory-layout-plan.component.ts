@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, effect } from '@angular/core';
 
 import { Factory } from '@core/models/factory.model';
 import { AppService } from '@core/services/app.service';
@@ -9,7 +9,7 @@ import { MachineStatus } from '@rt/resource-tracking.model';
   templateUrl: './factory-layout-plan.component.html',
   styleUrl: './factory-layout-plan.component.scss',
 })
-export class FactoryLayoutPlanComponent implements OnInit {
+export class FactoryLayoutPlanComponent {
   @Input() data: MachineStatus[];
   @Output() machine = new EventEmitter<MachineStatus>();
   public mfLevelOne = 'assets/images/factories/mf-level-one.png';
@@ -18,10 +18,10 @@ export class FactoryLayoutPlanComponent implements OnInit {
   public factory: string;
   public Factory = Factory;
 
-  constructor(private app: AppService) {}
-
-  ngOnInit(): void {
-    this.factory = this.app.factory();
+  constructor(private app: AppService) {
+    effect(() => {
+      this.factory = this.app.factory();
+    });
   }
 
   public resolveMachineBgColor(item: MachineStatus) {

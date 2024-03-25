@@ -34,6 +34,7 @@ export class BaseApi {
   public RPS_WORK_ORDER = 'workorder/api/workorder';
   public RTD_WORK_ORDER = 'workorder/get/wo/list';
   public RTD_EXECUTION = 'workorder/get/wo/process/execution/list';
+  public WEBSOCKET_BROADCAST = 'api/v1/broadcast';
 
   constructor(config: Config) {
     this.init(config);
@@ -79,6 +80,17 @@ export class BaseApi {
         return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
         return urlJoin(this.UMF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+      default:
+        return '';
+    }
+  }
+
+  public concatWebsocketSvcApiByFactory(factory: string, ...apiSuffixes: string[]) {
+    switch (factory) {
+      case Factory.MODEL_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_WEBSOCKET_URL, ...apiSuffixes);
+      case Factory.MICRO_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_WEBSOCKET_URL, ...apiSuffixes);
       default:
         return '';
     }
