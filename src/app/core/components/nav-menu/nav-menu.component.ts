@@ -134,7 +134,10 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
 
   private broadcastMsgForFactoryDisplay$(newFactory: string) {
     const payload: WsBroadcastMsg = { consumer: consumerStreams.FACTORY_DISPLAY, message: { factory: newFactory } };
-    const url = this.app.api.concatWebsocketSvcApiByFactory(this.app.factory(), this.app.api.WEBSOCKET_BROADCAST);
+    const url = this.app.api.concatDashboardApiSvcApiByFactory(
+      this.app.factory(),
+      this.app.api.DASHBOARD_API_BROADCAST
+    );
     return this.http
       .post(url, payload)
       .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
