@@ -388,7 +388,7 @@ export class ProductionTrackingService {
 
   public initWebSocketStreams() {
     const websocket$ = webSocket({
-      url: this.app.api.MF_DASHBOARD_WEBSOCKET_URL,
+      url: this.app.config.MF_DASHBOARD_WEBSOCKET_WS_URL,
     });
 
     const executionStreamFromRtd$ = websocket$.multiplex(

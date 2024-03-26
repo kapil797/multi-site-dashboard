@@ -65,10 +65,15 @@ export class WorkOrderComponent implements OnChanges {
     for (const row of this.curLineItemAggregate.workOrderAggregates) {
       execution = row.executions.find(x => x.process.id === event);
       if (execution) {
+        this.formatPartsCompleted(execution);
         this.curProcess = execution;
         return;
       }
     }
     this.curProcess = undefined;
+  }
+
+  private formatPartsCompleted(execution: Execution) {
+    execution.partsCompleted = `${execution.completeQty} out of ${execution.releasedQty}`;
   }
 }

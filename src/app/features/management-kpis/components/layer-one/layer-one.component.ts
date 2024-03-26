@@ -1,6 +1,11 @@
 import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Dropdown } from '@core/classes/form/form.class';
+import {
+  WsFactoryDisplayStream,
+  consumerStreams,
+  filterStreamFromWebsocketGateway$,
+} from '@core/models/websocket.model';
 import { AppService } from '@core/services/app.service';
 import { changeFactoryInUrl } from '@core/utils/formatters';
 import { faArrowTrendUp, faArrowTrendDown, faRightLong } from '@fortawesome/free-solid-svg-icons';
@@ -35,7 +40,6 @@ export class LayerOneComponent implements OnInit, OnDestroy {
       value: row,
     };
   });
-  private bc = new BroadcastChannel('factoryChannel');
 
   constructor(
     private app: AppService,
@@ -46,14 +50,15 @@ export class LayerOneComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.bc.onmessage = event => {
+    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
+      const msg = res.data as WsFactoryDisplayStream;
       this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, event.data), {
+        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
           queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
           queryParamsHandling: 'merge',
         });
       });
-    };
+    });
 
     // this.period.forEach(item => item.text.toUpperCase());
     this.filter$ = this.activatedRoute.queryParamMap.pipe(map((params: ParamMap) => params.get('kpiSide') ?? ''));
@@ -84,7 +89,6 @@ export class LayerOneComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.$subscription.unsubscribe();
-    this.bc.close();
   }
 
   public onTogglePeriod(event: unknown) {

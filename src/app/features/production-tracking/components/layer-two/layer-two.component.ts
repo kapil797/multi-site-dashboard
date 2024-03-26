@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, switchMap, takeUntil, throwError } from 'rxjs';
+import { of, switchMap, takeUntil, throwError } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
@@ -8,6 +8,7 @@ import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
 import { ExecutionStream, SalesOrder, SalesOrderAggregate } from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
+import { consumerStreams, filterStreamFromWebsocketGateway$ } from '@core/models/websocket.model';
 
 /*
   Each SalesOrder can consist of multiple LineItems.
@@ -35,7 +36,6 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public salesOrderIds: Dropdown[];
   public salesOrderAggregate?: SalesOrderAggregate;
   private salesOrderMap: Map<string, SalesOrder> = new Map();
-  private executionStreamFromRtd$: Observable<unknown>;
   private chunkLineItems = 3;
 
   constructor(
@@ -47,14 +47,11 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
-    this.executionStreamFromRtd$ = this.pt.initWebSocketStreams();
-
-    // Subscribe to websocket stream.
-    this.executionStreamFromRtd$
+    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.RTD)
       .pipe(
         switchMap(msg => {
           // Update by LineItem if change is relevant.
-          const res = msg as ExecutionStream;
+          const res = msg.data as ExecutionStream;
           console.log(res);
           const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
             const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
