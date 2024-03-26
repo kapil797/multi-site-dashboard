@@ -22,7 +22,7 @@ export class AppService {
   public init(config: Config, api: BaseApi) {
     this.config = config;
     this.api = api;
-    this.wsGateway$ = initWebsocketGateway$(config.MF_DASHBOARD_WEBSOCKET_WS_URL);
+    this.wsGateway$ = initWebsocketGateway$(config.MF_DASHBOARD_WEBSOCKET_URL);
     return of(true);
   }
 

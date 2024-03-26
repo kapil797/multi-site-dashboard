@@ -5,8 +5,8 @@ export interface Config {
   KEYCLOAK_URL: string;
   KEYCLOAK_REALM: string;
   KEYCLOAK_CLIENT: string;
+  MF_DASHBOARD_API_URL: string;
   MF_DASHBOARD_WEBSOCKET_URL: string;
-  MF_DASHBOARD_WEBSOCKET_WS_URL: string;
   MF_RPS_URL: string;
   MF_RTD_URL: string;
   MF_ORDERAPP_URL: string;
