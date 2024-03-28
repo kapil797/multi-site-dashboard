@@ -4,16 +4,10 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 import { Router } from '@angular/router';
 
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { ResourceTrackingService } from '@rt/resource-tracking.service';
 import { MachineStatus } from '@rt/resource-tracking.model';
-import { changeFactoryInUrl } from '@core/utils/formatters';
-import {
-  WsFactoryDisplayStream,
-  consumerStreams,
-  filterStreamFromWebsocketGateway$,
-} from '@core/models/websocket.model';
 
 interface MachineData {
   title: string;
@@ -25,7 +19,7 @@ interface MachineData {
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   public isLoading = true;
   public machinesData: MachineData[] = [];
   public machinesStatus: MachineStatus[];
@@ -33,30 +27,21 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   private placeholder$ = new Subject();
 
   constructor(
-    private app: AppService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
     private rt: ResourceTrackingService,
-    private notif: NotificationService,
-    private route: Router,
-    private zone: NgZone
+    private notif: NotificationService
   ) {
-    super();
+    super(route, zone, app);
 
     effect(() => {
       this.placeholder$.next(this.app.factory());
     });
   }
 
-  ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
-      const msg = res.data as WsFactoryDisplayStream;
-      this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
-          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
-          queryParamsHandling: 'merge',
-        });
-      });
-    });
-
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.placeholder$
       .pipe(
         switchMap(_ => {

@@ -78,11 +78,12 @@ export function stringToCamelCase(v: string) {
   return result;
 }
 
-export function changeFactoryInUrl(router: Router, factory: string) {
-  const targets = router.routerState.snapshot.url.split('/');
-  // Remove existing query params if any.
-  const lastTarget = targets[targets.length - 1];
-  targets.splice(targets.length - 1, 1, lastTarget.split('?')[0]);
-  targets.splice(0, 2, factory);
-  return targets;
+export function generateLayerUrlFragments(router: Router, factory: string, feature?: string) {
+  // Removes query parameters if any.
+  const fragments = router.routerState.snapshot.url.split('/');
+  const lastFragment = fragments[fragments.length - 1].split('?')[0];
+  fragments.splice(0, 2, factory);
+  fragments.splice(fragments.length - 1, 1, lastFragment);
+  if (feature) fragments.splice(1, 1, feature.trim());
+  return fragments;
 }

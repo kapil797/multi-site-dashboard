@@ -12,7 +12,7 @@
   $kendo-color-primary: variables.$primary,
   $kendo-color-success: variables.$success,
   $kendo-color-warning: variables.$warning,
-  $kendo-color-error: variables.$error,
+  $kendo-color-error: variables.$error
 );
 
 body {
@@ -38,13 +38,13 @@ body {
   }
 }
 
-html {
-  @include base.scrollbar;
-}
-
-// ::-webkit-scrollbar {
-//   width: 50px;
+// html {
+//   @include base.scrollbar;
 // }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
 
 .k-overlay {
   background-color: variables.$bg-1;

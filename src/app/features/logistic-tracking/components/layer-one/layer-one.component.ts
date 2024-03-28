@@ -1,13 +1,8 @@
-import { Component, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, NgZone, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  WsFactoryDisplayStream,
-  consumerStreams,
-  filterStreamFromWebsocketGateway$,
-} from '@core/models/websocket.model';
-import { changeFactoryInUrl } from '@core/utils/formatters';
 import { AppService } from '@core/services/app.service';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 
 @Component({
   selector: 'app-layer-one',
@@ -15,22 +10,12 @@ import { AppService } from '@core/services/app.service';
   styleUrl: './layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class LayerOneComponent implements OnInit {
+export class LayerOneComponent extends LayerOneRouter {
   constructor(
-    private route: Router,
-    private zone: NgZone,
-    private app: AppService
-  ) {}
-
-  ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
-      const msg = res.data as WsFactoryDisplayStream;
-      this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
-          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
-          queryParamsHandling: 'merge',
-        });
-      });
-    });
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService
+  ) {
+    super(route, zone, app);
   }
 }

@@ -1,63 +1,38 @@
-import { Component, NgZone, OnInit, effect } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Subject, switchMap, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
 import { periods } from '@core/constants/period.constant';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { OverallResourceHealth } from '@rh/resource-health.model';
-import { Router } from '@angular/router';
-import { changeFactoryInUrl } from '@core/utils/formatters';
-import { Factory } from '@core/models/factory.model';
-import {
-  WsFactoryDisplayStream,
-  consumerStreams,
-  filterStreamFromWebsocketGateway$,
-} from '@core/models/websocket.model';
 
 @Component({
   selector: 'app-layer-one',
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   public isLoading = true;
   public data: OverallResourceHealth[];
   public periods = periods;
-  public isOverlay: boolean;
   private sub$ = new Subject();
 
   constructor(
-    private app: AppService,
-    private route: Router,
-    public rt: ResourceHealthService,
-    private notif: NotificationService,
-    private zone: NgZone
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
+    private rt: ResourceHealthService,
+    private notif: NotificationService
   ) {
-    super();
-
-    effect(() => {
-      if (this.app.factory() === Factory.MICRO_FACTORY) {
-        this.isOverlay = true;
-      } else {
-        this.isOverlay = false;
-      }
-    });
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
-      const msg = res.data as WsFactoryDisplayStream;
-      this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
-          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
-          queryParamsHandling: 'merge',
-        });
-      });
-    });
-
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.sub$
       .pipe(
         takeUntil(this.ngUnsubscribe$),

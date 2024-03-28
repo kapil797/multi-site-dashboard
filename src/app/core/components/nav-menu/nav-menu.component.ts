@@ -9,12 +9,12 @@ import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-sub
 import { Factory } from '@core/models/factory.model';
 import { NavItem, mfNavItems, umfNavItems } from './nav-menu.constant';
 import { RoutePaths } from '@core/constants/routes.constant';
-import { changeFactoryInUrl } from '@core/utils/formatters';
 import { HttpClient } from '@angular/common/http';
 import { WsBroadcastMsg, consumerStreams } from '@core/models/websocket.model';
 import { catchError, throwError } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 import { createNotif } from '@core/utils/notification';
+import { generateLayerUrlFragments } from '@core/utils/formatters';
 
 @Component({
   selector: 'app-nav-menu',
@@ -38,6 +38,7 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   public currentFactory = 'assets/images/factories/big.png';
   private altFactory = 'assets/images/factories/small.png';
   private observer: MutationObserver;
+  private broadcastChannel = new BroadcastChannel('dashboard');
 
   constructor(
     private zone: NgZone,
@@ -118,28 +119,36 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
 
   public onChangeSite(event: string) {
     const queryParams = this.router.routerState.snapshot.root.children[0].queryParams;
-    if (queryParams['broadcast']) {
-      this.broadcastMsgForFactoryDisplay$(event).subscribe({
-        next: () => {},
-        error: _ => {
-          this.notif.show(createNotif('error', 'Unable to broadcast message for factory display'));
-        },
+    const broadcast = queryParams['broadcast'];
+    if (broadcast) {
+      if (broadcast === 'channel') this.broadcastByChannel(event);
+      else if (broadcast === 'websocket') this.broadcastByWebsocket(event);
+    } else {
+      this.router.navigate(generateLayerUrlFragments(this.router, event), {
+        queryParams: queryParams,
+        queryParamsHandling: 'merge',
       });
     }
-    this.router.navigate(changeFactoryInUrl(this.router, event), {
-      queryParams: queryParams,
-      queryParamsHandling: 'merge',
-    });
   }
 
-  private broadcastMsgForFactoryDisplay$(newFactory: string) {
+  private broadcastByChannel(newFactory: string) {
+    this.broadcastChannel.postMessage(newFactory);
+  }
+
+  private broadcastByWebsocket(newFactory: string) {
     const payload: WsBroadcastMsg = { consumer: consumerStreams.FACTORY_DISPLAY, message: { factory: newFactory } };
     const url = this.app.api.concatDashboardApiSvcApiByFactory(
       this.app.factory(),
       this.app.api.DASHBOARD_API_BROADCAST
     );
-    return this.http
+    this.http
       .post(url, payload)
-      .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
+      .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))))
+      .subscribe({
+        next: () => {},
+        error: _ => {
+          this.notif.show(createNotif('error', 'Unable to broadcast message for factory display'));
+        },
+      });
   }
 }

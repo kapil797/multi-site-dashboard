@@ -34,7 +34,6 @@ export const mfNavItems: NavItem[] = [
     row: 1,
     col: 2,
     resource: RoutePaths.MANAGEMENT_KPIS,
-    queryParams: { kpiSide: 'left' },
   },
   {
     name: 'Management KPIs',
@@ -42,7 +41,6 @@ export const mfNavItems: NavItem[] = [
     row: 1,
     col: 3,
     resource: RoutePaths.MANAGEMENT_KPIS,
-    queryParams: { kpiSide: 'right' },
   },
   {
     name: 'Demand Profile',

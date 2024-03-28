@@ -46,7 +46,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_RPS_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_RPS_URL, ...apiSuffixes);
+        return urlJoin(this.MF_RPS_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -57,7 +57,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_RTD_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_RTD_URL, ...apiSuffixes);
+        return urlJoin(this.MF_RTD_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -68,7 +68,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_ORDERAPP_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_ORDERAPP_URL, ...apiSuffixes);
+        return urlJoin(this.MF_ORDERAPP_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -79,7 +79,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+        return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
       default:
         return '';
     }

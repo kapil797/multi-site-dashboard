@@ -2,6 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
 
+## First time setup
+
+1. Run npm install
+
+```sh
+npm install
+```
+
+2. Setup Husky
+
+```sh
+npm run husky install
+```
+
 ## Todo
 
 - Websocket for production tracking
@@ -16,18 +30,50 @@ All components should fit in 100% zoom on Chrome, on 22.9" display.
 
 - Text is left-aligned, numbers are right-aligned, icons are centered
 
-## First time setup
+## Screen display routing
 
-1. Run npm install
+Configurations for each screen are determined through query parameters.
 
-```sh
-npm install
+<table>
+<tr>
+<th>
+Query parameter
+</th>
+<th>
+Value
+</th>
+<th>
+Description
+</th>
+</tr>
+
+<tr>
+<td>
+broadcast
+</td>
+<td>
+true
+</td>
+<td>
+Sends a POST request to operation-websocket-svc and trigger an event to switch screens via websocket
+</td>
+</tr>
+
+<tr>
+<td>
+umf/mf
+</td>
+<td>
+name of component e.g. demand-profile, management-kpis
+</td>
+<td>
+Different screens may render different components
+</td>
+</tr>
+</table>
+
 ```
-
-2. Setup Husky
-
-```sh
-npm run husky install
+http://localhost:4200/microfactory/management-kpis/layer-one?broadcast=true
 ```
 
 ## Development server
