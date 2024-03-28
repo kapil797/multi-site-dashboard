@@ -1,13 +1,15 @@
 import { Component, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
+import { Router } from '@angular/router';
 import moment from 'moment';
 
 import { ColumnSetting, getWidth } from '@core/models/grid.model';
-import { AppService } from '@core/services/app.service';
-import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { createNotif } from '@core/utils/notification';
+import { AppService } from '@core/services/app.service';
+import { consumerStreams, filterStreamFromWebsocketGateway$ } from '@core/models/websocket.model';
+import { ProductionTrackingService } from '@pt/production-tracking.service';
 import {
   ExecutionStream,
   LineItemAggregate,
@@ -17,13 +19,6 @@ import {
   StatusAggregate,
   WorkOrderAggregate,
 } from '@pt/production-tracking.model';
-import { changeFactoryInUrl } from '@core/utils/formatters';
-import { Router } from '@angular/router';
-import {
-  WsFactoryDisplayStream,
-  consumerStreams,
-  filterStreamFromWebsocketGateway$,
-} from '@core/models/websocket.model';
 
 /*
   Total maximum number of parallel requests:
@@ -55,7 +50,7 @@ interface CompactedWorkOrder {
   styleUrl: './layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   private placeholder$ = new BehaviorSubject<boolean>(true);
   private rowCount = 6;
   private chunkLineItems = 3;
@@ -76,25 +71,17 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   public getWidth = getWidth;
 
   constructor(
-    private app: AppService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
     private notif: NotificationService,
-    private pt: ProductionTrackingService,
-    private route: Router,
-    private zone: NgZone
+    private pt: ProductionTrackingService
   ) {
-    super();
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
-      const msg = res.data as WsFactoryDisplayStream;
-      this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
-          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
-          queryParamsHandling: 'merge',
-        });
-      });
-    });
+  override ngOnInit(): void {
+    super.ngOnInit();
 
     filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.RTD)
       .pipe(

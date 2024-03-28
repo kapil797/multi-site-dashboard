@@ -1,20 +1,13 @@
-import { Component, NgZone, OnInit, effect } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { forkJoin, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { DemandProfileService } from '@dp/demand-profile.service';
 import { DemandProfile } from '@dp/demand-profile.model';
-import { Factory } from '@core/models/factory.model';
-import { changeFactoryInUrl } from '@core/utils/formatters';
-import { Router } from '@angular/router';
-import {
-  WsFactoryDisplayStream,
-  consumerStreams,
-  filterStreamFromWebsocketGateway$,
-} from '@core/models/websocket.model';
 
 interface DemandProfiles {
   eScentz: DemandProfile;
@@ -26,40 +19,22 @@ interface DemandProfiles {
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   public isLoading = true;
   public demandProfiles: DemandProfiles;
-  public isOverlay: boolean;
 
   constructor(
-    private app: AppService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
     private dp: DemandProfileService,
-    private notif: NotificationService,
-    private route: Router,
-    private zone: NgZone
+    private notif: NotificationService
   ) {
-    super();
-
-    effect(() => {
-      if (this.app.factory() === Factory.MICRO_FACTORY) {
-        this.isOverlay = true;
-      } else {
-        this.isOverlay = false;
-      }
-    });
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
-      const msg = res.data as WsFactoryDisplayStream;
-      this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
-          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
-          queryParamsHandling: 'merge',
-        });
-      });
-    });
-
+  override ngOnInit(): void {
+    super.ngOnInit();
     forkJoin({
       eScentz: this.dp.fetchDemandProfile$(this.app.factory(), 'ESCENTZ', 3),
       mfConnectPlus: this.dp.fetchDemandProfile$(this.app.factory(), 'MFCONNECT+', 3),

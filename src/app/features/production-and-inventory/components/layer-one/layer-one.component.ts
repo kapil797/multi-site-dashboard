@@ -1,65 +1,42 @@
-import { Component, NgZone, OnInit, effect } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Subject, forkJoin, switchMap, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
-import { ProductionAndInventoryService } from '@pi/production-and-inventory.service';
 import { periods } from '@core/constants/period.constant';
+import { getRandomNumber } from '@core/utils/formatters';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
+import { ProductionAndInventoryService } from '@pi/production-and-inventory.service';
 import { InventoryPerformance } from '@pi/production-and-inventory.model';
 import { PeriodPerformance } from '@pi/components/progress-performance/progress-performance.component';
-import { changeFactoryInUrl, getRandomNumber } from '@core/utils/formatters';
-import { Factory } from '@core/models/factory.model';
-import { Router } from '@angular/router';
-import {
-  WsFactoryDisplayStream,
-  consumerStreams,
-  filterStreamFromWebsocketGateway$,
-} from '@core/models/websocket.model';
 
 @Component({
   selector: 'app-layer-one',
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   public isLoading = true;
   public periods = periods;
   public inventoryPerformanceData: InventoryPerformance;
   public workOrderPerformanceData: PeriodPerformance;
   public productionYieldPerformanceData: PeriodPerformance;
-  public isOverlay: boolean;
   private sub$ = new Subject();
 
   constructor(
-    private app: AppService,
-    public pi: ProductionAndInventoryService,
+    protected override zone: NgZone,
+    protected override route: Router,
+    protected override app: AppService,
     private notif: NotificationService,
-    private zone: NgZone,
-    private route: Router
+    private pi: ProductionAndInventoryService
   ) {
-    super();
-
-    effect(() => {
-      if (this.app.factory() === Factory.MICRO_FACTORY) {
-        this.isOverlay = true;
-      } else {
-        this.isOverlay = false;
-      }
-    });
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
-      const msg = res.data as WsFactoryDisplayStream;
-      this.zone.run(() => {
-        this.route.navigate(changeFactoryInUrl(this.route, msg.factory), {
-          queryParams: this.route.routerState.snapshot.root.children[0].queryParams,
-          queryParamsHandling: 'merge',
-        });
-      });
-    });
+  override ngOnInit(): void {
+    super.ngOnInit();
 
     this.sub$
       .pipe(

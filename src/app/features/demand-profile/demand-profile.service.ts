@@ -35,11 +35,11 @@ export class DemandProfileService {
       range = 200;
       zones = [
         {
-          value: 0.1,
+          value: 0.3,
           direction: 'UP',
         },
         {
-          value: 0.5,
+          value: 0.2,
           direction: 'DOWN',
         },
         {
@@ -126,10 +126,6 @@ export class DemandProfileService {
   ) {
     const numberOfDays = Math.ceil((endDate.getTime() - currentDate.getTime()) / (60 * 60 * 24 * 1000));
     let curDemand = initial;
-
-    // TODO: There's a bug for Escentz with gap between future and actual forecast.
-    currentDate.setDate(currentDate.getDate() + 5);
-
     for (const zone of zones) {
       const count = Math.floor(numberOfDays * zone.value);
       for (let i = 0; i < count; i++) {
