@@ -6,11 +6,10 @@ import { Factory } from '@core/models/factory.model';
 import { ResourceConsumption, MachineStatus, MachineAlertHistory } from '@rt/resource-tracking.model';
 import machineStatusMf from '@rt/mock-data/machine-status-mf.json';
 import machineStatusUmf from '@rt/mock-data/machine-status-umf.json';
-import { ResourceTrackingModule } from '@rt/resource-tracking.module';
 import { getRandomInt, getRandomNumber } from '@core/utils/formatters';
 
 @Injectable({
-  providedIn: ResourceTrackingModule,
+  providedIn: 'any',
 })
 export class ResourceTrackingService {
   constructor(private app: AppService) {}

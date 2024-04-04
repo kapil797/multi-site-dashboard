@@ -4,7 +4,6 @@ import moment from 'moment';
 
 import { getRandomNumber } from '@core/utils/formatters';
 import { AppService } from '@core/services/app.service';
-import { ResourceHealthModule } from '@rh/resource-health.module';
 import {
   AggregatedResourceConsumption,
   MachineResourceHealth,
@@ -17,7 +16,7 @@ import overall from './mock-data/overall.json';
 import machines from './mock-data/machines.json';
 
 @Injectable({
-  providedIn: ResourceHealthModule,
+  providedIn: 'any',
 })
 export class ResourceHealthService {
   constructor(private app: AppService) {}
@@ -184,16 +183,16 @@ export class ResourceHealthService {
       if (curDate.toISOString() === endDate.toISOString()) {
         switch (period) {
           case 'WEEKLY':
-            periodRange = `${startPeriod} - ${moment(row.createdDate).format('DD/MM/YYYY')}`;
+            periodRange = `${startPeriod} - \n${moment(row.createdDate).format('DD/MM/YYYY')}`;
             break;
           case 'MONTHLY':
             periodRange = moment(row.createdDate).format('MMM YYYY');
             break;
           case 'QUARTERLY':
-            periodRange = `${startPeriod} - ${moment(row.createdDate).format('MMM YYYY')}`;
+            periodRange = `${startPeriod} - \n${moment(row.createdDate).format('MMM YYYY')}`;
             break;
           case 'HALF-YEARLY':
-            periodRange = `${startPeriod} - ${moment(row.createdDate).format('MMM YYYY')}`;
+            periodRange = `${startPeriod} - \n${moment(row.createdDate).format('MMM YYYY')}`;
             break;
           case 'YEARLY':
             periodRange = moment(row.createdDate).format('YYYY');

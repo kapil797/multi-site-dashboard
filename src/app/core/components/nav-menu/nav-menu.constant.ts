@@ -1,3 +1,4 @@
+import { Params } from '@angular/router';
 import { RoutePaths } from '@core/constants/routes.constant';
 import {
   faBriefcase,
@@ -16,6 +17,7 @@ export interface NavItem {
   row: number;
   col: number;
   resource: string;
+  queryParams?: Params;
 }
 
 export const mfNavItems: NavItem[] = [

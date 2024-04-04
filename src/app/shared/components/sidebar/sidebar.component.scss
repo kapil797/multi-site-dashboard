@@ -6,11 +6,18 @@
 */
 
 .sidebar {
-  background-color: variables.$tertiary;
   writing-mode: vertical-rl;
   color: variables.$light;
   font-size: variables.$font-size-xxxl;
   text-align: center;
   font-weight: 700;
   letter-spacing: 5px;
+}
+
+.umf {
+  background-color: variables.$bg-7;
+}
+
+.mf {
+  background-color: variables.$tertiary;
 }

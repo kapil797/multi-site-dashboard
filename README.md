@@ -2,6 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
 
+## First time setup
+
+1. Run npm install
+
+```sh
+npm install
+```
+
+2. Setup Husky
+
+```sh
+npm run husky install
+```
+
 ## Todo
 
 - Websocket for production tracking
@@ -16,18 +30,50 @@ All components should fit in 100% zoom on Chrome, on 22.9" display.
 
 - Text is left-aligned, numbers are right-aligned, icons are centered
 
-## First time setup
+## Screen display routing
 
-1. Run npm install
+Configurations for each screen are determined through query parameters.
 
-```sh
-npm install
+<table>
+<tr>
+<th>
+Query parameter
+</th>
+<th>
+Value
+</th>
+<th>
+Description
+</th>
+</tr>
+
+<tr>
+<td>
+broadcast
+</td>
+<td>
+true
+</td>
+<td>
+Sends a POST request to operation-websocket-svc and trigger an event to switch screens via websocket
+</td>
+</tr>
+
+<tr>
+<td>
+umf/mf
+</td>
+<td>
+name of component e.g. demand-profile, management-kpis
+</td>
+<td>
+Different screens may render different components
+</td>
+</tr>
+</table>
+
 ```
-
-2. Setup Husky
-
-```sh
-npm run husky install
+http://localhost:4200/microfactory/management-kpis/layer-one?broadcast=true
 ```
 
 ## Development server
@@ -53,15 +99,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Architecture
-
-- old MF services? .NET?
-- websocket middleware (express JS)
-- Why this architeture is because of HTTP CORS issue; most backend services are using HTTP, but dashboard is using HTTPS
-- websocket is used to push data from rabbitMQ
-- Get the list of APIs required
-- Work order 2401120002, 2401120002.01, .02?
 
 ## PoC
 

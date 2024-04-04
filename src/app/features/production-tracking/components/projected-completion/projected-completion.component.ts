@@ -9,7 +9,7 @@ import moment from 'moment';
 })
 export class ProjectedCompletionComponent implements OnChanges {
   @Input() header: string;
-  @Input() dueDate?: string;
+  @Input() dueDate?: string | null;
   @Input() completedDate?: string | null;
   @Output() late = new EventEmitter();
   public icon = faClock;

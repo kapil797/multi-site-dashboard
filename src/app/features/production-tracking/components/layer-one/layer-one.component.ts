@@ -1,13 +1,15 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
+import { Component, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
+import { BehaviorSubject, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
+import { Router } from '@angular/router';
 import moment from 'moment';
 
 import { ColumnSetting, getWidth } from '@core/models/grid.model';
-import { AppService } from '@core/services/app.service';
-import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { createNotif } from '@core/utils/notification';
+import { AppService } from '@core/services/app.service';
+import { consumerStreams, filterStreamFromWebsocketGateway$ } from '@core/models/websocket.model';
+import { ProductionTrackingService } from '@pt/production-tracking.service';
 import {
   ExecutionStream,
   LineItemAggregate,
@@ -48,11 +50,10 @@ interface CompactedWorkOrder {
   styleUrl: './layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   private placeholder$ = new BehaviorSubject<boolean>(true);
   private rowCount = 6;
   private chunkLineItems = 3;
-  private executionStreamFromRtd$: Observable<unknown>;
   private salesOrderAggregates: SalesOrderAggregate[];
   public isLoading = true;
   public salesOrderCols: ColumnSetting[] = [
@@ -70,21 +71,22 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   public getWidth = getWidth;
 
   constructor(
-    private app: AppService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
     private notif: NotificationService,
     private pt: ProductionTrackingService
   ) {
-    super();
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
-    this.executionStreamFromRtd$ = this.pt.initWebSocketStreams();
+  override ngOnInit(): void {
+    super.ngOnInit();
 
-    // Subscribe to websocket stream.
-    this.executionStreamFromRtd$
+    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.RTD)
       .pipe(
         switchMap(msg => {
-          const res = msg as ExecutionStream;
+          const res = msg.data as ExecutionStream;
           if (!this.salesOrderAggregates) return of(null);
 
           let lineItemAgg: LineItemAggregate | undefined;

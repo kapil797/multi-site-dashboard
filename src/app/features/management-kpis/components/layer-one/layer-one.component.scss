@@ -1,0 +1,12 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.mk-2-wrapper {
+  display: grid;
+  color: #ffffff;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #002135;
+  padding: 2rem;
+  }
+ 
+  

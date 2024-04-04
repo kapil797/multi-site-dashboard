@@ -1,5 +1,5 @@
-<div class="chart-wrapper p-3">
-  <h2>{{ title }}</h2>
+<div class="chart-wrapper p-4 pt-2">
+  <h1>{{ title }}</h1>
   <kendo-chart>
     <kendo-chart-axis-defaults [majorGridLines]="{ visible: false }"> </kendo-chart-axis-defaults>
     <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
@@ -7,17 +7,23 @@
       <kendo-chart-category-axis-item
         [categories]="chartData ? chartData.categories : []"
         [axisCrossingValue]="crossingValues">
-        <kendo-chart-category-axis-item-labels [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
+        <kendo-chart-category-axis-item-labels
+          [font]="chartConfig.fontSize"
+          [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
       </kendo-chart-category-axis-item>
     </kendo-chart-category-axis>
     <kendo-chart-value-axis>
       <kendo-chart-value-axis-item
         name="series1"
-        [title]="{ text: 'Consumption Intensity (KWh/pc)', color: chartConfig.color }">
-        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+        [title]="{ text: 'Consumption Intensity (KWh/pc)', color: chartConfig.color, font: chartConfig.fontSize }">
+        <kendo-chart-value-axis-item-labels [font]="chartConfig.fontSize" [color]="chartConfig.color">
+        </kendo-chart-value-axis-item-labels>
       </kendo-chart-value-axis-item>
-      <kendo-chart-value-axis-item name="series2" [title]="{ text: 'Amount (KW/h)', color: chartConfig.color }">
-        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+      <kendo-chart-value-axis-item
+        name="series2"
+        [title]="{ text: 'Amount (KW/h)', color: chartConfig.color, font: chartConfig.fontSize }">
+        <kendo-chart-value-axis-item-labels [font]="chartConfig.fontSize" [color]="chartConfig.color">
+        </kendo-chart-value-axis-item-labels>
       </kendo-chart-value-axis-item>
     </kendo-chart-value-axis>
     <kendo-chart-series>

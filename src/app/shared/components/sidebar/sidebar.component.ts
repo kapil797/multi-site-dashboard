@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild, effect } from '@angular/core';
+import { Factory } from '@core/models/factory.model';
+import { AppService } from '@core/services/app.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,6 +11,20 @@ export class SidebarComponent implements AfterViewInit {
   @ViewChild('sidebar') sidebar: ElementRef;
   @Input() header: string;
   @Input() rotate: string;
+  public factory: string;
+
+  constructor(private app: AppService) {
+    effect(() => {
+      switch (this.app.factory()) {
+        case Factory.MODEL_FACTORY:
+          this.factory = 'mf';
+          break;
+        case Factory.MICRO_FACTORY:
+          this.factory = 'umf';
+          break;
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     if (this.rotate === 'LEFT') this.sidebar.nativeElement.style.transform = 'rotate(180deg)';

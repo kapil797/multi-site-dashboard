@@ -8,9 +8,9 @@ export function initApp(appService: AppService) {
   let api: BaseApi;
 
   if (config.ENVIRONMENT === 'PRODUCTION') {
-    api = new ProdApi();
+    api = new ProdApi(config);
   } else {
-    api = new DevApi();
+    api = new DevApi(config);
   }
 
   return () => appService.init(config, api);

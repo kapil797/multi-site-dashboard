@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Dialogs } from '@core/constants/dialogs.constant';
+
 // Modules.
 import { SharedModule } from '@shared/shared.module';
 import { KeycloakAngularModule } from 'keycloak-angular';
@@ -16,7 +18,7 @@ import { UnauthorizedComponent } from '@core/components/unauthorized/unauthorize
 import { NavMenuComponent } from '@core/components/nav-menu/nav-menu.component';
 import { dialogAnimation, routeAnimations } from '@core/utils/animations';
 
-import { Dialogs } from '@core/constants/dialogs.constant';
+import { HeartbeatComponent } from '@core/components/heartbeat/heartbeat.component';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +34,7 @@ import { Dialogs } from '@core/constants/dialogs.constant';
     FallbackComponent,
     UnauthorizedComponent,
     NavMenuComponent,
+    HeartbeatComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

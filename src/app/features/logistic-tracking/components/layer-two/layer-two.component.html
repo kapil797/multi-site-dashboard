@@ -1,0 +1,8 @@
+<!-- <app-ui-blocker *ngIf="isLoading"></app-ui-blocker> -->
+<app-navbar header="Supply Chain - Logistic Tracking"></app-navbar>
+<div class="lt-2-wrapper gap-5">
+  <app-tracking-map (driverInfoEvent)="onDriverInfoEmit($event)" height="22rem"></app-tracking-map>
+  <app-delivery-progress [delivery]="delivery"></app-delivery-progress>
+  <app-order-status-overview></app-order-status-overview>
+  <app-order-status-individual></app-order-status-individual>
+</div>

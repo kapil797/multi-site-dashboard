@@ -1,14 +1,15 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
-<div class="rh-1-scaffold">
+<div class="rh-1-scaffold" *ngIf="!isOverlay">
   <div>
     <app-navbar
       header="Resource Health"
       [dropdownOne]="periods"
       dropdownOneLabel="PERIOD"
       (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
-    <div class="rh-1-wrapper d-grid gap-4 mt-5">
+    <div class="rh-1-wrapper d-grid gap-4">
       <app-overall-resource-health [data]="item" *ngFor="let item of data"></app-overall-resource-health>
     </div>
   </div>
   <app-sidebar header="SHOPFLOOR" rotate="RIGHT"></app-sidebar>
 </div>
+<div *ngIf="isOverlay" class="black-screen-overlay"></div>

@@ -1,5 +1,6 @@
 export const RoutePaths = Object.freeze({
   BASE: '',
+  HEARTBEAT: 'heartbeat',
   HOME: 'factory',
   DEFAULT: 'modelfactory',
   FALLBACK: 'fallback',

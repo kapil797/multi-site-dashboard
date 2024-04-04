@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-
 import { Factory } from '@core/models/factory.model';
 import { urlJoin } from '@core/utils/routing';
+import { Config } from '@core/constants/config.constant';
 
 interface ErrorRes {
   message?: string;
@@ -10,56 +10,103 @@ interface ErrorRes {
 
 export class BaseApi {
   // To override.
-  public RPS_MF_BASE_URL: string;
-  public RTD_MF_BASE_URL: string;
-  public ORDERAPP_MF_BASE_URL: string;
+  public MF_RPS_URL: string;
+  public MF_RTD_URL: string;
+  public MF_ORDERAPP_URL: string;
+  public MF_DASHBOARD_API_URL: string;
+  public MF_DASHBOARD_MIDDLEWARE_URL: string;
 
-  public RPS_UMF_BASE_URL: string;
-  public RTD_UMF_BASE_URL: string;
-  public ORDERAPP_UMF_BASE_URL: string;
+  public UMF_RPS_URL: string;
+  public UMF_RTD_URL: string;
+  public UMF_ORDERAPP_URL: string;
+  public UMF_DASHBOARD_API_URL: string;
+  public UMF_DASHBOARD_MIDDLEWARE_URL: string;
 
-  // Override if necessary, else it should be the same for all environments.
+  // Independent of factories.
+  public MAP_API_URL: string;
+  public MAP_ACCESS_TOKEN: string;
+  public ROUTE_API_URL: string;
+
+  // Define API endpoints here.
+  // Override in different environments if necessary,
+  // else it should be the same for all environments.
   public ORDERAPP_SALES_ORDER = 'salesorders';
   public RPS_WORK_ORDER = 'workorder/api/workorder';
   public RTD_WORK_ORDER = 'workorder/get/wo/list';
   public RTD_EXECUTION = 'workorder/get/wo/process/execution/list';
+  public DASHBOARD_API_BROADCAST = 'api/v1/broadcast';
+
+  constructor(config: Config) {
+    this.init(config);
+  }
 
   // For APIs that are dependent on factory, to concatenate them at runtime instead.
-  public concatRpsApiByFactory(factory: string, apiSuffixes: string[]) {
+  public concatRpsApiByFactory(factory: string, ...apiSuffixes: string[]) {
     switch (factory) {
       case Factory.MODEL_FACTORY:
-        return urlJoin(this.RPS_MF_BASE_URL, ...apiSuffixes);
+        return urlJoin(this.MF_RPS_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.RPS_UMF_BASE_URL, ...apiSuffixes);
+        return urlJoin(this.MF_RPS_URL, ...apiSuffixes);
       default:
         return '';
     }
   }
 
-  public concatRtdApiByFactory(factory: string, apiSuffixes: string[]) {
+  public concatRtdApiByFactory(factory: string, ...apiSuffixes: string[]) {
     switch (factory) {
       case Factory.MODEL_FACTORY:
-        return urlJoin(this.RTD_MF_BASE_URL, apiSuffixes);
+        return urlJoin(this.MF_RTD_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.RTD_UMF_BASE_URL, apiSuffixes);
+        return urlJoin(this.MF_RTD_URL, ...apiSuffixes);
       default:
         return '';
     }
   }
 
-  public concatOrderappApiByFactory(factory: string, apiSuffixes: string[]) {
+  public concatOrderappApiByFactory(factory: string, ...apiSuffixes: string[]) {
     switch (factory) {
       case Factory.MODEL_FACTORY:
-        return urlJoin(this.ORDERAPP_MF_BASE_URL, apiSuffixes);
+        return urlJoin(this.MF_ORDERAPP_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.ORDERAPP_UMF_BASE_URL, apiSuffixes);
+        return urlJoin(this.MF_ORDERAPP_URL, ...apiSuffixes);
       default:
         return '';
     }
   }
 
-  public initApis() {
-    // For APIs that are independent of factory,
+  public concatMiddleWareApiByFactory(factory: string, ...apiSuffixes: string[]) {
+    switch (factory) {
+      case Factory.MODEL_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+      case Factory.MICRO_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+      default:
+        return '';
+    }
+  }
+
+  public concatDashboardApiSvcApiByFactory(factory: string, ...apiSuffixes: string[]) {
+    switch (factory) {
+      case Factory.MODEL_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_API_URL, ...apiSuffixes);
+      case Factory.MICRO_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_API_URL, ...apiSuffixes);
+      default:
+        return '';
+    }
+  }
+
+  public init(config: Config) {
+    this.MF_RPS_URL = config.MF_RPS_URL;
+    this.MF_RTD_URL = config.MF_RTD_URL;
+    this.MF_ORDERAPP_URL = config.MF_ORDERAPP_URL;
+    this.MF_DASHBOARD_API_URL = config.MF_DASHBOARD_API_URL;
+    this.MF_DASHBOARD_MIDDLEWARE_URL = config.MF_DASHBOARD_MIDDLEWARE_URL;
+    this.MAP_API_URL = config.MAP_API_URL;
+    this.MAP_ACCESS_TOKEN = config.MAP_ACCESS_TOKEN;
+    this.ROUTE_API_URL = config.ROUTE_API_URL;
+
+    // TODO: to add UMF URLs later.
   }
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {
@@ -93,31 +140,13 @@ export class BaseApi {
 }
 
 export class DevApi extends BaseApi {
-  override RPS_MF_BASE_URL = 'https://mf.platform/tr-rps';
-  override RTD_MF_BASE_URL = 'https://dev.mf.platform/dashboard/rtd/api';
-  override ORDERAPP_MF_BASE_URL = 'https://dev.mf.platform/orderapp/api';
-
-  override RPS_UMF_BASE_URL = '';
-  override RTD_UMF_BASE_URL = '';
-  override ORDERAPP_UMF_BASE_URL = '';
-
-  constructor() {
-    super();
-    this.initApis();
+  constructor(config: Config) {
+    super(config);
   }
 }
 
 export class ProdApi extends BaseApi {
-  override RPS_MF_BASE_URL = 'https://mf.platform/tr-rps/api';
-  override RTD_MF_BASE_URL = 'https://mf.platform/dashboard/rtd/api';
-  override ORDERAPP_MF_BASE_URL = 'https://mf.platform/orderapp/api';
-
-  override RPS_UMF_BASE_URL = '';
-  override RTD_UMF_BASE_URL = '';
-  override ORDERAPP_UMF_BASE_URL = '';
-
-  constructor() {
-    super();
-    this.initApis();
+  constructor(config: Config) {
+    super(config);
   }
 }
