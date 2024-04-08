@@ -28,7 +28,6 @@ import {
   WebsocketStream,
 } from '@pt/production-tracking.model';
 
-import salesOrder from './mock-data/sales-order.json';
 import processTracking from './mock-data/process-tracking.json';
 import { chunk } from '@core/utils/formatters';
 import { webSocket } from 'rxjs/webSocket';
@@ -262,11 +261,14 @@ export class ProductionTrackingService {
   public fetchSalesOrders$(factory: string, limit?: number) {
     const api = this.app.api.concatOrderappApiByFactory(factory, this.app.api.ORDERAPP_SALES_ORDER);
     const queryParams = limit ? `?limit=${limit}` : '';
-    console.log(api, queryParams);
-
-    // this.http.get<SalesOrder[]>(`${api}${queryParams}`)
-    return of(salesOrder as SalesOrder[]).pipe(
-      catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err))))
+    return this.http.get<SalesOrder[]>(`${api}${queryParams}`).pipe(
+      catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
+      map(res => {
+        return res.map(row => {
+          row.customerName = `${row.firstName?.toUpperCase()} ${row.lastName?.toUpperCase()}`;
+          return row;
+        });
+      })
     );
   }
 

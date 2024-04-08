@@ -5,7 +5,7 @@ export const environment = {
   KEYCLOAK_CLIENT: 'single-site-dashboard',
   MF_DASHBOARD_API_URL: 'https://dev.mf.platform/dashboard/operation-api-svc',
   MF_DASHBOARD_WEBSOCKET_URL: 'wss://dev.mf.platform/dashboard/operation-websocket-svc',
-  MF_RPS_URL: 'https://mf.platform/tr-rps',
+  MF_RPS_URL: 'https://dev.mf.platform/tr-rps',
   MF_RTD_URL: 'https://dev.mf.platform/dashboard/rtd/api',
   MF_ORDERAPP_URL: 'https://dev.mf.platform/orderapp/api',
   MF_DASHBOARD_MIDDLEWARE_URL: 'https://dev.mf.platform/dashboard/operation-api-svc',

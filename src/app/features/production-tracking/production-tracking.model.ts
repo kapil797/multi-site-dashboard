@@ -12,9 +12,11 @@ export interface SalesOrder {
   id: number;
   salesOrderNumber: string;
   customerId: number;
-  customerName: string;
+  firstName: string;
+  lastName: string;
   lineItems: LineItem[];
   createdDate: string;
+  customerName: string;
 }
 
 export interface StatusAggregate {

@@ -187,7 +187,7 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
 
   private addCompactedSalesOrder(so: SalesOrderAggregate) {
     const temp: CompactedSalesOrder = {
-      customerName: so.customerName.toUpperCase(),
+      customerName: so.customerName,
       salesOrderNumber: so.salesOrderNumber,
       isLate: this.isLatePredicate(so),
       lastUpdated: this.formatDisplayedTime(so.lastUpdated),
