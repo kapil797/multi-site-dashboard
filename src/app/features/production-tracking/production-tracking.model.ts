@@ -15,8 +15,9 @@ export interface SalesOrder {
   firstName: string;
   lastName: string;
   lineItems: LineItem[];
-  createdDate: string;
+  createdAt: string;
   customerName: string;
+  expectedDeliveryDate: string;
 }
 
 export interface StatusAggregate {

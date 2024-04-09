@@ -25,22 +25,24 @@ export function initWebsocketGateway$(url: string) {
   return webSocket({ url });
 }
 
-export function filterStreamFromWebsocketGateway$(wsGateway$: WebSocketSubject<unknown>, stream: string) {
+export function filterStreamsFromWebsocketGateway$(wsGateway$: WebSocketSubject<unknown>, streams: string[]) {
   const stream$ = wsGateway$.multiplex(
     () => ({
       // On subscribing to websocket.
-      message: `subscribing to ${stream} stream`,
+      message: `subscribing to websocket`,
     }),
     () => ({
       // On destroy.
-      message: `unsubscribing from ${stream} stream`,
+      message: `unsubscribing from websocket`,
     }),
     message => {
+      console.log(message);
+      if (streams.length === 0) return true;
+
       // Filter messages.
       // When processing the message, to extend the interface as required.
       const msg = message as WsMessageStream;
-      console.log(msg);
-      return !!msg.type && msg.type === stream;
+      return !!msg.type && streams.includes(msg.type);
     }
   );
   return stream$ as Observable<WsMessageStream>;

@@ -5,7 +5,7 @@ import { Factory } from '@core/models/factory.model';
 import {
   WsFactoryDisplayStream,
   consumerStreams,
-  filterStreamFromWebsocketGateway$,
+  filterStreamsFromWebsocketGateway$,
 } from '@core/models/websocket.model';
 import { AppService } from '@core/services/app.service';
 import { generateLayerUrlFragments } from '@core/utils/formatters';
@@ -59,7 +59,7 @@ export abstract class LayerOneRouter extends CancelSubscription implements OnIni
       });
     };
 
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.FACTORY_DISPLAY).subscribe(res => {
+    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.FACTORY_DISPLAY]).subscribe(res => {
       this.zone.run(() => {
         const msg = res.data as WsFactoryDisplayStream;
         const routingData = this.handleRouteWithQueryParams(msg.factory);

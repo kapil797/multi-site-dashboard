@@ -102,7 +102,8 @@ export class ProductionTrackingService {
         agg.lineItemAggregates = flatten;
         agg.releasedQty = 0;
         agg.completedQty = 0;
-        agg.lastUpdated = agg.createdDate;
+        agg.lastUpdated = agg.createdAt;
+        agg.estimatedCompleteDate = agg.expectedDeliveryDate;
 
         // Update status.
         agg.lineItemAggregates.forEach(product => {
@@ -221,18 +222,9 @@ export class ProductionTrackingService {
       agg.completedQty += row.completedQty;
 
       // For lastUpdated.
-      let time1 = new Date(agg.lastUpdated as string).getTime();
-      let time2 = new Date(row.lastUpdated as string).getTime();
+      const time1 = new Date(agg.lastUpdated as string).getTime();
+      const time2 = new Date(row.lastUpdated as string).getTime();
       if (time1 < time2) agg.lastUpdated = row.lastUpdated;
-
-      // For dueDate.
-      if (!agg.estimatedCompleteDate) {
-        agg.estimatedCompleteDate = row.estimatedCompleteDate;
-      } else {
-        time1 = new Date(agg.estimatedCompleteDate as string).getTime();
-        time2 = new Date(row.estimatedCompleteDate as string).getTime();
-        if (time1 < time2) agg.estimatedCompleteDate = row.estimatedCompleteDate;
-      }
     });
   }
 
