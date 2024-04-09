@@ -8,7 +8,7 @@ import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
 import { ExecutionStream, SalesOrder, SalesOrderAggregate } from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
-import { consumerStreams, filterStreamFromWebsocketGateway$ } from '@core/models/websocket.model';
+import { consumerStreams, filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 
 /*
   Each SalesOrder can consist of multiple LineItems.
@@ -47,12 +47,11 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.RTD)
+    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.RTD])
       .pipe(
         switchMap(msg => {
           // Update by LineItem if change is relevant.
           const res = msg.data as ExecutionStream;
-          console.log(res);
           const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
             const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
             if (res.WOID.includes(parentWorkOrderNumber)) return true;

@@ -8,11 +8,9 @@ import { ColumnSetting, getWidth } from '@core/models/grid.model';
 import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { createNotif } from '@core/utils/notification';
 import { AppService } from '@core/services/app.service';
-import { consumerStreams, filterStreamFromWebsocketGateway$ } from '@core/models/websocket.model';
+import { filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import {
-  ExecutionStream,
-  LineItemAggregate,
   RpsWorkOrder,
   SalesOrder,
   SalesOrderAggregate,
@@ -83,49 +81,12 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
 
-    filterStreamFromWebsocketGateway$(this.app.wsGateway$, consumerStreams.RTD)
-      .pipe(
-        switchMap(msg => {
-          const res = msg.data as ExecutionStream;
-          if (!this.salesOrderAggregates) return of(null);
-
-          let lineItemAgg: LineItemAggregate | undefined;
-          for (const so of this.salesOrderAggregates) {
-            const temp = so.lineItemAggregates.find(row => {
-              const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
-              if (res.WOID.includes(parentWorkOrderNumber)) return true;
-              return false;
-            });
-            if (temp) {
-              lineItemAgg = temp;
-              break;
-            }
-          }
-
-          if (!lineItemAgg) {
-            // Refetch everything in the placeholder$ subscription.
-            this.placeholder$.next(true);
-            return of(null);
-          }
-          return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
-        }),
-        takeUntil(this.ngUnsubscribe$)
-      )
-      .subscribe({
-        next: res => {
-          if (!res) return;
-          for (const so of this.salesOrderAggregates) {
-            const idx = so.lineItemAggregates.findIndex(row => row.productId === res.productId);
-            if (!idx) continue;
-            so.lineItemAggregates.splice(idx, 1, res);
-            break;
-          }
-          this.displayCompactedSalesOrdersAndWorkOrders(this.salesOrderAggregates);
-        },
-        error: (err: Error) => {
-          this.notif.show(createNotif('error', err.message));
-        },
-      });
+    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, []).subscribe({
+      next: _msg => {
+        // For any updates, to refetch.
+        this.placeholder$.next(true);
+      },
+    });
 
     this.placeholder$
       .pipe(
@@ -230,7 +191,8 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
   private constructSalesOrderAggregate(salesOrder: SalesOrder) {
     return {
       ...salesOrder,
-      lastUpdated: salesOrder.createdDate,
+      estimatedCompleteDate: salesOrder.expectedDeliveryDate,
+      lastUpdated: salesOrder.createdAt,
       lineItemAggregates: [],
       releasedQty: 0,
       completedQty: 0,
