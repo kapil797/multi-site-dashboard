@@ -23,9 +23,10 @@ import {
   LineItemAggregate,
   RpsWorkOrder,
   SalesOrderAggregate,
-  LineItem,
   WorkOrderAggregate,
   WebsocketStream,
+  RpsSalesOrder,
+  SalesOrderLine,
 } from '@pt/production-tracking.model';
 
 import processTracking from './mock-data/process-tracking.json';
@@ -71,7 +72,7 @@ export class ProductionTrackingService {
   ) {}
 
   public aggregateSalesOrderByLineItems$(
-    salesOrder: SalesOrder,
+    salesOrder: RpsSalesOrder,
     chunkSize: number,
     workOrderFamilies?: RpsWorkOrder[]
   ) {
@@ -79,9 +80,14 @@ export class ProductionTrackingService {
     // will need to aggregate from all LineItems.
     return this.fetchParentWorkOrdersBySalesOrderId$(this.app.factory(), salesOrder.id).pipe(
       switchMap(res => {
-        const parallelLineItems = salesOrder.lineItems.map(row => {
-          const parentWorkOrder = res.find(x => x.productId === row.productId);
+        const parallelLineItems = salesOrder.salesOrderLines.map(row => {
+          const parentWorkOrder = res.find(x => x.workOrderLines[0].salesOrderLineId === row.id);
           if (!parentWorkOrder) return throwError(() => `Unable to find parent WorkOrder for ${row.productName}`);
+
+          // Side effect.
+          row.productName = parentWorkOrder.productName;
+          row.productNo = parentWorkOrder.productNo;
+
           return this.aggregateLineItem$.bind(this, row, parentWorkOrder.workOrderNumber, workOrderFamilies);
         });
         const chunked = chunk(parallelLineItems, chunkSize) as (() => Observable<LineItemAggregate>)[][];
@@ -102,8 +108,8 @@ export class ProductionTrackingService {
         agg.lineItemAggregates = flatten;
         agg.releasedQty = 0;
         agg.completedQty = 0;
-        agg.lastUpdated = agg.createdAt;
-        agg.estimatedCompleteDate = agg.expectedDeliveryDate;
+        agg.lastUpdated = agg.orderDate;
+        agg.estimatedCompleteDate = agg.dueDate;
 
         // Update status.
         agg.lineItemAggregates.forEach(product => {
@@ -118,7 +124,7 @@ export class ProductionTrackingService {
     );
   }
 
-  public aggregateLineItem$(item: LineItem, parentWorkOrderNumber: string, workOrderFamily?: RpsWorkOrder[]) {
+  public aggregateLineItem$(item: SalesOrderLine, parentWorkOrderNumber: string, workOrderFamily?: RpsWorkOrder[]) {
     let agg: LineItemAggregate;
 
     // Each parent WorkOrder should have 1:1 mapping with workOrderFamily.
@@ -143,11 +149,11 @@ export class ProductionTrackingService {
           ...item,
           workOrderAggregates: res,
         };
-        return this.fetchProcessTrackingMap$(this.app.factory(), agg.productId);
+        return this.fetchProcessTrackingMap$(this.app.factory(), agg.productNo);
       }),
       map(res => {
         if (!res) {
-          agg.processTrackingMap = this.constructDynamicProcessTrackingMap(agg.productId, agg.workOrderAggregates);
+          agg.processTrackingMap = this.constructDynamicProcessTrackingMap(agg.workOrderAggregates);
         } else {
           agg.processTrackingMap = res;
         }
@@ -264,6 +270,16 @@ export class ProductionTrackingService {
     );
   }
 
+  public fetchSalesOrdersFromRps$(factory: string) {
+    // RPS will maintain a table containing SalesOrder, duplicate of OrderApp.
+    // To take this as the source of truth as it contains additional metadata
+    // required for mapping.
+    const api = this.app.api.concatRpsApiByFactory(factory, this.app.api.RPS_SALES_ORDER);
+    return this.http
+      .get<RpsSalesOrder[]>(api)
+      .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
+  }
+
   public fetchParentWorkOrdersBySalesOrderId$(factory: string, salesOrderId: number) {
     // If a SalesOrder has multiple line items, each line item will have a parent WorkOrder.
     // Function should return N WorkOrders, where N == number of line items.
@@ -323,20 +339,20 @@ export class ProductionTrackingService {
     );
   }
 
-  private fetchProcessTrackingMap$(_factory: string, productId: number) {
+  private fetchProcessTrackingMap$(_factory: string, productNo: string) {
     return of(processTracking as ProcessTrackingMap[]).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
-        const template = res.find(row => row.productId === productId);
-        return template;
+        const template = res.find(row => productNo.includes(row.productCode));
+        return JSON.parse(JSON.stringify(template));
       })
     );
   }
 
-  private constructDynamicProcessTrackingMap(productId: number, workOrderAggregates: WorkOrderAggregate[]) {
+  private constructDynamicProcessTrackingMap(workOrderAggregates: WorkOrderAggregate[]) {
     // For SES products.
     const data: ProcessTrackingMap = {
-      productId: productId,
+      productCode: 'SES',
       category: 'Smart Engineering Systems (SES)',
       rows: 1,
       cols: 0,
@@ -363,7 +379,7 @@ export class ProductionTrackingService {
 
     lineItem.workOrderAggregates.forEach(row => {
       row.executions.forEach(x => {
-        processMap.set(x.process.id, x);
+        processMap.set(x.process.workCenter.id, x);
       });
     });
 
