@@ -31,6 +31,7 @@ export class BaseApi {
   // Override in different environments if necessary,
   // else it should be the same for all environments.
   public ORDERAPP_SALES_ORDER = 'salesorders';
+  public RPS_SALES_ORDER = 'salesorder/api/salesorder';
   public RPS_WORK_ORDER = 'workorder/api/workorder';
   public RTD_WORK_ORDER = 'workorder/get/wo/list';
   public RTD_EXECUTION = 'workorder/get/wo/process/execution/list';

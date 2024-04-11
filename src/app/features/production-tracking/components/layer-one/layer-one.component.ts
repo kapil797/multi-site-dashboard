@@ -11,8 +11,8 @@ import { AppService } from '@core/services/app.service';
 import { filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import {
+  RpsSalesOrder,
   RpsWorkOrder,
-  SalesOrder,
   SalesOrderAggregate,
   StatusAggregate,
   WorkOrderAggregate,
@@ -94,7 +94,7 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
           // Since this is a bulk request of SalesOrders, to fetch all WorkOrderFamilies
           // in parallel instead of querying by WoId synchronously.
           const parallelRequests = {
-            salesOrders: this.pt.fetchSalesOrders$(this.app.factory(), 6),
+            salesOrders: this.pt.fetchSalesOrdersFromRps$(this.app.factory()),
             workOrderFamilies: this.pt.fetchWorkOrderFamilies$(this.app.factory()),
           };
           return forkJoin(parallelRequests);
@@ -125,7 +125,7 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
       });
   }
 
-  private aggregateSalesOrderByLineItemsWithErrorWrapper(row: SalesOrder, workOrderFamilies: RpsWorkOrder[]) {
+  private aggregateSalesOrderByLineItemsWithErrorWrapper(row: RpsSalesOrder, workOrderFamilies: RpsWorkOrder[]) {
     // When a SalesOrder fails to load, to return an incomplete SalesOrderAggregate,
     // instead of throwing an error.
     return this.pt
@@ -188,11 +188,11 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
     return -1;
   }
 
-  private constructSalesOrderAggregate(salesOrder: SalesOrder) {
+  private constructSalesOrderAggregate(salesOrder: RpsSalesOrder) {
     return {
       ...salesOrder,
-      estimatedCompleteDate: salesOrder.expectedDeliveryDate,
-      lastUpdated: salesOrder.createdAt,
+      estimatedCompleteDate: salesOrder.dueDate,
+      lastUpdated: salesOrder.orderDate,
       lineItemAggregates: [],
       releasedQty: 0,
       completedQty: 0,

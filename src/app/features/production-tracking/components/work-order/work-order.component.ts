@@ -36,7 +36,7 @@ export class WorkOrderComponent implements OnChanges {
         // Select first item.
         this.curLineItemAggregate = this.data.lineItemAggregates[0];
       }
-      this.lineItems = this.data.lineItems.map(row => {
+      this.lineItems = this.data.salesOrderLines.map(row => {
         return {
           id: row.productId,
           name: row.productName,
@@ -63,7 +63,7 @@ export class WorkOrderComponent implements OnChanges {
     if (!this.curLineItemAggregate) return;
     let execution: Execution | undefined;
     for (const row of this.curLineItemAggregate.workOrderAggregates) {
-      execution = row.executions.find(x => x.process.id === event);
+      execution = row.executions.find(x => x.process.workCenter.id === event);
       if (execution) {
         this.formatPartsCompleted(execution);
         this.curProcess = execution;

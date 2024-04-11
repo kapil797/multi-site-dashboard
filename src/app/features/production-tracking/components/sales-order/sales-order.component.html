@@ -7,7 +7,7 @@
       header="sales order"
       [icon]="faHashtag"
       [content]="data?.salesOrderNumber"></app-custom-card>
-    <app-line-items [data]="data?.lineItems"></app-line-items>
+    <app-line-items [data]="data?.lineItemAggregates"></app-line-items>
     <app-projected-completion
       header="COMPLETION"
       (late)="onLate()"

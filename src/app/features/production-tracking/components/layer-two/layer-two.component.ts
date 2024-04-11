@@ -6,7 +6,7 @@ import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
-import { ExecutionStream, SalesOrder, SalesOrderAggregate } from '@pt/production-tracking.model';
+import { ExecutionStream, RpsSalesOrder, SalesOrderAggregate } from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
 import { consumerStreams, filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 
@@ -35,7 +35,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   public isLoading = true;
   public salesOrderIds: Dropdown[];
   public salesOrderAggregate?: SalesOrderAggregate;
-  private salesOrderMap: Map<string, SalesOrder> = new Map();
+  private salesOrderMap: Map<string, RpsSalesOrder> = new Map();
   private chunkLineItems = 3;
 
   constructor(
@@ -80,7 +80,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
     // Fetch all SalesOrders and aggregate first SalesOrder.
     this.pt
-      .fetchSalesOrders$(this.app.factory())
+      .fetchSalesOrdersFromRps$(this.app.factory())
       .pipe(
         switchMap(res => {
           if (res.length === 0) return throwError(() => new Error('There are no SalesOrder outstanding'));

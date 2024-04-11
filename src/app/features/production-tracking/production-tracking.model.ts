@@ -8,6 +8,15 @@ export const ProcessStatus = Object.freeze({
   8: 'PROCESSING',
 });
 
+export interface StatusAggregate {
+  releasedQty: number;
+  completedQty: number;
+  lastUpdated: string;
+  estimatedCompleteDate?: string;
+  completedDate?: string;
+  progress: number;
+}
+
 export interface SalesOrder {
   id: number;
   salesOrderNumber: string;
@@ -20,17 +29,28 @@ export interface SalesOrder {
   expectedDeliveryDate: string;
 }
 
-export interface StatusAggregate {
-  releasedQty: number;
-  completedQty: number;
-  lastUpdated: string;
-  estimatedCompleteDate?: string;
-  completedDate?: string;
-  progress: number;
+export interface RpsSalesOrder {
+  id: number;
+  salesOrderNumber: string;
+  customerName: string;
+  dueDate: string;
+  orderDate: string;
+  salesOrderLines: SalesOrderLine[];
 }
 
-export interface SalesOrderAggregate extends SalesOrder, StatusAggregate {
+export interface SalesOrderAggregate extends RpsSalesOrder, StatusAggregate {
   lineItemAggregates: LineItemAggregate[];
+}
+
+export interface SalesOrderLine {
+  id: number; // line item id.
+  quantity: number;
+  productId: number;
+  lineNumber: number;
+  salesOrderId: number;
+  salesOrderNumber: string;
+  productNo: string; // i.e. 15ESZ-9010-AA-P06.
+  productName: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
 }
 
 export interface LineItem {
@@ -41,7 +61,7 @@ export interface LineItem {
   quantity: number;
 }
 
-export interface LineItemAggregate extends LineItem {
+export interface LineItemAggregate extends SalesOrderLine {
   workOrderAggregates: WorkOrderAggregate[];
   processTrackingMap?: ProcessTrackingMap;
 }
@@ -63,6 +83,15 @@ export interface WorkOrder {
   productId: number; // Created by RPS. required for mapping.
   productNo: string; // i.e. 15ESZ-9010-AA-P06.
   productName: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
+  workOrderLines: WorkOrderLine[]; // Should only contain 1 item; 1-to-1 mapping with SalesOrderLineItem.
+}
+
+export interface WorkOrderLine {
+  id: number;
+  workOrderId: number;
+  salesOrderLineId: number;
+  salesOrderNumber: string;
+  salesOrderLineNumber: number;
 }
 
 export interface Customer {
@@ -112,6 +141,13 @@ export interface Execution {
 export interface Process {
   id: number;
   name: string;
+  workCenter: WorkCenter;
+}
+
+export interface WorkCenter {
+  id: number;
+  description: string;
+  name: string;
 }
 
 export interface Machine {
@@ -121,7 +157,7 @@ export interface Machine {
 }
 
 export interface ProcessTrackingMap {
-  productId: number;
+  productCode: string;
   category: string;
   rows: number;
   cols: number;

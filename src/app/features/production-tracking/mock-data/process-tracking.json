@@ -3,7 +3,7 @@
     "rows": 2,
     "cols": 11,
     "category": "Made-to-Stock (MTS)",
-    "productId": 1445,
+    "productCode": "USB",
     "items": [
       { "text": "Reservoir Injection", "id": 10000, "row": 0, "col": 0, "toId": 10001 },
       { "text": "Membrane Assembly", "id": 10001, "row": 0, "col": 1, "toId": 18 },
@@ -23,15 +23,15 @@
     "rows": 3,
     "cols": 5,
     "category": "Made-to-Order (MTO)",
-    "productId": 1621,
+    "productCode": "ESZ",
     "items": [
-      { "text": "Upper Case Paint", "id": 10000, "row": 0, "col": 1, "toId": 1027 },
-      { "text": "Holder Assembly", "id": 1027, "row": 1, "col": 2, "toId": 100001 },
+      { "text": "Upper Case Paint", "id": 10000, "row": 0, "col": 1, "toId": 3 },
+      { "text": "Holder Assembly", "id": 3, "row": 1, "col": 2, "toId": 100001 },
       { "text": "Holder Testing", "id": 100001, "row": 1, "col": 3 },
-      { "text": "Lower Case Print", "id": 1049, "row": 1, "col": 1, "toId": 1027 },
-      { "text": "Cartridge Print", "id": 6, "row": 2, "col": 0, "toId": 7 },
-      { "text": "Scent Filling", "id": 7, "row": 2, "col": 1, "toId": 1154 },
-      { "text": "Lean Packaging", "id": 1154, "row": 2, "col": 2, "toId": 100001 }
+      { "text": "Lower Case Print", "id": 1, "row": 1, "col": 1, "toId": 3 },
+      { "text": "Cartridge Print", "id": 6, "row": 2, "col": 0, "toId": 2 },
+      { "text": "Scent Filling", "id": 2, "row": 2, "col": 1, "toId": 5 },
+      { "text": "Lean Packaging", "id": 5, "row": 2, "col": 2, "toId": 100001 }
     ]
   }
 ]
