@@ -197,6 +197,8 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
       releasedQty: 0,
       completedQty: 0,
       progress: 0,
+      totalProcesses: 0,
+      completedProcesses: 0,
     } as SalesOrderAggregate;
   }
 

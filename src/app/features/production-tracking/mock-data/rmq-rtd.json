@@ -1,0 +1,10 @@
+[
+  {
+    "type": "rtd",
+    "data": "{\"WOID\":\"24041200001.01.01\",\"SalesOrderID\":\"40770\",\"OutStandingQty\":1,\"CompletedQty\":0,\"StartDate\":null,\"EndDate\":null,\"CompletedDate\":null,\"WOStatus\":\"Ready\",\"IsSESOrder\":false}"
+  },
+  {
+    "type": "rtd",
+    "data": "{\"WOID\":\"24041200013.01\",\"SalesOrderID\":\"40810\",\"OpSeq\":1,\"OutstandingQty\":0,\"ScrapQty\":0,\"CompletedQty\":1,\"ProdStartDate\":null,\"ProdEndDate\":\"4/12/2024 1:55:29 PM\",\"WOProcessStatus\":\"Completed\",\"CompletedDate\":\"4/12/2024 1:55:29 PM\",\"ProcessName\":\"MF+ Assembly (BG01, WH) with Background\"}"
+  }
+]

@@ -15,6 +15,8 @@ export interface StatusAggregate {
   estimatedCompleteDate?: string;
   completedDate?: string;
   progress: number;
+  totalProcesses: number;
+  completedProcesses: number;
 }
 
 export interface SalesOrder {
@@ -158,6 +160,7 @@ export interface Machine {
 
 export interface ProcessTrackingMap {
   productCode: string;
+  productionCode: string;
   category: string;
   rows: number;
   cols: number;
@@ -166,6 +169,8 @@ export interface ProcessTrackingMap {
 
 export interface ProcessTrackingItem {
   text: string;
+  processCode: string;
+  processId?: number;
   id: number;
   row: number;
   col: number;
@@ -173,11 +178,11 @@ export interface ProcessTrackingItem {
   statusId?: number; // Ongoing, completed, etc.
 }
 
-export interface WebsocketStream {
-  type: string;
+export interface RtdStream {
+  WOID: string;
 }
 
-export interface ExecutionStream extends WebsocketStream {
+export interface ExecutionStream {
   WOID: string;
   SalesOrderID: string;
   OutstandingQty: number;
@@ -190,4 +195,4 @@ export interface ExecutionStream extends WebsocketStream {
   ProcessName: string;
 }
 
-export interface SalesOrderStream extends WebsocketStream {}
+export interface SalesOrderStream {}

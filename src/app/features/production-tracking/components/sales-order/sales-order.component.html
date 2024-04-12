@@ -10,7 +10,7 @@
     <app-line-items [data]="data?.lineItemAggregates"></app-line-items>
     <app-projected-completion
       header="COMPLETION"
-      (late)="onLate()"
+      (alert)="onAlert($event)"
       [dueDate]="data?.estimatedCompleteDate"
       [completedDate]="data?.completedDate"></app-projected-completion>
     <app-custom-card id="customer" header="customer" [icon]="faUser" [content]="data?.customerName"> </app-custom-card>

@@ -24,14 +24,14 @@ import {
   RpsWorkOrder,
   SalesOrderAggregate,
   WorkOrderAggregate,
-  WebsocketStream,
   RpsSalesOrder,
   SalesOrderLine,
+  ProcessTrackingItem,
+  StatusAggregate,
 } from '@pt/production-tracking.model';
 
 import processTracking from './mock-data/process-tracking.json';
 import { chunk } from '@core/utils/formatters';
-import { webSocket } from 'rxjs/webSocket';
 
 /*
   SalesOrder has one-to-many relationship with WorkOrders.
@@ -104,10 +104,8 @@ export class ProductionTrackingService {
           return prev;
         }, []);
 
-        const agg = salesOrder as SalesOrderAggregate;
+        const agg = { ...salesOrder, ...this.constructStatusAggregate() } as SalesOrderAggregate;
         agg.lineItemAggregates = flatten;
-        agg.releasedQty = 0;
-        agg.completedQty = 0;
         agg.lastUpdated = agg.orderDate;
         agg.estimatedCompleteDate = agg.dueDate;
 
@@ -117,7 +115,7 @@ export class ProductionTrackingService {
         });
 
         // Update progress and completedDate if applicable.
-        agg.progress = Math.round((agg.completedQty / agg.releasedQty) * 100);
+        agg.progress = Math.round((agg.completedProcesses / agg.totalProcesses) * 100);
         if (agg.progress === 100) agg.completedDate = agg.lastUpdated;
         return agg;
       })
@@ -149,7 +147,7 @@ export class ProductionTrackingService {
           ...item,
           workOrderAggregates: res,
         };
-        return this.fetchProcessTrackingMap$(this.app.factory(), agg.productNo);
+        return this.fetchProcessTrackingMap$(this.app.factory(), agg);
       }),
       map(res => {
         if (!res) {
@@ -170,14 +168,12 @@ export class ProductionTrackingService {
     correlationIds: number[]
   ) {
     const agg: WorkOrderAggregate = {
+      ...this.constructStatusAggregate(),
       correlationId: node.id,
       workOrderNumber: node.woid,
       executions: [],
-      releasedQty: 0,
-      completedQty: 0,
       lastUpdated: node.issueTime,
       estimatedCompleteDate: node.dueTime,
-      progress: 0,
     };
     workOrderAggregates.push(agg);
 
@@ -224,8 +220,10 @@ export class ProductionTrackingService {
     // and completedQty for all WorkOrders, regardless of lineItems.
 
     workOrderAggregates.forEach(row => {
-      agg.releasedQty += row.releasedQty;
       agg.completedQty += row.completedQty;
+      agg.releasedQty += row.releasedQty;
+      agg.completedProcesses += row.completedProcesses;
+      agg.totalProcesses += row.totalProcesses;
 
       // For lastUpdated.
       const time1 = new Date(agg.lastUpdated as string).getTime();
@@ -240,8 +238,13 @@ export class ProductionTrackingService {
     // Hence, calculation involving lastUpdated can make use of the above assumption.
     node.executions.forEach(row => {
       // Update quantities.
-      node.releasedQty += row.releasedQty;
       node.completedQty += row.completeQty;
+      node.releasedQty += row.releasedQty;
+
+      if (row.completeQty === row.releasedQty) {
+        node.completedProcesses += 1;
+      }
+      node.totalProcesses += 1;
 
       // Get last updated.
       if (row.processEndTime) node.lastUpdated = row.processEndTime;
@@ -252,7 +255,7 @@ export class ProductionTrackingService {
     if (!node.executionStage && node.executions.length > 0) node.executionStage = node.executions[0].process.name;
 
     // Update progress and completedDate if applicable.
-    node.progress = Math.round((node.completedQty / node.releasedQty) * 100);
+    node.progress = Math.round((node.completedProcesses / node.totalProcesses) * 100);
     if (node.progress === 100) node.completedDate = node.lastUpdated;
   }
 
@@ -274,6 +277,7 @@ export class ProductionTrackingService {
     // RPS will maintain a table containing SalesOrder, duplicate of OrderApp.
     // To take this as the source of truth as it contains additional metadata
     // required for mapping.
+    // Also, INTERNAL products are not ordered through OrderApp.
     const api = this.app.api.concatRpsApiByFactory(factory, this.app.api.RPS_SALES_ORDER);
     return this.http
       .get<RpsSalesOrder[]>(api)
@@ -339,11 +343,17 @@ export class ProductionTrackingService {
     );
   }
 
-  private fetchProcessTrackingMap$(_factory: string, productNo: string) {
+  private fetchProcessTrackingMap$(_factory: string, lineItem: LineItemAggregate) {
     return of(processTracking as ProcessTrackingMap[]).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
-        const template = res.find(row => productNo.includes(row.productCode));
+        let template: ProcessTrackingMap | undefined;
+        if (lineItem.salesOrderNumber.toUpperCase().includes('IN')) {
+          template = res.find(row => row.productionCode === 'IN');
+        } else {
+          template = res.find(row => lineItem.productNo.includes(row.productCode));
+        }
+        if (!template) return new Error(`Unable to find Process Tracking Map for ${lineItem.productNo}`);
         return JSON.parse(JSON.stringify(template));
       })
     );
@@ -353,6 +363,7 @@ export class ProductionTrackingService {
     // For SES products.
     const data: ProcessTrackingMap = {
       productCode: 'SES',
+      productionCode: 'EX',
       category: 'Smart Engineering Systems (SES)',
       rows: 1,
       cols: 0,
@@ -361,11 +372,12 @@ export class ProductionTrackingService {
 
     workOrderAggregates.forEach(row => {
       row.executions.forEach(exec => {
-        const temp = {
+        const temp: ProcessTrackingItem = {
           text: exec.process.name,
           id: exec.process.id,
           statusId: exec.statusId,
           row: 0,
+          processCode: exec.process.name,
           col: exec.step - 1, // 0-indexed.
         };
         data.items.push(temp);
@@ -375,18 +387,21 @@ export class ProductionTrackingService {
   }
 
   private updateStatusOfProcessTrackingItems(lineItem: LineItemAggregate) {
-    const processMap = new Map<number, Execution>();
+    const executions: Execution[] = [];
 
     lineItem.workOrderAggregates.forEach(row => {
       row.executions.forEach(x => {
-        processMap.set(x.process.workCenter.id, x);
+        executions.push(x);
       });
     });
 
     if (!lineItem.processTrackingMap) return;
     lineItem.processTrackingMap.items = lineItem.processTrackingMap.items.map(row => {
-      const process = processMap.get(row.id);
-      if (process) row.statusId = process.statusId;
+      const process = executions.find(x => x.process.name.toUpperCase().includes(row.processCode));
+      if (process) {
+        row.statusId = process.statusId;
+        row.processId = process.process.id;
+      }
       return row;
     });
   }
@@ -396,27 +411,14 @@ export class ProductionTrackingService {
     return v.split('.')[0];
   }
 
-  public initWebSocketStreams() {
-    const websocket$ = webSocket({
-      url: this.app.config.MF_DASHBOARD_WEBSOCKET_URL,
-    });
-
-    const executionStreamFromRtd$ = websocket$.multiplex(
-      () => ({
-        // On subscribing to websocket.
-        message: 'subscribing to RTD execution stream',
-      }),
-      () => ({
-        // On destroy.
-        message: 'unsubscribing from RTD execution stream',
-      }),
-      message => {
-        // Filter messages.
-        const msg = message as WebsocketStream;
-        console.log(msg);
-        return !!msg.type && msg.type.toUpperCase() === 'RTD';
-      }
-    );
-    return executionStreamFromRtd$;
+  private constructStatusAggregate() {
+    return {
+      releasedQty: 0,
+      completedQty: 0,
+      lastUpdated: '',
+      progress: 0,
+      totalProcesses: 0,
+      completedProcesses: 0,
+    } as StatusAggregate;
   }
 }
