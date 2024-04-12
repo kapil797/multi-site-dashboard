@@ -6,7 +6,7 @@ import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
-import { ExecutionStream, RpsSalesOrder, SalesOrderAggregate } from '@pt/production-tracking.model';
+import { RpsSalesOrder, RtdStream, SalesOrderAggregate } from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
 import { consumerStreams, filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 
@@ -51,7 +51,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       .pipe(
         switchMap(msg => {
           // Update by LineItem if change is relevant.
-          const res = msg.data as ExecutionStream;
+          const res = JSON.parse(msg.data) as RtdStream;
           const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
             const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
             if (res.WOID.includes(parentWorkOrderNumber)) return true;
@@ -61,7 +61,6 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           if (!lineItemAgg) return of(null);
           return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
         }),
-
         takeUntil(this.ngUnsubscribe$)
       )
       .subscribe({

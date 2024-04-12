@@ -61,7 +61,7 @@ export abstract class LayerOneRouter extends CancelSubscription implements OnIni
 
     filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.FACTORY_DISPLAY]).subscribe(res => {
       this.zone.run(() => {
-        const msg = res.data as WsFactoryDisplayStream;
+        const msg = res.data as unknown as WsFactoryDisplayStream;
         const routingData = this.handleRouteWithQueryParams(msg.factory);
         this.route.navigate(routingData.fragments, {
           queryParams: routingData.queryParams,

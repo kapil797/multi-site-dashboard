@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 export interface WsMessageStream {
   type: string;
-  data: unknown;
+  data: string;
 }
 
 export interface WsBroadcastMsg {

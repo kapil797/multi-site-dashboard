@@ -16,6 +16,20 @@ npm install
 npm run husky install
 ```
 
+## Products
+
+### MTO
+
+MTO products are dropped from OrderApp:
+
+- EScentz
+- MfConnect
+- MfConnect+
+
+### MTS
+
+MTS products (INTERNAL) cannot be dropped from OrderApp.
+
 ## Standards
 
 ### Screen display
