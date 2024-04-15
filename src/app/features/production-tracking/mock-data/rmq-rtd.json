@@ -6,5 +6,9 @@
   {
     "type": "rtd",
     "data": "{\"WOID\":\"24041200013.01\",\"SalesOrderID\":\"40810\",\"OpSeq\":1,\"OutstandingQty\":0,\"ScrapQty\":0,\"CompletedQty\":1,\"ProdStartDate\":null,\"ProdEndDate\":\"4/12/2024 1:55:29 PM\",\"WOProcessStatus\":\"Completed\",\"CompletedDate\":\"4/12/2024 1:55:29 PM\",\"ProcessName\":\"MF+ Assembly (BG01, WH) with Background\"}"
+  },
+  {
+    "type": "rtd",
+    "data": "{\"WOID\":\"24041500001.02\",\"SalesOrderID\":\"40830\",\"OpSeq\":2,\"OutstandingQty\":0,\"ScrapQty\":0,\"CompletedQty\":2,\"ProdStartDate\":null,\"ProdEndDate\":\"4/15/2024 11:28:31 AM\",\"WOProcessStatus\":\"Completed\",\"CompletedDate\":\"4/15/2024 11:28:31 AM\",\"ProcessName\":\"Cartridge ( Lavender-Eucalyptus) Oil Filling\"}"
   }
 ]

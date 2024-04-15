@@ -52,12 +52,12 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
         switchMap(msg => {
           // Update by LineItem if change is relevant.
           const res = JSON.parse(msg.data) as RtdStream;
+          console.log(res);
           const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
             const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
             if (res.WOID.includes(parentWorkOrderNumber)) return true;
             return false;
           });
-
           if (!lineItemAgg) return of(null);
           return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
         }),
@@ -66,10 +66,12 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       .subscribe({
         next: res => {
           if (!res) return;
+          else if (!this.salesOrderAggregate) return;
 
-          const idx = this.salesOrderAggregate?.lineItemAggregates.findIndex(row => row.productId === res.productId);
-          if (!idx) return;
-          this.salesOrderAggregate?.lineItemAggregates.splice(idx, 1, res);
+          const idx = this.salesOrderAggregate.lineItemAggregates.findIndex(row => row.id === res.id);
+          if (idx === -1) return;
+          this.salesOrderAggregate.lineItemAggregates.splice(idx, 1, res);
+          this.pt.aggregateSalesOrderStatus(this.salesOrderAggregate);
           this.salesOrderAggregate = JSON.parse(JSON.stringify(this.salesOrderAggregate));
         },
         error: (err: Error) => {

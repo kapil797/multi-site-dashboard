@@ -177,12 +177,7 @@ export interface ProcessTrackingItem {
   toId?: number;
   statusId?: number; // Ongoing, completed, etc.
 }
-
 export interface RtdStream {
-  WOID: string;
-}
-
-export interface ExecutionStream {
   WOID: string;
   SalesOrderID: string;
   OutstandingQty: number;
