@@ -36,7 +36,6 @@ export function filterStreamsFromWebsocketGateway$(wsGateway$: WebSocketSubject<
       message: `unsubscribing from websocket`,
     }),
     message => {
-      console.log(message);
       if (streams.length === 0) return true;
 
       // Filter messages.

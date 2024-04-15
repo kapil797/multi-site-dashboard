@@ -120,6 +120,8 @@ export interface WorkOrderAggregate extends StatusAggregate {
   correlationId: number;
   executions: Execution[];
   executionStage?: string;
+  issueTime: string;
+  dueTime: string;
 }
 
 export interface Execution {

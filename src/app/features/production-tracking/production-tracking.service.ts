@@ -106,9 +106,6 @@ export class ProductionTrackingService {
 
         const agg = { ...salesOrder, ...this.constructStatusAggregate() } as SalesOrderAggregate;
         agg.lineItemAggregates = flatten;
-        agg.lastUpdated = agg.orderDate;
-        agg.estimatedCompleteDate = agg.dueDate;
-
         this.aggregateSalesOrderStatus(agg);
         return agg;
       })
@@ -165,8 +162,8 @@ export class ProductionTrackingService {
       correlationId: node.id,
       workOrderNumber: node.woid,
       executions: [],
-      lastUpdated: node.issueTime,
-      estimatedCompleteDate: node.dueTime,
+      dueTime: node.dueTime,
+      issueTime: node.issueTime,
     };
     workOrderAggregates.push(agg);
 
@@ -209,6 +206,12 @@ export class ProductionTrackingService {
   }
 
   public aggregateSalesOrderStatus(agg: SalesOrderAggregate) {
+    this.resetStatusAggregate(agg);
+
+    // Set default.
+    agg.lastUpdated = agg.orderDate;
+    agg.estimatedCompleteDate = agg.dueDate;
+
     agg.lineItemAggregates.forEach(product => {
       // To get the status of a SalesOrder, need to sum the releasedQty
       // and completedQty for all WorkOrders, regardless of lineItems.
@@ -230,31 +233,37 @@ export class ProductionTrackingService {
     if (agg.progress === 100) agg.completedDate = agg.lastUpdated;
   }
 
-  private aggregateWorkOrderStatus(node: WorkOrderAggregate) {
+  public aggregateWorkOrderStatus(agg: WorkOrderAggregate) {
+    this.resetStatusAggregate(agg);
+
+    // Set default.
+    agg.lastUpdated = agg.issueTime;
+    agg.estimatedCompleteDate = agg.dueTime;
+
     // Each execution is sorted in order of step, and steps must be completed
     // in sequential order.
     // Hence, calculation involving lastUpdated can make use of the above assumption.
-    node.executions.forEach(row => {
+    agg.executions.forEach(row => {
       // Update quantities.
-      node.completedQty += row.completeQty;
-      node.releasedQty += row.releasedQty;
+      agg.completedQty += row.completeQty;
+      agg.releasedQty += row.releasedQty;
 
       if (row.completeQty === row.releasedQty) {
-        node.completedProcesses += 1;
+        agg.completedProcesses += 1;
       }
-      node.totalProcesses += 1;
+      agg.totalProcesses += 1;
 
       // Get last updated.
-      if (row.processEndTime) node.lastUpdated = row.processEndTime;
-      if (!row.processEndTime && !node.executionStage) node.executionStage = row.process.name;
+      if (row.processEndTime) agg.lastUpdated = row.processEndTime;
+      if (!row.processEndTime && !agg.executionStage) agg.executionStage = row.process.name;
     });
 
     // Take last execution stage if all are completed.
-    if (!node.executionStage && node.executions.length > 0) node.executionStage = node.executions[0].process.name;
+    if (!agg.executionStage && agg.executions.length > 0) agg.executionStage = agg.executions[0].process.name;
 
     // Update progress and completedDate if applicable.
-    node.progress = Math.round((node.completedProcesses / node.totalProcesses) * 100);
-    if (node.progress === 100) node.completedDate = node.lastUpdated;
+    agg.progress = Math.round((agg.completedProcesses / agg.totalProcesses) * 100);
+    if (agg.progress === 100) agg.completedDate = agg.lastUpdated;
   }
 
   public fetchSalesOrders$(factory: string, limit?: number) {
@@ -390,7 +399,7 @@ export class ProductionTrackingService {
     return data;
   }
 
-  private updateStatusOfProcessTrackingItems(lineItem: LineItemAggregate) {
+  public updateStatusOfProcessTrackingItems(lineItem: LineItemAggregate) {
     const executions: Execution[] = [];
 
     lineItem.workOrderAggregates.forEach(row => {
@@ -424,5 +433,14 @@ export class ProductionTrackingService {
       totalProcesses: 0,
       completedProcesses: 0,
     } as StatusAggregate;
+  }
+
+  private resetStatusAggregate(agg: StatusAggregate) {
+    agg.releasedQty = 0;
+    agg.completedQty = 0;
+    agg.lastUpdated = '';
+    agg.progress = 0;
+    agg.totalProcesses = 0;
+    agg.completedProcesses = 0;
   }
 }

@@ -142,7 +142,7 @@ export class ProcessTrackingComponent implements OnChanges {
 
     for (const col of this.gridItems) {
       for (const row of col) {
-        if (!item) {
+        if (!item && row.processId) {
           item = row;
         } else if (row.statusId === 3) {
           // In progress.
@@ -170,6 +170,7 @@ export class ProcessTrackingComponent implements OnChanges {
   }
 
   public getHexStatusClass(statusId?: number) {
+    if (statusId === undefined) return 'disabled';
     switch (statusId) {
       case 3:
         return 'ongoing';
