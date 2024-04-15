@@ -19,16 +19,27 @@ export class WorkOrderComponent implements OnChanges {
   public lineItems?: ScrollItem[];
   public curLineItemAggregate?: LineItemAggregate;
   public curProcess?: Execution;
+  private curLineItem?: ScrollItem;
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
+      if (
+        this.data &&
+        this.curLineItemAggregate &&
+        this.data.salesOrderNumber === this.curLineItemAggregate.salesOrderNumber
+      ) {
+        // Update by RTD, don't need to reset display.
+        this.onToggleLineItem(this.curLineItem as ScrollItem);
+        return;
+      }
+
       this.resetDisplay();
       if (!this.data || this.data.lineItemAggregates.length === 0) return;
 
       // Check if to select first item or current selection item.
-      const item = this.data.lineItemAggregates.find(row => row.productId === this.curLineItemAggregate?.productId);
+      const item = this.data.lineItemAggregates.find(row => row.id === this.curLineItemAggregate?.id);
       if (item) {
         // Current LineItem displayed is refreshed.
         this.curLineItemAggregate = item;
@@ -38,10 +49,11 @@ export class WorkOrderComponent implements OnChanges {
       }
       this.lineItems = this.data.salesOrderLines.map(row => {
         return {
-          id: row.productId,
+          id: row.id,
           name: row.productName,
         };
       });
+      this.curLineItem = this.lineItems[0];
     }
   }
 
@@ -49,13 +61,15 @@ export class WorkOrderComponent implements OnChanges {
     this.curLineItemAggregate = undefined;
     this.curProcess = undefined;
     if (isNewSalesOrder) this.lineItems = undefined;
+    this.curLineItem = undefined;
   }
 
   public onToggleLineItem(event: ScrollItem) {
     this.resetDisplay(false);
-    const item = this.data?.lineItemAggregates.find(v => v.productId === event.id);
+    const item = this.data?.lineItemAggregates.find(v => v.id === event.id);
     if (!item) return;
     this.curLineItemAggregate = item;
+    this.curLineItem = event;
   }
 
   public onToggleExecution(event: number) {

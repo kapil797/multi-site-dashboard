@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { of, switchMap, takeUntil, throwError } from 'rxjs';
+import { switchMap, takeUntil, throwError } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
-import { RpsSalesOrder, RtdStream, SalesOrderAggregate } from '@pt/production-tracking.model';
+import { LineItemAggregate, RpsSalesOrder, RtdStream, SalesOrderAggregate } from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
 import { consumerStreams, filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 
@@ -47,37 +47,18 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
-    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.RTD])
-      .pipe(
-        switchMap(msg => {
-          // Update by LineItem if change is relevant.
-          const res = JSON.parse(msg.data) as RtdStream;
-          console.log(res);
-          const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
-            const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
-            if (res.WOID.includes(parentWorkOrderNumber)) return true;
-            return false;
-          });
-          if (!lineItemAgg) return of(null);
-          return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
-        }),
-        takeUntil(this.ngUnsubscribe$)
-      )
-      .subscribe({
-        next: res => {
-          if (!res) return;
-          else if (!this.salesOrderAggregate) return;
-
-          const idx = this.salesOrderAggregate.lineItemAggregates.findIndex(row => row.id === res.id);
-          if (idx === -1) return;
-          this.salesOrderAggregate.lineItemAggregates.splice(idx, 1, res);
-          this.pt.aggregateSalesOrderStatus(this.salesOrderAggregate);
-          this.salesOrderAggregate = JSON.parse(JSON.stringify(this.salesOrderAggregate));
-        },
-        error: (err: Error) => {
-          this.notif.show(createNotif('error', err.message));
-        },
+    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.RTD]).subscribe(res => {
+      const msg = JSON.parse(res.data) as RtdStream;
+      if (!msg || !this.salesOrderAggregate) return;
+      console.log(msg);
+      const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
+        const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
+        if (msg.WOID.includes(parentWorkOrderNumber)) return true;
+        return false;
       });
+      if (!lineItemAgg) return;
+      this.updateProcessInLineItem(msg, lineItemAgg);
+    });
 
     // Fetch all SalesOrders and aggregate first SalesOrder.
     this.pt
@@ -135,5 +116,32 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
           this.notif.show(createNotif('error', error));
         },
       });
+  }
+
+  private updateProcessInLineItem(msg: RtdStream, lineItemAgg: LineItemAggregate) {
+    const workOrderAgg = lineItemAgg.workOrderAggregates.find(row => row.workOrderNumber === msg.WOID);
+    if (!workOrderAgg) return;
+
+    const process = workOrderAgg.executions.find(row => row.process.name === msg.ProcessName);
+    if (!process) return;
+
+    process.scrapQty = msg.ScrapQty;
+    process.completeQty = msg.CompletedQty;
+    process.outStandingQty = msg.OutstandingQty;
+    process.processEndTime = new Date(msg.CompletedDate).toISOString();
+
+    switch (msg.WOProcessStatus.toUpperCase()) {
+      case 'ONGOING':
+        process.statusId = 3;
+        break;
+      case 'COMPLETED':
+        process.statusId = 4;
+        break;
+    }
+
+    this.pt.aggregateWorkOrderStatus(workOrderAgg);
+    this.pt.updateStatusOfProcessTrackingItems(lineItemAgg);
+    this.pt.aggregateSalesOrderStatus(this.salesOrderAggregate as SalesOrderAggregate);
+    this.salesOrderAggregate = JSON.parse(JSON.stringify(this.salesOrderAggregate));
   }
 }
