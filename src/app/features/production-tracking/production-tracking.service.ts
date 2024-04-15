@@ -279,9 +279,15 @@ export class ProductionTrackingService {
     // required for mapping.
     // Also, INTERNAL products are not ordered through OrderApp.
     const api = this.app.api.concatRpsApiByFactory(factory, this.app.api.RPS_SALES_ORDER);
-    return this.http
-      .get<RpsSalesOrder[]>(api)
-      .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
+    return this.http.get<RpsSalesOrder[]>(api).pipe(
+      catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
+      map(res => {
+        return res.map(row => {
+          row.customerName = row.customerName.toUpperCase();
+          return row;
+        });
+      })
+    );
   }
 
   public fetchParentWorkOrdersBySalesOrderId$(factory: string, salesOrderId: number) {
