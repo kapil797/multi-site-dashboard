@@ -115,7 +115,8 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
           this.salesOrderData = [];
           this.workOrderData = [];
 
-          res.sort((a, b) => this.compareDate(a.lastUpdated, b.lastUpdated));
+          res.sort((a, b) => a.salesOrderNumber.localeCompare(b.salesOrderNumber) * -1);
+          // res.sort((a, b) => this.compareDate(a.lastUpdated, b.lastUpdated));
           this.displayCompactedSalesOrdersAndWorkOrders(res);
         },
         error: error => {

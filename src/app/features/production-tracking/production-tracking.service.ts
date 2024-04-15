@@ -109,14 +109,7 @@ export class ProductionTrackingService {
         agg.lastUpdated = agg.orderDate;
         agg.estimatedCompleteDate = agg.dueDate;
 
-        // Update status.
-        agg.lineItemAggregates.forEach(product => {
-          this.aggregateSalesOrderStatus(agg, product.workOrderAggregates);
-        });
-
-        // Update progress and completedDate if applicable.
-        agg.progress = Math.round((agg.completedProcesses / agg.totalProcesses) * 100);
-        if (agg.progress === 100) agg.completedDate = agg.lastUpdated;
+        this.aggregateSalesOrderStatus(agg);
         return agg;
       })
     );
@@ -215,21 +208,26 @@ export class ProductionTrackingService {
     );
   }
 
-  public aggregateSalesOrderStatus(agg: SalesOrderAggregate, workOrderAggregates: WorkOrderAggregate[]) {
-    // To get the status of a SalesOrder, need to sum the releasedQty
-    // and completedQty for all WorkOrders, regardless of lineItems.
+  public aggregateSalesOrderStatus(agg: SalesOrderAggregate) {
+    agg.lineItemAggregates.forEach(product => {
+      // To get the status of a SalesOrder, need to sum the releasedQty
+      // and completedQty for all WorkOrders, regardless of lineItems.
+      product.workOrderAggregates.forEach(row => {
+        agg.completedQty += row.completedQty;
+        agg.releasedQty += row.releasedQty;
+        agg.completedProcesses += row.completedProcesses;
+        agg.totalProcesses += row.totalProcesses;
 
-    workOrderAggregates.forEach(row => {
-      agg.completedQty += row.completedQty;
-      agg.releasedQty += row.releasedQty;
-      agg.completedProcesses += row.completedProcesses;
-      agg.totalProcesses += row.totalProcesses;
-
-      // For lastUpdated.
-      const time1 = new Date(agg.lastUpdated as string).getTime();
-      const time2 = new Date(row.lastUpdated as string).getTime();
-      if (time1 < time2) agg.lastUpdated = row.lastUpdated;
+        // For lastUpdated.
+        const time1 = new Date(agg.lastUpdated as string).getTime();
+        const time2 = new Date(row.lastUpdated as string).getTime();
+        if (time1 < time2) agg.lastUpdated = row.lastUpdated;
+      });
     });
+
+    // Update progress and completedDate if applicable.
+    agg.progress = Math.round((agg.completedProcesses / agg.totalProcesses) * 100);
+    if (agg.progress === 100) agg.completedDate = agg.lastUpdated;
   }
 
   private aggregateWorkOrderStatus(node: WorkOrderAggregate) {
