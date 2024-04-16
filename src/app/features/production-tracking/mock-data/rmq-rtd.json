@@ -60,5 +60,27 @@
     "CompletedDate": "4/16/2024 11:18:19 AM",
     "WOStatus": "Completed",
     "IsSESOrder": false
+  },
+  {
+    "WOID": "2404160005.01.01",
+    "SalesOrderID": "41725",
+    "OutStandingQty": 1,
+    "CompletedQty": 0,
+    "StartDate": null,
+    "EndDate": null,
+    "CompletedDate": null,
+    "WOStatus": "Queuing",
+    "IsSESOrder": false
+  },
+  {
+    "WOID": "2404160004.02",
+    "SalesOrderID": "41722",
+    "OutStandingQty": 2,
+    "CompletedQty": 0,
+    "StartDate": null,
+    "EndDate": null,
+    "CompletedDate": null,
+    "WOStatus": "Ready",
+    "IsSESOrder": false
   }
 ]

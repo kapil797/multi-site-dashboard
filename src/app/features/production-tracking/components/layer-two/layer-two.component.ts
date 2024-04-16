@@ -146,6 +146,10 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
     const status = msg.WOProcessStatus ? msg.WOProcessStatus : msg.WOStatus ? msg.WOStatus : '';
     switch (status.toUpperCase()) {
+      case 'READY':
+        break;
+      case 'QUEUING':
+        break;
       case 'PROCESSING':
         process.statusId = 3;
         break;
