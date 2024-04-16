@@ -38,6 +38,7 @@ export interface RpsSalesOrder {
   dueDate: string;
   orderDate: string;
   salesOrderLines: SalesOrderLine[];
+  sortKey: string;
 }
 
 export interface SalesOrderAggregate extends RpsSalesOrder, StatusAggregate {
@@ -183,13 +184,12 @@ export interface RtdStream {
   WOID: string;
   SalesOrderID: string;
   OutstandingQty: number;
-  ScrapQty: number;
   CompletedQty: number;
-  ProdStartdate: string;
-  ProdEndDate: string;
-  WOProcessStatus: string;
-  CompletedDate: string;
-  ProcessName: string;
+  CompletedDate: string | null;
+  ScrapQty?: number;
+  WOProcessStatus?: string;
+  WOStatus?: string;
+  ProcessName?: string;
 }
 
 export interface SalesOrderStream {}
