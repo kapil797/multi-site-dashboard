@@ -289,10 +289,24 @@ export class ProductionTrackingService {
     return this.http.get<RpsSalesOrder[]>(api).pipe(
       catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))),
       map(res => {
-        return res.map(row => {
-          row.customerName = row.customerName.toUpperCase();
-          return row;
-        });
+        const regex = /[A-Za-z-_ ]{1,}(20)?/;
+        const reduced = res.reduce((prev, cur) => {
+          if (!cur.salesOrderNumber.toUpperCase().includes('REPLACEMENT')) {
+            cur.salesOrderNumber = cur.salesOrderNumber.toUpperCase();
+            cur.customerName = cur.customerName.toUpperCase();
+
+            const result = regex.exec(cur.salesOrderNumber);
+            if (result) {
+              cur.sortKey = cur.salesOrderNumber.slice(result[0].length);
+            }
+            prev.push(cur);
+          }
+          return prev;
+        }, [] as RpsSalesOrder[]);
+        reduced.sort((a, b) => b.id - a.id);
+        // reduced.sort((a, b) => a.sortKey.localeCompare(b.sortKey) * -1);
+        // reduced.sort((a, b) => this.compareDate(a.lastUpdated, b.lastUpdated));
+        return reduced;
       })
     );
   }

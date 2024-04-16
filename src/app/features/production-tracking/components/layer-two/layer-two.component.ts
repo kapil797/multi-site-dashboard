@@ -6,7 +6,13 @@ import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { ProductionTrackingService } from '@pt/production-tracking.service';
 import { createNotif } from '@core/utils/notification';
-import { LineItemAggregate, RpsSalesOrder, RtdStream, SalesOrderAggregate } from '@pt/production-tracking.model';
+import {
+  Execution,
+  LineItemAggregate,
+  RpsSalesOrder,
+  RtdStream,
+  SalesOrderAggregate,
+} from '@pt/production-tracking.model';
 import { Dropdown } from '@core/classes/form/form.class';
 import { consumerStreams, filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
 
@@ -122,16 +128,25 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
     const workOrderAgg = lineItemAgg.workOrderAggregates.find(row => row.workOrderNumber === msg.WOID);
     if (!workOrderAgg) return;
 
-    const process = workOrderAgg.executions.find(row => row.process.name === msg.ProcessName);
+    // RTD will send messages of 2 similar schemas:
+    // One with ProcessName, another without.
+    let process: Execution | undefined;
+    if (msg.ProcessName) {
+      process = workOrderAgg.executions.find(row => row.process.name === msg.ProcessName);
+    } else if (workOrderAgg.executions.length == 1) {
+      process = workOrderAgg.executions[0];
+    }
     if (!process) return;
 
-    process.scrapQty = msg.ScrapQty;
+    // Update values in process, where applicable.
     process.completeQty = msg.CompletedQty;
     process.outStandingQty = msg.OutstandingQty;
-    process.processEndTime = new Date(msg.CompletedDate).toISOString();
+    if (msg.ScrapQty) process.scrapQty = msg.ScrapQty;
+    if (msg.CompletedDate) process.processEndTime = new Date(msg.CompletedDate).toISOString();
 
-    switch (msg.WOProcessStatus.toUpperCase()) {
-      case 'ONGOING':
+    const status = msg.WOProcessStatus ? msg.WOProcessStatus : msg.WOStatus ? msg.WOStatus : '';
+    switch (status.toUpperCase()) {
+      case 'PROCESSING':
         process.statusId = 3;
         break;
       case 'COMPLETED':
