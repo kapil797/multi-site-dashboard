@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap, takeUntil, throwError } from 'rxjs';
+import { of, switchMap, takeUntil, throwError } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
@@ -53,18 +53,31 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
   }
 
   ngOnInit(): void {
-    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.RTD]).subscribe(res => {
-      const msg = JSON.parse(res.data) as RtdStream;
-      if (!msg || !this.salesOrderAggregate) return;
-      console.log(msg);
-      const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
-        const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
-        if (msg.WOID.includes(parentWorkOrderNumber)) return true;
-        return false;
+    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, [consumerStreams.RTD])
+      .pipe(
+        switchMap(res => {
+          const msg = JSON.parse(res.data) as RtdStream;
+          if (!msg || !this.salesOrderAggregate) return of(null);
+          console.log(msg);
+          const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
+            const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
+            if (msg.WOID.includes(parentWorkOrderNumber)) return true;
+            return false;
+          });
+          if (!lineItemAgg) return of(null);
+          return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
+        }),
+        takeUntil(this.ngUnsubscribe$)
+      )
+      .subscribe({
+        next: res => {
+          if (!res) return;
+          this.updateLineItemInSalesOrder(res);
+        },
+        error: (error: string) => {
+          this.notif.show(createNotif('error', error));
+        },
       });
-      if (!lineItemAgg) return;
-      this.updateProcessInLineItem(msg, lineItemAgg);
-    });
 
     // Fetch all SalesOrders and aggregate first SalesOrder.
     this.pt
@@ -124,6 +137,18 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
       });
   }
 
+  private updateLineItemInSalesOrder(res: LineItemAggregate) {
+    if (!this.salesOrderAggregate) return;
+    const idx = this.salesOrderAggregate.lineItemAggregates.findIndex(row => row.id === res.id);
+    if (idx == -1) {
+      console.warn('unable to update layer2 as there are no matching line items found');
+      return;
+    }
+    this.salesOrderAggregate.lineItemAggregates.splice(idx, 1, res);
+    this.pt.aggregateSalesOrderStatus(this.salesOrderAggregate);
+    this.salesOrderAggregate = JSON.parse(JSON.stringify(this.salesOrderAggregate));
+  }
+
   private updateProcessInLineItem(msg: RtdStream, lineItemAgg: LineItemAggregate) {
     const workOrderAgg = lineItemAgg.workOrderAggregates.find(row => row.workOrderNumber === msg.WOID);
     if (!workOrderAgg) return;
@@ -140,7 +165,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
     // Update values in process, where applicable.
     process.completeQty = msg.CompletedQty;
-    process.outStandingQty = msg.OutstandingQty;
+    process.outStandingQty = msg.OutStandingQty;
     if (msg.ScrapQty) process.scrapQty = msg.ScrapQty;
     if (msg.CompletedDate) process.processEndTime = new Date(msg.CompletedDate).toISOString();
 
