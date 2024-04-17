@@ -2,7 +2,7 @@
   {
     "rows": 2,
     "cols": 11,
-    "category": "Made-to-Stock (MTS)",
+    "category": "Make-to-Stock (MTS)",
     "productionCode": "IN",
     "productCode": "DUMMY",
     "items": [
@@ -23,7 +23,7 @@
   {
     "rows": 3,
     "cols": 5,
-    "category": "Made-to-Order (MTO)",
+    "category": "Make-to-Order (MTO)",
     "productCode": "15ESZ",
     "productionCode": "EX",
     "items": [
@@ -46,7 +46,7 @@
   {
     "rows": 3,
     "cols": 5,
-    "category": "Made-to-Order (MTO)",
+    "category": "Make-to-Order (MTO)",
     "productionCode": "EX",
     "productCode": "22USB",
     "items": [
@@ -69,7 +69,7 @@
   {
     "rows": 3,
     "cols": 5,
-    "category": "Made-to-Order (MTO)",
+    "category": "Make-to-Order (MTO)",
     "productionCode": "EX",
     "productCode": "20USB",
     "items": [

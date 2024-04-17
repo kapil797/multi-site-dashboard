@@ -183,8 +183,9 @@ export interface ProcessTrackingItem {
 export interface RtdStream {
   WOID: string;
   SalesOrderID: string;
-  OutstandingQty: number;
+  OutStandingQty: number;
   CompletedQty: number;
+  StartDate?: string;
   CompletedDate: string | null;
   ScrapQty?: number;
   WOProcessStatus?: string;

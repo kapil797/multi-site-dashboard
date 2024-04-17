@@ -82,5 +82,16 @@
     "CompletedDate": null,
     "WOStatus": "Ready",
     "IsSESOrder": false
+  },
+  {
+    "WOID": "24041700005.02",
+    "SalesOrderID": "40861",
+    "OutStandingQty": 2,
+    "CompletedQty": 0,
+    "StartDate": "4/17/2024 2:11:10 PM",
+    "EndDate": null,
+    "CompletedDate": null,
+    "WOStatus": "Processing",
+    "IsSESOrder": false
   }
 ]
