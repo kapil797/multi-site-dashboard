@@ -58,6 +58,19 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
         switchMap(res => {
           const msg = JSON.parse(res.data) as RtdStream;
           if (!msg || !this.salesOrderAggregate) return of(null);
+          const status = msg.WOProcessStatus ? msg.WOProcessStatus : msg.WOStatus ? msg.WOStatus : '';
+          switch (status.toUpperCase()) {
+            case 'READY':
+              return of(null);
+            case 'QUEUING':
+              return of(null);
+            case 'PROCESSING':
+              break;
+            case 'COMPLETED':
+              break;
+            default:
+              break;
+          }
           console.log(msg);
           const lineItemAgg = this.salesOrderAggregate?.lineItemAggregates.find(row => {
             const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
