@@ -9,4 +9,5 @@
     <app-sales-order [data]="salesOrderAggregate"></app-sales-order>
     <app-work-order class="mt-3" [data]="salesOrderAggregate"></app-work-order>
   </div>
+  <app-alert *ngIf="isAlert" class="alert p-3" content="Work orders are not released"></app-alert>
 </div>

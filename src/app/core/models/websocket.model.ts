@@ -19,6 +19,7 @@ export interface WsFactoryDisplayStream {
 export const consumerStreams = {
   RTD: 'rtd',
   FACTORY_DISPLAY: 'factoryDisplay',
+  RPS_SALES_CREATED: 'rps-sales-created',
 };
 
 export function initWebsocketGateway$(url: string) {

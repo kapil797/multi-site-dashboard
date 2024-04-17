@@ -93,5 +93,6 @@
     "CompletedDate": null,
     "WOStatus": "Processing",
     "IsSESOrder": false
-  }
+  },
+  { "SalesOrderNumber": "EX-240417-00010", "LineNo": 16892, "StatusCode": 10, "Status": "Pending" }
 ]
