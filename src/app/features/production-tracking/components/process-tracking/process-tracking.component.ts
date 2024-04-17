@@ -172,7 +172,7 @@ export class ProcessTrackingComponent implements OnChanges {
   public getHexStatusClass(statusId?: number) {
     if (statusId === undefined) return 'disabled';
     switch (statusId) {
-      case 3:
+      case 8:
         return 'ongoing';
       case 4:
         return 'completed';

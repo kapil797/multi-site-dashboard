@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
+import { BehaviorSubject, catchError, exhaustMap, forkJoin, of, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
 import { Router } from '@angular/router';
 import moment from 'moment';
@@ -17,7 +17,6 @@ import {
   StatusAggregate,
   WorkOrderAggregate,
 } from '@pt/production-tracking.model';
-
 /*
   Total maximum number of parallel requests:
   - 6 SalesOrders
@@ -53,6 +52,7 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
   private rowCount = 6;
   private chunkLineItems = 3;
   private salesOrderAggregates: SalesOrderAggregate[];
+  private cacheDiscardedSource: number | undefined;
   public isLoading = true;
   public salesOrderCols: ColumnSetting[] = [
     { title: 'SALES ORDER NO.', field: 'salesOrderNumber', width: 450 },
@@ -84,15 +84,17 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
     filterStreamsFromWebsocketGateway$(this.app.wsGateway$, []).subscribe({
       next: _msg => {
         // For any updates, to refetch.
+        this.cacheRequestFromWebsocket();
         this.placeholder$.next(true);
       },
     });
 
     this.placeholder$
       .pipe(
-        switchMap(_ => {
+        exhaustMap(_ => {
           // Since this is a bulk request of SalesOrders, to fetch all WorkOrderFamilies
           // in parallel instead of querying by WoId synchronously.
+          // For ExhaustMap, new source observables will be discarded.
           const parallelRequests = {
             salesOrders: this.pt.fetchSalesOrdersFromRps$(this.app.factory()),
             workOrderFamilies: this.pt.fetchWorkOrderFamilies$(this.app.factory()),
@@ -121,6 +123,18 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
           this.notif.show(createNotif('error', error));
         },
       });
+  }
+
+  private cacheRequestFromWebsocket() {
+    // ExhaustMap will discard new source observables, and this may result
+    // in latest updates being missed.
+    // To cache them with setTimeout and ensure latest changes are reflected.
+    if (!this.cacheDiscardedSource) {
+      this.cacheDiscardedSource = window.setTimeout(() => {
+        this.placeholder$.next(true);
+        this.cacheDiscardedSource = undefined;
+      }, 30000);
+    }
   }
 
   private aggregateSalesOrderByLineItemsWithErrorWrapper(row: RpsSalesOrder, workOrderFamilies: RpsWorkOrder[]) {

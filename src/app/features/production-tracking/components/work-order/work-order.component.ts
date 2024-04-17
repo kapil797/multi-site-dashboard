@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { faGear, faGift, faHashtag, faPuzzlePiece, faRobot } from '@fortawesome/free-solid-svg-icons';
 
-import { Execution, LineItemAggregate, SalesOrderAggregate } from '@pt/production-tracking.model';
+import { Execution, LineItemAggregate, SalesOrderAggregate, WorkOrderAggregate } from '@pt/production-tracking.model';
 import { ScrollItem } from '@pt/components/custom-scroll/custom-scroll.component';
 
 @Component({
@@ -19,6 +19,7 @@ export class WorkOrderComponent implements OnChanges {
   public lineItems?: ScrollItem[];
   public curLineItemAggregate?: LineItemAggregate;
   public curProcess?: Execution;
+  public curWorkOrder?: WorkOrderAggregate;
   private curLineItem?: ScrollItem;
 
   constructor() {}
@@ -62,6 +63,7 @@ export class WorkOrderComponent implements OnChanges {
     this.curProcess = undefined;
     if (isNewSalesOrder) this.lineItems = undefined;
     this.curLineItem = undefined;
+    this.curWorkOrder = undefined;
   }
 
   public onToggleLineItem(event: ScrollItem) {
@@ -81,10 +83,12 @@ export class WorkOrderComponent implements OnChanges {
       if (execution) {
         this.formatPartsCompleted(execution);
         this.curProcess = execution;
+        this.curWorkOrder = row;
         return;
       }
     }
     this.curProcess = undefined;
+    this.curWorkOrder = undefined;
   }
 
   private formatPartsCompleted(execution: Execution) {
