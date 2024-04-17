@@ -193,4 +193,11 @@ export interface RtdStream {
   ProcessName?: string;
 }
 
+export interface RpsSalesCreatedStream {
+  SalesOrderNumber: string;
+  LineNo: number;
+  StatusCode: number;
+  Status: string;
+}
+
 export interface SalesOrderStream {}
