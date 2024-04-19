@@ -55,9 +55,7 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
 
   ngOnInit(): void {
     filterStreamsFromWebsocketGateway$(this.app.wsGateway$, []).subscribe(res => {
-      if (res.type === consumerStreams.RPS_SALES_CREATED) {
-        this.fetchAndUpdateNewSalesOrder();
-      } else if (res.type === consumerStreams.RTD) {
+      if (res.type === consumerStreams.RTD) {
         const msg = JSON.parse(res.data) as RtdStream;
         if (!msg || !this.salesOrderAggregate) return;
         const status = msg.WOProcessStatus ? msg.WOProcessStatus : msg.WOStatus ? msg.WOStatus : '';
@@ -70,6 +68,10 @@ export class LayerTwoComponent extends CancelSubscription implements OnInit {
         });
         if (!lineItemAgg) return;
         this.updateLineItemInSalesOrder(lineItemAgg);
+      } else {
+        // To ensure INTERNAL orders are captured, else listening
+        // to RPS_SO_CREATED is sufficient.
+        this.fetchAndUpdateNewSalesOrder();
       }
     });
 
