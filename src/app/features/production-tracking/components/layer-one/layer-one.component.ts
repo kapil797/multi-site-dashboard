@@ -82,8 +82,11 @@ export class LayerOneComponent extends LayerOneRouter implements OnInit {
     super.ngOnInit();
 
     filterStreamsFromWebsocketGateway$(this.app.wsGateway$, []).subscribe({
-      next: _msg => {
+      next: msg => {
         // For any updates, to refetch.
+        if (msg.data) {
+          console.log(JSON.parse(msg.data));
+        }
         this.cacheRequestFromWebsocket();
         this.placeholder$.next(true);
       },
