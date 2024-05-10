@@ -105,11 +105,11 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
     this.zone.run(() => {
       // In modelfactory, need to change screens when switching between
       // MF and UMF using broadcastChannel.
-      const isBroadcast = this.router.routerState.snapshot.root.children[0].queryParams['broadcast'];
-      const defaultQueryParams = isBroadcast ? { broadcast: 'true' } : {};
+      // const isBroadcast = this.router.routerState.snapshot.root.children[0].queryParams['broadcast'];
+      // const defaultQueryParams = isBroadcast ? { broadcast: 'true' } : {};
 
-      this.router.navigate([this.app.factory(), item.resource, layer], {
-        queryParams: { ...item.queryParams, ...defaultQueryParams },
+      // this.router.navigate([this.app.factory(), item.resource, layer], {
+      //   queryParams: { ...item.queryParams, ...defaultQueryParams },
       this.router.navigate([this.app.factory(), item.resource, site], {
         // queryParams: { kpiSide: item.kpiSide },
       });
