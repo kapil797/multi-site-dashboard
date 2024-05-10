@@ -52,7 +52,7 @@ svg {
 }
 
 .hexagon__inner {
-  transform: scale(.9);
+  transform: scale(0.9);
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   background-color: variables.$bg-3;
@@ -62,8 +62,14 @@ svg {
   margin-top: calc($width / 2);
 }
 
-.hidden {transition: all 1s ease-out;
+.hidden {
+  transition: all 1s ease-out;
   visibility: hidden;
+}
+
+.disabled {
+  transition: all 0.5s ease-out;
+  background-color: #e0e0e0 !important;
 }
 
 .selected {
@@ -73,7 +79,7 @@ svg {
 
 .ongoing {
   transition: all 0.5s ease-out;
-  background-color: #DDEFEF !important;
+  background-color: #f7c394 !important; // ddefef
   color: #002540;
 }
 
@@ -90,7 +96,7 @@ svg {
 }
 
 .hexagon-legend__inner {
-  transform: scale(.75);
+  transform: scale(0.75);
   background-color: variables.$bg-3;
 }
 

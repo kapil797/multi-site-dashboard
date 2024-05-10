@@ -183,16 +183,16 @@ export class ResourceHealthService {
       if (curDate.toISOString() === endDate.toISOString()) {
         switch (period) {
           case 'WEEKLY':
-            periodRange = `${startPeriod} - ${moment(row.createdDate).format('DD/MM/YYYY')}`;
+            periodRange = `${startPeriod} - \n${moment(row.createdDate).format('DD/MM/YYYY')}`;
             break;
           case 'MONTHLY':
             periodRange = moment(row.createdDate).format('MMM YYYY');
             break;
           case 'QUARTERLY':
-            periodRange = `${startPeriod} - ${moment(row.createdDate).format('MMM YYYY')}`;
+            periodRange = `${startPeriod} - \n${moment(row.createdDate).format('MMM YYYY')}`;
             break;
           case 'HALF-YEARLY':
-            periodRange = `${startPeriod} - ${moment(row.createdDate).format('MMM YYYY')}`;
+            periodRange = `${startPeriod} - \n${moment(row.createdDate).format('MMM YYYY')}`;
             break;
           case 'YEARLY':
             periodRange = moment(row.createdDate).format('YYYY');

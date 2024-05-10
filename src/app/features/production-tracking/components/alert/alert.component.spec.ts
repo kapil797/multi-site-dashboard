@@ -1,17 +1,17 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { KpiDetailComponent } from './kpi-detail.component';
+// import { AlertComponent } from './alert.component';
 
-// describe('KpiDetailComponent', () => {
-//   let component: KpiDetailComponent;
-//   let fixture: ComponentFixture<KpiDetailComponent>;
+// describe('AlertComponent', () => {
+//   let component: AlertComponent;
+//   let fixture: ComponentFixture<AlertComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       declarations: [KpiDetailComponent],
+//       imports: [AlertComponent],
 //     }).compileComponents();
 
-//     fixture = TestBed.createComponent(KpiDetailComponent);
+//     fixture = TestBed.createComponent(AlertComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

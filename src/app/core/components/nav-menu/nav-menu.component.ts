@@ -15,6 +15,12 @@ import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-sub
 import { Factory } from '@core/models/factory.model';
 import { mfNavItems, columns } from './nav-menu.constant';
 import { RoutePaths } from '@core/constants/routes.constant';
+import { HttpClient } from '@angular/common/http';
+import { WsBroadcastMsg, consumerStreams } from '@core/models/websocket.model';
+import { catchError, throwError } from 'rxjs';
+import { NotificationService } from '@progress/kendo-angular-notification';
+import { createNotif } from '@core/utils/notification';
+import { generateLayerUrlFragments } from '@core/utils/formatters';
 import { NavItem } from '@core/models/multi-site.model';
 
 @Component({
@@ -39,11 +45,14 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   public currentFactory = 'assets/images/factories/big.png';
   private altFactory = 'assets/images/factories/small.png';
   private observer: MutationObserver;
+  private broadcastChannel = new BroadcastChannel('dashboard');
 
   constructor(
     private zone: NgZone,
     private router: Router,
-    private app: AppService
+    private app: AppService,
+    private http: HttpClient,
+    private notif: NotificationService
   ) {
     super();
 
@@ -94,6 +103,13 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
     // Hence, using ActivatedRoute will have an empty routeTree.
     // Workaround is to pass an absolute path.
     this.zone.run(() => {
+      // In modelfactory, need to change screens when switching between
+      // MF and UMF using broadcastChannel.
+      const isBroadcast = this.router.routerState.snapshot.root.children[0].queryParams['broadcast'];
+      const defaultQueryParams = isBroadcast ? { broadcast: 'true' } : {};
+
+      this.router.navigate([this.app.factory(), item.resource, layer], {
+        queryParams: { ...item.queryParams, ...defaultQueryParams },
       this.router.navigate([this.app.factory(), item.resource, site], {
         // queryParams: { kpiSide: item.kpiSide },
       });
@@ -111,6 +127,37 @@ export class NavMenuComponent extends CancelSubscription implements AfterViewIni
   }
 
   public onChangeSite(event: string) {
-    this.router.navigate([event]);
+    const queryParams = this.router.routerState.snapshot.root.children[0].queryParams;
+    const broadcast = queryParams['broadcast'];
+    if (broadcast) {
+      if (broadcast === 'channel') this.broadcastByChannel(event);
+      else if (broadcast === 'websocket') this.broadcastByWebsocket(event);
+    } else {
+      this.router.navigate(generateLayerUrlFragments(this.router, event), {
+        queryParams: queryParams,
+        queryParamsHandling: 'merge',
+      });
+    }
+  }
+
+  private broadcastByChannel(newFactory: string) {
+    this.broadcastChannel.postMessage(newFactory);
+  }
+
+  private broadcastByWebsocket(newFactory: string) {
+    const payload: WsBroadcastMsg = { consumer: consumerStreams.FACTORY_DISPLAY, message: { factory: newFactory } };
+    const url = this.app.api.concatDashboardApiSvcApiByFactory(
+      this.app.factory(),
+      this.app.api.DASHBOARD_API_BROADCAST
+    );
+    this.http
+      .post(url, payload)
+      .pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))))
+      .subscribe({
+        next: () => {},
+        error: _ => {
+          this.notif.show(createNotif('error', 'Unable to broadcast message for factory display'));
+        },
+      });
   }
 }

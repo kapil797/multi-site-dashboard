@@ -8,15 +8,6 @@ export const ProcessStatus = Object.freeze({
   8: 'PROCESSING',
 });
 
-export interface SalesOrder {
-  id: number;
-  salesOrderNumber: string;
-  customerId: number;
-  customerName: string;
-  lineItems: LineItem[];
-  createdDate: string;
-}
-
 export interface StatusAggregate {
   releasedQty: number;
   completedQty: number;
@@ -24,10 +15,45 @@ export interface StatusAggregate {
   estimatedCompleteDate?: string;
   completedDate?: string;
   progress: number;
+  totalProcesses: number;
+  completedProcesses: number;
 }
 
-export interface SalesOrderAggregate extends SalesOrder, StatusAggregate {
+export interface SalesOrder {
+  id: number;
+  salesOrderNumber: string;
+  customerId: number;
+  firstName: string;
+  lastName: string;
+  lineItems: LineItem[];
+  createdAt: string;
+  customerName: string;
+  expectedDeliveryDate: string;
+}
+
+export interface RpsSalesOrder {
+  id: number;
+  salesOrderNumber: string;
+  customerName: string;
+  dueDate: string;
+  orderDate: string;
+  salesOrderLines: SalesOrderLine[];
+  sortKey: string;
+}
+
+export interface SalesOrderAggregate extends RpsSalesOrder, StatusAggregate {
   lineItemAggregates: LineItemAggregate[];
+}
+
+export interface SalesOrderLine {
+  id: number; // line item id.
+  quantity: number;
+  productId: number;
+  lineNumber: number;
+  salesOrderId: number;
+  salesOrderNumber: string;
+  productNo: string; // i.e. 15ESZ-9010-AA-P06.
+  productName: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
 }
 
 export interface LineItem {
@@ -38,7 +64,7 @@ export interface LineItem {
   quantity: number;
 }
 
-export interface LineItemAggregate extends LineItem {
+export interface LineItemAggregate extends SalesOrderLine {
   workOrderAggregates: WorkOrderAggregate[];
   processTrackingMap?: ProcessTrackingMap;
 }
@@ -60,6 +86,15 @@ export interface WorkOrder {
   productId: number; // Created by RPS. required for mapping.
   productNo: string; // i.e. 15ESZ-9010-AA-P06.
   productName: string; // Description i.e. eScentz (L-C, BL) with Personalised Text
+  workOrderLines: WorkOrderLine[]; // Should only contain 1 item; 1-to-1 mapping with SalesOrderLineItem.
+}
+
+export interface WorkOrderLine {
+  id: number;
+  workOrderId: number;
+  salesOrderLineId: number;
+  salesOrderNumber: string;
+  salesOrderLineNumber: number;
 }
 
 export interface Customer {
@@ -86,6 +121,8 @@ export interface WorkOrderAggregate extends StatusAggregate {
   correlationId: number;
   executions: Execution[];
   executionStage?: string;
+  issueTime: string;
+  dueTime: string;
 }
 
 export interface Execution {
@@ -109,6 +146,13 @@ export interface Execution {
 export interface Process {
   id: number;
   name: string;
+  workCenter: WorkCenter;
+}
+
+export interface WorkCenter {
+  id: number;
+  description: string;
+  name: string;
 }
 
 export interface Machine {
@@ -118,7 +162,8 @@ export interface Machine {
 }
 
 export interface ProcessTrackingMap {
-  productId: number;
+  productCode: string;
+  productionCode: string;
   category: string;
   rows: number;
   cols: number;
@@ -127,28 +172,32 @@ export interface ProcessTrackingMap {
 
 export interface ProcessTrackingItem {
   text: string;
+  processCode: string;
+  processId?: number;
   id: number;
   row: number;
   col: number;
   toId?: number;
   statusId?: number; // Ongoing, completed, etc.
 }
-
-export interface WebsocketStream {
-  type: string;
-}
-
-export interface ExecutionStream extends WebsocketStream {
+export interface RtdStream {
   WOID: string;
   SalesOrderID: string;
-  OutstandingQty: number;
-  ScrapQty: number;
+  OutStandingQty: number;
   CompletedQty: number;
-  ProdStartdate: string;
-  ProdEndDate: string;
-  WOProcessStatus: string;
-  CompletedDate: string;
-  ProcessName: string;
+  StartDate?: string;
+  CompletedDate: string | null;
+  ScrapQty?: number;
+  WOProcessStatus?: string;
+  WOStatus?: string;
+  ProcessName?: string;
 }
 
-export interface SalesOrderStream extends WebsocketStream {}
+export interface RpsSalesCreatedStream {
+  SalesOrderNumber: string;
+  LineNo: number;
+  StatusCode: number;
+  Status: string;
+}
+
+export interface SalesOrderStream {}

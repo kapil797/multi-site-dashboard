@@ -14,6 +14,7 @@ export interface SeriesDataItem {
 // Colors must match with styles defined in core module.
 export const chartConfig = {
   backgroundColor: '#002135',
+  fontSize: '1rem',
   color: '#ffffff',
   success: '#21d794',
   warning: '#fab95c',

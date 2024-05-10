@@ -1,8 +1,8 @@
-<div class="orh-wrapper d-flex flex-column p-3 justify-content-center gap-5 h-100">
-  <h1 class="ms-3">{{ data.title.toUpperCase() }}</h1>
+<div class="orh-wrapper d-flex flex-column p-4 justify-content-center gap-5 h-100">
+  <div class="header">{{ data.title.toUpperCase() }}</div>
   <kendo-circularprogressbar
     class="align-horizontal-center"
-    style="width: 15rem; height: 15rem"
+    style="width: 20rem; height: 20rem"
     [animation]="true"
     [progressColor]="progressColors"
     [value]="overall || 0">
@@ -10,7 +10,7 @@
       <span class="text" [style.color]="color">{{ value }}%</span>
     </ng-template>
   </kendo-circularprogressbar>
-  <h1 class="text-center">OVERALL</h1>
+  <h1 class="header text-center">OVERALL</h1>
   <kendo-grid scrollable="none" [kendoGridBinding]="data.categories">
     <kendo-grid-column field="name" title="Name">
       <ng-template kendoGridCellTemplate let-dataItem>

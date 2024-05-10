@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { Component, NgZone, OnInit, effect } from '@angular/core';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
+import { Router } from '@angular/router';
 
 import { AppService } from '@core/services/app.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { ResourceTrackingService } from '@rt/resource-tracking.service';
 import { MachineStatus } from '@rt/resource-tracking.model';
 
@@ -18,24 +19,36 @@ interface MachineData {
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   public isLoading = true;
   public machinesData: MachineData[] = [];
   public machinesStatus: MachineStatus[];
   public factory: string;
+  private placeholder$ = new Subject();
 
   constructor(
-    private app: AppService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
     private rt: ResourceTrackingService,
     private notif: NotificationService
   ) {
-    super();
+    super(route, zone, app);
+
+    effect(() => {
+      this.placeholder$.next(this.app.factory());
+    });
   }
 
-  ngOnInit(): void {
-    this.rt
-      .fetchMachinesStatus$(this.app.factory())
-      .pipe(takeUntil(this.ngUnsubscribe$))
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.placeholder$
+      .pipe(
+        switchMap(_ => {
+          return this.rt.fetchMachinesStatus$(this.app.factory());
+        }),
+        takeUntil(this.ngUnsubscribe$)
+      )
       .subscribe({
         next: res => {
           this.isLoading = false;
@@ -44,6 +57,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
           this.machinesStatus = res;
 
           // For displaying tables.
+          this.machinesData = [];
           const hashmap = this.groupMachinesByCategory(res);
           // Output machine data by order.
           const catOrder = ['MTS', 'MTO', 'SES'];
@@ -61,6 +75,8 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
           this.notif.show(createNotif('error', error));
         },
       });
+
+    this.placeholder$.next(true);
   }
 
   private groupMachinesByCategory(res: MachineStatus[]) {

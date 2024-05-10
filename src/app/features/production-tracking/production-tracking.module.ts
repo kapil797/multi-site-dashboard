@@ -16,6 +16,7 @@ import { CustomScrollComponent } from '@pt/components/custom-scroll/custom-scrol
 import { WorkOrderComponent } from '@pt/components/work-order/work-order.component';
 import { ProcessTrackingComponent } from '@pt/components/process-tracking/process-tracking.component';
 import { LayerResolverComponent } from '@pt/components/layer-resolver/layer-resolver.component';
+import { AlertComponent } from '@pt/components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LayerResolverComponent } from '@pt/components/layer-resolver/layer-reso
     CustomScrollComponent,
     WorkOrderComponent,
     ProcessTrackingComponent,
+    AlertComponent,
   ],
   imports: [ProductionTrackingRoutingModule, SharedModule],
   providers: [ProductionTrackingService],

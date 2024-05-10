@@ -35,11 +35,11 @@ export class DemandProfileService {
       range = 200;
       zones = [
         {
-          value: 0.1,
+          value: 0.3,
           direction: 'UP',
         },
         {
-          value: 0.5,
+          value: 0.2,
           direction: 'DOWN',
         },
         {

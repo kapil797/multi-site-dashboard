@@ -1,5 +1,5 @@
 <app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
-<div class="pi-1-scaffold">
+<div class="pi-1-scaffold" *ngIf="!isOverlay">
   <div>
     <app-navbar
       header="Production & Inventory"
@@ -8,17 +8,19 @@
       (toggleDropdownOne)="onTogglePeriod($event)"></app-navbar>
     <div class="pi-1-wrapper d-grid gap-4">
       <div class="overall-container p-4 pt-2">
-        <h1>OVERALL INVENTORY PERFORMANCE</h1>
+        <h1 class="header">INVENTORY PERFORMANCE</h1>
         <app-inventory-performance layer="LAYER1" [data]="inventoryPerformanceData"></app-inventory-performance>
       </div>
       <div class="overall-container p-4 pt-2">
-        <h1>OVERALL PRODUCTION PERFORMANCE</h1>
-        <h2 class="mt-3">ON-TIME WORK ORDERS</h2>
+        <h1 class="header">PRODUCTION PERFORMANCE</h1>
+        <h1 class="mt-5">ON-TIME WORK ORDERS</h1>
         <app-progress-performance [data]="workOrderPerformanceData"></app-progress-performance>
-        <h2>OVERALL PRODUCTION YIELD</h2>
+        <h1>OVERALL PRODUCTION YIELD</h1>
         <app-progress-performance [data]="productionYieldPerformanceData"></app-progress-performance>
       </div>
     </div>
   </div>
   <app-sidebar header="ENTERPRISE" rotate="RIGHT"></app-sidebar>
 </div>
+
+<div *ngIf="isOverlay" class="black-screen-overlay"></div>

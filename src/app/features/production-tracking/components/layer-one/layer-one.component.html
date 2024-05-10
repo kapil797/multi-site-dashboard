@@ -13,8 +13,9 @@
         <kendo-grid-column field="status" title="STATUS" [width]="250">
           <ng-template kendoGridCellTemplate let-dataItem>
             <div class="d-flex align-items-center">
-              {{ dataItem.progress }}
-              <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
+              <div>{{ dataItem.progress }}</div>
+              <div class="flex-spacer"></div>
+              <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="me-5"></app-circle-status>
             </div>
           </ng-template>
         </kendo-grid-column>
@@ -28,8 +29,9 @@
         <kendo-grid-column field="status" title="STATUS" [width]="250">
           <ng-template kendoGridCellTemplate let-dataItem>
             <div class="d-flex align-items-center">
-              {{ dataItem.progress }}
-              <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="ms-5"></app-circle-status>
+              <div>{{ dataItem.progress }}</div>
+              <div class="flex-spacer"></div>
+              <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="me-5"></app-circle-status>
             </div>
           </ng-template>
         </kendo-grid-column>

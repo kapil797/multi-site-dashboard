@@ -5,18 +5,20 @@
       <kendo-chart-legend-item [visual]="labelsVisual"></kendo-chart-legend-item>
     </kendo-chart-legend>
     <kendo-chart-axis-defaults [majorGridLines]="majorGridLines"> </kendo-chart-axis-defaults>
-    <kendo-chart-area [background]="chartConfig.backgroundColor"></kendo-chart-area>
+    <kendo-chart-area [height]="700" [background]="chartConfig.backgroundColor"></kendo-chart-area>
     <!-- <kendo-chart-title align="left" text="POWER LOAD PROFILE (kW)" [color]="chartConfig.color"></kendo-chart-title> -->
     <kendo-chart-category-axis>
       <kendo-chart-category-axis-item baseUnit="weeks">
         <kendo-chart-category-axis-item-labels
           format="dd/MM"
+          [font]="chartConfig.fontSize"
           [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
       </kendo-chart-category-axis-item>
     </kendo-chart-category-axis>
     <kendo-chart-value-axis>
       <kendo-chart-value-axis-item>
-        <kendo-chart-value-axis-item-labels [color]="chartConfig.color"> </kendo-chart-value-axis-item-labels>
+        <kendo-chart-value-axis-item-labels [font]="chartConfig.fontSize" [color]="chartConfig.color">
+        </kendo-chart-value-axis-item-labels>
       </kendo-chart-value-axis-item>
     </kendo-chart-value-axis>
     <kendo-chart-series>

@@ -13,13 +13,13 @@ export class BaseApi {
   public MF_RPS_URL: string;
   public MF_RTD_URL: string;
   public MF_ORDERAPP_URL: string;
-  public MF_DASHBOARD_WEBSOCKET_URL: string;
+  public MF_DASHBOARD_API_URL: string;
   public MF_DASHBOARD_MIDDLEWARE_URL: string;
 
   public UMF_RPS_URL: string;
   public UMF_RTD_URL: string;
   public UMF_ORDERAPP_URL: string;
-  public UMF_DASHBOARD_WEBSOCKET_URL: string;
+  public UMF_DASHBOARD_API_URL: string;
   public UMF_DASHBOARD_MIDDLEWARE_URL: string;
 
   // Independent of factories.
@@ -31,9 +31,11 @@ export class BaseApi {
   // Override in different environments if necessary,
   // else it should be the same for all environments.
   public ORDERAPP_SALES_ORDER = 'salesorders';
+  public RPS_SALES_ORDER = 'salesorder/api/salesorder';
   public RPS_WORK_ORDER = 'workorder/api/workorder';
   public RTD_WORK_ORDER = 'workorder/get/wo/list';
   public RTD_EXECUTION = 'workorder/get/wo/process/execution/list';
+  public DASHBOARD_API_BROADCAST = 'api/v1/broadcast';
 
   constructor(config: Config) {
     this.init(config);
@@ -45,7 +47,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_RPS_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_RPS_URL, ...apiSuffixes);
+        return urlJoin(this.MF_RPS_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -56,7 +58,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_RTD_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_RTD_URL, ...apiSuffixes);
+        return urlJoin(this.MF_RTD_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -67,7 +69,7 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_ORDERAPP_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_ORDERAPP_URL, ...apiSuffixes);
+        return urlJoin(this.MF_ORDERAPP_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -78,7 +80,18 @@ export class BaseApi {
       case Factory.MODEL_FACTORY:
         return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
       case Factory.MICRO_FACTORY:
-        return urlJoin(this.UMF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+        return urlJoin(this.MF_DASHBOARD_MIDDLEWARE_URL, ...apiSuffixes);
+      default:
+        return '';
+    }
+  }
+
+  public concatDashboardApiSvcApiByFactory(factory: string, ...apiSuffixes: string[]) {
+    switch (factory) {
+      case Factory.MODEL_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_API_URL, ...apiSuffixes);
+      case Factory.MICRO_FACTORY:
+        return urlJoin(this.MF_DASHBOARD_API_URL, ...apiSuffixes);
       default:
         return '';
     }
@@ -88,11 +101,13 @@ export class BaseApi {
     this.MF_RPS_URL = config.MF_RPS_URL;
     this.MF_RTD_URL = config.MF_RTD_URL;
     this.MF_ORDERAPP_URL = config.MF_ORDERAPP_URL;
-    this.MF_DASHBOARD_WEBSOCKET_URL = config.MF_DASHBOARD_WEBSOCKET_URL;
+    this.MF_DASHBOARD_API_URL = config.MF_DASHBOARD_API_URL;
     this.MF_DASHBOARD_MIDDLEWARE_URL = config.MF_DASHBOARD_MIDDLEWARE_URL;
     this.MAP_API_URL = config.MAP_API_URL;
     this.MAP_ACCESS_TOKEN = config.MAP_ACCESS_TOKEN;
     this.ROUTE_API_URL = config.ROUTE_API_URL;
+
+    // TODO: to add UMF URLs later.
   }
 
   public mapHttpError(res: string | HttpErrorResponse | ErrorRes | Error): string {

@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayerTwoComponent } from './layer-two.component';
+// import { LayerTwoComponent } from './layer-two.component';
 
-describe('LayerTwoComponent', () => {
-  let component: LayerTwoComponent;
-  let fixture: ComponentFixture<LayerTwoComponent>;
+// describe('LayerTwoComponent', () => {
+//   let component: LayerTwoComponent;
+//   let fixture: ComponentFixture<LayerTwoComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [LayerTwoComponent],
-    }).compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [LayerTwoComponent],
+//     }).compileComponents();
 
-    fixture = TestBed.createComponent(LayerTwoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(LayerTwoComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

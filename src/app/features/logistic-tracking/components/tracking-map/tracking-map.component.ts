@@ -71,7 +71,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
   }
   mapInitial() {
     this.map = new mapboxgl.Map({
-      accessToken: this.app.api.MAP_ACCESS_TOKEN,
+      accessToken: this.app.config.MAP_ACCESS_TOKEN,
       container: 'map',
       style: this.style,
       zoom: 11,
@@ -133,7 +133,6 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     const query = await fetch(this.routeApiGen(route.startPoint.coordinates, route.endPoint.coordinates), {
       method: 'GET',
     });
-    console.log('query', query);
     const json = await query.json();
     const data = json.routes[0];
     const routeCoordinates = data.geometry.coordinates;
@@ -198,7 +197,7 @@ export class TrackingMapComponent extends CancelSubscription implements OnInit, 
     const [endLng, endLat] = getLngLat(end);
     return (
       `${this.routeApiRoot}/${startLng},${startLat};${endLng},${endLat}` +
-      `?steps=true&geometries=geojson&access_token=${this.app.api.MAP_ACCESS_TOKEN}`
+      `?steps=true&geometries=geojson&access_token=${this.app.config.MAP_ACCESS_TOKEN}`
     );
   }
   addMarker(point: Point, markerType: MarkerType) {

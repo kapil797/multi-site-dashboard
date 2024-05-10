@@ -2,10 +2,11 @@
   <div class="d-flex align-items-center">
     <fa-icon [icon]="icon" class="icon me-2"></fa-icon>
     <h3>PROCESS TRACKING</h3>
+    <div class="flex-spacer"></div>
+    <h3>{{ data && data.category }}</h3>
   </div>
   <div class="text" *ngIf="!data">Not Available</div>
   <div *ngIf="data">
-    <h3>{{ data.category }}</h3>
     <div class="hexagon-wrapper d-flex justify-content-center p-3">
       <div id="grid-container" #grid class="grid-container d-grid">
         <svg width="100%" height="100%" preserveAspectRatio="none">
@@ -37,6 +38,12 @@
       <div class="flex-spacer"></div>
       <div class="d-flex">
         <div class="d-flex align-items-center">
+          <div class="hexagon-legend">
+            <div class="hexagon-legend hexagon-legend__inner disabled"></div>
+          </div>
+          <div class="ms-2">Not Available</div>
+        </div>
+        <div class="d-flex align-items-center ms-2">
           <div class="hexagon-legend selected">
             <div class="hexagon-legend hexagon-legend__inner"></div>
           </div>

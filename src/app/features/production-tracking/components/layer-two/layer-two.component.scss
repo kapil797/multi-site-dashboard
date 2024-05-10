@@ -9,3 +9,12 @@
   @include base.container;
 }
 
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid variables.$white;
+  border-radius: 0.2rem;
+  background-color: #001628;
+}
