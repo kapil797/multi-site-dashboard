@@ -7,8 +7,11 @@ import { LogisticTrackingRoutingModule } from '@lt/logistic-tracking-routing.mod
 import { SharedModule } from '@shared/shared.module';
 import { LogisticTrackingService } from './logistic-tracking-service';
 import { DeliveryProgressComponent } from '@lt/components/delivery-progress/delivery-progress.component';
-import { OrderStatusIndividualComponent } from '@lt/components/order-status-individual/order-status-individual.component';
 import { OrderStatusOverviewComponent } from '@lt/components/order-status-overview/order-status-overview.component';
+import { OrderStatusIndividualComponent } from './components/order-status-individual/order-status-individual.component';
+import { MultiSiteComponent } from './multi-site/multi-site.component';
+import { FeatureService } from '@core/services/feature.service';
+import { OrderStatusComponent } from './widgets/order-status/order-status.component';
 
 @NgModule({
   declarations: [
@@ -17,10 +20,12 @@ import { OrderStatusOverviewComponent } from '@lt/components/order-status-overvi
     LayerResolverComponent,
     TrackingMapComponent,
     DeliveryProgressComponent,
-    OrderStatusIndividualComponent,
     OrderStatusOverviewComponent,
+    OrderStatusIndividualComponent,
+    MultiSiteComponent,
+    OrderStatusComponent,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
-  providers: [LogisticTrackingService],
+  providers: [LogisticTrackingService, FeatureService],
 })
 export class LogisticTrackingModule {}

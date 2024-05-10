@@ -15,4 +15,11 @@ export const RoutePaths = Object.freeze({
   PRODUCTION_INVENTORY: 'production-inventory',
   RESOURCE_TRACKING: 'resource-tracking',
   RESOURCE_HEALTH: 'resource-health',
+  LAYOUT: 'layout',
+  LAYOUT_ONE: 'layout-one',
+  LAYOUT_TWO: 'layout-two',
+  LAYOUT_THREE: 'layout-three',
+  LAYOUT_FOUR: 'layout-four',
+  LAYOUT_FIVE: 'layout-five',
+  SITE: 'multiSite',
 });

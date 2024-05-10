@@ -1,0 +1,31 @@
+/* layout-one.component.scss */
+.layout-one-container {
+  background-color: #282c34; /* Dark background */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+
+.widget {
+  background-color: #3a3f4b; /* Slightly lighter widget background */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.top-right {
+  grid-row: span 2; /* Makes widget3 larger, spanning two rows */
+}

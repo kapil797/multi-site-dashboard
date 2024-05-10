@@ -22,6 +22,7 @@ export class LayerResolverComponent extends CancelSubscription implements OnInit
 
   ngOnInit(): void {
     this.route.paramMap.pipe(takeUntil(this.ngUnsubscribe$)).subscribe(res => {
+      console.log('layer', res);
       const layer = res.get(RoutePaths.LAYER) as string;
       switch (layer) {
         case RoutePaths.LAYER_ONE:
