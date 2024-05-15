@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-management-kpi3',
-  standalone: true,
-  imports: [],
   templateUrl: './management-kpi3.component.html',
-  styleUrl: './management-kpi3.component.scss'
+  styleUrl: './management-kpi3.component.scss',
 })
 export class ManagementKPI3Component {
-
-  public item = {"Id":8,"Category":"Profit","Value":14636.0,"Projection":68.24,"ProjectionHealth":"Yellow","Target":74.25,"Period":"Weekly","ProjectionDay":"7 days"};
+  @Input() title: string;
+  @Input() subtitle: string;
+  public item = {
+    Id: 8,
+    Category: 'Profit',
+    Value: 14636.0,
+    Projection: 68.24,
+    ProjectionHealth: 'Yellow',
+    Target: 74.25,
+    Period: 'Weekly',
+    ProjectionDay: '7 days',
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isVolumeRelated(item: any) {
@@ -36,5 +44,4 @@ export class ManagementKPI3Component {
         return '';
     }
   }
-
 }

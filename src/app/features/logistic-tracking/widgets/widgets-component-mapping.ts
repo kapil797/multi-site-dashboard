@@ -3,5 +3,5 @@ import { OrderStatusComponent } from './order-status/order-status.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
-  ManagementKPI3: ManagementKPI3Component
+  ManagementKPI3: ManagementKPI3Component,
 };
