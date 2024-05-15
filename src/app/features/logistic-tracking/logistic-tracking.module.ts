@@ -13,6 +13,7 @@ import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { FeatureService } from '@core/services/feature.service';
 import { OrderStatusComponent } from './widgets/order-status/order-status.component';
 import { LayoutOneComponent } from 'src/app/layouts/layout-one/layout-one.component';
+import { ManagementKPI3Component } from './widgets/management-kpi3/management-kpi3.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { LayoutOneComponent } from 'src/app/layouts/layout-one/layout-one.compon
     MultiSiteComponent,
     OrderStatusComponent,
     LayoutOneComponent,
+    ManagementKPI3Component
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],
