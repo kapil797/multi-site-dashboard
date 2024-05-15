@@ -14,6 +14,11 @@ import { FeatureService } from '@core/services/feature.service';
 import { OrderStatusComponent } from './widgets/order-status/order-status.component';
 import { LayoutOneComponent } from 'src/app/layouts/layout-one/layout-one.component';
 import { ManagementKPI3Component } from './widgets/management-kpi3/management-kpi3.component';
+import { LayoutTwoComponent } from 'src/app/layouts/layout-two/layout-two.component';
+import { LayoutSixComponent } from 'src/app/layouts/layout-six/layout-six.component';
+import { LayoutThreeComponent } from 'src/app/layouts/layout-three/layout-three.component';
+import { LayoutFourComponent } from 'src/app/layouts/layout-four/layout-four.component';
+import { LayoutFiveComponent } from 'src/app/layouts/layout-five/layout-five.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import { ManagementKPI3Component } from './widgets/management-kpi3/management-kp
     MultiSiteComponent,
     OrderStatusComponent,
     LayoutOneComponent,
-    ManagementKPI3Component
+    LayoutTwoComponent,
+    ManagementKPI3Component,
+    LayoutSixComponent,
+    LayoutThreeComponent,
+    LayoutFourComponent,
+    LayoutFiveComponent,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],
