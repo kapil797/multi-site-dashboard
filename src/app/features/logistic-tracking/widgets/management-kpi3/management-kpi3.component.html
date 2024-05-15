@@ -1,0 +1,53 @@
+<div class="card p-3 m-auto">
+
+    <div class="card-meta-wrapper d-flex justify-content-space-between">
+        <span class="card-title">{{ item.Category }}</span>
+        <div class="card-tag d-flex px-4 py-2 flex-column justify-content-center"> combined </div>
+    </div>
+    <div class="card-period pb-5">PAST MONTH</div>
+
+    <br />
+
+    <div class="d-flex">
+        <div class="projection-details d-flex justify-content-start">
+            <div class="projection ms-2d-flex flex-column justify-content-center">
+                <span class="title">PROJECTION:</span>
+
+                <div class="projection-figure p-2 px-3 pt-4">
+                    <div class="projection-figure-wrapper d-flex">
+                        <span class="figure" [ngClass]="item.ProjectionHealth">
+                            {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }}
+                        </span>
+                        <div class="projection-chart ms-3">
+                            <img
+                            *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
+                            [src]="'assets/images/indicators/ic-trend-round-' + item.ProjectionHealth.toLowerCase() + '.png'"
+                            [alt]="item.ProjectionHealth"
+                            class="img-size" />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class= "right-wrapper p-t flex-column justify-content-center">
+            <div class="d-flex ms-3 flex-column">
+                <span class="current-title">CURRENT:</span>
+                <span class="current-figure p-3">
+                    <ng-container *ngIf="isVolumeRelated(item); else nonVolumeRelated">
+                    {{ item.Value | currency: '' : '' : '1.0-0' }}
+                    </ng-container>
+                    <ng-template #nonVolumeRelated>{{ item.Value }}</ng-template>
+                    <span class="ms-3">({{ getUnits(item) }})</span>
+                </span>
+            </div>
+
+            <div class="target ms-3 d-flex flex-column">
+                <span class="title">TARGET:</span>
+                <span class="target-figure p-3"> {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} </span>
+            </div>
+        </div> 
+    </div>
+  </div>
+  
+
