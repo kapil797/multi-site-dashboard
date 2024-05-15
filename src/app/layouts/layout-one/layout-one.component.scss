@@ -1,15 +1,30 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 .lt-1-scaffold {
   display: grid;
   grid-template-columns: 1fr; /* Default, one column when sidebar isn't showing */
   grid-template-rows: auto 1fr; /* Header and content */
+  height: 100vh; /* Make the grid container fill the viewport height */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
 }
 
 .lt-2-wrapper {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
-  padding: 3rem;
-  gap: 20px; /* Adjust based on your design */
+  gap: 20px; /* Add space between grid items */
+  padding: 20px; /* Add padding inside the grid */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  overflow: hidden; /* Prevent scrolling */
+  background-color: #1e293b; /* Darker background color to distinguish the grid area */
+  border-radius: 10px; /* Optional: add rounded corners for a nicer look */
+  height: calc(100vh - 100px); /* Adjust height based on the height of the header */
 }
 
 .position-left {

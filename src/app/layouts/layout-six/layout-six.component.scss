@@ -16,15 +16,16 @@ body {
 
 .lt-2-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns, with the first column being twice as wide */
-  grid-template-rows: 1fr 1fr; /* Two equal rows */
-  gap: 20px; /* Add space between grid items */
+  grid-template-columns: 1fr; /* Single column */
+  grid-template-rows: 1fr; /* Single row */
   padding: 20px; /* Add padding inside the grid */
   box-sizing: border-box; /* Include padding in the element's total width and height */
   overflow: hidden; /* Prevent scrolling */
   background-color: #1e293b; /* Darker background color to distinguish the grid area */
   border-radius: 10px; /* Optional: add rounded corners for a nicer look */
   height: calc(100vh - 100px); /* Adjust height based on the height of the header */
+  justify-items: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .position-left {
@@ -60,7 +61,7 @@ app-sidebar {
   grid-column: 1; /* Stretch across the full width */
 }
 
-/* Additional styles for grid items */
+/* Additional styles for the single grid item */
 .grid-item {
   background-color: #334155; /* Example background color */
   border-radius: 10px; /* Optional: add rounded corners for a nicer look */
@@ -69,19 +70,6 @@ app-sidebar {
   justify-content: center;
   color: white; /* Example text color */
   font-size: 2rem; /* Example text size */
-}
-
-.grid-item-1 {
-  grid-column: 1;
-  grid-row: span 2; /* Span two rows */
-}
-
-.grid-item-2 {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.grid-item-3 {
-  grid-column: 2;
-  grid-row: 2;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
 }
