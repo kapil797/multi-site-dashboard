@@ -63,11 +63,12 @@
   (reorder)="onReorder($event)"
   (resize)="onResize($event)">
   <kendo-tilelayout-item
-    *ngFor="let item of navItems"
+    *ngFor="let item of navItems; index as idx"
     [row]="item.row"
     [col]="item.col"
     [colSpan]="item.colSpan"
     [rowSpan]="item.rowSpan"
+    (click)="onNavigateToLayer(idx, RoutePaths.SITE)"
     [ngClass]="{
       'tile-container': item.name !== 'Favourites' && item.name !== 'Critical Issues',
       'tile-container-favCritical': item.name === 'Favourites' || item.name === 'Critical Issues'

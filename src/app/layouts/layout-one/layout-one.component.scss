@@ -1,31 +1,46 @@
-/* layout-one.component.scss */
-.layout-one-container {
-  background-color: #282c34; /* Dark background */
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-h2 {
-  margin-bottom: 15px;
-}
-
-.widgets-grid {
+.lt-1-scaffold {
   display: grid;
+  grid-template-columns: 1fr; /* Default, one column when sidebar isn't showing */
+  grid-template-rows: auto 1fr; /* Header and content */
+}
+
+.lt-2-wrapper {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto auto;
-  gap: 10px;
+  padding: 3rem;
+  gap: 20px; /* Adjust based on your design */
 }
 
-.widget {
-  background-color: #3a3f4b; /* Slightly lighter widget background */
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
+.position-left {
+  grid-template-columns: 50px 1fr; /* Sidebar width and content area */
 }
 
-.top-right {
-  grid-row: span 2; /* Makes widget3 larger, spanning two rows */
+.position-right {
+  grid-template-columns: 1fr 50px; /* Content area and sidebar width */
+}
+
+.position-top {
+  grid-template-rows: 50px auto; /* Sidebar height and content area */
+}
+
+.position-none app-sidebar {
+  display: none; /* Hide the sidebar */
+}
+
+app-sidebar {
+  grid-row: 1 / span 2; /* Extend from top to bottom unless overridden */
+}
+
+.position-right app-sidebar {
+  grid-column: 2; /* Position sidebar on the right */
+}
+
+.position-left app-sidebar {
+  grid-column: 1; /* Position sidebar on the left */
+}
+
+.position-top app-sidebar {
+  grid-row: 1;
+  grid-column: 1; /* Stretch across the full width */
 }

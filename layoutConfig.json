@@ -1,259 +1,270 @@
 {
-    "dashboard": "multi",
-    "dimensions": "3*4",
-    "colorTheme": "option1",
-    "navigationItems": [
-      {
-        "featureId": 1,
-        "row": 1,
-        "rowSpan": 1,
-        "col": 1,
-        "colSpan": 1,
-        "layoutId": 1,
-        "widget1": {
-          "name": "orderStatus",
-          "title": "Overall Supplier Inventory (RM)",
-          "subtitle": "PAST MONTH"
-        },
-        "widget2": {
-          "name": "orderStatus",
-          "title": "Overall Supplier Inventory (FG)",
-          "subtitle": "PAST MONTH"
-        },
-        "sideBar": {
-          "position": "left",
-          "text": "VALUE CHAIN"
-        }
+  "dashboard": "multi",
+  "dimensions": "3*4",
+  "colorTheme": "option1",
+  "navigationItems": [
+    {
+      "featureId": 1,
+      "row": 1,
+      "rowSpan": 1,
+      "col": 1,
+      "colSpan": 2,
+      "layoutId": 1,
+      "widget1": {
+        "name": "orderStatus",
+        "title": "Overall Supplier Inventory (RM)",
+        "subtitle": "PAST MONTH"
       },
-      {
-        "featureId": 2,
-        "row": 1,
-        "rowSpan": 1,
-        "col": 2,
-        "colSpan": 1,
-        "layoutId": 1,
-        "widget1": {
-          "name": "managementKPI1",
-          "title": "Enterprise Productivity",
-          "subtitle": "PAST MONTH"
-        },
-        "widget2": {
-          "name": "managementKPI1",
-          "title": "Enterprise Capcity Utilisation",
-          "subtitle": "PAST MONTH"
-        },
-        "widget3": {
-          "name": "managementKPI1",
-          "title": "On-time Delivery",
-          "subtitle": "PAST MONTH"
-        },
-        "widget4": {
-          "name": "managementKPI1",
-          "title": "Total Safety Incidences",
-          "subtitle": "PAST MONTH"
-        },
-        "sideBar": {
-          "position": "",
-          "text": ""
-        }
+      "widget2": {
+        "name": "orderStatus",
+        "title": "Overall Supplier Inventory (FG)",
+        "subtitle": "PAST MONTH"
       },
-      {
-        "featureId": 2,
-        "row": 1,
-        "rowSpan": 1,
-        "col": 3,
-        "colSpan": 1,
-        "layoutId": 1,
-        "widget1": {
-          "name": "managementKPI1",
-          "title": "Enterprise Profits",
-          "subtitle": "PAST MONTH"
-        },
-        "widget2": {
-          "name": "managementKPI1",
-          "title": "Total Production Cost",
-          "subtitle": "PAST MONTH"
-        },
-        "widget3": {
-          "name": "managementKPI1",
-          "title": "Enterprise Inventory Value",
-          "subtitle": "PAST MONTH"
-        },
-        "widget4": {
-          "name": "managementKPI1",
-          "title": "Weighted Production Volume",
-          "subtitle": "PAST MONTH"
-        },
-        "sideBar": {
-          "position": "",
-          "text": ""
-        }
+      "widget3": {
+        "name": "orderStatus",
+        "title": "Overall Supplier Inventory (RM)",
+        "subtitle": "PAST MONTH"
       },
-      {
-        "featureId": 3,
-        "row": 1,
-        "rowSpan": 1,
-        "col": 4,
-        "colSpan": 1,
-        "layoutId": 1,
-        "widget1": {
-          "name": "demandForecast1",
-          "title": "Demand for EScentz",
-          "subtitle": "MONTHLY"
-        },
-        "widget2": {
-          "name": "fulfilment1",
-          "title": "Av. On-Time Delivery",
-          "subtitle": "MONTHLY"
-        },
-        "widget3": {
-          "name": "fulfilment1",
-          "title": "Av. Delivery Lead Times",
-          "subtitle": "MONTHLY"
-        },
-        "widget4": {
-          "name": "fulfilment1",
-          "title": "Av. Order Accuracy",
-          "subtitle": "MONTHLY"
-        },
-        "sideBar": {
-          "position": "right",
-          "text": "VALUE CHAIN"
-        }
+      "widget4": {
+        "name": "orderStatus",
+        "title": "Overall Supplier Inventory (FG)",
+        "subtitle": "PAST MONTH"
       },
-      {
-        "featureId": 4,
-        "row": 2,
-        "rowSpan": 1,
-        "col": 1,
-        "colSpan": 1,
-        "layoutId": 6,
-        "widget1": {
-          "name": "productionTracking1",
-          "title": "Production Tracking by All Sales Order",
-          "subtitle": "LATEST SALESORDERS"
-        },
-        "sideBar": {
-          "position": "left",
-          "text": "ENTERPRISE"
-        }
-      },
-      {
-        "featureId": 7,
-        "row": 2,
-        "rowSpan": 1,
-        "col": 4,
-        "colSpan": 1,
-        "layoutId": 1,
-        "widget1": {
-          "name": "productionCapacity1",
-          "title": "Production Capacity",
-          "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
-        },
-        "widget2": {
-          "name": "inventoryPerformance1",
-          "title": "Inventory Performance",
-          "subtitle": "PAST MONTH"
-        },
-        "widget3": {
-          "name": "productionYield1",
-          "title": "Overall Production Yield",
-          "subtitle": "PAST MONTH"
-        },
-        "widget4": {
-          "name": "inventoryValueCost1",
-          "title": "Inventory Value & Cost",
-          "subtitle": "PAST MONTH"
-        },
-        "sideBar": {
-          "position": "right",
-          "text": "ENTERPRISE"
-        }
-      },
-      {
-        "featureId": 7,
-        "row": 3,
-        "rowSpan": 1,
-        "col": 1,
-        "colSpan": 1,
-        "layoutId": 1,
-        "widget1": {
-          "name": "utilTracking1",
-          "title": "Utilisation Tracking By Product",
-          "subtitle": "PAST 24 HOURS"
-        },
-        "widget2": {
-          "name": "utilTracking1",
-          "title": "Utilisation Tracking By Product",
-          "subtitle": "PAST 24 HOURS"
-        },
-        "widget3": {
-          "name": "machineStatus1",
-          "title": "Injection Molding",
-          "subtitle": "PAST 24 HOURS"
-        },
-        "widget4": {
-          "name": "globalShopfloorStatus",
-          "title": "Global Shopfloor Status",
-          "subtitle": "NOW"
-        },
-        "sideBar": {
-          "position": "left",
-          "text": "SHOPFLOOR"
-        }
-      },
-      {
-        "featureId": 8,
-        "row": 3,
-        "rowSpan": 1,
-        "col": 4,
-        "colSpan": 1,
-        "layoutId": 2,
-        "widget1": {
-          "name": "monthlyOEE1",
-          "title": "MonthlyOEE",
-          "subtitle": "PAST 6 MONTHS"
-        },
-        "widget2": {
-          "name": "currentOEE1",
-          "title": "Current OEE",
-          "subtitle": "PAST MONTH"
-        },
-        "widget3": {
-          "name": "resourceEfficiencies1",
-          "title": "Resource Efficiencies",
-          "subtitle": "PAST MONTH"
-        },
-        "sideBar": {
-          "position": "right",
-          "text": "SHOPFLOOR"
-        }
-      },
-      {
-        "featureId": 5,
-        "row": 2,
-        "rowSpan": 2,
-        "col": 2,
-        "colSpan": 1,
-        "layoutId": null,
-        "widget1": {},
-        "sideBar": {
-          "position": "",
-          "text": ""
-        }
-      },
-      {
-        "featureId": 6,
-        "row": 2,
-        "rowSpan": 2,
-        "col": 3,
-        "colSpan": 1,
-        "layoutId": null,
-        "widget1": {},
-        "sideBar": {
-          "position": "",
-          "text": ""
-        }
+      "sideBar": {
+        "position": "top",
+        "text": "VALUE CHAIN"
       }
-    ]
-  }
+    },
+    {
+      "featureId": 2,
+      "row": 1,
+      "rowSpan": 1,
+      "col": 3,
+      "colSpan": 2,
+      "layoutId": 1,
+      "widget1": {
+        "name": "managementKPI1",
+        "title": "Enterprise Productivity",
+        "subtitle": "PAST MONTH"
+      },
+      "widget2": {
+        "name": "managementKPI1",
+        "title": "Enterprise Capcity Utilisation",
+        "subtitle": "PAST MONTH"
+      },
+      "widget3": {
+        "name": "managementKPI1",
+        "title": "On-time Delivery",
+        "subtitle": "PAST MONTH"
+      },
+      "widget4": {
+        "name": "managementKPI1",
+        "title": "Total Safety Incidences",
+        "subtitle": "PAST MONTH"
+      },
+      "sideBar": {
+        "position": "",
+        "text": ""
+      }
+    },
+    {
+      "featureId": 2,
+      "row": 1,
+      "rowSpan": 1,
+      "col": 5,
+      "colSpan": 2,
+      "layoutId": 1,
+      "widget1": {
+        "name": "managementKPI1",
+        "title": "Enterprise Profits",
+        "subtitle": "PAST MONTH"
+      },
+      "widget2": {
+        "name": "managementKPI1",
+        "title": "Total Production Cost",
+        "subtitle": "PAST MONTH"
+      },
+      "widget3": {
+        "name": "managementKPI1",
+        "title": "Enterprise Inventory Value",
+        "subtitle": "PAST MONTH"
+      },
+      "widget4": {
+        "name": "managementKPI1",
+        "title": "Weighted Production Volume",
+        "subtitle": "PAST MONTH"
+      },
+      "sideBar": {
+        "position": "",
+        "text": ""
+      }
+    },
+    {
+      "featureId": 3,
+      "row": 1,
+      "rowSpan": 1,
+      "col": 7,
+      "colSpan": 7,
+      "layoutId": 1,
+      "widget1": {
+        "name": "demandForecast1",
+        "title": "Demand for EScentz",
+        "subtitle": "MONTHLY"
+      },
+      "widget2": {
+        "name": "fulfilment1",
+        "title": "Av. On-Time Delivery",
+        "subtitle": "MONTHLY"
+      },
+      "widget3": {
+        "name": "fulfilment1",
+        "title": "Av. Delivery Lead Times",
+        "subtitle": "MONTHLY"
+      },
+      "widget4": {
+        "name": "fulfilment1",
+        "title": "Av. Order Accuracy",
+        "subtitle": "MONTHLY"
+      },
+      "sideBar": {
+        "position": "left",
+        "text": "VALUE CHAIN"
+      }
+    },
+    {
+      "featureId": 4,
+      "row": 2,
+      "rowSpan": 1,
+      "col": 1,
+      "colSpan": 2,
+      "layoutId": 6,
+      "widget1": {
+        "name": "productionTracking1",
+        "title": "Production Tracking by All Sales Order",
+        "subtitle": "LATEST SALESORDERS"
+      },
+      "sideBar": {
+        "position": "left",
+        "text": "ENTERPRISE"
+      }
+    },
+    {
+      "featureId": 7,
+      "row": 2,
+      "rowSpan": 1,
+      "col": 7,
+      "colSpan": 2,
+      "layoutId": 1,
+      "widget1": {
+        "name": "productionCapacity1",
+        "title": "Production Capacity",
+        "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
+      },
+      "widget2": {
+        "name": "inventoryPerformance1",
+        "title": "Inventory Performance",
+        "subtitle": "PAST MONTH"
+      },
+      "widget3": {
+        "name": "productionYield1",
+        "title": "Overall Production Yield",
+        "subtitle": "PAST MONTH"
+      },
+      "widget4": {
+        "name": "inventoryValueCost1",
+        "title": "Inventory Value & Cost",
+        "subtitle": "PAST MONTH"
+      },
+      "sideBar": {
+        "position": "right",
+        "text": "ENTERPRISE"
+      }
+    },
+    {
+      "featureId": 7,
+      "row": 3,
+      "rowSpan": 1,
+      "col": 1,
+      "colSpan": 2,
+      "layoutId": 1,
+      "widget1": {
+        "name": "utilTracking1",
+        "title": "Utilisation Tracking By Product",
+        "subtitle": "PAST 24 HOURS"
+      },
+      "widget2": {
+        "name": "utilTracking1",
+        "title": "Utilisation Tracking By Product",
+        "subtitle": "PAST 24 HOURS"
+      },
+      "widget3": {
+        "name": "machineStatus1",
+        "title": "Injection Molding",
+        "subtitle": "PAST 24 HOURS"
+      },
+      "widget4": {
+        "name": "globalShopfloorStatus",
+        "title": "Global Shopfloor Status",
+        "subtitle": "NOW"
+      },
+      "sideBar": {
+        "position": "left",
+        "text": "SHOPFLOOR"
+      }
+    },
+    {
+      "featureId": 8,
+      "row": 3,
+      "rowSpan": 1,
+      "col": 7,
+      "colSpan": 2,
+      "layoutId": 2,
+      "widget1": {
+        "name": "monthlyOEE1",
+        "title": "MonthlyOEE",
+        "subtitle": "PAST 6 MONTHS"
+      },
+      "widget2": {
+        "name": "currentOEE1",
+        "title": "Current OEE",
+        "subtitle": "PAST MONTH"
+      },
+      "widget3": {
+        "name": "resourceEfficiencies1",
+        "title": "Resource Efficiencies",
+        "subtitle": "PAST MONTH"
+      },
+      "sideBar": {
+        "position": "right",
+        "text": "SHOPFLOOR"
+      }
+    },
+    {
+      "featureId": 5,
+      "row": 2,
+      "rowSpan": 2,
+      "col": 3,
+      "colSpan": 2,
+      "layoutId": null,
+      "widget1": {},
+      "sideBar": {
+        "position": "",
+        "text": ""
+      }
+    },
+    {
+      "featureId": 6,
+      "row": 2,
+      "rowSpan": 2,
+      "col": 5,
+      "colSpan": 2,
+      "layoutId": null,
+      "widget1": {},
+      "sideBar": {
+        "position": "",
+        "text": ""
+      }
+    }
+  ]
+}
+

@@ -24,6 +24,7 @@ export class OrderStatusComponent extends CancelSubscription implements OnInit {
     super();
   }
   ngOnInit() {
+    console.log('called');
     this.lt
       .fetchOrderStatusSummary$(this.app.factory())
       .pipe(takeUntil(this.ngUnsubscribe$))
