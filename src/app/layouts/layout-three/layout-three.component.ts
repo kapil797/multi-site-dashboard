@@ -8,15 +8,15 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { DynamicWidget, Widget } from '@core/models/multi-site.model';
+import { Widget, DynamicWidget } from '@core/models/multi-site.model';
 import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
 
 @Component({
-  selector: 'app-layout-two',
-  templateUrl: './layout-two.component.html',
-  styleUrl: './layout-two.component.scss',
+  selector: 'app-layout-three',
+  templateUrl: './layout-three.component.html',
+  styleUrl: './layout-three.component.scss',
 })
-export class LayoutTwoComponent {
+export class LayoutThreeComponent {
   @Input() widgets: Widget[] = [];
   @Input() position: string;
   @Input() text: string;

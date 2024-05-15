@@ -8,23 +8,20 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { DynamicWidget, Widget } from '@core/models/multi-site.model';
+import { Widget, DynamicWidget } from '@core/models/multi-site.model';
 import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
 
 @Component({
-  selector: 'app-layout-two',
-  templateUrl: './layout-two.component.html',
-  styleUrl: './layout-two.component.scss',
+  selector: 'app-layout-six',
+  templateUrl: './layout-six.component.html',
+  styleUrl: './layout-six.component.scss',
 })
-export class LayoutTwoComponent {
+export class LayoutSixComponent {
   @Input() widgets: Widget[] = [];
   @Input() position: string;
   @Input() text: string;
   @ViewChildren('widgetHost', { read: ViewContainerRef }) widgetHosts: QueryList<ViewContainerRef>;
   widget1!: Widget;
-  widget2!: Widget;
-  widget3!: Widget;
-  widget4!: Widget;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -51,10 +48,8 @@ export class LayoutTwoComponent {
   }
 
   assignWidgets() {
-    if (this.widgets.length > 1) {
+    if (this.widgets.length == 1) {
       this.widget1 = this.widgets[0];
-      this.widget2 = this.widgets[1];
-      this.widget3 = this.widgets[2];
     }
   }
 
