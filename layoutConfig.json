@@ -11,7 +11,7 @@
       "colSpan": 2,
       "layoutId": 1,
       "widget1": {
-        "name": "orderStatus",
+        "name": "ManagementKPI3",
         "title": "Overall Supplier Inventory (RM)",
         "subtitle": "PAST MONTH"
       },
@@ -31,7 +31,7 @@
         "subtitle": "PAST MONTH"
       },
       "sideBar": {
-        "position": "top",
+        "position": "left",
         "text": "VALUE CHAIN"
       }
     },

@@ -6,8 +6,10 @@ import {
   ViewChildren,
   QueryList,
   ViewContainerRef,
+  EnvironmentInjector,
+  Type,
 } from '@angular/core';
-import { Widget } from '@core/models/multi-site.model';
+import { Widget, DynamicWidget } from '@core/models/multi-site.model';
 import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
 
 @Component({
@@ -24,13 +26,19 @@ export class LayoutOneComponent implements AfterViewInit {
   widget2!: Widget;
   widget3!: Widget;
   widget4!: Widget;
-  constructor(private cdr: ChangeDetectorRef) {}
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private injector: EnvironmentInjector
+  ) {}
 
   ngAfterViewInit() {
-    this.widgetHosts.changes.subscribe(() => {
-      this.loadWidgets();
-      this.cdr.detectChanges();
-    });
+    if (this.widgetHosts) {
+      this.widgetHosts.changes.subscribe(() => {
+        this.loadWidgets();
+        this.cdr.detectChanges();
+      });
+    }
     this.assignWidgets();
     console.log('check position', this.getPositionClass());
   }
@@ -38,9 +46,11 @@ export class LayoutOneComponent implements AfterViewInit {
   getPositionClass(): string {
     return `position-${this.position}`; // this.position is 'top', 'left', 'right', or 'none'
   }
+
   getPositionText(): string {
     return this.position.toUpperCase();
   }
+
   assignWidgets() {
     if (this.widgets.length > 1) {
       this.widget1 = this.widgets[0];
@@ -57,7 +67,9 @@ export class LayoutOneComponent implements AfterViewInit {
       const widget = this.widgets[index];
       const componentClass = widgetComponentsMapping[widget.name as keyof typeof widgetComponentsMapping];
       if (componentClass) {
-        const componentRef = viewContainerRef.createComponent(componentClass);
+        const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
+          environmentInjector: this.injector,
+        });
         componentRef.instance.title = widget.title ?? 'Default Title';
         componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
       } else {

@@ -6,6 +6,11 @@ export interface Widget {
   subtitle?: string;
 }
 
+export interface DynamicWidget {
+  title: string;
+  subtitle: string;
+}
+
 export interface Sidebar {
   position?: string;
   text?: string;
