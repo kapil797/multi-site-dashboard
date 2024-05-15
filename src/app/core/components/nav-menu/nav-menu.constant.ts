@@ -7,7 +7,7 @@ import { DashboardInput, DashboardOutput, NavItem, NavigationItem } from '@core/
 function transformDashboardItems(input: DashboardInput): DashboardOutput {
   const navItems: NavItem[] = [];
   const dimensions = input.dimensions.split('*');
-  const columns = parseInt(dimensions[1], 10); // Extracting the columns number
+  const columns = parseInt(dimensions[1], 10) * 2; // Extracting the columns number
 
   input.navigationItems.forEach((item: NavigationItem) => {
     const feature = featureConstants[item.featureId];

@@ -12,6 +12,7 @@ import { OrderStatusIndividualComponent } from './components/order-status-indivi
 import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { FeatureService } from '@core/services/feature.service';
 import { OrderStatusComponent } from './widgets/order-status/order-status.component';
+import { LayoutOneComponent } from 'src/app/layouts/layout-one/layout-one.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { OrderStatusComponent } from './widgets/order-status/order-status.compon
     OrderStatusIndividualComponent,
     MultiSiteComponent,
     OrderStatusComponent,
+    LayoutOneComponent,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],

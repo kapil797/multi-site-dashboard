@@ -1,4 +1,20 @@
-<div class="layout-one-container">
-  <h2>LOGISTIC TRACKING</h2>
-  <ng-template #widgetHost></ng-template>
+<div class="lt-1-scaffold" [class]="getPositionClass()">
+  <app-sidebar header="{{ text }}" [rotate]="getPositionText()"></app-sidebar>
+  <div>
+    <app-navbar header="Supply Chain - Logistic Tracking"></app-navbar>
+    <div class="lt-2-wrapper gap-5">
+      <ng-template #widgetHost *ngIf="widget1">
+        <!-- Directive to load widget1 dynamically -->
+      </ng-template>
+      <ng-template #widgetHost *ngIf="widget2">
+        <!-- Directive to load widget2 dynamically -->
+      </ng-template>
+      <ng-template #widgetHost *ngIf="widget3">
+        <!-- Directive to load widget3 dynamically -->
+      </ng-template>
+      <ng-template #widgetHost *ngIf="widget4">
+        <!-- Directive to load widget4 dynamically -->
+      </ng-template>
+    </div>
+  </div>
 </div>

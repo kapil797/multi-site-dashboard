@@ -1,30 +1,63 @@
-import { Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  ViewChildren,
+  QueryList,
+  ViewContainerRef,
+} from '@angular/core';
 import { Widget } from '@core/models/multi-site.model';
 import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
 
 @Component({
   selector: 'app-layout-one',
   templateUrl: './layout-one.component.html',
-  styleUrl: './layout-one.component.scss',
+  styleUrls: ['./layout-one.component.scss'],
 })
-export class LayoutOneComponent {
+export class LayoutOneComponent implements AfterViewInit {
   @Input() widgets: Widget[] = [];
-  @ViewChild('widgetHost', { read: ViewContainerRef }) widgetHost: ViewContainerRef;
+  @Input() position: string;
+  @Input() text: string;
+  @ViewChildren('widgetHost', { read: ViewContainerRef }) widgetHosts: QueryList<ViewContainerRef>;
+  widget1!: Widget;
+  widget2!: Widget;
+  widget3!: Widget;
+  widget4!: Widget;
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  ngAfterViewInit() {
+    this.widgetHosts.changes.subscribe(() => {
+      this.loadWidgets();
+      this.cdr.detectChanges();
+    });
+    this.assignWidgets();
+    console.log('check position', this.getPositionClass());
+  }
 
-  ngOnInit() {
-    this.loadWidgets();
-    console.log('Widgets', this.widgets);
+  getPositionClass(): string {
+    return `position-${this.position}`; // this.position is 'top', 'left', 'right', or 'none'
+  }
+  getPositionText(): string {
+    return this.position.toUpperCase();
+  }
+  assignWidgets() {
+    if (this.widgets.length > 1) {
+      this.widget1 = this.widgets[0];
+      this.widget2 = this.widgets[1];
+      this.widget3 = this.widgets[2];
+      this.widget4 = this.widgets[3];
+    }
   }
 
   loadWidgets() {
-    this.widgets.forEach(widget => {
+    // Reset and load widgets to handle dynamic updates
+    this.widgetHosts.forEach((viewContainerRef, index) => {
+      viewContainerRef.clear();
+      const widget = this.widgets[index];
       const componentClass = widgetComponentsMapping[widget.name as keyof typeof widgetComponentsMapping];
       if (componentClass) {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
-        const componentRef = this.widgetHost.createComponent(componentFactory);
-        // Pass properties to the component instance
+        const componentRef = viewContainerRef.createComponent(componentClass);
         componentRef.instance.title = widget.title ?? 'Default Title';
         componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
       } else {
