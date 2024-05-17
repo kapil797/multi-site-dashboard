@@ -14,6 +14,7 @@ import { FeatureService } from '@core/services/feature.service';
 import { OrderStatusComponent } from './widgets/order-status/order-status.component';
 import { LayoutOneComponent } from 'src/app/layouts/layout-one/layout-one.component';
 import { ManagementKPI3Component } from './widgets/management-kpi3/management-kpi3.component';
+import { ProductionYield1Component } from './widgets/production-yield1/production-yield1.component';
 import { LayoutTwoComponent } from 'src/app/layouts/layout-two/layout-two.component';
 import { LayoutSixComponent } from 'src/app/layouts/layout-six/layout-six.component';
 import { LayoutThreeComponent } from 'src/app/layouts/layout-three/layout-three.component';
@@ -34,6 +35,7 @@ import { LayoutFiveComponent } from 'src/app/layouts/layout-five/layout-five.com
     LayoutOneComponent,
     LayoutTwoComponent,
     ManagementKPI3Component,
+    ProductionYield1Component,
     LayoutSixComponent,
     LayoutThreeComponent,
     LayoutFourComponent,
