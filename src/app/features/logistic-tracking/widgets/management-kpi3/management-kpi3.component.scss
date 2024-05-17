@@ -7,21 +7,28 @@
   border-radius: 0.5rem;
   height: 23rem;
   font-weight: 600;
+  height: 25rem;
 
   .card-meta-wrapper {
     justify-content: space-between;
   }
 
   .card-title {
-    font-size: 3rem;
+    font-size: variables.$font-size-xl;
+    ;
     text-transform: uppercase;
     letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
   }
 
   .card-tag {
-    color: #809fb8;
+    color: #809FB8;
     background-color: #384455;
     border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
     font-size: variables.$font-size-regplus;
   }
 
