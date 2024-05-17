@@ -10,6 +10,7 @@ import { LayerTwoComponent } from '@rt/components/layer-two/layer-two.component'
 import { CustomTableComponent } from '@rt/components/custom-table/custom-table.component';
 import { FactoryLayoutPlanComponent } from '@rt/components/factory-layout-plan/factory-layout-plan.component';
 import { ResourceConsumptionComponent } from '@rt/components/resource-consumption/resource-consumption.component';
+import { MultiSiteComponent } from './multi-site/multi-site.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ResourceConsumptionComponent } from '@rt/components/resource-consumptio
     CustomTableComponent,
     FactoryLayoutPlanComponent,
     ResourceConsumptionComponent,
+    MultiSiteComponent,
   ],
   imports: [ResourceTrackingRoutingModule, SharedModule],
   providers: [ResourceTrackingService],

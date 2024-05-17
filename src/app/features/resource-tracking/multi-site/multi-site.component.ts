@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { Widget } from '@core/models/multi-site.model';
 import { FeatureService } from '@core/services/feature.service';
 import { LayoutFiveComponent } from '@shared/components/layout-five/layout-five.component';
@@ -11,9 +11,9 @@ import { LayoutTwoComponent } from '@shared/components/layout-two/layout-two.com
 @Component({
   selector: 'app-multi-site',
   templateUrl: './multi-site.component.html',
-  styleUrls: ['./multi-site.component.scss'], // Notice the correction from styleUrl to styleUrls
+  styleUrl: './multi-site.component.scss',
 })
-export class MultiSiteComponent implements AfterViewInit {
+export class MultiSiteComponent {
   @ViewChild('layoutHost', { read: ViewContainerRef }) layoutHost: ViewContainerRef;
 
   constructor(
@@ -27,7 +27,7 @@ export class MultiSiteComponent implements AfterViewInit {
   }
 
   loadLayout() {
-    const layoutConfig = this.featureService.getLayoutWidgetsByFeature('logistic-tracking');
+    const layoutConfig = this.featureService.getLayoutWidgetsByFeature('resource-tracking');
     if (!layoutConfig) return;
 
     const widgets: Widget[] = Object.keys(layoutConfig)

@@ -42,9 +42,27 @@ import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directiv
 import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
 import { UiBlockerComponent } from '@shared/components/ui-blocker/ui-blocker.component';
 import { CircleStatusComponent } from '@shared/components/circle-status/circle-status.component';
+import { LayoutOneComponent } from './components/layout-one/layout-one.component';
+import { LayoutTwoComponent } from './components/layout-two/layout-two.component';
+import { LayoutThreeComponent } from './components/layout-three/layout-three.component';
+import { LayoutFourComponent } from './components/layout-four/layout-four.component';
+import { LayoutFiveComponent } from './components/layout-five/layout-five.component';
+import { LayoutSixComponent } from './components/layout-six/layout-six.component';
 
 @NgModule({
-  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent, UiBlockerComponent, CircleStatusComponent],
+  declarations: [
+    IconTextButtonComponent,
+    NavbarComponent,
+    SidebarComponent,
+    UiBlockerComponent,
+    CircleStatusComponent,
+    LayoutOneComponent,
+    LayoutTwoComponent,
+    LayoutThreeComponent,
+    LayoutFourComponent,
+    LayoutFiveComponent,
+    LayoutSixComponent,
+  ],
   imports: [
     // Modules.
     CommonModule,
@@ -120,6 +138,12 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
     SidebarComponent,
     UiBlockerComponent,
     CircleStatusComponent,
+    LayoutOneComponent,
+    LayoutTwoComponent,
+    LayoutThreeComponent,
+    LayoutFourComponent,
+    LayoutFiveComponent,
+    LayoutSixComponent,
   ],
 })
 export class SharedModule {}
