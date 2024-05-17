@@ -8,72 +8,73 @@ body {
 
 .lt-1-scaffold {
   display: grid;
-  grid-template-columns: 1fr; /* Default, one column when sidebar isn't showing */
-  grid-template-rows: auto 1fr; /* Header and content */
-  height: 100vh; /* Make the grid container fill the viewport height */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .lt-2-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns, with the first column being twice as wide */
-  grid-template-rows: 1fr 1fr; /* Two equal rows */
-  gap: 20px; /* Add space between grid items */
-  padding: 20px; /* Add padding inside the grid */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
-  overflow: hidden; /* Prevent scrolling */
-  background-color: #1e293b; /* Darker background color to distinguish the grid area */
-  border-radius: 10px; /* Optional: add rounded corners for a nicer look */
-  height: calc(100vh - 100px); /* Adjust height based on the height of the header */
+  grid-template-rows: repeat(2, 0.8fr);
+  grid-template-columns: repeat(2, 0.8fr);
+  row-gap: 20px;
+  column-gap: 40px;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #08162b;
+  border-radius: 10px;
+  height: calc(100vh - 100px);
 }
 
 .position-left {
-  grid-template-columns: 50px 1fr; /* Sidebar width and content area */
+  grid-template-columns: 50px 1fr;
 }
 
 .position-right {
-  grid-template-columns: 1fr 50px; /* Content area and sidebar width */
+  grid-template-columns: 1fr 50px;
 }
 
 .position-top {
-  grid-template-rows: 50px auto; /* Sidebar height and content area */
+  grid-template-rows: 50px auto;
 }
 
 .position-none app-sidebar {
-  display: none; /* Hide the sidebar */
+  display: none;
 }
 
 app-sidebar {
-  grid-row: 1 / span 2; /* Extend from top to bottom unless overridden */
+  grid-row: 1 / span 2;
 }
 
 .position-right app-sidebar {
-  grid-column: 2; /* Position sidebar on the right */
+  grid-column: 2;
 }
 
 .position-left app-sidebar {
-  grid-column: 1; /* Position sidebar on the left */
+  grid-column: 1;
 }
 
 .position-top app-sidebar {
   grid-row: 1;
-  grid-column: 1; /* Stretch across the full width */
+  grid-column: 1;
 }
 
-/* Additional styles for grid items */
 .grid-item {
-  background-color: #334155; /* Example background color */
-  border-radius: 10px; /* Optional: add rounded corners for a nicer look */
+  background-color: #334155;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white; /* Example text color */
-  font-size: 2rem; /* Example text size */
+  color: white;
+  font-size: 2rem;
 }
 
 .grid-item-1 {
   grid-column: 1;
-  grid-row: span 2; /* Span two rows */
+  grid-row: span 2;
+  width: 100%;
 }
 
 .grid-item-2 {

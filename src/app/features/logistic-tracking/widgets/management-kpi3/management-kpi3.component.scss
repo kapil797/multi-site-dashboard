@@ -3,9 +3,9 @@
 
 .card {
   background: #002540;
-  width: 97.5%;
+  width: 100%;
   border-radius: 0.5rem;
-  height: 25rem;
+  height: 23rem;
   font-weight: 600;
 
   .card-meta-wrapper {
@@ -19,7 +19,7 @@
   }
 
   .card-tag {
-    color: #809FB8;
+    color: #809fb8;
     background-color: #384455;
     border-radius: 2rem;
     font-size: variables.$font-size-regplus;
@@ -58,7 +58,7 @@
       font-size: 1.5rem;
     }
     .target-figure {
-      background: #1E3552;
+      background: #1e3552;
       font-weight: bolder;
       font-size: 3rem;
     }
@@ -69,13 +69,13 @@
   }
 
   .current-figure {
-    background: #1E3552;
+    background: #1e3552;
     font-size: 3rem;
     font-weight: bolder;
   }
 
   .projection-figure {
-    background: #1E3552;
+    background: #1e3552;
   }
   .projection-figure-wrapper {
     justify-content: space-between;
@@ -97,8 +97,6 @@
       background: variables.$warning;
     }
   }
-
-
 
   .Green {
     color: variables.$success;

@@ -9,7 +9,7 @@
       "rowSpan": 1,
       "col": 1,
       "colSpan": 2,
-      "layoutId": 3,
+      "layoutId": 1,
       "widget1": {
         "name": "ManagementKPI3",
         "title": "Overall Supplier Inventory (RM)",
@@ -22,7 +22,12 @@
       },
       "widget3": {
         "name": "ManagementKPI3",
-        "title": "Overall Supplier Inventory (RM)",
+        "title": "Overall Supplier Inventory (FG)",
+        "subtitle": "PAST MONTH"
+      },
+      "widget4": {
+        "name": "ManagementKPI3",
+        "title": "Overall Supplier Inventory (FG)",
         "subtitle": "PAST MONTH"
       },
       "sideBar": {
