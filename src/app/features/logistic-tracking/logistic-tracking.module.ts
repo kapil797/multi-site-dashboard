@@ -21,6 +21,7 @@ import { LayoutThreeComponent } from 'src/app/layouts/layout-three/layout-three.
 import { LayoutFourComponent } from 'src/app/layouts/layout-four/layout-four.component';
 import { LayoutFiveComponent } from 'src/app/layouts/layout-five/layout-five.component';
 import { SupplierInventory1Component } from './widgets/supplier-inventory1/supplier-inventory1.component';
+import { InventoryPerformance1Component } from './widgets/inventory-performance1/inventory-performance1.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SupplierInventory1Component } from './widgets/supplier-inventory1/suppl
     ManagementKPI3Component,
     ProductionYield1Component,
     SupplierInventory1Component,
+    InventoryPerformance1Component,
     LayoutSixComponent,
     LayoutThreeComponent,
     LayoutFourComponent,
