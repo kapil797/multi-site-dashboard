@@ -1,0 +1,37 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+.card {
+    background: #002540;
+    width: 100%;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    height: 55rem;
+  
+    .card-meta-wrapper {
+      justify-content: space-between;
+    }
+  
+    .card-title {
+      font-size: variables.$font-size-xl;
+      text-transform: uppercase;
+      letter-spacing: variables.$letter-spacing-sm;
+      font-weight: bold;
+    }
+  
+    .card-tag {
+      color: #809FB8;
+      background-color: #384455;
+      border-radius: 2rem;
+      font-size: variables.$font-size-regplus;
+    }
+  
+    .card-period {
+      font-size: variables.$font-size-regplus;
+    }
+}
+
+.k-grid {
+    background-color: #002540;
+}

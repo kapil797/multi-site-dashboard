@@ -1,0 +1,207 @@
+[
+  {
+    "company": {
+      "value": "COMPANY A",
+      "color": "#ffffff"
+    },
+    "turnover": {
+      "value": "5",
+      "color": "#60EA80"
+    },
+    "fillRate": {
+      "value": "99.55%",
+      "color": "#60EA80"
+    },
+    "stockout": {
+      "value": "2%",
+      "color": "#60EA80"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY B"
+    },
+    "turnover": {
+      "value": "3",
+      "color": "#F9B959"
+    },
+    "fillRate": {
+      "value": "89.23%",
+      "color": "#F9B959"
+    },
+    "stockout": {
+      "value": "4%",
+      "color": "#60EA80"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY C"
+    },
+    "turnover": {
+      "value": "16",
+      "color": "#E95459"
+    },
+    "fillRate": {
+      "value": "86.56%",
+      "color": "#F9B959"
+    },
+    "stockout": {
+      "value": "6%",
+      "color": "#F9B959"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY D"
+    },
+    "turnover": {
+      "value": "2",
+      "color": "#F9B959"
+    },
+    "fillRate": {
+      "value": "88.56%",
+      "color": "#F9B959"
+    },
+    "stockout": {
+      "value": "4%",
+      "color": "#60EA80"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY E"
+    },
+    "turnover": {
+      "value": "6",
+      "color": "#F9B959"
+    },
+    "fillRate": {
+      "value": "78.34%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "4%",
+      "color": "#60EA80"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY F"
+    },
+    "turnover": {
+      "value": "12",
+      "color": "#E95459"
+    },
+    "fillRate": {
+      "value": "69.54%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "7%",
+      "color": "#F9B959"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY G"
+    },
+    "turnover": {
+      "value": "9",
+      "color": "#60EA80"
+    },
+    "fillRate": {
+      "value": "85.32%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "10%",
+      "color": "#E95459"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY H"
+    },
+    "turnover": {
+      "value": "12",
+      "color": "#E95459"
+    },
+    "fillRate": {
+      "value": "93.23%",
+      "color": "#60EA80"
+    },
+    "stockout": {
+      "value": "13%",
+      "color": "#E95459"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY I"
+    },
+    "turnover": {
+      "value": "8",
+      "color": "#60EA80"
+    },
+    "fillRate": {
+      "value": "29.34%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "5%",
+      "color": "#F9B959"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY J"
+    },
+    "turnover": {
+      "value": "0.7",
+      "color": "#E95459"
+    },
+    "fillRate": {
+      "value": "59.89%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "3%",
+      "color": "#60EA80"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY K"
+    },
+    "turnover": {
+      "value": "0.5",
+      "color": "#E95459"
+    },
+    "fillRate": {
+      "value": "48.56%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "4%",
+      "color": "#60EA80"
+    }
+  },
+  {
+    "company": {
+      "value": "COMPANY L"
+    },
+    "turnover": {
+      "value": "0.1",
+      "color": "#E95459"
+    },
+    "fillRate": {
+      "value": "56.78%",
+      "color": "#E95459"
+    },
+    "stockout": {
+      "value": "6%",
+      "color": "#F9B959"
+    }
+  }
+]
