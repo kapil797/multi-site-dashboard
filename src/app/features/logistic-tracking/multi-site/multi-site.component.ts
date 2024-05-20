@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Widget } from '@core/models/multi-site.model';
 import { FeatureService } from '@core/services/feature.service';
 import { LayoutFiveComponent } from '@shared/components/layout-five/layout-five.component';
@@ -15,15 +15,21 @@ import { LayoutTwoComponent } from '@shared/components/layout-two/layout-two.com
 })
 export class MultiSiteComponent implements AfterViewInit {
   @ViewChild('layoutHost', { read: ViewContainerRef }) layoutHost: ViewContainerRef;
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private componentRefs: ComponentRef<any>[] = [];
   constructor(
     private featureService: FeatureService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngAfterViewInit() {
-    this.loadLayout();
-    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.loadLayout();
+      this.cdr.detectChanges();
+    });
+  }
+  ngOnDestroy() {
+    this.componentRefs.forEach(ref => ref.destroy());
   }
 
   loadLayout() {

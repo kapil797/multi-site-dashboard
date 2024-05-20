@@ -11,6 +11,7 @@ import { CustomTableComponent } from '@rt/components/custom-table/custom-table.c
 import { FactoryLayoutPlanComponent } from '@rt/components/factory-layout-plan/factory-layout-plan.component';
 import { ResourceConsumptionComponent } from '@rt/components/resource-consumption/resource-consumption.component';
 import { MultiSiteComponent } from './multi-site/multi-site.component';
+import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MultiSiteComponent } from './multi-site/multi-site.component';
     FactoryLayoutPlanComponent,
     ResourceConsumptionComponent,
     MultiSiteComponent,
+    Fulfilment1Component,
   ],
   imports: [ResourceTrackingRoutingModule, SharedModule],
   providers: [ResourceTrackingService],

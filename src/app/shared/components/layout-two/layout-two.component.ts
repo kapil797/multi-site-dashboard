@@ -9,7 +9,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { DynamicWidget, Widget } from '@core/models/multi-site.model';
-import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
+import { widgetComponentsMapping } from '@core/constants/widgets-component-mapping';
 
 @Component({
   selector: 'app-layout-two',
