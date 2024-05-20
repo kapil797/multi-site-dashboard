@@ -9,19 +9,14 @@
       "rowSpan": 1,
       "col": 1,
       "colSpan": 2,
-      "layoutId": 2,
+      "layoutId": 4,
       "widget1": {
         "name": "SupplierInventory1",
         "title": "Overall Supplier Inventory (RM)",
         "subtitle": "PAST MONTH"
       },
       "widget2": {
-        "name": "InventoryPerformance1",
-        "title": "Overall Supplier Inventory (FG)",
-        "subtitle": "PAST MONTH"
-      },
-      "widget3": {
-        "name": "ProductionYield1",
+        "name": "SupplierInventory1",
         "title": "Overall Supplier Inventory (FG)",
         "subtitle": "PAST MONTH"
       },
@@ -151,22 +146,22 @@
       "colSpan": 2,
       "layoutId": 1,
       "widget1": {
-        "name": "fulfilment1",
+        "name": "managementKPI1",
         "title": "Production Capacity",
         "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
       },
       "widget2": {
-        "name": "fulfilment1",
+        "name": "ProductionYield1",
         "title": "Inventory Performance",
         "subtitle": "PAST MONTH"
       },
       "widget3": {
-        "name": "fulfilment1",
-        "title": "Overall Production Yield",
+        "name": "InventoryPerformance1",
+        "title": "Inventory Performance",
         "subtitle": "PAST MONTH"
       },
       "widget4": {
-        "name": "fulfilment1",
+        "name": "InventoryValueCost1",
         "title": "Inventory Value & Cost",
         "subtitle": "PAST MONTH"
       },
