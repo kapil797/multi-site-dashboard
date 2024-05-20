@@ -9,20 +9,22 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Widget, DynamicWidget } from '@core/models/multi-site.model';
-import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
+import { widgetComponentsMapping } from '@core/constants/widgets-component-mapping';
 
 @Component({
-  selector: 'app-layout-five',
-  templateUrl: './layout-five.component.html',
-  styleUrl: './layout-five.component.scss',
+  selector: 'app-layout-three',
+  templateUrl: './layout-three.component.html',
+  styleUrl: './layout-three.component.scss',
 })
-export class LayoutFiveComponent {
+export class LayoutThreeComponent {
   @Input() widgets: Widget[] = [];
   @Input() position: string;
   @Input() text: string;
   @ViewChildren('widgetHost', { read: ViewContainerRef }) widgetHosts: QueryList<ViewContainerRef>;
   widget1!: Widget;
   widget2!: Widget;
+  widget3!: Widget;
+  widget4!: Widget;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -52,6 +54,7 @@ export class LayoutFiveComponent {
     if (this.widgets.length > 1) {
       this.widget1 = this.widgets[0];
       this.widget2 = this.widgets[1];
+      this.widget3 = this.widgets[2];
     }
   }
 

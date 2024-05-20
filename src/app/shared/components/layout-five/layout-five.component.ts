@@ -9,14 +9,14 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Widget, DynamicWidget } from '@core/models/multi-site.model';
-import { widgetComponentsMapping } from '@lt/widgets/widgets-component-mapping';
+import { widgetComponentsMapping } from '@core/constants/widgets-component-mapping';
 
 @Component({
-  selector: 'app-layout-four',
-  templateUrl: './layout-four.component.html',
-  styleUrl: './layout-four.component.scss',
+  selector: 'app-layout-five',
+  templateUrl: './layout-five.component.html',
+  styleUrl: './layout-five.component.scss',
 })
-export class LayoutFourComponent {
+export class LayoutFiveComponent {
   @Input() widgets: Widget[] = [];
   @Input() position: string;
   @Input() text: string;

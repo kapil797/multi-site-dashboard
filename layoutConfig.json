@@ -151,22 +151,22 @@
       "colSpan": 2,
       "layoutId": 1,
       "widget1": {
-        "name": "productionCapacity1",
+        "name": "fulfilment1",
         "title": "Production Capacity",
         "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
       },
       "widget2": {
-        "name": "inventoryPerformance1",
+        "name": "fulfilment1",
         "title": "Inventory Performance",
         "subtitle": "PAST MONTH"
       },
       "widget3": {
-        "name": "productionYield1",
+        "name": "fulfilment1",
         "title": "Overall Production Yield",
         "subtitle": "PAST MONTH"
       },
       "widget4": {
-        "name": "inventoryValueCost1",
+        "name": "fulfilment1",
         "title": "Inventory Value & Cost",
         "subtitle": "PAST MONTH"
       },
