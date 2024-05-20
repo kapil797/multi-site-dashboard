@@ -11,12 +11,12 @@
       "colSpan": 2,
       "layoutId": 2,
       "widget1": {
-        "name": "ManagementKPI3",
+        "name": "SupplierInventory1",
         "title": "Overall Supplier Inventory (RM)",
         "subtitle": "PAST MONTH"
       },
       "widget2": {
-        "name": "ProductionYield1",
+        "name": "InventoryPerformance1",
         "title": "Overall Supplier Inventory (FG)",
         "subtitle": "PAST MONTH"
       },
