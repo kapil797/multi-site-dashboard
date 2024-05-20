@@ -10,21 +10,19 @@ export interface PeriodPerformance {
 @Component({
   selector: 'app-production-yield1',
   templateUrl: './production-yield1.component.html',
-  styleUrl: './production-yield1.component.scss'
+  styleUrl: './production-yield1.component.scss',
 })
-
 export class ProductionYield1Component {
-
   @Input() title: string;
   @Input() subtitle: string;
 
- //@Input() data?: PeriodPerformance;
+  //@Input() data?: PeriodPerformance;
 
-  data : PeriodPerformance = {
-    "pastPeriod": 51.46497961264991,
-    "currentPeriod": 83.02090628646826,
-    "projectedPeriod": 71.92240757886837
-  }
+  data: PeriodPerformance = {
+    pastPeriod: 51.46497961264991,
+    currentPeriod: 83.02090628646826,
+    projectedPeriod: 71.92240757886837,
+  };
 
   public progressColors = progressColors;
   public progressStyle = { width: '250px', height: '250px' };
@@ -33,5 +31,4 @@ export class ProductionYield1Component {
     if (v === undefined) return '';
     return `${v.toFixed(2)}%`;
   }
-
 }

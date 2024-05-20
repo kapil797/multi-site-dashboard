@@ -1,47 +1,43 @@
 <div class="card p-3 m-auto">
-
-    <div class="card-meta-wrapper d-flex justify-content-space-between">
-        <span class="card-title">{{title}}</span>
-        <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center"> combined</div>
-    </div>
-    <div class="card-period pb-5">{{subtitle}}</div>
-
-    <div class="pp-wrapper d-grid gap-3 p-3">
-        <kendo-circularprogressbar
-          class="align-horizontal-center"
-          [animation]="true"
-          [style]="progressStyle"
-          [progressColor]="progressColors"
-          [value]="data?.pastPeriod || 0">
-          <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
-            <div class="text text-center w-100"><strong>PAST</strong></div>
-            <div class="text text-center w-100 mt-2" [style.color]="color">{{ formatText(data?.pastPeriod) }}</div>
-          </ng-template>
-        </kendo-circularprogressbar>
-        <kendo-circularprogressbar
-          class="align-horizontal-center"
-          [animation]="true"
-          [style]="progressStyle"
-          [progressColor]="progressColors"
-          [value]="data?.currentPeriod || 0">
-          <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
-            <div class="text text-center w-100"><strong>CURRENT</strong></div>
-            <div class="text text-center mt-2" [style.color]="color">{{ formatText(data?.currentPeriod) }}</div>
-          </ng-template>
-        </kendo-circularprogressbar>
-        <kendo-circularprogressbar
-          class="align-horizontal-center"
-          [animation]="true"
-          [style]="progressStyle"
-          [progressColor]="progressColors"
-          [value]="data?.projectedPeriod || 0">
-          <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
-            <div class="text text-center w-100"><strong>PROJECTED</strong></div>
-            <div class="text text-center mt-2" [style.color]="color">{{ formatText(data?.projectedPeriod) }}</div>
-          </ng-template>
-        </kendo-circularprogressbar>
-    </div>
-
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">combined</div>
   </div>
-  
+  <div class="card-period pb-5">{{ subtitle }}</div>
 
+  <div class="pp-wrapper d-grid gap-3 p-3">
+    <kendo-circularprogressbar
+      class="align-horizontal-center"
+      [animation]="true"
+      [style]="progressStyle"
+      [progressColor]="progressColors"
+      [value]="data?.pastPeriod || 0">
+      <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
+        <div class="text text-center w-100"><strong>PAST</strong></div>
+        <div class="text text-center w-100 mt-2" [style.color]="color">{{ formatText(data?.pastPeriod) }}</div>
+      </ng-template>
+    </kendo-circularprogressbar>
+    <kendo-circularprogressbar
+      class="align-horizontal-center"
+      [animation]="true"
+      [style]="progressStyle"
+      [progressColor]="progressColors"
+      [value]="data?.currentPeriod || 0">
+      <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
+        <div class="text text-center w-100"><strong>CURRENT</strong></div>
+        <div class="text text-center mt-2" [style.color]="color">{{ formatText(data?.currentPeriod) }}</div>
+      </ng-template>
+    </kendo-circularprogressbar>
+    <kendo-circularprogressbar
+      class="align-horizontal-center"
+      [animation]="true"
+      [style]="progressStyle"
+      [progressColor]="progressColors"
+      [value]="data?.projectedPeriod || 0">
+      <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
+        <div class="text text-center w-100"><strong>PROJECTED</strong></div>
+        <div class="text text-center mt-2" [style.color]="color">{{ formatText(data?.projectedPeriod) }}</div>
+      </ng-template>
+    </kendo-circularprogressbar>
+  </div>
+</div>

@@ -31,7 +31,7 @@ import { InventoryPerformance1Component } from './widgets/inventory-performance1
     ManagementKPI3Component,
     ProductionYield1Component,
     SupplierInventory1Component,
-    InventoryPerformance1Component
+    InventoryPerformance1Component,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],
