@@ -28,6 +28,7 @@ export class MultiSiteComponent {
 
   loadLayout() {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('resource-tracking');
+    console.log('layoutConfig', layoutConfig);
     if (!layoutConfig) return;
 
     const widgets: Widget[] = Object.keys(layoutConfig)
