@@ -13,21 +13,21 @@
             field="{{ column.field }}"
             title="{{ column.title.toUpperCase() }}"
             [width]="getWidth(column.width)"
-            [headerStyle]="setHeaderStyle()"
+            [headerStyle]="setDefaultHeaderStyle()"
             [style]="setDefaultColumnStyle()"
             >
           </kendo-grid-column>
-          <kendo-grid-column title="TURNOVER" [headerStyle]="setHeaderStyle()" [style]="setStatusColumnStyle()">
+          <kendo-grid-column title="TURNOVER" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
             <ng-template kendoGridCellTemplate let-dataItem>
                 <div [style.color] = "dataItem.turnover.color">{{dataItem.turnover.value}}</div>
             </ng-template>
           </kendo-grid-column>
-          <kendo-grid-column title="FILL RATE" [headerStyle]="setHeaderStyle()" [style]="setStatusColumnStyle()">
+          <kendo-grid-column title="FILL RATE" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
             <ng-template kendoGridCellTemplate let-dataItem>
                 <div [style.color] = "dataItem.fillRate.color">{{dataItem.fillRate.value}}</div>
             </ng-template>
           </kendo-grid-column>
-          <kendo-grid-column title="STOCKOUT" [headerStyle]="setHeaderStyle()" [style]="setStatusColumnStyle()">
+          <kendo-grid-column title="STOCKOUT" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
             <ng-template kendoGridCellTemplate let-dataItem>
                 <div [style.color] = "dataItem.stockout.color">{{dataItem.stockout.value}}</div>
             </ng-template>

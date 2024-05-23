@@ -144,7 +144,7 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
     // console.log(supplierInventoryJson);
   }
 
-  public setHeaderStyle() {
+  public setDefaultHeaderStyle() {
 
     let style = { 'background-color': '#002540', 
     'color': '#E4E9EF',
@@ -163,6 +163,17 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
       'text-align': 'left'
     }
 
+    return style;
+  }
+
+  public setStatusHeaderStyle() {
+    let style = { 'background-color': '#002540', 
+    'color': '#E4E9EF',
+    'border': '0',
+    'border-bottom': '.3rem solid #E4E9EF',
+    'font-size': '1.5rem',
+    'justify-content': 'right'
+  }
     return style;
   }
 
