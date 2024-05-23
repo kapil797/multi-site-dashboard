@@ -1,0 +1,41 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.card {
+  background: #002540;
+  border-radius: variables.$border-radius-1;
+  height: 25rem;
+  width: 55rem;
+
+  .card-meta-wrapper {
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: variables.$font-size-xl;
+    ;
+    text-transform: uppercase;
+    letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
+  }
+
+  .card-tag {
+    color: #809FB8;
+    background-color: #384455;
+    border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
+    font-size: variables.$font-size-regplus;
+  }
+}
+
+.bar-wrapper {
+    padding-bottom: 4rem;
+}
+
+.bar-title{
+    width: 15rem;
+    font-size: variables.$font-size-reg;
+}

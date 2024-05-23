@@ -11,6 +11,7 @@ import { LayerResolverComponent } from '@pi/components/layer-resolver/layer-reso
 import { InventoryPerformanceComponent } from '@pi/components/inventory-performance/inventory-performance.component';
 import { ProductionPerformanceComponent } from '@pi/components/production-performance/production-performance.component';
 import { ProgressPerformanceComponent } from '@pi/components/progress-performance/progress-performance.component';
+import { ProductionCapacity1Component } from './widgets/production-capacity1/production-capacity1.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProgressPerformanceComponent } from '@pi/components/progress-performanc
     InventoryPerformanceComponent,
     ProductionPerformanceComponent,
     ProgressPerformanceComponent,
+    ProductionCapacity1Component
   ],
   imports: [SharedModule, ProductionAndInventoryRoutingModule],
   providers: [ProductionAndInventoryService],
