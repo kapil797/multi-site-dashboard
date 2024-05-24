@@ -1,0 +1,65 @@
+<div class="card p-3 m-auto">
+
+    <div class="card-meta-wrapper d-flex justify-content-space-between">
+        <span class="card-title">{{title}}</span>
+        <div class="card-tag d-flex px-4 py-2 flex-column justify-content-center"> combined </div>
+    </div>
+    <div class="card-period">{{subtitle}}</div>
+
+    <br />
+
+    <div class="d-flex flex-column">
+        <div class="top-wrapper d-flex">
+            <div class="projection-details d-flex me-5">
+                <div class="projection-chart mx-3">
+                    <img
+                    *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
+                    [src]="'assets/images/indicators/ic-trend-round-' + item.ProjectionHealth.toLowerCase() + '.png'"
+                    [alt]="item.ProjectionHealth"
+                    class="img-size" />
+                </div>
+                <div class="projection">
+                    <span class="title">PROJECTION:</span>
+                    <div class="d-flex">
+                        <span class="figure" [ngClass]="item.ProjectionHealth">
+                                {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }} {{ getUnits(item) }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="target-details d-flex ms-5">
+                <div class="projection-chart mx-3">
+                    <img
+                    *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
+                    [src]="'assets/images/indicators/ic-target.png'"
+                    [alt]="item.ProjectionHealth"
+                    class="img-size" />
+                </div>
+                <div class="target">
+                    <span class="title">TARGET:</span>
+                    <div class="d-flex">
+                        <span class="target-figure just"> {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} {{ getUnits(item) }}</span> 
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+        <div class= "p-t flex-column justify-content-center">
+            <div class="d-flex ms-3 mt-3 flex-column">
+                <span class="current-figure p-3 d-flex justify-content-center">
+                    <ng-container *ngIf="isVolumeRelated(item); else nonVolumeRelated">
+                    {{ item.Value | currency: '' : '' : '1.0-0' }}
+                    </ng-container>
+                    <ng-template #nonVolumeRelated>{{ item.Value }}
+                        <div class="unit">({{ getUnits(item) }})</div></ng-template>
+                </span>
+            </div>
+
+            
+        </div> 
+    </div>
+  </div>
+  
+
+

@@ -12,6 +12,7 @@ import { OrderStatusIndividualComponent } from './components/order-status-indivi
 import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { FeatureService } from '@core/services/feature.service';
 import { OrderStatusComponent } from './widgets/order-status/order-status.component';
+import { ManagementKPI2Component } from './widgets/management-kpi2/management-kpi2.component';
 import { ManagementKPI3Component } from './widgets/management-kpi3/management-kpi3.component';
 import { ProductionYield1Component } from './widgets/production-yield1/production-yield1.component';
 import { SupplierInventory1Component } from './widgets/supplier-inventory1/supplier-inventory1.component';
@@ -28,6 +29,7 @@ import { InventoryPerformance1Component } from '../production-and-inventory/widg
     OrderStatusIndividualComponent,
     MultiSiteComponent,
     OrderStatusComponent,
+    ManagementKPI2Component,
     ManagementKPI3Component,
     ProductionYield1Component,
     SupplierInventory1Component,
