@@ -2,16 +2,16 @@
 @use 'core/styles/variables';
 
 .card {
-  background: #002540;
-  width: 100%;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  height: 25rem;
-  width: 55rem;
+    background: #002540;
+    width: 100%;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    height: 25rem;
+    width: 55rem;
 
-  .card-meta-wrapper {
-    justify-content: space-between;
-  }
+    .card-meta-wrapper {
+        justify-content: space-between;
+    }
 
   .card-title {
     font-size: variables.$font-size-xl;
@@ -31,48 +31,22 @@
     font-size: variables.$font-size-regplus;
   }
 
-  .projection {
-    .title {
-      font-size: variables.$font-size-xxl;
-    }
-    .figure {
-      font-weight: bolder;
-      font-size: variables.$font-size-xxxl;
-    }
-  }
-
-  .target {
-    .title {
-        font-size: variables.$font-size-xxl;
-    }
-    .target-figure {
-      font-weight: bolder;
-      font-size: variables.$font-size-xxxl;
-    }
-  }
-
-  .current-title {
-    font-size: 1.5rem;
-  }
-
-  .current-figure {
-    background: #1e3552;
-    font-size: 6rem;
+  .card-figure {
+    font-size: 5rem;
     font-weight: bolder;
-    height: 8rem;
-    line-height: 8rem;
+    margin-top: 2rem;
   }
 
   .unit {
-    position: absolute;
-    right: 10rem;
-    font-size: variables.$font-size-4xl;
-    line-height: 8rem;
+    font-size: variables.$font-size-xxxl;
   }
 
+  .projection-wrapper {
+    background: #1e3552;
+  }
   .projection-chart {
     border-radius: 0.5rem;
-    font-size: variables.$font-size-4xl;
+    font-size: 3rem;
     font-weight: lighter;
 
     &.Green {
@@ -83,6 +57,25 @@
     }
     &.Yellow {
       background: variables.$warning;
+    }
+  }
+
+  .projection {
+    .title {
+      font-size: variables.$font-size-xxl;
+    }
+    .figure {
+      font-weight: bolder;
+      font-size: 5rem;
+    }
+  }
+  .target {
+    .title {
+      font-size: 2rem;
+    }
+    .figure {
+      font-weight: bolder;
+      font-size: 2rem;
     }
   }
 
@@ -101,8 +94,8 @@
   width: 4rem;
 }
 .img-size {
-  width: 100%;
+  //width: 100%;
   height: 100%;
-  max-width: 5rem;
-  max-height: 5rem;
+  max-width: 8rem;
+  max-height: 8rem;
 }

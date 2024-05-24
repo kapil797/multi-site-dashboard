@@ -1,4 +1,5 @@
 import { InventoryPerformance1Component } from '@pi/widgets/inventory-performance1/inventory-performance1.component';
+import { ManagementKPI1Component } from '@lt/widgets/management-kpi1/management-kpi1.component';
 import { ManagementKPI2Component } from '@lt/widgets/management-kpi2/management-kpi2.component';
 import { ManagementKPI3Component } from '@lt/widgets/management-kpi3/management-kpi3.component';
 import { OrderStatusComponent } from '@lt/widgets/order-status/order-status.component';
@@ -10,6 +11,7 @@ import { ProductionCapacity1Component } from '@pi/widgets/production-capacity1/p
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
+  ManagementKPI1: ManagementKPI1Component,
   ManagementKPI2: ManagementKPI2Component,
   ManagementKPI3: ManagementKPI3Component,
   fulfilment1: Fulfilment1Component,
