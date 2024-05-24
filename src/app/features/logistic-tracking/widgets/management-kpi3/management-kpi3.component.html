@@ -11,14 +11,14 @@
     <div class="d-flex">
         <div class="projection-details d-flex justify-content-start">
             <div class="projection ms-2d-flex flex-column justify-content-center">
-                <span class="title">PROJECTION:</span>
+                <div class="mt-5"><span class="title">PROJECTION:</span></div>
 
                 <div class="projection-figure p-2 px-3 pt-4">
                     <div class="projection-figure-wrapper d-flex">
                         <span class="figure" [ngClass]="item.ProjectionHealth">
-                            {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }}
+                            {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }} {{ getUnits(item) }}
                         </span>
-                        <div class="projection-chart ms-3">
+                        <div class="projection-chart ms-3 mt-3">
                             <img
                             *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
                             [src]="'assets/images/indicators/ic-trend-round-' + item.ProjectionHealth.toLowerCase() + '.png'"
@@ -37,14 +37,13 @@
                     <ng-container *ngIf="isVolumeRelated(item); else nonVolumeRelated">
                     {{ item.Value | currency: '' : '' : '1.0-0' }}
                     </ng-container>
-                    <ng-template #nonVolumeRelated>{{ item.Value }}</ng-template>
-                    <span class="ms-3">({{ getUnits(item) }})</span>
+                    <ng-template #nonVolumeRelated>{{ item.Value }} {{ getUnits(item) }}</ng-template>
                 </span>
             </div>
 
             <div class="target ms-3 d-flex flex-column">
                 <span class="title">TARGET:</span>
-                <span class="target-figure p-3"> {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} </span>
+                <span class="target-figure p-3"> {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} {{ getUnits(item) }}</span> 
             </div>
         </div> 
     </div>

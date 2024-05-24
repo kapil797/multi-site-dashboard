@@ -8,16 +8,17 @@ import { Component, Input } from '@angular/core';
 export class ManagementKPI3Component {
   @Input() title: string;
   @Input() subtitle: string;
+
   public item = {
-    Id: 8,
-    Category: 'Profit',
-    Value: 14636.0,
-    Projection: 68.24,
-    ProjectionHealth: 'Yellow',
-    Target: 74.25,
-    Period: 'Weekly',
-    ProjectionDay: '7 days',
-  };
+        "Id": 12,
+        "Category": "Capacity Utilisation",
+        "Value": "64.58",
+        "Projection": "95.02",
+        "ProjectionHealth": "Green",
+        "Target": "99.91",
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isVolumeRelated(item: any) {

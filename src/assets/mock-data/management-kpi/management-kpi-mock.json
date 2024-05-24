@@ -1,0 +1,82 @@
+[
+    {
+        "Id": 8,
+        "Category": "Profit",
+        "Value": 14636.0,
+        "Projection": 68.24,
+        "ProjectionHealth": "Yellow",
+        "Target": 74.25,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 9,
+        "Category": "Cost",
+        "Value": 73182.0,
+        "Projection": 80.5,
+        "ProjectionHealth": "Yellow",
+        "Target": 74.25,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 10,
+        "Category": "Production Volume",
+        "Value": 1332.0,
+        "Projection": 9.5,
+        "ProjectionHealth": "Green",
+        "Target": 9.838,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 11,
+        "Category": "Total Productivity",
+        "Value": 1.87,
+        "Projection": 1.98,
+        "ProjectionHealth": "Green",
+        "Target": 2.0,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 12,
+        "Category": "Capacity Utilization",
+        "Value": 64.58,
+        "Projection": 95.0,
+        "ProjectionHealth": "Green",
+        "Target": 99.9,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 13,
+        "Category": "On-Time Delivery",
+        "Value": 99.35,
+        "Projection": 99.09,
+        "ProjectionHealth": "Green",
+        "Target": 99.22,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 14,
+        "Category": "Safety",
+        "Value": 0.0,
+        "Projection": 0.0,
+        "ProjectionHealth": "Green",
+        "Target": 0.0,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    },
+    {
+        "Id": 23,
+        "Category": "Inventory",
+        "Value": 61491.0,
+        "Projection": 67.64,
+        "ProjectionHealth": "Green",
+        "Target": 70.72,
+        "Period": "Weekly",
+        "ProjectionDay": "7 days"
+    }
+]
