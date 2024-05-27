@@ -1,10 +1,9 @@
 <div class="card p-3 m-auto">
-
-    <div class="card-meta-wrapper d-flex justify-content-space-between">
-        <span class="card-title">{{title}}</span>
-        <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center"> combined</div>
-    </div>
-    <div class="card-period pb-5">{{subtitle}}</div>
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">combined</div>
+  </div>
+  <div class="card-period pb-5">{{ subtitle }}</div>
 
     <div class="pt-1-wrapper d-grid gap-5">
         <kendo-grid scrollable="none" [kendoGridBinding]="supplierInventoryData" class="h-100" >
@@ -43,11 +42,6 @@
               </div>
             </ng-template>
           </kendo-grid-column> -->
-        </kendo-grid>
-      </div>
-    
-
+    </kendo-grid>
   </div>
-  
-
-
+</div>
