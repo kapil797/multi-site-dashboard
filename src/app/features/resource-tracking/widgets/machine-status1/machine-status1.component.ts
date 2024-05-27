@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-fulfilment1',
-  templateUrl: './fulfilment1.component.html',
-  styleUrl: './fulfilment1.component.scss',
+  selector: 'app-machine-status1',
+  templateUrl: './machine-status1.component.html',
+  styleUrl: './machine-status1.component.scss',
 })
-export class Fulfilment1Component {
+export class MachineStatus1Component {
   @Input() title: string;
   @Input() subtitle: string;
   public productionCapacity: number = 92;

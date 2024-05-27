@@ -12,6 +12,7 @@ import { FactoryLayoutPlanComponent } from '@rt/components/factory-layout-plan/f
 import { ResourceConsumptionComponent } from '@rt/components/resource-consumption/resource-consumption.component';
 import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
+import { MachineStatus1Component } from './widgets/machine-status1/machine-status1.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.componen
     ResourceConsumptionComponent,
     MultiSiteComponent,
     Fulfilment1Component,
+    MachineStatus1Component,
   ],
   imports: [ResourceTrackingRoutingModule, SharedModule],
   providers: [ResourceTrackingService],
