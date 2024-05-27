@@ -16,6 +16,7 @@ import { ManagementKPI3Component } from './widgets/management-kpi3/management-kp
 import { ProductionYield1Component } from './widgets/production-yield1/production-yield1.component';
 import { SupplierInventory1Component } from './widgets/supplier-inventory1/supplier-inventory1.component';
 import { InventoryPerformance1Component } from './widgets/inventory-performance1/inventory-performance1.component';
+import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { InventoryPerformance1Component } from './widgets/inventory-performance1
     ProductionYield1Component,
     SupplierInventory1Component,
     InventoryPerformance1Component,
+    Fulfilment1Component,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],

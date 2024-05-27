@@ -16,7 +16,7 @@
         "subtitle": "PAST MONTH"
       },
       "widget2": {
-        "name": "InventoryPerformance1",
+        "name": "fulfilment1",
         "title": "Overall Supplier Inventory (FG)",
         "subtitle": "PAST MONTH"
       },
@@ -151,12 +151,12 @@
       "colSpan": 2,
       "layoutId": 1,
       "widget1": {
-        "name": "fulfilment1",
-        "title": "Production Capacity",
-        "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
+        "name": "machineStatus1",
+        "title": "Injection Molding",
+        "subtitle": "PAST 24 HOURS"
       },
       "widget2": {
-        "name": "fulfilment1",
+        "name": "machineStatus1",
         "title": "Inventory Performance",
         "subtitle": "PAST MONTH"
       },
