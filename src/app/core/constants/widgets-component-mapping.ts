@@ -26,6 +26,6 @@ export const widgetComponentsMapping = {
   ProductionCapacity1: ProductionCapacity1Component,
   MachineStatus1: MachineStatus1Component,
   DemandForecast1: DemandForecast1Component,
-  productionTracking1: ProductionTracking1Component
+  productionTracking1: ProductionTracking1Component,
   globalShopfloorStatus1: GlobalShopfloorStatus1Component,
 };

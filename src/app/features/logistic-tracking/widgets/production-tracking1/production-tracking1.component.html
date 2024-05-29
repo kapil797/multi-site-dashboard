@@ -1,7 +1,7 @@
 <div class="card p-3 m-auto">
     <div class="card-meta-wrapper d-flex justify-content-space-between">
       <span class="card-title">{{ title }}</span>
-      <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">combined</div>
+      <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{ tag }}</div>
     </div>
     <div class="card-period pb-5">{{ subtitle }}</div>
   
@@ -16,7 +16,7 @@
               [style]="setDefaultColumnStyle()"
               >
             </kendo-grid-column>
-            
+
             <kendo-grid-column field="status" title="" [width]="50" [headerStyle]="setStatusHeaderStyle()">
               <ng-template kendoGridCellTemplate let-dataItem>
                 <div class="d-flex align-items-center">

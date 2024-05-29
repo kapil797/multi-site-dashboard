@@ -42,7 +42,7 @@ import { ProductionTracking1Component } from './widgets/production-tracking1/pro
     InventoryPerformance1Component,
     Fulfilment1Component,
     DemandForecast1Component,
-    ProductionTracking1Component
+    ProductionTracking1Component,
     GlobalShopfloorStatus1Component,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],

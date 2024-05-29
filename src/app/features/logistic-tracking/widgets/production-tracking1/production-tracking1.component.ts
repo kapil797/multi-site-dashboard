@@ -20,6 +20,7 @@ export class ProductionTracking1Component implements OnInit{
   
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   public isLoading = true;
 
