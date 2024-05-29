@@ -10,6 +10,7 @@ import { InventoryValueCost1Component } from '@pi/widgets/inventory-value-cost1/
 import { ProductionCapacity1Component } from '@pi/widgets/production-capacity1/production-capacity1.component';
 import { MachineStatus1Component } from '@rt/widgets/machine-status1/machine-status1.component';
 import { DemandForecast1Component } from '@lt/widgets/demand-forecast1/demand-forecast1.component';
+import { ProductionTracking1Component } from '@lt/widgets/production-tracking1/production-tracking1.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
@@ -23,5 +24,6 @@ export const widgetComponentsMapping = {
   InventoryValueCost1: InventoryValueCost1Component,
   ProductionCapacity1: ProductionCapacity1Component,
   MachineStatus1: MachineStatus1Component,
-  DemandForecast1: DemandForecast1Component
+  DemandForecast1: DemandForecast1Component,
+  productionTracking1: ProductionTracking1Component
 };

@@ -20,6 +20,7 @@ import { SupplierInventory1Component } from './widgets/supplier-inventory1/suppl
 import { InventoryPerformance1Component } from '../production-and-inventory/widgets/inventory-performance1/inventory-performance1.component';
 import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
 import { DemandForecast1Component } from './widgets/demand-forecast1/demand-forecast1.component';
+import { ProductionTracking1Component } from './widgets/production-tracking1/production-tracking1.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DemandForecast1Component } from './widgets/demand-forecast1/demand-fore
     SupplierInventory1Component,
     InventoryPerformance1Component,
     Fulfilment1Component,
-    DemandForecast1Component
+    DemandForecast1Component,
+    ProductionTracking1Component
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],
