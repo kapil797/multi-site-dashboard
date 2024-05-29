@@ -59,26 +59,7 @@ export class DemandForecast1Component implements OnChanges{
     let range: number;
     let zones: Zone[];
 
-    if (product === 'ESCENTZ') {
-      initial = 4125;
-      range = 200;
-      zones = [
-        {
-          value: 0.3,
-          direction: 'UP',
-        },
-        {
-          value: 0.2,
-          direction: 'DOWN',
-        },
-        {
-          value: 0.3,
-          direction: 'UP',
-        },
-        { value: 0.2, direction: 'DOWN' },
-      ];
-    } else {
-      initial = 409;
+      initial = 2000;
       range = 50;
       zones = [
         {
@@ -99,7 +80,6 @@ export class DemandForecast1Component implements OnChanges{
         },
         { value: 0.2, direction: 'DOWN' },
       ];
-    }
 
     // Get previous forecast.
     const pastForecast: DemandSeries[] = [];
