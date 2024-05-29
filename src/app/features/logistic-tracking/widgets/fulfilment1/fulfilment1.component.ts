@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class Fulfilment1Component {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
   public productionCapacity: number = 92;
   public seriesData = [
     { month: 'Jan', value: 90 },

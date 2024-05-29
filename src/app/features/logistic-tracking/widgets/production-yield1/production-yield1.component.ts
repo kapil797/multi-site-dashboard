@@ -15,6 +15,7 @@ export interface PeriodPerformance {
 export class ProductionYield1Component {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   //@Input() data?: PeriodPerformance;
 

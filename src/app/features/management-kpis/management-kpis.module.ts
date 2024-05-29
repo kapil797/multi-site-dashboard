@@ -7,9 +7,17 @@ import { SharedModule } from '@shared/shared.module';
 import { ManagementKpisService } from './management-kpis-service';
 import { KpiDetailComponent } from './components/kpi-detail/kpi-detail.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { MulitSiteComponent } from './mulit-site/mulit-site.component';
 
 @NgModule({
-  declarations: [LayerResolverComponent, LayerOneComponent, LayerTwoComponent, KpiDetailComponent, PieChartComponent],
+  declarations: [
+    LayerResolverComponent,
+    LayerOneComponent,
+    LayerTwoComponent,
+    KpiDetailComponent,
+    PieChartComponent,
+    MulitSiteComponent,
+  ],
   imports: [ManagementKpisRoutingModule, SharedModule],
   providers: [ManagementKpisService],
 })

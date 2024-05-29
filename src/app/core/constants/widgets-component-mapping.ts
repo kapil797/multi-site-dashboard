@@ -11,6 +11,7 @@ import { ProductionCapacity1Component } from '@pi/widgets/production-capacity1/p
 import { MachineStatus1Component } from '@rt/widgets/machine-status1/machine-status1.component';
 import { DemandForecast1Component } from '@lt/widgets/demand-forecast1/demand-forecast1.component';
 import { ProductionTracking1Component } from '@lt/widgets/production-tracking1/production-tracking1.component';
+import { GlobalShopfloorStatus1Component } from '@lt/widgets/global-shopfloor-status1/global-shopfloor-status1.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
@@ -26,4 +27,5 @@ export const widgetComponentsMapping = {
   MachineStatus1: MachineStatus1Component,
   DemandForecast1: DemandForecast1Component,
   productionTracking1: ProductionTracking1Component
+  globalShopfloorStatus1: GlobalShopfloorStatus1Component,
 };

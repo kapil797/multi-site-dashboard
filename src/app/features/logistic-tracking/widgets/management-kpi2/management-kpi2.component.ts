@@ -3,22 +3,23 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-management-kpi2',
   templateUrl: './management-kpi2.component.html',
-  styleUrl: './management-kpi2.component.scss'
+  styleUrl: './management-kpi2.component.scss',
 })
 export class ManagementKPI2Component {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   public item = {
-        "Id": 12,
-        "Category": "Capacity Utilisation",
-        "Value": "64.58",
-        "Projection": "95.02",
-        "ProjectionHealth": "Yellow",
-        "Target": "99.91",
-        "Period": "Weekly",
-        "ProjectionDay": "7 days"
-  }
+    Id: 12,
+    Category: 'Capacity Utilisation',
+    Value: '64.58',
+    Projection: '95.02',
+    ProjectionHealth: 'Yellow',
+    Target: '99.91',
+    Period: 'Weekly',
+    ProjectionDay: '7 days',
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isVolumeRelated(item: any) {

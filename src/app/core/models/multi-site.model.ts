@@ -4,11 +4,13 @@ export interface Widget {
   name?: string;
   title?: string;
   subtitle?: string;
+  tag?: string;
 }
 
 export interface DynamicWidget {
   title: string;
   subtitle: string;
+  tag: string;
 }
 
 export interface Sidebar {
@@ -17,7 +19,7 @@ export interface Sidebar {
 }
 
 export interface NavigationItem {
-  featureId: number;
+  featureId: string;
   row: number;
   rowSpan: number;
   col: number;

@@ -11,7 +11,7 @@ import {
 
 // Define the interface for feature constants
 interface FeatureConstants {
-  [key: number]: {
+  [key: string]: {
     icon: IconDefinition;
     name: string;
     resource: string;
@@ -20,45 +20,50 @@ interface FeatureConstants {
 
 // Declare feature constants with the explicit interface type
 export const featureConstants: FeatureConstants = Object.freeze({
-  1: {
+  SSC1: {
     icon: faTruck,
     name: 'Logistic Tracking',
     resource: 'logistic-tracking',
   },
-  2: {
+  SM1: {
     icon: faBriefcase,
     name: 'Management KPI',
     resource: 'management-kpis',
   },
-  3: {
+  SSC2: {
     icon: faStreetView,
     name: 'Demand Profile',
     resource: 'demand-profile',
   },
-  4: {
+  ME1: {
     icon: faClipboardList,
     name: 'Production Tracking',
     resource: 'production-tracking',
   },
-  5: {
+  SD1: {
     icon: faBox,
     name: 'Favourites',
     resource: 'favourite',
   },
-  6: {
+  SD2: {
     icon: faRightLeft,
     name: 'Critical Issues',
     resource: 'critical-issue',
   },
-  7: {
+  SS1: {
     icon: faBoltLightning,
     name: 'Resource Tracking',
     resource: 'resource-tracking',
   },
-  8: {
+  SS2: {
     icon: faBox,
     name: 'Resource Health',
     resource: 'resource-health',
+  },
+  SM2: {
+    icon: faBriefcase,
+    name: 'Management KPI',
+    resource: 'management-kpis-extended',
   },
 });
 
