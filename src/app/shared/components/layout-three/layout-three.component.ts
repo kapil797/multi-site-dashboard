@@ -70,6 +70,7 @@ export class LayoutThreeComponent {
         });
         componentRef.instance.title = widget.title ?? 'Default Title';
         componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
+        componentRef.instance.tag = widget.tag ?? 'Combined';
       } else {
         console.warn(`No component mapped for widget named ${widget.name}`);
       }

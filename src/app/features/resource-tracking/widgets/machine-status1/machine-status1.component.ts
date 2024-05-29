@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { faPowerOff, faBolt, faTrashCan, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-machine-status1',
   templateUrl: './machine-status1.component.html',
@@ -8,6 +8,9 @@ import { Component, Input } from '@angular/core';
 export class MachineStatus1Component {
   @Input() title: string;
   @Input() subtitle: string;
+  public powerOffIcon: IconDefinition = faPowerOff;
+  public boltIcon: IconDefinition = faBolt;
+  public trashIcon: IconDefinition = faTrashCan;
   public productionCapacity: number = 92;
   public seriesData = [
     { month: 'Jan', value: 90 },
