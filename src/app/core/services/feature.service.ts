@@ -18,13 +18,11 @@ export class FeatureService {
     }
   }
   getLayoutWidgetsByFeature(featureName: string) {
-    const featureId = Object.keys(featureConstants).find(
-      key => featureConstants[parseInt(key)].resource === featureName
-    );
+    const featureId = Object.keys(featureConstants).find(key => featureConstants[key].resource === featureName);
     if (!featureId) {
       return null;
     }
-    const navigationItem = this.multiSiteConfig.find(item => item.featureId === parseInt(featureId));
+    const navigationItem = this.multiSiteConfig.find(item => item.featureId === featureId);
     if (!navigationItem) {
       return null;
     }

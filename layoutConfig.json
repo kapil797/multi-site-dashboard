@@ -4,21 +4,35 @@
   "colorTheme": "option1",
   "navigationItems": [
     {
-      "featureId": 1,
+      "featureId": "SSC1",
       "row": 1,
       "rowSpan": 1,
       "col": 1,
       "colSpan": 2,
-      "layoutId": 4,
+      "layoutId": 1,
       "widget1": {
-        "name": "SupplierInventory1",
-        "title": "Overall Supplier Inventory (RM)",
-        "subtitle": "PAST MONTH"
+        "name": "globalShopfloorStatus1",
+        "title": "Injection Molding",
+        "subtitle": "Now",
+        "tag": "Factory A"
       },
       "widget2": {
-        "name": "SupplierInventory1",
+        "name": "machineStatus1",
+        "title": "Injection Molding",
+        "subtitle": "PAST MONTH",
+        "tag": "Factory A"
+      },
+      "widget3": {
+        "name": "fulfilment1",
         "title": "Overall Supplier Inventory (FG)",
-        "subtitle": "PAST MONTH"
+        "subtitle": "PAST MONTH",
+        "tag": "Factory A"
+      },
+      "widget4": {
+        "name": "fulfilment1",
+        "title": "Overall Supplier Inventory (FG)",
+        "subtitle": "PAST MONTH",
+        "tag": "Factory A"
       },
       "sideBar": {
         "position": "left",
@@ -26,7 +40,7 @@
       }
     },
     {
-      "featureId": 2,
+      "featureId": "SM1",
       "row": 1,
       "rowSpan": 1,
       "col": 3,
@@ -39,7 +53,7 @@
       },
       "widget2": {
         "name": "managementKPI1",
-        "title": "Enterprise Capcity Utilisation",
+        "title": "Enterprise Capacity Utilisation",
         "subtitle": "PAST MONTH"
       },
       "widget3": {
@@ -58,7 +72,7 @@
       }
     },
     {
-      "featureId": 2,
+      "featureId": "ME1",
       "row": 1,
       "rowSpan": 1,
       "col": 5,
@@ -90,7 +104,7 @@
       }
     },
     {
-      "featureId": 3,
+      "featureId": "SSC2",
       "row": 1,
       "rowSpan": 1,
       "col": 7,
@@ -99,22 +113,26 @@
       "widget1": {
         "name": "demandForecast1",
         "title": "Demand for EScentz",
-        "subtitle": "MONTHLY"
+        "subtitle": "MONTHLY",
+        "tag": "Factory A"
       },
       "widget2": {
         "name": "fulfilment1",
         "title": "Av. On-Time Delivery",
-        "subtitle": "MONTHLY"
+        "subtitle": "MONTHLY",
+        "tag": "Factory A"
       },
       "widget3": {
         "name": "fulfilment1",
         "title": "Av. Delivery Lead Times",
-        "subtitle": "MONTHLY"
+        "subtitle": "MONTHLY",
+        "tag": "Factory A"
       },
       "widget4": {
         "name": "fulfilment1",
         "title": "Av. Order Accuracy",
-        "subtitle": "MONTHLY"
+        "subtitle": "MONTHLY",
+        "tag": "Factory A"
       },
       "sideBar": {
         "position": "left",
@@ -122,7 +140,7 @@
       }
     },
     {
-      "featureId": 4,
+      "featureId": "ME1",
       "row": 2,
       "rowSpan": 1,
       "col": 1,
@@ -139,7 +157,7 @@
       }
     },
     {
-      "featureId": 7,
+      "featureId": "SS1",
       "row": 2,
       "rowSpan": 1,
       "col": 7,
@@ -171,7 +189,7 @@
       }
     },
     {
-      "featureId": 7,
+      "featureId": "SS2",
       "row": 3,
       "rowSpan": 1,
       "col": 1,
@@ -203,7 +221,7 @@
       }
     },
     {
-      "featureId": 8,
+      "featureId": "SS1",
       "row": 3,
       "rowSpan": 1,
       "col": 7,
@@ -230,7 +248,7 @@
       }
     },
     {
-      "featureId": 5,
+      "featureId": "SD1",
       "row": 2,
       "rowSpan": 2,
       "col": 3,
@@ -243,7 +261,7 @@
       }
     },
     {
-      "featureId": 6,
+      "featureId": "SD2",
       "row": 2,
       "rowSpan": 2,
       "col": 5,

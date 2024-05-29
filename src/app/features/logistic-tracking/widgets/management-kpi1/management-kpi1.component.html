@@ -1,38 +1,36 @@
 <div class="card p-3 m-auto">
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag d-flex px-4 py-2 flex-column justify-content-center">{{ tag }}</div>
+  </div>
+  <div class="card-period">{{ subtitle }}</div>
 
-    <div class="card-meta-wrapper d-flex justify-content-space-between">
-        <span class="card-title">{{title}}</span>
-        <div class="card-tag d-flex px-4 py-2 flex-column justify-content-center"> combined </div>
+  <span class="card-figure">
+    <ng-container *ngIf="isVolumeRelated(item); else nonVolumeRelated">
+      {{ item.Value | currency: '' : '' : '1.0-0' }}
+    </ng-container>
+    <ng-template #nonVolumeRelated>{{ item.Value }}</ng-template>
+    <span class="ms-5 unit">({{ getUnits(item) }})</span>
+  </span>
+  <div class="projection-wrapper p-3 mt-5 d-flex">
+    <div class="projection-chart">
+      <img
+        *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
+        [src]="'assets/images/indicators/ic-trend-square-' + item.ProjectionHealth.toLowerCase() + '.png'"
+        [alt]="item.ProjectionHealth"
+        class="img-size" />
     </div>
-    <div class="card-period">{{subtitle}}</div>
-
-    <span class="card-figure">
-      <ng-container *ngIf="isVolumeRelated(item); else nonVolumeRelated">
-        {{ item.Value | currency: '' : '' : '1.0-0' }}
-      </ng-container>
-      <ng-template #nonVolumeRelated>{{ item.Value }}</ng-template>
-      <span class="ms-5 unit">({{ getUnits(item) }})</span>
-    </span>
-    <div class="projection-wrapper p-3 mt-5 d-flex">
-      <div class="projection-chart">
-        <img
-          *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
-          [src]="'assets/images/indicators/ic-trend-square-' + item.ProjectionHealth.toLowerCase() + '.png'"
-          [alt]="item.ProjectionHealth"
-          class="img-size" />
+    <div class="projection-details d-flex justify-content-between w-100">
+      <div class="projection ms-3 d-flex flex-column justify-content-end">
+        <span class="title">PROJECTION:</span>
+        <span class="figure" [ngClass]="item.ProjectionHealth">
+          {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }}
+        </span>
       </div>
-      <div class="projection-details d-flex justify-content-between w-100">
-        <div class="projection ms-3 d-flex flex-column justify-content-end">
-          <span class="title">PROJECTION:</span>
-          <span class="figure" [ngClass]="item.ProjectionHealth">
-            {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }}
-          </span>
-        </div>
-        <div class="target d-flex flex-column justify-content-end">
-          <span class="title">TARGET:</span>
-          <span class="figure"> {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} </span>
-        </div>
+      <div class="target d-flex flex-column justify-content-end">
+        <span class="title">TARGET:</span>
+        <span class="figure"> {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} </span>
       </div>
     </div>
   </div>
-  
+</div>

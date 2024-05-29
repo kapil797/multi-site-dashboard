@@ -1,43 +1,30 @@
 import { Component, Input } from '@angular/core';
 
-import { NgZone, OnInit, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject, catchError, exhaustMap, forkJoin, of, switchMap, takeUntil } from 'rxjs';
-import { NotificationService } from '@progress/kendo-angular-notification';
-import { Router } from '@angular/router';
-import moment from 'moment';
+import { OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { ColumnSetting, getWidth } from '@core/models/grid.model';
 import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
-import { createNotif } from '@core/utils/notification';
-import { AppService } from '@core/services/app.service';
-import { filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
-import { ProductionTrackingService } from '@pt/production-tracking.service';
-import {
-  RpsSalesOrder,
-  RpsWorkOrder,
-  SalesOrderAggregate,
-  StatusAggregate,
-  WorkOrderAggregate,
-} from '@pt/production-tracking.model';
+import { SalesOrderAggregate } from '@pt/production-tracking.model';
 
 import supplierInventoryJson from '../../../../../assets/mock-data/supplier-inventory.json';
 
 interface SupplierInventoryData {
-  company: {};
-  turnover: {};
-  fillRate: {};
-  stockout: {};
+  company: object;
+  turnover: object;
+  fillRate: object;
+  stockout: object;
 }
 
 @Component({
   selector: 'app-supplier-inventory1',
   templateUrl: './supplier-inventory1.component.html',
-  styleUrl: './supplier-inventory1.component.scss'
+  styleUrl: './supplier-inventory1.component.scss',
 })
-export class SupplierInventory1Component extends LayerOneRouter implements OnInit{
-
+export class SupplierInventory1Component extends LayerOneRouter implements OnInit {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   private placeholder$ = new BehaviorSubject<boolean>(true);
   private rowCount = 2;
@@ -53,7 +40,7 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
     // { title: 'STOCKOUT', field: 'stockout.value', width: 250 },
   ];
 
-  // public salesOrderCols: ColumnSetting[] = [    
+  // public salesOrderCols: ColumnSetting[] = [
   //   { title: 'SALES ORDER NO.', field: 'salesOrderNumber', width: 220 },
   //   { title: 'FACTORY', field: 'factoryName', width: 250},
   //   { title: 'CUSTOMER NAME', field: 'customerName', width: 250 },
@@ -145,43 +132,44 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
   }
 
   public setDefaultHeaderStyle() {
+    const style = {
+      'background-color': '#002540',
+      color: '#E4E9EF',
+      border: '0',
+      'border-bottom': '.3rem solid #E4E9EF',
+      'font-size': '1.5rem',
+    };
 
-    let style = { 'background-color': '#002540', 
-    'color': '#E4E9EF',
-    'border': '0',
-    'border-bottom': '.3rem solid #E4E9EF',
-    'font-size': '1.5rem'
-  }
-    
     return style;
   }
 
   public setDefaultColumnStyle() {
-    let style = {
-      'color': '#E4E9EF',
+    const style = {
+      color: '#E4E9EF',
       'font-size': '1.5rem',
-      'text-align': 'left'
-    }
+      'text-align': 'left',
+    };
 
     return style;
   }
 
   public setStatusHeaderStyle() {
-    let style = { 'background-color': '#002540', 
-    'color': '#E4E9EF',
-    'border': '0',
-    'border-bottom': '.3rem solid #E4E9EF',
-    'font-size': '1.5rem',
-    'justify-content': 'right'
-  }
+    const style = {
+      'background-color': '#002540',
+      color: '#E4E9EF',
+      border: '0',
+      'border-bottom': '.3rem solid #E4E9EF',
+      'font-size': '1.5rem',
+      'justify-content': 'right',
+    };
     return style;
   }
 
   public setStatusColumnStyle() {
-    let style = {
+    const style = {
       'font-size': '1.5rem',
-      'text-align': 'right'
-    }
+      'text-align': 'right',
+    };
 
     return style;
   }
@@ -289,6 +277,4 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
   // private formatWorkOrderNumber(workOrderNumber: string, salesOrderNumber: string) {
   //   return `${salesOrderNumber}/${workOrderNumber.substring(6)}`;
   // }
-  
-
 }

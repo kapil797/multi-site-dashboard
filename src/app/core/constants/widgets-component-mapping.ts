@@ -9,6 +9,7 @@ import { Fulfilment1Component } from '@rt/widgets/fulfilment1/fulfilment1.compon
 import { InventoryValueCost1Component } from '@pi/widgets/inventory-value-cost1/inventory-value-cost1.component';
 import { ProductionCapacity1Component } from '@pi/widgets/production-capacity1/production-capacity1.component';
 import { MachineStatus1Component } from '@rt/widgets/machine-status1/machine-status1.component';
+import { GlobalShopfloorStatus1Component } from '@lt/widgets/global-shopfloor-status1/global-shopfloor-status1.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
@@ -22,4 +23,5 @@ export const widgetComponentsMapping = {
   InventoryValueCost1: InventoryValueCost1Component,
   ProductionCapacity1: ProductionCapacity1Component,
   machineStatus1: MachineStatus1Component,
+  globalShopfloorStatus1: GlobalShopfloorStatus1Component,
 };
