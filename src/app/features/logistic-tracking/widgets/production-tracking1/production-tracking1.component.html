@@ -7,14 +7,29 @@
   
       <div class="pt-1-wrapper d-grid gap-5">
           <kendo-grid scrollable="none" [kendoGridBinding]="productionTrackingData" class="h-100" >
-            <kendo-grid-column
-              *ngFor="let column of productionTrackingCols"
-              field="{{ column.field }}"
-              title="{{ column.title.toUpperCase() }}"
-              [width]="getWidth(column.width)"
-              [headerStyle]="setDefaultHeaderStyle()"
-              [style]="setDefaultColumnStyle()"
-              >
+
+            <kendo-grid-column title="SALES ORDER NO." [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div [style.color]="dataItem.salesOrderNumber.color!=null?dataItem.salesOrderNumber.color: defaultFontColor">{{ dataItem.salesOrderNumber.value }}</div>
+              </ng-template>
+            </kendo-grid-column>
+
+            <kendo-grid-column title="FACTORY" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div [style.color]="dataItem.factory.color!=null?dataItem.factory.color: defaultFontColor">{{ dataItem.factory.value }}</div>
+              </ng-template>
+            </kendo-grid-column>
+
+            <kendo-grid-column title="CUSTOMER" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div [style.color]="dataItem.customer.color!=null?dataItem.customer.color: defaultFontColor">{{ dataItem.customer.value }}</div>
+              </ng-template>
+            </kendo-grid-column>
+
+            <kendo-grid-column title="EXPECTED COMPLETION" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                <div [style.color]="dataItem.expectedCompleted.color!=null?dataItem.expectedCompleted.color: defaultFontColor">{{ dataItem.expectedCompleted.value }}</div>
+              </ng-template>
             </kendo-grid-column>
 
             <kendo-grid-column field="status" title="" [width]="50" [headerStyle]="setStatusHeaderStyle()">

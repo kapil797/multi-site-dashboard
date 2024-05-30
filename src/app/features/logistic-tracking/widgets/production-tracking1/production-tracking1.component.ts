@@ -22,15 +22,7 @@ export class ProductionTracking1Component implements OnInit{
   @Input() subtitle: string;
   @Input() tag: string;
 
-  public isLoading = true;
-
-  public productionTrackingCols: ColumnSetting[] = [
-    { title: 'SALES ORDER NO.', field: 'salesOrderNumber.value', width: 220 },
-    { title: 'FACTORY', field: 'factory.value', width: 250},
-    { title: 'CUSTOMER', field: 'customer.value', width: 250 },
-    { title: 'EXPECTED COMPLETION', field: 'expectedCompleted.value', width: 250 },
-    { title: 'STATUS', field: 'status.value', width: 250 },
-  ];
+  public defaultFontColor = '#E4E9EF';
 
   public productionTrackingData: productionTrackingData[];
 
@@ -50,7 +42,7 @@ export class ProductionTracking1Component implements OnInit{
   public setDefaultHeaderStyle() {
 
     let style = { 'background-color': '#002540', 
-    'color': '#E4E9EF',
+    'color': this.defaultFontColor,
     'border': '0',
     'border-bottom': '.3rem solid #E4E9EF',
     'font-size': '1.5rem'
@@ -61,7 +53,7 @@ export class ProductionTracking1Component implements OnInit{
 
   public setDefaultColumnStyle() {
     let style = {
-      'color': '#E4E9EF',
+      'color': this.defaultFontColor,
       'font-size': '1.5rem',
       'text-align': 'left'
     }
@@ -71,7 +63,7 @@ export class ProductionTracking1Component implements OnInit{
 
   public setStatusHeaderStyle() {
     let style = { 'background-color': '#002540', 
-    'color': '#E4E9EF',
+    'color': this.defaultFontColor,
     'border': '0',
     'border-bottom': '.3rem solid #E4E9EF',
     'font-size': '1.5rem',
