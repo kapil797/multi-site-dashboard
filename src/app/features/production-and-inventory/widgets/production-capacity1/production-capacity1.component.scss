@@ -13,8 +13,6 @@
 
   .card-title {
     font-size: variables.$font-size-xl;
-    ;
-    text-transform: uppercase;
     letter-spacing: variables.$letter-spacing-sm;
     font-weight: bold;
   }
@@ -28,6 +26,7 @@
 
   .card-period {
     font-size: variables.$font-size-regplus;
+    text-transform: uppercase;
   }
 }
 

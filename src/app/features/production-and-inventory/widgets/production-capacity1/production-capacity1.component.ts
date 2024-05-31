@@ -9,6 +9,7 @@ import { LabelFn, LabelSettings } from '@progress/kendo-angular-progressbar';
 export class ProductionCapacity1Component {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   data = {
     "MFConnect": {
