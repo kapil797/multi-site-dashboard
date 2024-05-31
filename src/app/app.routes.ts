@@ -80,6 +80,22 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_EXTENDED).substring(1),
+    loadChildren: () => import('@mkext/management-kpis-extended.module').then(m => m.ManagementKpisExtendedModule),
+    canMatch: [routeGuard()],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  // {
+  //   path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_EXTENDED).substring(1),
+  //   loadChildren: () => import('@spi/supplier-information.module').then(m => m.SupplierInformationModule),
+  //   canMatch: [routeGuard()],
+  //   data: {
+  //     // roles: [Roles.PUBLIC],
+  //   },
+  // },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },
