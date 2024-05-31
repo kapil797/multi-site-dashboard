@@ -20,19 +20,19 @@
               </ng-template>
             </kendo-grid-column>
 
-            <kendo-grid-column title="CUSTOMER" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
-              <ng-template kendoGridCellTemplate let-dataItem>
-                <div [style.color]="dataItem.customer.color!=null?dataItem.customer.color: defaultFontColor">{{ dataItem.customer.value }}</div>
-              </ng-template>
-            </kendo-grid-column>
-
             <kendo-grid-column title="EXPECTED COMPLETION" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
               <ng-template kendoGridCellTemplate let-dataItem>
                 <div [style.color]="dataItem.expectedCompleted.color!=null?dataItem.expectedCompleted.color: defaultFontColor">{{ dataItem.expectedCompleted.value }}</div>
               </ng-template>
             </kendo-grid-column>
 
-            <kendo-grid-column field="status" title="" [width]="50" [headerStyle]="setStatusHeaderStyle()">
+            <kendo-grid-column title="STATUS" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                  <div [style.color]="dataItem.status.color!=null?dataItem.status.color: defaultFontColor">{{ dataItem.status.value }}</div>
+                </ng-template>
+              </kendo-grid-column>
+
+            <kendo-grid-column field="" title="" [width]="50" [headerStyle]="setStatusHeaderStyle()">
               <ng-template kendoGridCellTemplate let-dataItem>
                 <div class="d-flex align-items-center">
                   <app-circle-status [status]="dataItem.isLate.value ? 'ERROR' : 'SUCCESS'" class="me-5"></app-circle-status>

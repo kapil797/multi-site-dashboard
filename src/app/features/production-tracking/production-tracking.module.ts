@@ -18,6 +18,9 @@ import { ProcessTrackingComponent } from '@pt/components/process-tracking/proces
 import { LayerResolverComponent } from '@pt/components/layer-resolver/layer-resolver.component';
 import { AlertComponent } from '@pt/components/alert/alert.component';
 import { MultiSiteComponent } from './multi-site/multi-site.component';
+import { ProductionTracking1Component } from './widgets/production-tracking1/production-tracking1.component';
+import { ProductionTracking2Component } from './widgets/production-tracking2/production-tracking2.component';
+import { FeatureService } from '@core/services/feature.service';
 
 @NgModule({
   declarations: [
@@ -34,8 +37,10 @@ import { MultiSiteComponent } from './multi-site/multi-site.component';
     ProcessTrackingComponent,
     AlertComponent,
     MultiSiteComponent,
+    ProductionTracking1Component,
+    ProductionTracking2Component
   ],
   imports: [ProductionTrackingRoutingModule, SharedModule],
-  providers: [ProductionTrackingService],
+  providers: [ProductionTrackingService, FeatureService],
 })
 export class ProductionTrackingModule {}

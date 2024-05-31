@@ -10,8 +10,9 @@ import { InventoryValueCost1Component } from '@pi/widgets/inventory-value-cost1/
 import { ProductionCapacity1Component } from '@pi/widgets/production-capacity1/production-capacity1.component';
 import { MachineStatus1Component } from '@rt/widgets/machine-status1/machine-status1.component';
 import { DemandForecast1Component } from '@lt/widgets/demand-forecast1/demand-forecast1.component';
-import { ProductionTracking1Component } from '@lt/widgets/production-tracking1/production-tracking1.component';
+import { ProductionTracking1Component } from '@pt/widgets/production-tracking1/production-tracking1.component';
 import { GlobalShopfloorStatus1Component } from '@lt/widgets/global-shopfloor-status1/global-shopfloor-status1.component';
+import { ProductionTracking2Component } from '@pt/widgets/production-tracking2/production-tracking2.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
@@ -28,4 +29,5 @@ export const widgetComponentsMapping = {
   DemandForecast1: DemandForecast1Component,
   productionTracking1: ProductionTracking1Component,
   globalShopfloorStatus1: GlobalShopfloorStatus1Component,
+  productionTracking2: ProductionTracking2Component
 };

@@ -21,7 +21,6 @@ import { InventoryPerformance1Component } from '../production-and-inventory/widg
 import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
 import { GlobalShopfloorStatus1Component } from './widgets/global-shopfloor-status1/global-shopfloor-status1.component';
 import { DemandForecast1Component } from './widgets/demand-forecast1/demand-forecast1.component';
-import { ProductionTracking1Component } from './widgets/production-tracking1/production-tracking1.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { ProductionTracking1Component } from './widgets/production-tracking1/pro
     InventoryPerformance1Component,
     Fulfilment1Component,
     DemandForecast1Component,
-    ProductionTracking1Component,
     GlobalShopfloorStatus1Component,
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],

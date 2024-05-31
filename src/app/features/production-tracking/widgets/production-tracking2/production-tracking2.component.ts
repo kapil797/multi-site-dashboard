@@ -1,23 +1,20 @@
-import { Component, Input } from '@angular/core';
-import { OnInit} from '@angular/core';
-import { ColumnSetting, getWidth } from '@core/models/grid.model';
-import productionTrackingJson from '../../../../../assets/mock-data/production-tracking/production-tracking-1.json';
+import { Component, Input, OnInit } from '@angular/core';
+import productionTrackingJson from '../../../../../assets/mock-data/production-tracking/production-tracking-2.json';
 
 interface productionTrackingData {
   salesOrderNumber: {};
   factory: {};
-  customer: {};
   expectedCompleted: {};
   status: {};
 }
 
 @Component({
-  selector: 'app-production-tracking1',
-  templateUrl: './production-tracking1.component.html',
-  styleUrl: './production-tracking1.component.scss'
+  selector: 'app-production-tracking2',
+  templateUrl: './production-tracking2.component.html',
+  styleUrl: './production-tracking2.component.scss'
 })
-export class ProductionTracking1Component implements OnInit{
-  
+export class ProductionTracking2Component implements OnInit{
+
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
@@ -25,8 +22,6 @@ export class ProductionTracking1Component implements OnInit{
   public defaultFontColor = '#E4E9EF';
 
   public productionTrackingData: productionTrackingData[];
-
-  public getWidth = getWidth;
 
   ngOnInit(): void {
 
@@ -80,6 +75,5 @@ export class ProductionTracking1Component implements OnInit{
 
     return style;
   }
-
 
 }

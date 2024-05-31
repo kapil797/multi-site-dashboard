@@ -1,0 +1,225 @@
+[
+    {
+      "salesOrderNumber": {
+        "value": "EX-240130-0002"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "0%"
+      },
+      "isLate": {
+        "value": true
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240130-0003"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "80%"
+      },
+      "isLate": {
+        "value": true
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240130-0002"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "70%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240130-0001"
+      },
+      "factory": {
+        "value": "MicroFactory@Kinesis"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": true
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0032"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0031"
+      },
+      "factory": {
+        "value": "MicroFactory@Kinesis"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0030"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0029"
+      },
+      "factory": {
+        "value": "MicroFactory@Kinesis"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0028"
+      },
+      "factory": {
+        "value": "MicroFactory@Kinesis"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0027"
+      },
+      "factory": {
+        "value": "MicroFactory@Kinesis"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0026"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0025"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    },
+    {
+      "salesOrderNumber": {
+        "value": "IN-20240129-0024"
+      },
+      "factory": {
+        "value": "ModelFactory@CT2B"
+      },
+      "expectedCompleted": {
+        "value": "07-02-2024, 11:32"
+      },
+      "status": {
+        "value": "100%"
+      },
+      "isLate": {
+        "value": false
+      }
+    }
+    
+
+  ]
