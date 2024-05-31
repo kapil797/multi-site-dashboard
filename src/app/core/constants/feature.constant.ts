@@ -25,7 +25,7 @@ export const featureConstants: FeatureConstants = Object.freeze({
     name: 'Logistic Tracking',
     resource: 'logistic-tracking',
   },
-  SM1: {
+  MM1: {
     icon: faBriefcase,
     name: 'Management KPI',
     resource: 'management-kpis',
@@ -60,9 +60,9 @@ export const featureConstants: FeatureConstants = Object.freeze({
     name: 'Resource Health',
     resource: 'resource-health',
   },
-  SM2: {
+  MM2: {
     icon: faBriefcase,
-    name: 'Management KPI',
+    name: 'Management KPI E',
     resource: 'management-kpis-extended',
   },
 });
