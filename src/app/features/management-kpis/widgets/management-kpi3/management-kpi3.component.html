@@ -20,7 +20,7 @@
             <div class="projection-chart ms-3 mt-3">
               <img
                 *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
-                [src]="'assets/images/indicators/ic-trend-round-' + item.ProjectionHealth.toLowerCase() + '.png'"
+                [src]="'assets/images/indicators/ic-trend-arrow-' + item.ProjectionHealth.toLowerCase() + '.png'"
                 [alt]="item.ProjectionHealth"
                 class="img-size" />
             </div>
