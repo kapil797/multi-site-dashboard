@@ -1,40 +1,27 @@
-import { Component, Input } from '@angular/core';
-import { OnInit} from '@angular/core';
-import { ColumnSetting, getWidth } from '@core/models/grid.model';
-import productionTrackingJson from '../../../../../assets/mock-data/production-tracking/production-tracking-1.json';
+import { Component, Input, OnInit } from '@angular/core';
+import productionTrackingJson from '../../../../../assets/mock-data/production-tracking/production-tracking-2.json';
 
 interface productionTrackingData {
   salesOrderNumber: {};
   factory: {};
-  customer: {};
   expectedCompleted: {};
   status: {};
 }
 
 @Component({
-  selector: 'app-production-tracking1',
-  templateUrl: './production-tracking1.component.html',
-  styleUrl: './production-tracking1.component.scss'
+  selector: 'app-production-tracking2',
+  templateUrl: './production-tracking2.component.html',
+  styleUrl: './production-tracking2.component.scss'
 })
-export class ProductionTracking1Component implements OnInit{
-  
+export class ProductionTracking2Component implements OnInit{
+
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
 
-  public isLoading = true;
-
-  public productionTrackingCols: ColumnSetting[] = [
-    { title: 'SALES ORDER NO.', field: 'salesOrderNumber.value', width: 220 },
-    { title: 'FACTORY', field: 'factory.value', width: 250},
-    { title: 'CUSTOMER', field: 'customer.value', width: 250 },
-    { title: 'EXPECTED COMPLETION', field: 'expectedCompleted.value', width: 250 },
-    { title: 'STATUS', field: 'status.value', width: 250 },
-  ];
+  public defaultFontColor = '#E4E9EF';
 
   public productionTrackingData: productionTrackingData[];
-
-  public getWidth = getWidth;
 
   ngOnInit(): void {
 
@@ -50,7 +37,7 @@ export class ProductionTracking1Component implements OnInit{
   public setDefaultHeaderStyle() {
 
     let style = { 'background-color': '#002540', 
-    'color': '#E4E9EF',
+    'color': this.defaultFontColor,
     'border': '0',
     'border-bottom': '.3rem solid #E4E9EF',
     'font-size': '1.5rem'
@@ -61,7 +48,7 @@ export class ProductionTracking1Component implements OnInit{
 
   public setDefaultColumnStyle() {
     let style = {
-      'color': '#E4E9EF',
+      'color': this.defaultFontColor,
       'font-size': '1.5rem',
       'text-align': 'left'
     }
@@ -71,7 +58,7 @@ export class ProductionTracking1Component implements OnInit{
 
   public setStatusHeaderStyle() {
     let style = { 'background-color': '#002540', 
-    'color': '#E4E9EF',
+    'color': this.defaultFontColor,
     'border': '0',
     'border-bottom': '.3rem solid #E4E9EF',
     'font-size': '1.5rem',
@@ -88,6 +75,5 @@ export class ProductionTracking1Component implements OnInit{
 
     return style;
   }
-
 
 }

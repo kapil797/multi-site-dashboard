@@ -9,6 +9,7 @@ export class InventoryValueCost1Component {
 
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   data = {
     "valueKPI": {

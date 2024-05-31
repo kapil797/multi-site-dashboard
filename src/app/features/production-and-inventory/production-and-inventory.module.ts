@@ -13,6 +13,8 @@ import { ProductionPerformanceComponent } from '@pi/components/production-perfor
 import { ProgressPerformanceComponent } from '@pi/components/progress-performance/progress-performance.component';
 import { ProductionCapacity1Component } from './widgets/production-capacity1/production-capacity1.component';
 import { MultiSiteComponent } from './multi-site/multi-site.component';
+import { ProductionYield1Component } from './widgets/production-yield1/production-yield1.component';
+import { FeatureService } from '@core/services/feature.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import { MultiSiteComponent } from './multi-site/multi-site.component';
     ProductionPerformanceComponent,
     ProgressPerformanceComponent,
     ProductionCapacity1Component,
+    ProductionYield1Component,
     MultiSiteComponent,
   ],
   imports: [SharedModule, ProductionAndInventoryRoutingModule],
-  providers: [ProductionAndInventoryService],
+  providers: [ProductionAndInventoryService, FeatureService],
 })
 export class ProductionAndInventoryModule {}
