@@ -26,6 +26,7 @@ import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
+import { ListViewModule } from '@progress/kendo-angular-listview';
 
 // Providers.
 import { NotificationService } from '@progress/kendo-angular-notification';
@@ -90,6 +91,7 @@ import { LayoutSixComponent } from './components/layout-six/layout-six.component
     ProgressBarModule,
     ChartsModule,
     GaugesModule,
+    ListViewModule,
 
     // Directives.
     OverlayDirective,
@@ -125,6 +127,7 @@ import { LayoutSixComponent } from './components/layout-six/layout-six.component
     ProgressBarModule,
     ChartsModule,
     GaugesModule,
+    ListViewModule,
 
     // Directives.
     OverlayDirective,
