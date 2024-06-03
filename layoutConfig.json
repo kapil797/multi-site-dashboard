@@ -4,7 +4,7 @@
   "colorTheme": "option1",
   "navigationItems": [
     {
-      "featureId": "SSC1",
+      "featureId": "MV1",
       "row": 1,
       "rowSpan": 1,
       "col": 1,
@@ -104,7 +104,7 @@
       }
     },
     {
-      "featureId": "SSC2",
+      "featureId": "MV2",
       "row": 1,
       "rowSpan": 1,
       "col": 7,
@@ -157,7 +157,7 @@
       }
     },
     {
-      "featureId": "SS1",
+      "featureId": "MS1",
       "row": 2,
       "rowSpan": 1,
       "col": 7,
@@ -189,7 +189,7 @@
       }
     },
     {
-      "featureId": "SS2",
+      "featureId": "MS2",
       "row": 3,
       "rowSpan": 1,
       "col": 1,
@@ -221,7 +221,7 @@
       }
     },
     {
-      "featureId": "SS1",
+      "featureId": "ME2",
       "row": 3,
       "rowSpan": 1,
       "col": 7,
@@ -248,7 +248,7 @@
       }
     },
     {
-      "featureId": "SD1",
+      "featureId": "MD1",
       "row": 2,
       "rowSpan": 2,
       "col": 3,
@@ -261,7 +261,7 @@
       }
     },
     {
-      "featureId": "SD2",
+      "featureId": "MD2",
       "row": 2,
       "rowSpan": 2,
       "col": 5,

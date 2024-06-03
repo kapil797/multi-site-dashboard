@@ -30,11 +30,12 @@
       "@dp/*": ["./src/app/features/demand-profile/*"],
       "@mk/*": ["./src/app/features/management-kpis/*"],
       "@mkext/*": ["./src/app/features/management-kpis-extended/*"],
+      "@ful/*": ["./src/app/features/fulfillment/*"],
+      "@si/*": ["./src/app/features/supplier-information/*"],
       "@lt/*": ["./src/app/features/logistic-tracking/*"],
       "@rt/*": ["./src/app/features/resource-tracking/*"],
       "@rh/*": ["./src/app/features/resource-health/*"],
       "@pi/*": ["./src/app/features/production-and-inventory/*"],
-      "@spi/*": ["./src/app/features/supplier-information/*"],
     },
   },
   "angularCompilerOptions": {

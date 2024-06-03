@@ -1,0 +1,28 @@
+<div class="map-wrapper" [style.height]="height">
+  <div class="map" #map id="map" class="match-parent">
+    <div class="menu">
+      <ul class="status-list">
+        <li>
+          <fa-icon class="red" [icon]="mapPin"></fa-icon>
+          <h4 class="ms-1">Unsuccessful</h4>
+        </li>
+        <li>
+          <fa-icon class="blue" [icon]="mapPin"></fa-icon>
+          <h4 class="ms-1">Pending</h4>
+        </li>
+        <li>
+          <fa-icon class="green" [icon]="mapPin"></fa-icon>
+          <h4 class="ms-1">On-Time</h4>
+        </li>
+        <li>
+          <fa-icon class="orange" [icon]="mapPin"></fa-icon>
+          <h4 class="ms-1">Late</h4>
+        </li>
+        <li>
+          <fa-icon class="red-orange" [icon]="mapPin"></fa-icon>
+          <h4 class="ms-1">Expected Late</h4>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

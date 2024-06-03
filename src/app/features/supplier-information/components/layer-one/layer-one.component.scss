@@ -1,0 +1,13 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+app-sidebar {
+  grid-row: 1 / span 2;
+}
+.lt-1-scaffold {
+  @include base.layer-one-left-scaffold;
+}
+
+.lt-1-wrapper {
+  @include base.container;
+}

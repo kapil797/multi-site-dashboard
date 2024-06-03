@@ -88,14 +88,22 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
-  // {
-  //   path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_EXTENDED).substring(1),
-  //   loadChildren: () => import('@spi/supplier-information.module').then(m => m.SupplierInformationModule),
-  //   canMatch: [routeGuard()],
-  //   data: {
-  //     // roles: [Roles.PUBLIC],
-  //   },
-  // },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.SUPPLIER_INFORMATION).substring(1),
+    loadChildren: () => import('@si/supplier-information.module').then(m => m.SupplierInformationModule),
+    canMatch: [routeGuard()],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.FULFILLMENT).substring(1),
+    loadChildren: () => import('@ful/fulfillment.module').then(m => m.FulfillmentModule),
+    canMatch: [routeGuard()],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },
