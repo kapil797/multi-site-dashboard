@@ -1,0 +1,17 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+h2 {
+  letter-spacing: variables.$letter-spacing-reg;
+}
+
+.profile-chart-wrapper {
+  background-color: variables.$bg-2;
+  position: relative;
+}
+
+.alert {
+  position: absolute;
+  left: 40%;
+  top: 20%;
+}

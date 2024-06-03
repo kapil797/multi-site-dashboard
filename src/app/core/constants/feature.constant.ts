@@ -20,50 +20,65 @@ interface FeatureConstants {
 
 // Declare feature constants with the explicit interface type
 export const featureConstants: FeatureConstants = Object.freeze({
-  SSC1: {
+  // SSC1: {
+  //   icon: faTruck,
+  //   name: 'Logistic Tracking',
+  //   resource: 'logistic-tracking',
+  // },
+  MV1: {
     icon: faTruck,
-    name: 'Logistic Tracking',
-    resource: 'logistic-tracking',
+    name: 'Supplier Information',
+    resource: 'supplier-information',
+  },
+  MV2: {
+    icon: faStreetView,
+    name: 'Fulfillment',
+    resource: 'fulfillment',
   },
   MM1: {
     icon: faBriefcase,
     name: 'Management KPI',
     resource: 'management-kpis',
   },
-  SSC2: {
-    icon: faStreetView,
-    name: 'Demand Profile',
-    resource: 'demand-profile',
-  },
+  // SSC2: {
+  //   icon: faStreetView,
+  //   name: 'Demand Profile',
+  //   resource: 'demand-profile',
+  // },
   ME1: {
     icon: faClipboardList,
     name: 'Production Tracking',
     resource: 'production-tracking',
   },
-  SD1: {
+  MD1: {
     icon: faBox,
     name: 'Favourites',
-    resource: 'favourite',
+    resource: 'favourites',
   },
-  SD2: {
+  MD2: {
     icon: faRightLeft,
     name: 'Critical Issues',
-    resource: 'critical-issue',
+    resource: 'critical-issues',
   },
-  SS1: {
+  MS1: {
     icon: faBoltLightning,
     name: 'Resource Tracking',
     resource: 'resource-tracking',
   },
-  SS2: {
+  MS2: {
     icon: faBox,
     name: 'Resource Health',
     resource: 'resource-health',
   },
   MM2: {
     icon: faBriefcase,
-    name: 'Management KPI E',
+    name: 'Management KPI',
     resource: 'management-kpis-extended',
+  },
+  ME2: {
+    icon: faClipboardList,
+    name: 'Production & Inventory',
+    resource: 'production-and-inventory',
   },
 });
 

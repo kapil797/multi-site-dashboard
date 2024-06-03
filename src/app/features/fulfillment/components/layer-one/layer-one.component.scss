@@ -1,0 +1,28 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+app-sidebar {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+h1,
+h2 {
+  letter-spacing: variables.$letter-spacing-reg;
+}
+
+.header {
+  font-size: variables.$font-size-xxxl;
+}
+
+.dp-1-scaffold {
+  @include base.layer-one-right-scaffold;
+}
+
+.dp-1-wrapper {
+  @include base.container;
+}
+
+.profile-charts-container {
+  grid-template-columns: repeat(2, 1fr);
+}
