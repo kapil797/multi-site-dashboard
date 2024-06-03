@@ -13,16 +13,17 @@
                     E-Scentz</span>
             </div>
             <kendo-listview
-            [data]="contacts">
+            [data]="data.eScentz"
+            [style]="{'height': viewListHeight}">
                 <ng-template
                     kendoListViewItemTemplate
                     let-dataItem="dataItem">
                     <div class="item-wrapper d-flex p-2">
                         <div class="titles">
-                            <div class="item-title">Injection Moulding:</div>
-                            <div class="item-subtitle">Past 1Hr</div>
+                            <div class="item-title">{{dataItem.title}}</div>
+                            <div class="item-subtitle">{{dataItem.subtitle}}</div>
                         </div>
-                        <div class="item-figure">73%</div>
+                        <div [style]= "{'color': dataItem.color}" class="item-figure">{{dataItem.value}}</div>
                     </div>      
                 </ng-template>
             </kendo-listview>
@@ -33,16 +34,17 @@
                                         <img [src]="'assets/images/widgets/utilTracking1/indicator-mfconnect-plus.png'"/>
                                         MFConnect+</span></div>
             <kendo-listview
-            [data]="contacts">
+            [data]="data.mfConnectPlus"
+            [style]="{'height': viewListHeight}">
                 <ng-template
                     kendoListViewItemTemplate
                     let-dataItem="dataItem">
                     <div class="item-wrapper d-flex p-2">
                         <div class="titles">
-                            <div class="item-title">Injection Moulding:</div>
-                            <div class="item-subtitle">Past 1Hr</div>
+                            <div class="item-title">{{dataItem.title}}</div>
+                            <div class="item-subtitle">{{dataItem.subtitle}}</div>
                         </div>
-                        <div class="item-figure">73%</div>
+                        <div [style]= "{'color': dataItem.color}" class="item-figure">{{dataItem.value}}</div>
                     </div>      
                 </ng-template>
             </kendo-listview>
@@ -53,16 +55,17 @@
                                          <img [src]="'assets/images/widgets/utilTracking1/indicator-atomiser-mts.png'"/>
                                          Atomiser MTS</span></div>
             <kendo-listview
-                [data]="contacts">
+                [data]="data.atomiserMTS"
+                [style]="{'height': viewListHeight}">
                     <ng-template
                         kendoListViewItemTemplate
                         let-dataItem="dataItem">
                         <div class="item-wrapper d-flex p-2">
                             <div class="titles">
-                                <div class="item-title">Injection Moulding:</div>
-                                <div class="item-subtitle">Past 1Hr</div>
+                                <div class="item-title">{{dataItem.title}}</div>
+                                <div class="item-subtitle">{{dataItem.subtitle}}</div>
                             </div>
-                            <div class="item-figure">73%</div>
+                            <div [style]= "{'color': dataItem.color}" class="item-figure">{{dataItem.value}}</div>
                         </div>      
                     </ng-template>
             </kendo-listview>
