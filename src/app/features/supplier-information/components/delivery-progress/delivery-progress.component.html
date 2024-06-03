@@ -1,0 +1,47 @@
+<div class="col-12 col-md-6 d-flex flex-column content-wrapper h-100">
+  <h3 class="mb-1 mt-md-0">DELIVERY PROGRESS</h3>
+  <div class="p-2 flex-grow-1">
+    <div class="m-2 overflow-auto">
+      <table class="table table-responsive w-100">
+        <thead>
+          <tr>
+            <th class="spacer-cell"></th>
+            <th>Driver</th>
+            <th>Orders Delivered</th>
+            <th class="spacer-cell"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of delivery" class="topline">
+            <td class="spacer-cell"></td>
+            <td>{{ item.driver }}</td>
+            <td>
+              <kendo-sparkline
+                [tooltip]="{ visible: false }"
+                [transitions]="true"
+                [seriesColors]="['white']"
+                class="w-100">
+                <kendo-chart-series>
+                  <kendo-chart-series-item
+                    [spacing]="0"
+                    [gap]="0"
+                    type="bar"
+                    [stack]="true"
+                    [data]="[item.percentage]"></kendo-chart-series-item>
+                </kendo-chart-series>
+                <kendo-chart-area
+                  [background]="'#2B3441'"
+                  [border]="{ color: '#676775', dashType: 'solid', width: 1 }"></kendo-chart-area>
+                <kendo-chart-value-axis>
+                  <kendo-chart-value-axis-item [min]="0" [max]="100"></kendo-chart-value-axis-item>
+                </kendo-chart-value-axis>
+              </kendo-sparkline>
+            </td>
+            <td class="text-center">{{ item.pending }}/{{ item.total }}</td>
+            <td class="spacer-cell"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

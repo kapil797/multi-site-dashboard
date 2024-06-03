@@ -1,0 +1,58 @@
+<div class="profile-chart-wrapper p-3">
+  <h2>{{ title }}</h2>
+  <kendo-chart>
+    <kendo-chart-legend [spacing]="25" position="bottom" orientation="horizontal">
+      <kendo-chart-legend-item [visual]="labelsVisual"></kendo-chart-legend-item>
+    </kendo-chart-legend>
+    <kendo-chart-axis-defaults [majorGridLines]="majorGridLines"> </kendo-chart-axis-defaults>
+    <kendo-chart-area [height]="700" [background]="chartConfig.backgroundColor"></kendo-chart-area>
+    <!-- <kendo-chart-title align="left" text="POWER LOAD PROFILE (kW)" [color]="chartConfig.color"></kendo-chart-title> -->
+    <kendo-chart-category-axis>
+      <kendo-chart-category-axis-item baseUnit="weeks">
+        <kendo-chart-category-axis-item-labels
+          format="dd/MM"
+          [font]="chartConfig.fontSize"
+          [color]="chartConfig.color"></kendo-chart-category-axis-item-labels>
+      </kendo-chart-category-axis-item>
+    </kendo-chart-category-axis>
+    <kendo-chart-value-axis>
+      <kendo-chart-value-axis-item>
+        <kendo-chart-value-axis-item-labels [font]="chartConfig.fontSize" [color]="chartConfig.color">
+        </kendo-chart-value-axis-item-labels>
+      </kendo-chart-value-axis-item>
+    </kendo-chart-value-axis>
+    <kendo-chart-series>
+      <kendo-chart-series-item
+        type="line"
+        [markers]="{ visible: false }"
+        [color]="seriesColor"
+        [data]="data.pastForecast || []"
+        field="demand"
+        name="Past Forecast"
+        categoryField="createdDate">
+      </kendo-chart-series-item>
+      <kendo-chart-series-item
+        type="line"
+        dashType="dash"
+        [markers]="{ visible: false }"
+        [color]="seriesColor"
+        [data]="data.futureForecast || []"
+        field="demand"
+        name="Future Forecast"
+        categoryField="createdDate">
+      </kendo-chart-series-item>
+      <kendo-chart-series-item
+        type="area"
+        [opacity]="0.3"
+        missingValues="interpolate"
+        [markers]="{ visible: false }"
+        [color]="seriesColor"
+        [data]="data.actual || []"
+        field="demand"
+        name="Actual"
+        categoryField="createdDate">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+  </kendo-chart>
+  <app-alert *ngIf="alert" class="alert" [content]="alert"></app-alert>
+</div>
