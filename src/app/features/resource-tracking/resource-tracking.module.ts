@@ -13,6 +13,8 @@ import { ResourceConsumptionComponent } from '@rt/components/resource-consumptio
 import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
 import { MachineStatus1Component } from './widgets/machine-status1/machine-status1.component';
+import { UtilTracking1Component } from './widgets/util-tracking1/util-tracking1.component';
+import { FeatureService } from '@core/services/feature.service';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,9 @@ import { MachineStatus1Component } from './widgets/machine-status1/machine-statu
     MultiSiteComponent,
     Fulfilment1Component,
     MachineStatus1Component,
+    UtilTracking1Component
   ],
   imports: [ResourceTrackingRoutingModule, SharedModule],
-  providers: [ResourceTrackingService],
+  providers: [ResourceTrackingService, FeatureService],
 })
 export class ResourceTrackingModule {}

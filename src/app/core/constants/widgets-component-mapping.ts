@@ -13,6 +13,7 @@ import { DemandForecast1Component } from '@lt/widgets/demand-forecast1/demand-fo
 import { ProductionTracking1Component } from '@pt/widgets/production-tracking1/production-tracking1.component';
 import { GlobalShopfloorStatus1Component } from '@lt/widgets/global-shopfloor-status1/global-shopfloor-status1.component';
 import { ProductionTracking2Component } from '@pt/widgets/production-tracking2/production-tracking2.component';
+import { UtilTracking1Component } from '@rt/widgets/util-tracking1/util-tracking1.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
@@ -29,5 +30,6 @@ export const widgetComponentsMapping = {
   demandForecast1: DemandForecast1Component,
   productionTracking1: ProductionTracking1Component,
   globalShopfloorStatus1: GlobalShopfloorStatus1Component,
-  productionTracking2: ProductionTracking2Component
+  productionTracking2: ProductionTracking2Component,
+  utilTracking1: UtilTracking1Component
 };
