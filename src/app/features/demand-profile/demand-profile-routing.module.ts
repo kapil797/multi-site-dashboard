@@ -6,7 +6,7 @@ import { MultiSiteComponent } from './multi-site/multi-site.component';
 
 const routes: Routes = [
   {
-    path: `:${RoutePaths.LAYER}`,
+    path: `:${RoutePaths.SITE}`,
     component: MultiSiteComponent,
     data: { animationState: 'demandProfileLayerPage' },
   },

@@ -38,9 +38,7 @@ export class MultiSiteComponent {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('resource-health');
     if (!layoutConfig) return;
 
-    const widgets: Widget[] = Object.keys(layoutConfig)
-      .filter(key => key.startsWith('widget'))
-      .map(key => layoutConfig[key] as Widget);
+    const widgets: Widget[] = layoutConfig['widgets'] || [];
 
     const layoutId = layoutConfig.layoutId;
     const sideBarPosition = layoutConfig.sideBar?.position;
