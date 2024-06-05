@@ -12,6 +12,7 @@ import { TransposedTableComponent } from '@rh/components/transposed-table/transp
 import { CustomTableComponent } from '@rh/components/custom-table/custom-table.component';
 import { MachineConsumptionComponent } from '@rh/components/machine-consumption/machine-consumption.component';
 import { LayerOneComponent } from '@rh/components/layer-one/layer-one.component';
+import { FeatureService } from '@core/services/feature.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { LayerOneComponent } from '@rh/components/layer-one/layer-one.component'
     MachineConsumptionComponent,
   ],
   imports: [SharedModule, ResourceHealthRoutingModule],
-  providers: [ResourceHealthService],
+  providers: [ResourceHealthService, FeatureService],
 })
 export class ResourceHealthModule {}
