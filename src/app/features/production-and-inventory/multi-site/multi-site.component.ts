@@ -36,10 +36,7 @@ export class MultiSiteComponent {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('production-inventory');
     if (!layoutConfig) return;
 
-    const widgets: Widget[] = Object.keys(layoutConfig)
-      .filter(key => key.startsWith('widget'))
-      .map(key => layoutConfig[key] as Widget);
-
+    const widgets: Widget[] = layoutConfig['widgets'] || [];
     const layoutId = layoutConfig.layoutId;
     const sideBarPosition = layoutConfig.sideBar?.position;
     const sideBarText = layoutConfig.sideBar?.text;

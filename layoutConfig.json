@@ -10,30 +10,32 @@
       "col": 1,
       "colSpan": 2,
       "layoutId": 1,
-      "widget1": {
-        "name": "globalShopfloorStatus1",
-        "title": "Injection Molding",
-        "subtitle": "Now",
-        "tag": "Factory A"
-      },
-      "widget2": {
-        "name": "machineStatus1",
-        "title": "Injection Molding",
-        "subtitle": "PAST MONTH",
-        "tag": "Factory A"
-      },
-      "widget3": {
-        "name": "fulfilment1",
-        "title": "Overall Supplier Inventory (FG)",
-        "subtitle": "PAST MONTH",
-        "tag": "Factory A"
-      },
-      "widget4": {
-        "name": "fulfilment1",
-        "title": "Overall Supplier Inventory (FG)",
-        "subtitle": "PAST MONTH",
-        "tag": "Factory A"
-      },
+      "widgets": [
+        {
+          "name": "globalShopfloorStatus1",
+          "title": "Injection Molding",
+          "subtitle": "Now",
+          "tag": "Factory A"
+        },
+        {
+          "name": "machineStatus1",
+          "title": "Injection Molding",
+          "subtitle": "PAST MONTH",
+          "tag": "Factory A"
+        },
+        {
+          "name": "fulfilment1",
+          "title": "Overall Supplier Inventory (FG)",
+          "subtitle": "PAST MONTH",
+          "tag": "Factory A"
+        },
+        {
+          "name": "fulfilment1",
+          "title": "Overall Supplier Inventory (FG)",
+          "subtitle": "PAST MONTH",
+          "tag": "Factory A"
+        }
+      ],
       "sideBar": {
         "position": "left",
         "text": "VALUE CHAIN"
@@ -46,26 +48,28 @@
       "col": 3,
       "colSpan": 2,
       "layoutId": 1,
-      "widget1": {
-        "name": "managementKPI1",
-        "title": "Enterprise Productivity",
-        "subtitle": "PAST MONTH"
-      },
-      "widget2": {
-        "name": "managementKPI1",
-        "title": "Enterprise Capacity Utilisation",
-        "subtitle": "PAST MONTH"
-      },
-      "widget3": {
-        "name": "managementKPI1",
-        "title": "On-time Delivery",
-        "subtitle": "PAST MONTH"
-      },
-      "widget4": {
-        "name": "managementKPI1",
-        "title": "Total Safety Incidences",
-        "subtitle": "PAST MONTH"
-      },
+      "widgets": [
+        {
+          "name": "managementKPI1",
+          "title": "Enterprise Productivity",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "managementKPI1",
+          "title": "Enterprise Capacity Utilisation",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "managementKPI1",
+          "title": "On-time Delivery",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "managementKPI1",
+          "title": "Total Safety Incidences",
+          "subtitle": "PAST MONTH"
+        }
+      ],
       "sideBar": {
         "position": "",
         "text": ""
@@ -78,26 +82,28 @@
       "col": 5,
       "colSpan": 2,
       "layoutId": 1,
-      "widget1": {
-        "name": "managementKPI1",
-        "title": "Enterprise Profits",
-        "subtitle": "PAST MONTH"
-      },
-      "widget2": {
-        "name": "managementKPI1",
-        "title": "Total Production Cost",
-        "subtitle": "PAST MONTH"
-      },
-      "widget3": {
-        "name": "managementKPI1",
-        "title": "Enterprise Inventory Value",
-        "subtitle": "PAST MONTH"
-      },
-      "widget4": {
-        "name": "managementKPI1",
-        "title": "Weighted Production Volume",
-        "subtitle": "PAST MONTH"
-      },
+      "widgets": [
+        {
+          "name": "managementKPI1",
+          "title": "Enterprise Profits",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "managementKPI1",
+          "title": "Total Production Cost",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "managementKPI1",
+          "title": "Enterprise Inventory Value",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "managementKPI1",
+          "title": "Weighted Production Volume",
+          "subtitle": "PAST MONTH"
+        }
+      ],
       "sideBar": {
         "position": "",
         "text": ""
@@ -110,30 +116,32 @@
       "col": 7,
       "colSpan": 7,
       "layoutId": 1,
-      "widget1": {
-        "name": "demandForecast1",
-        "title": "Demand for EScentz",
-        "subtitle": "MONTHLY",
-        "tag": "Factory A"
-      },
-      "widget2": {
-        "name": "fulfilment1",
-        "title": "Av. On-Time Delivery",
-        "subtitle": "MONTHLY",
-        "tag": "Factory A"
-      },
-      "widget3": {
-        "name": "fulfilment1",
-        "title": "Av. Delivery Lead Times",
-        "subtitle": "MONTHLY",
-        "tag": "Factory A"
-      },
-      "widget4": {
-        "name": "fulfilment1",
-        "title": "Av. Order Accuracy",
-        "subtitle": "MONTHLY",
-        "tag": "Factory A"
-      },
+      "widgets": [
+        {
+          "name": "demandForecast1",
+          "title": "Demand for EScentz",
+          "subtitle": "MONTHLY",
+          "tag": "Factory A"
+        },
+        {
+          "name": "fulfilment1",
+          "title": "Av. On-Time Delivery",
+          "subtitle": "MONTHLY",
+          "tag": "Factory A"
+        },
+        {
+          "name": "fulfilment1",
+          "title": "Av. Delivery Lead Times",
+          "subtitle": "MONTHLY",
+          "tag": "Factory A"
+        },
+        {
+          "name": "fulfilment1",
+          "title": "Av. Order Accuracy",
+          "subtitle": "MONTHLY",
+          "tag": "Factory A"
+        }
+      ],
       "sideBar": {
         "position": "left",
         "text": "VALUE CHAIN"
@@ -146,11 +154,13 @@
       "col": 1,
       "colSpan": 2,
       "layoutId": 6,
-      "widget1": {
-        "name": "productionTracking1",
-        "title": "Production Tracking by All Sales Order",
-        "subtitle": "LATEST SALESORDERS"
-      },
+      "widgets": [
+        {
+          "name": "productionTracking1",
+          "title": "Production Tracking by All Sales Order",
+          "subtitle": "LATEST SALESORDERS"
+        }
+      ],
       "sideBar": {
         "position": "left",
         "text": "ENTERPRISE"
@@ -163,26 +173,28 @@
       "col": 7,
       "colSpan": 2,
       "layoutId": 1,
-      "widget1": {
-        "name": "managementKPI1",
-        "title": "Production Capacity",
-        "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
-      },
-      "widget2": {
-        "name": "ProductionYield1",
-        "title": "Inventory Performance",
-        "subtitle": "PAST MONTH"
-      },
-      "widget3": {
-        "name": "InventoryPerformance1",
-        "title": "Inventory Performance",
-        "subtitle": "PAST MONTH"
-      },
-      "widget4": {
-        "name": "InventoryValueCost1",
-        "title": "Inventory Value & Cost",
-        "subtitle": "PAST MONTH"
-      },
+      "widgets": [
+        {
+          "name": "managementKPI1",
+          "title": "Production Capacity",
+          "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
+        },
+        {
+          "name": "ProductionYield1",
+          "title": "Inventory Performance",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "InventoryPerformance1",
+          "title": "Inventory Performance",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "InventoryValueCost1",
+          "title": "Inventory Value & Cost",
+          "subtitle": "PAST MONTH"
+        }
+      ],
       "sideBar": {
         "position": "right",
         "text": "ENTERPRISE"
@@ -195,26 +207,28 @@
       "col": 1,
       "colSpan": 2,
       "layoutId": 1,
-      "widget1": {
-        "name": "utilTracking1",
-        "title": "Utilisation Tracking By Product",
-        "subtitle": "PAST 24 HOURS"
-      },
-      "widget2": {
-        "name": "utilTracking1",
-        "title": "Utilisation Tracking By Product",
-        "subtitle": "PAST 24 HOURS"
-      },
-      "widget3": {
-        "name": "machineStatus1",
-        "title": "Injection Molding",
-        "subtitle": "PAST 24 HOURS"
-      },
-      "widget4": {
-        "name": "globalShopfloorStatus",
-        "title": "Global Shopfloor Status",
-        "subtitle": "NOW"
-      },
+      "widgets": [
+        {
+          "name": "utilTracking1",
+          "title": "Utilisation Tracking By Product",
+          "subtitle": "PAST 24 HOURS"
+        },
+        {
+          "name": "utilTracking1",
+          "title": "Utilisation Tracking By Product",
+          "subtitle": "PAST 24 HOURS"
+        },
+        {
+          "name": "machineStatus1",
+          "title": "Injection Molding",
+          "subtitle": "PAST 24 HOURS"
+        },
+        {
+          "name": "globalShopfloorStatus",
+          "title": "Global Shopfloor Status",
+          "subtitle": "NOW"
+        }
+      ],
       "sideBar": {
         "position": "left",
         "text": "SHOPFLOOR"
@@ -227,21 +241,23 @@
       "col": 7,
       "colSpan": 2,
       "layoutId": 2,
-      "widget1": {
-        "name": "monthlyOEE1",
-        "title": "MonthlyOEE",
-        "subtitle": "PAST 6 MONTHS"
-      },
-      "widget2": {
-        "name": "currentOEE1",
-        "title": "Current OEE",
-        "subtitle": "PAST MONTH"
-      },
-      "widget3": {
-        "name": "resourceEfficiencies1",
-        "title": "Resource Efficiencies",
-        "subtitle": "PAST MONTH"
-      },
+      "widgets": [
+        {
+          "name": "monthlyOEE1",
+          "title": "MonthlyOEE",
+          "subtitle": "PAST 6 MONTHS"
+        },
+        {
+          "name": "currentOEE1",
+          "title": "Current OEE",
+          "subtitle": "PAST MONTH"
+        },
+        {
+          "name": "resourceEfficiencies1",
+          "title": "Resource Efficiencies",
+          "subtitle": "PAST MONTH"
+        }
+      ],
       "sideBar": {
         "position": "right",
         "text": "SHOPFLOOR"
@@ -254,7 +270,7 @@
       "col": 3,
       "colSpan": 2,
       "layoutId": null,
-      "widget1": {},
+      "widgets": [],
       "sideBar": {
         "position": "",
         "text": ""
@@ -267,7 +283,7 @@
       "col": 5,
       "colSpan": 2,
       "layoutId": null,
-      "widget1": {},
+      "widgets": [],
       "sideBar": {
         "position": "",
         "text": ""
@@ -275,4 +291,3 @@
     }
   ]
 }
-

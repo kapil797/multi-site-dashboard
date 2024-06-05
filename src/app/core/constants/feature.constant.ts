@@ -78,7 +78,7 @@ export const featureConstants: FeatureConstants = Object.freeze({
   ME2: {
     icon: faClipboardList,
     name: 'Production & Inventory',
-    resource: 'production-and-inventory',
+    resource: 'production-inventory',
   },
 });
 
