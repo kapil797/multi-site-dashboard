@@ -36,9 +36,7 @@ export class MultiSiteComponent implements AfterViewInit {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('logistic-tracking');
     if (!layoutConfig) return;
 
-    const widgets: Widget[] = Object.keys(layoutConfig)
-      .filter(key => key.startsWith('widget'))
-      .map(key => layoutConfig[key] as Widget);
+    const widgets: Widget[] = layoutConfig['widgets'] || [];
 
     const layoutId = layoutConfig.layoutId;
     const sideBarPosition = layoutConfig.sideBar?.position;

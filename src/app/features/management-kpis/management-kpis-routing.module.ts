@@ -6,7 +6,7 @@ import { MulitSiteComponent } from './mulit-site/mulit-site.component';
 
 const routes: Routes = [
   {
-    path: `:${RoutePaths.LAYER}`,
+    path: `:${RoutePaths.SITE}`,
     component: MulitSiteComponent,
     data: { animationState: 'ManagementKpisLayerPage' },
   },

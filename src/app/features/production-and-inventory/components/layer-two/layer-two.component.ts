@@ -5,8 +5,9 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
-import { ProductionAndInventoryService } from '@pi/production-and-inventory.service';
+
 import { periods } from '@core/constants/period.constant';
+import { ProductionAndInventoryService } from '@pi/production-and-inventory.service';
 import { InventoryPerformance, ProductionPerformance } from '@pi/production-and-inventory.model';
 
 interface ProductionCategories {
