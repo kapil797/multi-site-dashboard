@@ -11,48 +11,78 @@ export class UtilTracking1Component {
   @Input() subtitle: string;
   @Input() tag: string;
 
-  public contacts: any[] = [
+  // According to Kendo, 
+  // set the style.height to enable vertical scroll
+  // when exceed viewList height.
+  public viewListHeight = "14rem";
+
+  public data = 
     {
-        id: 1,
-        name: 'Jenson Delaney',
-        email: 'jenson.delany@mail.com',
-        messagesCount: 3
-    },
-    {
-        id: 2,
-        name: 'Amaya Coffey',
-        email: 'amaya.coffey@mail.com',
-        messagesCount: 1
-    },
-    {
-        id: 3,
-        name: 'Habib Joyce',
-        email: 'habib.joyce@mail.com',
-        messagesCount: 5
-    },
-    {
-        id: 4,
-        name: 'Lilly-Ann Roche',
-        email: 'lilly-ann.roche@mail.com',
-        messagesCount: 8
+      "eScentz":[
+        {
+          "title": "Injection Moulding:",
+          "subtitle": "Past 1 Hr",
+          "value": "73%",
+          "color": "#60EA80"
+        },
+        {
+          "title": "Oven 1 & 2:",
+          "subtitle": "Past 1 Hr",
+          "value": "56%",
+          "color": "#60EA80"
+        },
+        {
+          "title": "Scent Filling:",
+          "subtitle": "Past 1 Hr",
+          "value": "97%",
+          "color": "#F9B959"
+        },
+        {
+          "title": "Screen Printing:",
+          "subtitle": "Past 1 Hr",
+          "value": "85%",
+          "color": "#60EA80"
+        },
+        {
+          "title": "Screen Printing:",
+          "subtitle": "Past 1 Hr",
+          "value": "85%",
+          "color": "#60EA80"
+        },
+        {
+          "title": "Screen Printing:",
+          "subtitle": "Past 1 Hr",
+          "value": "85%",
+          "color": "#60EA80"
+        }
+      ],
+      "mfConnectPlus": [
+        {
+          "title": "Injection Moulding:",
+          "subtitle": "Past 1 Hr",
+          "value": "12%",
+          "color": "#60EA80"
+        },
+        {
+          "title": "Oven 1 & 2:",
+          "subtitle": "Past 1 Hr",
+          "value": "43%",
+          "color": "#60EA80"
+        },
+        {
+          "title": "Screen Printing:",
+          "subtitle": "Past 1 Hr",
+          "value": "10%",
+          "color": "#60EA80"
+        }
+      ],
+      "atomiserMTS": [
+        {
+          "title": "Injection Moulding:",
+          "subtitle": "Past 1 Hr",
+          "value": "10%",
+          "color": "#60EA80"
+        }
+      ]
     }
-    // {
-    //     id: 5,
-    //     name: 'Giulia Haworth',
-    //     email: 'giulia.haworth@mail.com',
-    //     messagesCount: 3
-    // },
-    // {
-    //     id: 6,
-    //     name: 'Dawson Humphrey',
-    //     email: 'dawson.humphrey@mail.com',
-    //     messagesCount: 2
-    // },
-    // {
-    //     id: 7,
-    //     name: 'Reilly McCullough',
-    //     email: 'reilly.mccullough@mail.com',
-    //     messagesCount: 3
-    // }
-    ];
 }

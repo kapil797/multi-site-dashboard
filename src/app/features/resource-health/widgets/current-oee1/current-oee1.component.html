@@ -1,0 +1,13 @@
+<div class="card p-3 m-auto">
+    <div class="card-meta-wrapper d-flex justify-content-space-between">
+      <span class="card-title">{{ title }}</span>
+      <div class="card-tag d-flex px-4 py-2 flex-column justify-content-center">{{ tag }}</div>
+    </div>
+    <div class="card-period">{{ subtitle }}</div>
+
+    <div class="d-flex wrapper mt-5 ">
+        <div [style.color]="data.color" class="figure d-flex">{{data.value}}</div>
+    </div>
+  </div>
+  
+
