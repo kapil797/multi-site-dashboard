@@ -9,31 +9,19 @@
       "rowSpan": 1,
       "col": 1,
       "colSpan": 2,
-      "layoutId": 1,
+      "layoutId": 4,
       "widgets": [
         {
-          "name": "globalShopfloorStatus1",
-          "title": "Injection Molding",
+          "name": "supplierInventory1",
+          "title": "Overall Supplier Inventory (RM)",
           "subtitle": "Now",
           "tag": "Factory A"
         },
         {
-          "name": "machineStatus1",
-          "title": "Injection Molding",
-          "subtitle": "PAST MONTH",
-          "tag": "Factory A"
-        },
-        {
-          "name": "fulfilment1",
+          "name": "supplierInventory1",
           "title": "Overall Supplier Inventory (FG)",
           "subtitle": "PAST MONTH",
-          "tag": "Factory A"
-        },
-        {
-          "name": "fulfilment1",
-          "title": "Overall Supplier Inventory (FG)",
-          "subtitle": "PAST MONTH",
-          "tag": "Factory A"
+          "tag": "Factory B"
         }
       ],
       "sideBar": {
@@ -52,22 +40,26 @@
         {
           "name": "managementKPI1",
           "title": "Enterprise Productivity",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory A"
         },
         {
           "name": "managementKPI1",
           "title": "Enterprise Capacity Utilisation",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory B"
         },
         {
           "name": "managementKPI1",
           "title": "On-time Delivery",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory A"
         },
         {
           "name": "managementKPI1",
           "title": "Total Safety Incidences",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory B"
         }
       ],
       "sideBar": {
@@ -86,22 +78,26 @@
         {
           "name": "managementKPI1",
           "title": "Enterprise Profits",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory C"
         },
         {
           "name": "managementKPI1",
           "title": "Total Production Cost",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory C"
         },
         {
           "name": "managementKPI1",
           "title": "Enterprise Inventory Value",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory C"
         },
         {
           "name": "managementKPI1",
           "title": "Weighted Production Volume",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag":"Factory C"
         }
       ],
       "sideBar": {
@@ -119,15 +115,15 @@
       "widgets": [
         {
           "name": "demandForecast1",
-          "title": "Demand for EScentz",
+          "title": "Demand for MFConnect+(Pcs)",
           "subtitle": "MONTHLY",
           "tag": "Factory A"
         },
         {
-          "name": "fulfilment1",
-          "title": "Av. On-Time Delivery",
+          "name": "demandForecast1",
+          "title": "Demand for eScentz(Pcs)",
           "subtitle": "MONTHLY",
-          "tag": "Factory A"
+          "tag": "Factory B"
         },
         {
           "name": "fulfilment1",
@@ -139,7 +135,7 @@
           "name": "fulfilment1",
           "title": "Av. Order Accuracy",
           "subtitle": "MONTHLY",
-          "tag": "Factory A"
+          "tag": "Factory B"
         }
       ],
       "sideBar": {
@@ -158,7 +154,8 @@
         {
           "name": "productionTracking1",
           "title": "Production Tracking by All Sales Order",
-          "subtitle": "LATEST SALESORDERS"
+          "subtitle": "LATEST SALESORDERS",
+          "tag":"Factory A"
         }
       ],
       "sideBar": {
@@ -175,24 +172,28 @@
       "layoutId": 1,
       "widgets": [
         {
-          "name": "managementKPI1",
-          "title": "Production Capacity",
-          "subtitle": "CURRENT VS AV. PAST 6 MONTHS"
+          "name": "utilTracking1",
+          "title": "Utilisation Tracking By Product",
+          "subtitle": "PAST 24 HOURS",
+          "tag": "Factory A"
         },
         {
-          "name": "ProductionYield1",
+          "name": "machineStatus1",
+          "title": "Injection Molding",
+          "subtitle": "PAST 24 HOURS",
+          "tag": "Factory B"
+        },
+        {
+          "name": "utilTracking1",
           "title": "Inventory Performance",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag": "Factory A"
         },
         {
-          "name": "InventoryPerformance1",
-          "title": "Inventory Performance",
-          "subtitle": "PAST MONTH"
-        },
-        {
-          "name": "InventoryValueCost1",
-          "title": "Inventory Value & Cost",
-          "subtitle": "PAST MONTH"
+          "name": "globalShopfloorStatus1",
+          "title": "Global Shopfloor Status",
+          "subtitle": "NOW",
+          "tag": "Factory B"
         }
       ],
       "sideBar": {
@@ -206,27 +207,25 @@
       "rowSpan": 1,
       "col": 1,
       "colSpan": 2,
-      "layoutId": 1,
+      "layoutId": 2,
       "widgets": [
         {
-          "name": "utilTracking1",
-          "title": "Utilisation Tracking By Product",
-          "subtitle": "PAST 24 HOURS"
+          "name": "monthlyOEE1",
+          "title": "Monthly OEE",
+          "subtitle": "PAST 6 MONTHS",
+          "tag":"Factory A"
         },
         {
-          "name": "utilTracking1",
-          "title": "Utilisation Tracking By Product",
-          "subtitle": "PAST 24 HOURS"
+          "name": "currentOEE1",
+          "title": "Current OEE",
+          "subtitle": "PAST MONTH",
+          "tag":"Factory A"
         },
         {
-          "name": "machineStatus1",
-          "title": "Injection Molding",
-          "subtitle": "PAST 24 HOURS"
-        },
-        {
-          "name": "globalShopfloorStatus",
-          "title": "Global Shopfloor Status",
-          "subtitle": "NOW"
+          "name": "resourceEfficiencies1",
+          "title": "Resource Efficiencies",
+          "subtitle": "PAST MONTH",
+          "tag":"Factory B"
         }
       ],
       "sideBar": {
@@ -240,22 +239,31 @@
       "rowSpan": 1,
       "col": 7,
       "colSpan": 2,
-      "layoutId": 2,
+      "layoutId": 1,
       "widgets": [
         {
-          "name": "monthlyOEE1",
-          "title": "MonthlyOEE",
-          "subtitle": "PAST 6 MONTHS"
+          "name": "productionCapacity1",
+          "title": "Production Capacity",
+          "subtitle": "Current VS AV PAST 6 MONTHS",
+          "tag": "Factory A"
         },
         {
-          "name": "currentOEE1",
-          "title": "Current OEE",
-          "subtitle": "PAST MONTH"
+          "name": "productionYield1",
+          "title": "Overall Production Yield",
+          "subtitle": "PAST MONTH",
+          "tag": "Factory B"
         },
         {
-          "name": "resourceEfficiencies1",
+          "name": "inventoryPerformance1",
           "title": "Resource Efficiencies",
-          "subtitle": "PAST MONTH"
+          "subtitle": "PAST MONTH",
+          "tag": "Factory A"
+        },
+        {
+          "name": "inventoryValueCost1",
+          "title": "Resource Efficiencies",
+          "subtitle": "PAST MONTH",
+          "tag": "Factory B"
         }
       ],
       "sideBar": {
