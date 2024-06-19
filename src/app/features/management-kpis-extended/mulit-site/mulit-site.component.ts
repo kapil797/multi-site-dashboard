@@ -33,7 +33,7 @@ export class MulitSiteComponent {
   }
 
   loadLayout() {
-    const layoutConfig = this.featureService.getLayoutWidgetsByFeature('management-kpis');
+    const layoutConfig = this.featureService.getLayoutWidgetsByFeature('management-kpis-extended');
     if (!layoutConfig) return;
 
     const widgets: Widget[] = layoutConfig['widgets'] || [];

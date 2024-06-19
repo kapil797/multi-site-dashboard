@@ -15,6 +15,7 @@ import { GlobalShopfloorStatus1Component } from '@lt/widgets/global-shopfloor-st
 import { ProductionTracking2Component } from '@pt/widgets/production-tracking2/production-tracking2.component';
 import { UtilTracking1Component } from '@rt/widgets/util-tracking1/util-tracking1.component';
 import { CurrentOEE1Component } from '@rh/widgets/current-oee1/current-oee1.component';
+import { MonthlyOEE1Component } from '@rh/widgets/monthly-oee1/monthly-oee1.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
@@ -33,5 +34,6 @@ export const widgetComponentsMapping = {
   globalShopfloorStatus1: GlobalShopfloorStatus1Component,
   productionTracking2: ProductionTracking2Component,
   utilTracking1: UtilTracking1Component,
-  currentOEE1: CurrentOEE1Component
+  currentOEE1: CurrentOEE1Component,
+  monthlyOEE1: MonthlyOEE1Component
 };
