@@ -11,10 +11,10 @@
       [animation]="true"
       [style]="progressStyle"
       [progressColor]="progressColors"
-      [value]="data?.pastPeriod || 0">
+      [value]="data.pastPeriod || 0">
       <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
         <div class="text text-center w-100"><strong>PAST</strong></div>
-        <div class="text text-center w-100 mt-2" [style.color]="color">{{ formatText(data?.pastPeriod) }}</div>
+        <div class="text text-center w-100 mt-2" [style.color]="color">{{ formatText(data.pastPeriod) }}</div>
       </ng-template>
     </kendo-circularprogressbar>
     <kendo-circularprogressbar
@@ -22,10 +22,10 @@
       [animation]="true"
       [style]="progressStyle"
       [progressColor]="progressColors"
-      [value]="data?.currentPeriod || 0">
+      [value]="data.currentPeriod || 0">
       <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
         <div class="text text-center w-100"><strong>CURRENT</strong></div>
-        <div class="text text-center mt-2" [style.color]="color">{{ formatText(data?.currentPeriod) }}</div>
+        <div class="text text-center mt-2" [style.color]="color">{{ formatText(data.currentPeriod) }}</div>
       </ng-template>
     </kendo-circularprogressbar>
     <kendo-circularprogressbar
@@ -33,10 +33,10 @@
       [animation]="true"
       [style]="progressStyle"
       [progressColor]="progressColors"
-      [value]="data?.projectedPeriod || 0">
+      [value]="data.projectedPeriod || 0">
       <ng-template kendoCircularProgressbarCenterTemplate let-color="color" let-value="value">
         <div class="text text-center w-100"><strong>PROJECTED</strong></div>
-        <div class="text text-center mt-2" [style.color]="color">{{ formatText(data?.projectedPeriod) }}</div>
+        <div class="text text-center mt-2" [style.color]="color">{{ formatText(data.projectedPeriod) }}</div>
       </ng-template>
     </kendo-circularprogressbar>
   </div>

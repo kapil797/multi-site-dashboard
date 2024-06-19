@@ -26,6 +26,7 @@ interface Zone {
 export class DemandForecast1Component implements OnChanges{
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() tag: string;
 
   public data: DemandProfile;
   //public alert: string;

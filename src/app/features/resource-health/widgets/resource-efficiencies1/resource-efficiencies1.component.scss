@@ -1,0 +1,49 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.card {
+  background: #002540;
+  border-radius: variables.$border-radius-1;
+  height: 25rem;
+  width: 55rem;
+
+  .card-meta-wrapper {
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: variables.$font-size-xl;
+    letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
+  }
+
+  .card-tag {
+    color: #809FB8;
+    background-color: #384455;
+    border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
+    font-size: variables.$font-size-regplus;
+    text-transform: uppercase;
+  }
+}
+
+.wrapper {
+    justify-content: space-around;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.figure {
+    justify-content: space-around;
+    width:25rem;
+    height: 10rem;
+    line-height: 10rem;
+    background-color: #04162C;
+    font-size: 5rem;
+    text-align: center;
+}
