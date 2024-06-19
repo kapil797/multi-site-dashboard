@@ -15,6 +15,8 @@ import { LayerOneComponent } from '@rh/components/layer-one/layer-one.component'
 import { FeatureService } from '@core/services/feature.service';
 import { CurrentOEE1Component } from './widgets/current-oee1/current-oee1.component';
 import { MonthlyOEE1Component } from './widgets/monthly-oee1/monthly-oee1.component';
+import { ResourceEfficiencies1Component } from './widgets/resource-efficiencies1/resource-efficiencies1.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MonthlyOEE1Component } from './widgets/monthly-oee1/monthly-oee1.compon
     CustomTableComponent,
     MachineConsumptionComponent,
     CurrentOEE1Component,
-    MonthlyOEE1Component
+    MonthlyOEE1Component,
+    ResourceEfficiencies1Component
   ],
   imports: [SharedModule, ResourceHealthRoutingModule],
   providers: [ResourceHealthService, FeatureService],
