@@ -55,4 +55,5 @@ export interface NavItem {
 export interface DashboardOutput {
   navItems: NavItem[];
   columns: number;
+  site: string;
 }

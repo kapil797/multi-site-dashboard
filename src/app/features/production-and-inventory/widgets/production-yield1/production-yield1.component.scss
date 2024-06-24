@@ -4,9 +4,8 @@
 .card {
   background: #002540;
   border-radius: variables.$border-radius-1;
-  height: 25rem;
-  width: 55rem;
-
+  width: 100%;
+  box-sizing: border-box;
   .card-meta-wrapper {
     justify-content: space-between;
   }
@@ -18,7 +17,7 @@
   }
 
   .card-tag {
-    color: #809FB8;
+    color: #809fb8;
     background-color: #384455;
     border-radius: 2rem;
     font-size: variables.$font-size-regplus;
@@ -30,13 +29,12 @@
   }
 }
 
-
 .pp-wrapper {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .text {
-    white-space: pre-wrap;
-    font-size: variables.$font-size-xxl;
-    letter-spacing: variables.$letter-spacing-sm;
-  }
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.text {
+  white-space: pre-wrap;
+  font-size: variables.$font-size-xxl;
+  letter-spacing: variables.$letter-spacing-sm;
+}

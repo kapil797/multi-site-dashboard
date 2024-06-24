@@ -35,8 +35,10 @@ kendo-chart {
 .card {
   background: #002540;
   border-radius: variables.$border-radius-1;
+  width: 100%;
   height: 22rem;
-  width: 55rem;
+  box-sizing: border-box;
+
   .card-percentage {
     width: 150px;
     padding: 0.2rem;

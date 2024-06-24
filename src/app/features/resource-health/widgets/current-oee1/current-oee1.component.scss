@@ -4,8 +4,8 @@
 .card {
   background: #002540;
   border-radius: variables.$border-radius-1;
-  height: 25rem;
-  width: 55rem;
+  width: 100%;
+  box-sizing: border-box;
 
   .card-meta-wrapper {
     justify-content: space-between;
@@ -18,7 +18,7 @@
   }
 
   .card-tag {
-    color: #809FB8;
+    color: #809fb8;
     background-color: #384455;
     border-radius: 2rem;
     font-size: variables.$font-size-regplus;
@@ -31,15 +31,15 @@
 }
 
 .wrapper {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
 .figure {
-    justify-content: space-around;
-    width: 50rem;
-    height: 15rem;
-    line-height: 15rem;
-    background-color: #04162C;
-    font-size: 8rem;
-    text-align: center;
+  justify-content: space-around;
+  width: 50rem;
+  height: 15rem;
+  line-height: 15rem;
+  background-color: #04162c;
+  font-size: 8rem;
+  text-align: center;
 }

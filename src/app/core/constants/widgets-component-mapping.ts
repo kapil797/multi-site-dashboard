@@ -37,5 +37,5 @@ export const widgetComponentsMapping = {
   utilTracking1: UtilTracking1Component,
   currentOEE1: CurrentOEE1Component,
   monthlyOEE1: MonthlyOEE1Component,
-  resourceEfficiencies1: ResourceEfficiencies1Component
+  resourceEfficiencies1: ResourceEfficiencies1Component,
 };

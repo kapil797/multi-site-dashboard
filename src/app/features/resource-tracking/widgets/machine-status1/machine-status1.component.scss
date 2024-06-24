@@ -98,8 +98,8 @@ kendo-chart {
 .card {
   background: #002540;
   border-radius: variables.$border-radius-1;
-  height: 22rem;
-  width: 46rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .card-percentage {

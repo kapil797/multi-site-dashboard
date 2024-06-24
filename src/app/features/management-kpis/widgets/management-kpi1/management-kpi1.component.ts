@@ -1,14 +1,34 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Theme } from '@core/constants/theme.constant';
+import { ThemeService } from '@core/services/theme-service.service';
 
 @Component({
   selector: 'app-management-kpi1',
   templateUrl: './management-kpi1.component.html',
-  styleUrl: './management-kpi1.component.scss',
+  styleUrls: ['./management-kpi1.component.scss'], // Fix typo: styleUrl -> styleUrls
 })
-export class ManagementKPI1Component {
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() tag: string;
+export class ManagementKPI1Component implements OnInit {
+  theme?: Theme;
+
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    this.theme = this.themeService.getTheme();
+    this.setThemeVariables();
+  }
+
+  setThemeVariables(): void {
+    if (this.theme) {
+      document.documentElement.style.setProperty('--ribbon', this.theme.ribbon);
+      document.documentElement.style.setProperty('--primary', this.theme.primary);
+      document.documentElement.style.setProperty('--secondary', this.theme.secondary);
+      document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
+    }
+  }
+
+  @Input() title!: string;
+  @Input() subtitle!: string;
+  @Input() tag!: string;
 
   public item = {
     Id: 12,
@@ -21,13 +41,11 @@ export class ManagementKPI1Component {
     ProjectionDay: '7 days',
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  isVolumeRelated(item: any) {
+  isVolumeRelated(item: { Category: string }): boolean {
     return ['Profit', 'Inventory', 'Production Volume', 'Cost'].includes(item.Category);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getUnits(item: any): string {
+  getUnits(item: { Category: string }): string {
     switch (item.Category) {
       case 'Profit':
       case 'Inventory':

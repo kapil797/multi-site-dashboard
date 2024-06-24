@@ -1,7 +1,7 @@
 {
   "dashboard": "multi",
   "dimensions": "3*4",
-  "colorTheme": "option1",
+  "colorTheme": "option2",
   "navigationItems": [
     {
       "featureId": "MV1",
@@ -63,8 +63,8 @@
         }
       ],
       "sideBar": {
-        "position": "",
-        "text": ""
+        "position": "left",
+        "text": "Management KPI"
       }
     },
     {

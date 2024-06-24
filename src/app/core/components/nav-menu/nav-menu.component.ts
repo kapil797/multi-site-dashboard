@@ -13,7 +13,7 @@ import { SharedModule } from '@shared/shared.module';
 import { AppService } from '@core/services/app.service';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { Factory } from '@core/models/factory.model';
-import { mfNavItems, columns } from './nav-menu.constant';
+import { mfNavItems, columns, site } from './nav-menu.constant';
 import { RoutePaths } from '@core/constants/routes.constant';
 import { HttpClient } from '@angular/common/http';
 //import { WsBroadcastMsg, consumerStreams } from '@core/models/websocket.model';
@@ -34,6 +34,8 @@ import { NavItem } from '@core/models/multi-site.model';
 export class NavMenuComponent extends CancelSubscription {
   @ViewChild('dropzone') dropzone: TileLayoutItemComponent;
   @ViewChild('tileLayout') tileLayout: TileLayoutComponent;
+  public draggableValue: boolean = true;
+  public site: string;
   public columns: number;
   public navItems: NavItem[];
   public factoryMap: string;
@@ -61,6 +63,10 @@ export class NavMenuComponent extends CancelSubscription {
       if (factory === Factory.MODEL_FACTORY) {
         this.navItems = mfNavItems;
         this.columns = columns;
+        this.site = site;
+        if (site == 'multi') {
+          this.draggableValue = false;
+        }
       }
       // } else if (factory === Factory.MICRO_FACTORY) {
       //   this.navItems = umfNavItems;
