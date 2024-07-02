@@ -58,8 +58,8 @@
   class="nav-menu-wrapper p-5"
   [columns]="columns"
   [gap]="0"
-  [reorderable]="true"
-  [resizable]="true"
+  [reorderable]="draggableValue"
+  [resizable]="draggableValue"
   (reorder)="onReorder($event)"
   (resize)="onResize($event)">
   <kendo-tilelayout-item

@@ -1,7 +1,7 @@
 import { InventoryPerformance1Component } from '@pi/widgets/inventory-performance1/inventory-performance1.component';
-import { ManagementKPI1Component } from '@mk/widgets/management-kpi1/management-kpi1.component';
-import { ManagementKPI2Component } from '@mk/widgets/management-kpi2/management-kpi2.component';
-import { ManagementKPI3Component } from '@mk/widgets/management-kpi3/management-kpi3.component';
+import { ManagementKPI1Component } from '@mk1/widgets/management-kpi1/management-kpi1.component';
+import { ManagementKPI2Component } from '@mk1/widgets/management-kpi2/management-kpi2.component';
+import { ManagementKPI3Component } from '@mk1/widgets/management-kpi3/management-kpi3.component';
 import { OrderStatusComponent } from '@lt/widgets/order-status/order-status.component';
 import { ProductionYield1Component } from '@pi/widgets/production-yield1/production-yield1.component';
 import { SupplierInventory1Component } from '@lt/widgets/supplier-inventory1/supplier-inventory1.component';
@@ -37,5 +37,5 @@ export const widgetComponentsMapping = {
   utilTracking1: UtilTracking1Component,
   currentOEE1: CurrentOEE1Component,
   monthlyOEE1: MonthlyOEE1Component,
-  resourceEfficiencies1: ResourceEfficiencies1Component
+  resourceEfficiencies1: ResourceEfficiencies1Component,
 };

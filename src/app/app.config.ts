@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { initApp } from '@core/init/app.factory';
@@ -13,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     // KeycloakService,
-    { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService], multi: true },
+    { provide: APP_INITIALIZER, useFactory: initApp, deps: [AppService, HttpClient], multi: true },
   ],
 };

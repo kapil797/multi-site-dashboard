@@ -36,6 +36,7 @@ export class MultiSiteComponent {
 
   loadLayout() {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('resource-health');
+    const title = 'RESOURCE HEALTH';
     if (!layoutConfig) return;
 
     const widgets: Widget[] = layoutConfig['widgets'] || [];
@@ -52,6 +53,7 @@ export class MultiSiteComponent {
         componentRefLayOne.instance.widgets = widgets;
         componentRefLayOne.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayOne.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayOne.instance.title = title;
         break;
       // handle other cases
       case 2:
@@ -61,6 +63,7 @@ export class MultiSiteComponent {
         componentRefLayTwo.instance.widgets = widgets;
         componentRefLayTwo.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayTwo.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayTwo.instance.title = title;
         break;
 
       case 3:
@@ -70,6 +73,7 @@ export class MultiSiteComponent {
         componentRefLayThree.instance.widgets = widgets;
         componentRefLayThree.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayThree.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayThree.instance.title = title;
         break;
       case 4:
         // eslint-disable-next-line no-case-declarations
@@ -78,6 +82,7 @@ export class MultiSiteComponent {
         componentRefLayFour.instance.widgets = widgets;
         componentRefLayFour.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFour.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayFour.instance.title = title;
         break;
       case 5:
         // eslint-disable-next-line no-case-declarations
@@ -86,6 +91,7 @@ export class MultiSiteComponent {
         componentRefLayFive.instance.widgets = widgets;
         componentRefLayFive.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFive.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayFive.instance.title = title;
         break;
       case 6:
         // eslint-disable-next-line no-case-declarations
@@ -94,6 +100,7 @@ export class MultiSiteComponent {
         componentRefLaySix.instance.widgets = widgets;
         componentRefLaySix.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLaySix.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLaySix.instance.title = title;
         break;
       // handle other cases
       default:

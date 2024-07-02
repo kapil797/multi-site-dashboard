@@ -6,8 +6,8 @@
   width: 100%;
   border-radius: 0.5rem;
   font-weight: 600;
-  height: 25rem;
-  width: 55rem;
+  width: 100%;
+  box-sizing: border-box;
 
   .card-meta-wrapper {
     justify-content: space-between;
@@ -20,7 +20,7 @@
   }
 
   .card-tag {
-    color: #809FB8;
+    color: #809fb8;
     background-color: #384455;
     border-radius: 2rem;
     font-size: variables.$font-size-regplus;
@@ -43,7 +43,7 @@
 
   .target {
     .title {
-        font-size: variables.$font-size-xxl;
+      font-size: variables.$font-size-xxl;
     }
     .target-figure {
       font-weight: bolder;

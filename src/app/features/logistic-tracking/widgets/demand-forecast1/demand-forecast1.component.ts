@@ -12,6 +12,8 @@ import { LegendItemVisualArgs } from '@progress/kendo-angular-charts';
 import { Element } from '@progress/kendo-drawing';
 import { getRandomInt } from '@core/utils/formatters';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { ThemeService } from '@core/services/theme-service.service';
+import { Theme } from '@core/constants/theme.constant';
 
 interface Zone {
   value: number;
@@ -21,9 +23,29 @@ interface Zone {
 @Component({
   selector: 'app-demand-forecast1',
   templateUrl: './demand-forecast1.component.html',
-  styleUrl: './demand-forecast1.component.scss'
+  styleUrl: './demand-forecast1.component.scss',
 })
-export class DemandForecast1Component implements OnChanges{
+export class DemandForecast1Component implements OnChanges {
+  theme?: Theme;
+
+  constructor(private themeService: ThemeService) {}
+
+  ngOnInit(): void {
+    this.theme = this.themeService.getTheme();
+    this.setThemeVariables();
+    this.data = this.getMockDemandForcast('MFCONNECT+', 3);
+    this.seriesColor = '#8829C3';
+    this.alertContent = 'Spike detected: > 2000 pcs';
+  }
+
+  setThemeVariables(): void {
+    if (this.theme) {
+      document.documentElement.style.setProperty('--ribbon', this.theme.ribbon);
+      document.documentElement.style.setProperty('--primary', this.theme.primary);
+      document.documentElement.style.setProperty('--secondary', this.theme.secondary);
+      document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
+    }
+  }
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
@@ -33,19 +55,12 @@ export class DemandForecast1Component implements OnChanges{
   alertContent: string;
   alertIcon = faTriangleExclamation;
 
-
   public chartConfig = chartConfig;
   public seriesColor: string;
   public majorGridLines = { visible: true, color: chartConfig.color, width: 0.1 };
 
   public dp: DemandProfileService;
 
-  ngOnInit(){
-    this.data = this.getMockDemandForcast('MFCONNECT+', 3);
-    this.seriesColor = '#8829C3';
-    this.alertContent = 'Spike detected: > 2000 pcs';
-  }
-  
   public getMockDemandForcast(product: Product, forecastMonths: number): DemandProfile {
     // Fetch 1 month prior to today, and forecastMonths of projected forecast.
     const start = new Date();
@@ -60,27 +75,27 @@ export class DemandForecast1Component implements OnChanges{
     let range: number;
     let zones: Zone[];
 
-      initial = 2000;
-      range = 50;
-      zones = [
-        {
-          value: 0.1,
-          direction: 'DOWN',
-        },
-        {
-          value: 0.1,
-          direction: 'UP',
-        },
-        {
-          value: 0.3,
-          direction: 'DOWN',
-        },
-        {
-          value: 0.3,
-          direction: 'UP',
-        },
-        { value: 0.2, direction: 'DOWN' },
-      ];
+    initial = 2000;
+    range = 50;
+    zones = [
+      {
+        value: 0.1,
+        direction: 'DOWN',
+      },
+      {
+        value: 0.1,
+        direction: 'UP',
+      },
+      {
+        value: 0.3,
+        direction: 'DOWN',
+      },
+      {
+        value: 0.3,
+        direction: 'UP',
+      },
+      { value: 0.2, direction: 'DOWN' },
+    ];
 
     // Get previous forecast.
     const pastForecast: DemandSeries[] = [];

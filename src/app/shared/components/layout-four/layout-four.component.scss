@@ -10,7 +10,6 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-  height: 100vh;
   box-sizing: border-box;
 }
 
@@ -18,13 +17,9 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 20px;
-  padding: 20px;
-  box-sizing: border-box;
   overflow: hidden;
-  background-color: #1e293b;
+  background-color: #04162c;
   border-radius: 10px;
-  height: calc(100vh - 100px);
 }
 
 .position-left {
@@ -61,11 +56,6 @@ app-sidebar {
 }
 
 .grid-item {
-  background-color: #334155;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: white;
   font-size: 2rem;
 }

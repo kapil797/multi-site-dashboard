@@ -14,7 +14,7 @@ export class FeatureService {
   constructor() {
     const dashboardData = layoutData;
     if (dashboardData) {
-      this.multiSiteConfig = dashboardData.navigationItems;
+      this.multiSiteConfig = dashboardData.features;
     }
   }
   getLayoutWidgetsByFeature(featureName: string) {
@@ -22,7 +22,7 @@ export class FeatureService {
     if (!featureId) {
       return null;
     }
-    const navigationItem = this.multiSiteConfig.find(item => item.featureId === featureId);
+    const navigationItem = this.multiSiteConfig.find(item => item.id === featureId);
     if (!navigationItem) {
       return null;
     }

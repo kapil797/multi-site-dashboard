@@ -1,0 +1,29 @@
+
+@use 'core/styles/base';
+@use 'core/styles/variables';
+.tab {
+    background: #162C40;
+    //border: 1px solid $border-color;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bolder;
+    padding: 1rem 2rem;
+    margin-right: 1rem;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    letter-spacing: variables.$letter-spacing-sm;
+  
+    &.selected {
+       background: variables.$gray-400;
+       color: variables.$bg-1;
+    }
+  }
+  
+.kpi-selection{
+  padding: 2rem 2rem;
+}
+.kpi-wrapper{
+  grid-template-columns: repeat(2, 1fr);
+}

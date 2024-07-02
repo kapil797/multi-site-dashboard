@@ -3,7 +3,7 @@
 @use 'core/styles/grid';
 
 .chart-container {
-  background: #0a233f;
+  background: var(--tertiary);
   padding-top: 3rem;
   border-radius: 5px;
   width: 600px;
@@ -33,10 +33,12 @@ kendo-chart {
 }
 
 .card {
-  background: #002540;
+  background: var(--secondary);
   border-radius: variables.$border-radius-1;
+  width: 100%;
   height: 22rem;
-  width: 55rem;
+  box-sizing: border-box;
+
   .card-percentage {
     width: 150px;
     padding: 0.2rem;

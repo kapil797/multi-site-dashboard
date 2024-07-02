@@ -49,6 +49,7 @@ import { LayoutThreeComponent } from './components/layout-three/layout-three.com
 import { LayoutFourComponent } from './components/layout-four/layout-four.component';
 import { LayoutFiveComponent } from './components/layout-five/layout-five.component';
 import { LayoutSixComponent } from './components/layout-six/layout-six.component';
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { LayoutSixComponent } from './components/layout-six/layout-six.component
   imports: [
     // Modules.
     CommonModule,
+    FileSaverModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,

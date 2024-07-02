@@ -6,25 +6,12 @@
   background: #0a233f;
   padding-top: 3rem;
   border-radius: 5px;
-  width: 600px;
+  width: 60%;
   margin: 0 auto;
 }
 
 kendo-chart {
-  height: 150px; /* Adjust height to match the target design */
-}
-
-.average {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #0a233f;
-  color: #4caf50;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
-  width: 600px;
+  height: 170px; /* Adjust height to match the target design */
 }
 
 .label {
@@ -33,17 +20,19 @@ kendo-chart {
 }
 
 .card {
-  background: #002540;
+  background: var(--secondary);
   border-radius: variables.$border-radius-1;
-  height: 22rem;
-  width: 46rem;
+  width: 100%;
+  box-sizing: border-box;
+
   .card-percentage {
     width: 150px;
-    padding: 0.2rem;
+    padding: 1rem;
     border-radius: 0.1rem;
     color: #7fea8a;
     background-color: #04162c;
     text-align: right;
+    margin-top: 1rem;
   }
   .card-meta-wrapper {
     justify-content: space-between;
