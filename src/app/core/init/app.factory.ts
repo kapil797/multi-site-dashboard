@@ -13,9 +13,7 @@ export function initApp(appService: AppService) {
     api = new DevApi(config);
   }
 
-  // if (config.THEME.toUpperCase() === 'THEME1') {
-  //   // replace styles.stylesheet with theme1.scss
-  // }
-
-  return () => appService.init(config, api);
+  return () => {
+    return appService.init(config, api);
+  };
 }

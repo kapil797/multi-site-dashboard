@@ -20,6 +20,7 @@ export class LayoutFourComponent {
   @Input() widgets: Widget[] = [];
   @Input() position: string;
   @Input() text: string;
+  @Input() title: string;
   @ViewChildren('widgetHost', { read: ViewContainerRef }) widgetHosts: QueryList<ViewContainerRef>;
   widget1!: Widget;
   widget2!: Widget;

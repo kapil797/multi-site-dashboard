@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild, effect } from '@angular/core';
+import { Theme } from '@core/constants/theme.constant';
 import { Factory } from '@core/models/factory.model';
 import { AppService } from '@core/services/app.service';
+import { ThemeService } from '@core/services/theme-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,8 +14,22 @@ export class SidebarComponent implements AfterViewInit {
   @Input() header: string;
   @Input() rotate: string;
   public factory: string;
+  theme?: Theme;
 
-  constructor(private app: AppService) {
+  ngOnInit(): void {
+    this.theme = this.themeService.getTheme();
+    this.setThemeVariables();
+  }
+
+  setThemeVariables(): void {
+    if (this.theme) {
+      document.documentElement.style.setProperty('--ribbon', this.theme.ribbon);
+    }
+  }
+  constructor(
+    private app: AppService,
+    private themeService: ThemeService
+  ) {
     effect(() => {
       switch (this.app.factory()) {
         case Factory.MODEL_FACTORY:

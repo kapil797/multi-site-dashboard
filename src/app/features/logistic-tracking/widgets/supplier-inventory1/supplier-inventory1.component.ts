@@ -6,6 +6,8 @@ import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.
 import { SalesOrderAggregate } from '@pt/production-tracking.model';
 
 import supplierInventoryJson from '../../../../../assets/mock-data/supplier-inventory.json';
+import { ThemeService } from '@core/services/theme-service.service';
+import { Theme } from '@core/constants/theme.constant';
 
 interface SupplierInventoryData {
   company: object;
