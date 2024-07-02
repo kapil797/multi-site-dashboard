@@ -7,14 +7,13 @@
 
   <div class="pt-1-wrapper d-grid gap-5">
     <kendo-grid scrollable="none" [kendoGridBinding]="supplierInventoryData" class="h-100">
-      <kendo-grid-column
-        *ngFor="let column of supplierInventoryCols"
-        field="{{ column.field }}"
-        title="{{ column.title.toUpperCase() }}"
-        [width]="getWidth(column.width)"
-        [headerStyle]="setDefaultHeaderStyle()"
-        [style]="setDefaultColumnStyle()">
+      
+      <kendo-grid-column title="COMPANY" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div [style.color]="dataItem.company.color!=null?dataItem.company.color: defaultFontColor">{{ dataItem.company.value }}</div>
+        </ng-template>
       </kendo-grid-column>
+
       <kendo-grid-column title="TURNOVER" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div [style.color]="dataItem.turnover.color">{{ dataItem.turnover.value }}</div>
@@ -31,15 +30,6 @@
         </ng-template>
       </kendo-grid-column>
 
-      <!-- <kendo-grid-column field="status" title="STATUS" [width]="250">
-            <ng-template kendoGridCellTemplate let-dataItem>
-              <div class="d-flex align-items-center">
-                <div>{{ dataItem.progress }}</div>
-                <div class="flex-spacer"></div>
-                <app-circle-status [status]="dataItem.isLate ? 'ERROR' : 'SUCCESS'" class="me-5"></app-circle-status>
-              </div>
-            </ng-template>
-          </kendo-grid-column> -->
     </kendo-grid>
   </div>
 </div>
