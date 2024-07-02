@@ -1,10 +1,12 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export interface Widget {
+  id?: string;
   name?: string;
   title?: string;
   subtitle?: string;
   tag?: string;
+  featureId?: string;
 }
 
 export interface DynamicWidget {
@@ -19,7 +21,7 @@ export interface Sidebar {
 }
 
 export interface NavigationItem {
-  featureId: string;
+  id?: string; // Made optional
   row: number;
   rowSpan: number;
   col: number;
@@ -35,10 +37,13 @@ export interface NavigationItem {
 }
 
 export interface DashboardInput {
-  dashboard: string;
-  dimensions: string;
-  colorTheme: string;
-  navigationItems: NavigationItem[];
+  scale: string;
+  dimensions: number[]; // Array of numbers
+  Styles: {
+    colorTheme: string;
+    font: string;
+  };
+  features: NavigationItem[];
 }
 
 export interface NavItem {

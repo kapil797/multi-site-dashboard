@@ -13,7 +13,7 @@ export class ThemeService {
   }
 
   private loadTheme(): void {
-    const themeKey: ThemeKeys = layoutData.colorTheme as ThemeKeys;
+    const themeKey: ThemeKeys = layoutData.Styles.colorTheme as ThemeKeys;
     this.theme = ThemeConstant.THEMES[themeKey];
   }
 

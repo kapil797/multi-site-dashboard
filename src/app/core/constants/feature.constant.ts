@@ -38,7 +38,22 @@ export const featureConstants: FeatureConstants = Object.freeze({
   MM1: {
     icon: faBriefcase,
     name: 'Management KPI',
-    resource: 'management-kpis',
+    resource: 'management-kpis-one',
+  },
+  MM2: {
+    icon: faBriefcase,
+    name: 'Management KPI',
+    resource: 'management-kpis-two',
+  },
+  MM3: {
+    icon: faBriefcase,
+    name: 'Management KPI',
+    resource: 'management-kpis-three',
+  },
+  MM4: {
+    icon: faBriefcase,
+    name: 'Management KPI',
+    resource: 'management-kpis-four',
   },
   // SSC2: {
   //   icon: faStreetView,
@@ -69,11 +84,6 @@ export const featureConstants: FeatureConstants = Object.freeze({
     icon: faBox,
     name: 'Resource Health',
     resource: 'resource-health',
-  },
-  MM2: {
-    icon: faBriefcase,
-    name: 'Management KPI',
-    resource: 'management-kpis-extended',
   },
   ME2: {
     icon: faClipboardList,

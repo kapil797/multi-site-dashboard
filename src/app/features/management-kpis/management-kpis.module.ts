@@ -7,7 +7,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ManagementKpisService } from './management-kpis-service';
 import { KpiDetailComponent } from './components/kpi-detail/kpi-detail.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
-import { MulitSiteComponent } from './mulit-site/mulit-site.component';
+import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { FeatureService } from '@core/services/feature.service';
 import { ManagementKPI1Component } from './widgets/management-kpi1/management-kpi1.component';
 import { ManagementKPI2Component } from './widgets/management-kpi2/management-kpi2.component';
@@ -20,10 +20,10 @@ import { ManagementKPI3Component } from './widgets/management-kpi3/management-kp
     LayerTwoComponent,
     KpiDetailComponent,
     PieChartComponent,
-    MulitSiteComponent,
+    MultiSiteComponent,
     ManagementKPI1Component,
     ManagementKPI2Component,
-    ManagementKPI3Component
+    ManagementKPI3Component,
   ],
   imports: [ManagementKpisRoutingModule, SharedModule],
   providers: [ManagementKpisService, FeatureService],

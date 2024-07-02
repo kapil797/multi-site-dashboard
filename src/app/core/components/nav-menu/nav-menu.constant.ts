@@ -6,24 +6,30 @@ import { DashboardInput, DashboardOutput, NavItem, NavigationItem } from '@core/
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function transformDashboardItems(input: DashboardInput): DashboardOutput {
   const navItems: NavItem[] = [];
-  const dimensions = input.dimensions.split('*');
-  const columns = parseInt(dimensions[1], 10) * 2; // Extracting the columns number
-  const site = input.dashboard;
+  const dimensions = input.dimensions;
+  const columns = dimensions[1] * 2; // Extracting the columns number
+  console.log('columns', columns);
+  const site = input.scale;
 
-  input.navigationItems.forEach((item: NavigationItem) => {
-    const feature = featureConstants[item.featureId];
-    const layout = item.layoutId !== null ? layoutConstants[item.layoutId] : undefined;
-    if (feature) {
-      navItems.push({
-        name: feature.name,
-        icon: feature.icon,
-        row: item.row,
-        col: item.col,
-        rowSpan: item.rowSpan,
-        colSpan: item.colSpan,
-        resource: feature.resource,
-        layout: layout,
-      });
+  input.features.forEach((item: NavigationItem) => {
+    const featureId = item.id; // Handle both id and featureId
+
+    if (featureId) {
+      const feature = featureConstants[featureId];
+      const layout = item.layoutId !== null ? layoutConstants[item.layoutId] : undefined;
+
+      if (feature) {
+        navItems.push({
+          name: feature.name,
+          icon: feature.icon,
+          row: item.row,
+          col: item.col,
+          rowSpan: item.rowSpan,
+          colSpan: item.colSpan,
+          resource: feature.resource,
+          layout: layout,
+        });
+      }
     }
   });
 
@@ -35,7 +41,7 @@ function transformDashboardItems(input: DashboardInput): DashboardOutput {
   };
 }
 
-const dashboardData = layoutData;
+const dashboardData = layoutData as DashboardInput;
 const dashboardOutput = transformDashboardItems(dashboardData);
 
 export const mfNavItems: NavItem[] = dashboardOutput.navItems;

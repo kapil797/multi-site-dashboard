@@ -2,7 +2,7 @@
 @use 'core/styles/variables';
 
 .card {
-  background: #002540;
+  background: var(--secondary);
   border-radius: variables.$border-radius-1;
   box-sizing: border-box;
   width: 100%;

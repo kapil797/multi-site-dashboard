@@ -62,9 +62,10 @@ export class NavMenuComponent extends CancelSubscription {
       const factory = this.app.factory();
       if (factory === Factory.MODEL_FACTORY) {
         this.navItems = mfNavItems;
+        console.log('thisnavitems', this.navItems);
         this.columns = columns;
         this.site = site;
-        if (site == 'multi') {
+        if (site == 'MultiSite') {
           this.draggableValue = false;
         }
       }

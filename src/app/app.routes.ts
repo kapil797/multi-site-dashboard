@@ -72,17 +72,41 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  // {
+  //   path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS).substring(1),
+  //   loadChildren: () => import('@mk/management-kpis.module').then(m => m.ManagementKpisModule),
+  //   canMatch: [routeGuard()],
+  //   data: {
+  //     // roles: [Roles.PUBLIC],
+  //   },
+  // },
   {
-    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS).substring(1),
-    loadChildren: () => import('@mk/management-kpis.module').then(m => m.ManagementKpisModule),
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_ONE).substring(1),
+    loadChildren: () => import('@mk1/management-kpis-one.module').then(m => m.ManagementKpisOneModule),
     canMatch: [routeGuard()],
     data: {
       // roles: [Roles.PUBLIC],
     },
   },
   {
-    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_EXTENDED).substring(1),
-    loadChildren: () => import('@mkext/management-kpis-extended.module').then(m => m.ManagementKpisExtendedModule),
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_TWO).substring(1),
+    loadChildren: () => import('@mk2/management-kpis-two.module').then(m => m.ManagementKpisTwoModule),
+    canMatch: [routeGuard()],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_THREE).substring(1),
+    loadChildren: () => import('@mk3/management-kpis-three.module').then(m => m.ManagementKpisThreeModule),
+    canMatch: [routeGuard()],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.MANAGEMENT_KPIS_FOUR).substring(1),
+    loadChildren: () => import('@mk4/management-kpis-four.module').then(m => m.ManagementKpisFourModule),
     canMatch: [routeGuard()],
     data: {
       // roles: [Roles.PUBLIC],
