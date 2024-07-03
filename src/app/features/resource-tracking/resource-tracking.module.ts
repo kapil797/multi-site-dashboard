@@ -11,10 +11,10 @@ import { CustomTableComponent } from '@rt/components/custom-table/custom-table.c
 import { FactoryLayoutPlanComponent } from '@rt/components/factory-layout-plan/factory-layout-plan.component';
 import { ResourceConsumptionComponent } from '@rt/components/resource-consumption/resource-consumption.component';
 import { MultiSiteComponent } from './multi-site/multi-site.component';
-import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
-import { MachineStatus1Component } from './widgets/machine-status1/machine-status1.component';
-import { UtilTracking1Component } from './widgets/util-tracking1/util-tracking1.component';
+import { MachineStatus1SmallComponent } from './widgets/machine-status1-small/machine-status1-small.component';
+import { UtilTracking1SmallComponent } from './widgets/util-tracking1-small/util-tracking1-small.component';
 import { FeatureService } from '@core/services/feature.service';
+import { GlobalShopfloorStatus1SmallComponent } from './widgets/global-shopfloor-status1-small/global-shopfloor-status1-small.component';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,9 @@ import { FeatureService } from '@core/services/feature.service';
     FactoryLayoutPlanComponent,
     ResourceConsumptionComponent,
     MultiSiteComponent,
-    Fulfilment1Component,
-    MachineStatus1Component,
-    UtilTracking1Component
+    MachineStatus1SmallComponent,
+    UtilTracking1SmallComponent,
+    GlobalShopfloorStatus1SmallComponent
   ],
   imports: [ResourceTrackingRoutingModule, SharedModule],
   providers: [ResourceTrackingService, FeatureService],

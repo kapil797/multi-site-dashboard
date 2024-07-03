@@ -16,7 +16,7 @@
       "widgets": [
         {
           "id":"MV1_SupplierInventory1",
-          "name": "supplierInventory1",
+          "name": "supplierInventory1Medium",
           "title": "Overall Supplier Inventory (RM)",
           "subtitle": "Now",
           "tag": "Factory A",
@@ -24,7 +24,7 @@
         },
         {
           "id":"MV1_SupplierInventory1",
-          "name": "supplierInventory1",
+          "name": "supplierInventory1Medium",
           "title": "Overall Supplier Inventory (RM)",
           "subtitle": "Now",
           "tag": "Factory B",
@@ -46,7 +46,7 @@
       "widgets": [
         {
           "id":"MM1_ManagementKPI3",
-          "name": "managementKPI3",
+          "name": "managementKPI3Small",
           "title": "Enterprise Productivity",
           "subtitle": "PAST MONTH",
           "tag":"Factory A",
@@ -54,7 +54,7 @@
         },
         {
           "id":"MM1_ManagementKPI2",
-          "name": "managementKPI2",
+          "name": "managementKPI2Small",
           "title": "Enterprise Capacity Utilisation",
           "subtitle": "PAST MONTH",
           "tag":"Factory B",
@@ -62,7 +62,7 @@
         },
         {
           "id":"MM1_ManagementKPI1",
-          "name": "managementKPI1",
+          "name": "managementKPI1Small",
           "title": "On-time Delivery",
           "subtitle": "PAST MONTH",
           "tag":"Factory A",
@@ -70,7 +70,7 @@
         },
         {
           "id":"MM1_ManagementKPI1",
-          "name": "managementKPI1",
+          "name": "managementKPI1Small",
           "title": "Total Safety Incidences",
           "subtitle": "PAST MONTH",
           "tag":"Factory B",
@@ -92,7 +92,7 @@
       "widgets": [
         {
           "id":"MM2_ManagementKPI1",
-          "name": "managementKPI1",
+          "name": "managementKPI1Small",
           "title": "Enterprise Profits",
           "subtitle": "PAST MONTH",
           "tag":"Factory C",
@@ -100,7 +100,7 @@
         },
         {
           "id":"MM2_ManagementKPI1",
-          "name": "managementKPI1",
+          "name": "managementKPI1Small",
           "title": "Total Production Cost",
           "subtitle": "PAST MONTH",
           "tag":"Factory C",
@@ -108,7 +108,7 @@
         },
         {
           "id":"MM2_ManagementKPI1",
-          "name": "managementKPI1",
+          "name": "managementKPI1Small",
           "title": "Enterprise Inventory Value",
           "subtitle": "PAST MONTH",
           "tag":"Factory C",
@@ -116,7 +116,7 @@
         },
         {
           "id":"MM2_ManagementKPI1",
-          "name": "managementKPI1",
+          "name": "managementKPI1Small",
           "title": "Weighted Production Volume",
           "subtitle": "PAST MONTH",
           "tag":"Factory C",
@@ -138,7 +138,7 @@
       "widgets": [
         {
           "id":"MV2_DemandForecast1",
-          "name": "demandForecast1",
+          "name": "demandForecast1Small",
           "title": "Demand for MFConnect+(Pcs)",
           "subtitle": "MONTHLY",
           "tag": "Factory A",
@@ -146,7 +146,7 @@
         },
         {
           "id":"MV2_DemandForecast1",
-          "name": "demandForecast1",
+          "name": "demandForecast1Small",
           "title": "Demand for eScentz(Pcs)",
           "subtitle": "MONTHLY",
           "tag": "Factory B",
@@ -154,7 +154,7 @@
         },
         {
           "id":"MV2_Fulfilment1",
-          "name": "fulfilment1",
+          "name": "fulfilment1Small",
           "title": "Av. Delivery Lead Times",
           "subtitle": "MONTHLY",
           "tag": "Factory A",
@@ -162,7 +162,7 @@
         },
         {
           "id":"MV2_Fulfilment1",
-          "name": "fulfilment1",
+          "name": "fulfilment1Small",
           "title": "Av. Order Accuracy",
           "subtitle": "MONTHLY",
           "tag": "Factory B",
@@ -184,7 +184,7 @@
       "widgets": [
         {
           "id": "ME1_ProductionTracking1",
-          "name": "productionTracking1",
+          "name": "productionTracking1Large",
           "title": "Production Tracking by All Sales Order",
           "subtitle": "LATEST SALESORDERS",
           "tag":"Factory A",
@@ -206,7 +206,7 @@
       "widgets": [
         {
           "id":"MS1_UtilTracking1",
-          "name": "utilTracking1",
+          "name": "utilTracking1Small",
           "title": "Utilisation Tracking By Product",
           "subtitle": "PAST 24 HOURS",
           "tag": "Factory A",
@@ -214,7 +214,7 @@
         },
         {
           "id":"MS1_MachineStatus1",
-          "name": "machineStatus1",
+          "name": "machineStatus1Small",
           "title": "Injection Molding",
           "subtitle": "PAST 24 HOURS",
           "tag": "Factory B",
@@ -222,7 +222,7 @@
         },
         {
           "id":"MS1_UtilTracking1",
-          "name": "utilTracking1",
+          "name": "utilTracking1Small",
           "title": "Inventory Performance",
           "subtitle": "PAST MONTH",
           "tag": "Factory A",
@@ -230,7 +230,7 @@
         },
         {
           "id": "MS1_GlobalShopfloorStatus1",
-          "name": "globalShopfloorStatus1",
+          "name": "globalShopfloorStatus1Small",
           "title": "Global Shopfloor Status",
           "subtitle": "NOW",
           "tag": "Factory B",
@@ -252,7 +252,7 @@
       "widgets": [
         {
           "id": "MS2_MonthlyOEE1",
-          "name": "monthlyOEE1",
+          "name": "monthlyOEE1Medium",
           "title": "Monthly OEE",
           "subtitle": "PAST 6 MONTHS",
           "tag":"Factory A",
@@ -260,7 +260,7 @@
         },
         {
           "id": "MS2_CurrentOEE1",
-          "name": "currentOEE1",
+          "name": "currentOEE1Small",
           "title": "Current OEE",
           "subtitle": "PAST MONTH",
           "tag":"Factory A",
@@ -268,7 +268,7 @@
         },
         {
           "id": "MS2_ResourceEfficiencies1",
-          "name": "resourceEfficiencies1",
+          "name": "resourceEfficiencies1Small",
           "title": "Resource Efficiencies",
           "subtitle": "PAST MONTH",
           "tag":"Factory B",
@@ -290,7 +290,7 @@
       "widgets": [
         {
           "id": "ME2_ProductionCapacity1",
-          "name": "productionCapacity1",
+          "name": "productionCapacity1Small",
           "title": "Production Capacity",
           "subtitle": "Current VS AV PAST 6 MONTHS",
           "tag": "Factory A",
@@ -298,7 +298,7 @@
         },
         {
           "id": "ME2_ProductionYield1",
-          "name": "productionYield1",
+          "name": "productionYield1Small",
           "title": "Overall Production Yield",
           "subtitle": "PAST MONTH",
           "tag": "Factory B",
@@ -306,7 +306,7 @@
         },
         {
           "id": "ME2_InventoryPerformance1",
-          "name": "inventoryPerformance1",
+          "name": "inventoryPerformance1Small",
           "title": "Resource Efficiencies",
           "subtitle": "PAST MONTH",
           "tag": "Factory A",
@@ -314,7 +314,7 @@
         },
         {
           "id": "ME2_InventoryValueCost1",
-          "name": "inventoryValueCost1",
+          "name": "inventoryValueCost1Small",
           "title": "Resource Efficiencies",
           "subtitle": "PAST MONTH",
           "tag": "Factory B",
