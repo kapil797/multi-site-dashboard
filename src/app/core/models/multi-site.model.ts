@@ -2,7 +2,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export interface Widget {
   id?: string;
-  name?: string;
+  name: string;
   title?: string;
   subtitle?: string;
   tag?: string;

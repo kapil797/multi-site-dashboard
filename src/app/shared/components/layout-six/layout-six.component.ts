@@ -68,9 +68,10 @@ export class LayoutSixComponent {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
-      console.log(`Widget ${index + 1}:`, widget);
-      const componentClass = widgetComponentsMapping[widget.name as keyof typeof widgetComponentsMapping];
-      if (componentClass) {
+      const widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      const componentClass = widgetComponentsMapping[widgetKey];
+
+      if (componentClass && widgetKey.includes('Large')) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
           environmentInjector: this.injector,
         });
@@ -78,9 +79,11 @@ export class LayoutSixComponent {
         componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
         componentRef.instance.tag = widget.tag ?? 'Combined';
         componentRef.instance.api = widget.api ?? '';
-        console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
+        console.log(`Widget API:`, componentRef.instance.api);
       } else {
-        console.warn(`No component mapped for widget named ${widget.name}`);
+        console.warn(
+          `No suitable component mapped for widget named ${widget.name} or component does not match size criteria`
+        );
       }
     });
   }

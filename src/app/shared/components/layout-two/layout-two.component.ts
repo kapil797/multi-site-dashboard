@@ -55,9 +55,9 @@ export class LayoutTwoComponent {
   assignWidgets() {
     const apiKeys = Object.keys(this.apis);
     if (this.widgets.length >= 3) {
-      this.widgets[0] = this.assignApiToWidget(this.widgets[0], apiKeys[0]);
-      this.widgets[1] = this.assignApiToWidget(this.widgets[1], apiKeys[1]);
-      this.widgets[2] = this.assignApiToWidget(this.widgets[2], apiKeys[2]);
+      this.widgets[0] = this.assignApiToWidget(this.widgets[0], apiKeys[0] ?? '');
+      this.widgets[1] = this.assignApiToWidget(this.widgets[1], apiKeys[1] ?? '');
+      this.widgets[2] = this.assignApiToWidget(this.widgets[2], apiKeys[2] ?? '');
     }
     this.widget1 = this.widgets[0];
     this.widget2 = this.widgets[1];
@@ -66,7 +66,7 @@ export class LayoutTwoComponent {
   }
 
   assignApiToWidget(widget: Widget, apiKey: string): Widget {
-    return { ...widget, api: this.apis[apiKey as keyof Apis] };
+    return { ...widget, api: this.apis[apiKey as keyof Apis] ?? '' };
   }
 
   loadWidgets() {
@@ -74,9 +74,19 @@ export class LayoutTwoComponent {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
-      console.log(`Widget ${index + 1}:`, widget);
-      const componentClass = widgetComponentsMapping[widget.name as keyof typeof widgetComponentsMapping];
-      if (componentClass) {
+      const widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      const componentClass = widgetComponentsMapping[widgetKey];
+
+      if (index === 0 && componentClass && widgetKey.includes('Medium')) {
+        const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
+          environmentInjector: this.injector,
+        });
+        componentRef.instance.title = widget.title ?? 'Default Title';
+        componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
+        componentRef.instance.tag = widget.tag ?? 'Combined';
+        componentRef.instance.api = widget.api ?? '';
+        console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
+      } else if (index > 0 && componentClass && widgetKey.includes('Small')) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
           environmentInjector: this.injector,
         });
@@ -86,7 +96,9 @@ export class LayoutTwoComponent {
         componentRef.instance.api = widget.api ?? '';
         console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
       } else {
-        console.warn(`No component mapped for widget named ${widget.name}`);
+        console.warn(
+          `No suitable component mapped for widget named ${widget.name} or component does not match size criteria`
+        );
       }
     });
   }

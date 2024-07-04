@@ -57,10 +57,10 @@ export class LayoutOneComponent implements AfterViewInit {
   assignWidgets() {
     const apiKeys = Object.keys(this.apis);
     if (this.widgets.length >= 4) {
-      this.widgets[0] = this.assignApiToWidget(this.widgets[0], apiKeys[0]);
-      this.widgets[1] = this.assignApiToWidget(this.widgets[1], apiKeys[1]);
-      this.widgets[2] = this.assignApiToWidget(this.widgets[2], apiKeys[2]);
-      this.widgets[3] = this.assignApiToWidget(this.widgets[3], apiKeys[3]);
+      this.widgets[0] = this.assignApiToWidget(this.widgets[0], apiKeys[0] ?? '');
+      this.widgets[1] = this.assignApiToWidget(this.widgets[1], apiKeys[1] ?? '');
+      this.widgets[2] = this.assignApiToWidget(this.widgets[2], apiKeys[2] ?? '');
+      this.widgets[3] = this.assignApiToWidget(this.widgets[3], apiKeys[3] ?? '');
     }
     this.widget1 = this.widgets[0];
     this.widget2 = this.widgets[1];
@@ -70,7 +70,7 @@ export class LayoutOneComponent implements AfterViewInit {
   }
 
   assignApiToWidget(widget: Widget, apiKey: string): Widget {
-    return { ...widget, api: this.apis[apiKey as keyof Apis] };
+    return { ...widget, api: this.apis[apiKey as keyof Apis] ?? '' };
   }
 
   loadWidgets() {
@@ -78,9 +78,10 @@ export class LayoutOneComponent implements AfterViewInit {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
-      console.log(`Widget ${index + 1}:`, widget);
-      const componentClass = widgetComponentsMapping[widget.name as keyof typeof widgetComponentsMapping];
-      if (componentClass) {
+      const widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      const componentClass = widgetComponentsMapping[widgetKey];
+
+      if (componentClass && widgetKey.includes('Small')) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
           environmentInjector: this.injector,
         });
@@ -88,9 +89,11 @@ export class LayoutOneComponent implements AfterViewInit {
         componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
         componentRef.instance.tag = widget.tag ?? 'Combined';
         componentRef.instance.api = widget.api ?? '';
-        console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
+        console.log(`Widget API:`, componentRef.instance.api);
       } else {
-        console.warn(`No component mapped for widget named ${widget.name}`);
+        console.warn(
+          `No suitable component mapped for widget named ${widget.name} or component does not match size criteria`
+        );
       }
     });
   }
