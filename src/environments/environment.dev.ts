@@ -12,4 +12,77 @@ export const environment = {
   MAP_ACCESS_TOKEN: 'pk.eyJ1Ijoia2dsYXlrZ2xheSIsImEiOiJjamQxZGlwZnMwOG91MzRxcTdscXhmYjNvIn0.1Cfts_Qesd4LJlu3uyo2kQ',
   MAP_API_URL: 'https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=',
   ROUTE_API_URL: 'https://api.mapbox.com/directions/v5/mapbox/cycling',
+  //Please provide the API EndPoints Here for the respective widgets(feature-based)
+  SUPPLIER_INFORMATION: {
+    API_1: '',
+    API_2: 'http://www.google.com/SP2',
+    API_3: 'http://www.google.com/SP3',
+    API_4: 'http://www.google.com/SP4',
+  },
+  DEMAND_PROFILE: {
+    API_1: 'http://www.google.com/DP1',
+    API_2: 'http://www.google.com/DP2',
+    API_3: 'http://www.google.com/DP3',
+    API_4: 'http://www.google.com/DP4',
+  },
+  MANAGEMENT_KPIS_ONE: {
+    API_1: 'http://www.google.com/KP1/1',
+    API_2: 'http://www.google.com/KP1/2',
+    API_3: 'http://www.google.com/KP1/3',
+    API_4: 'http://www.google.com/KP1/4',
+  },
+  MANAGEMENT_KPIS_TWO: {
+    API_1: 'http://www.google.com/KP2/1',
+    API_2: 'http://www.google.com/KP2/2',
+    API_3: 'http://www.google.com/KP2/3',
+    API_4: 'http://www.google.com/KP2/4',
+  },
+  MANAGEMENT_KPIS_THREE: {
+    API_1: 'http://www.google.com/KP3/1',
+    API_2: 'http://www.google.com/KP3/2',
+    API_3: 'http://www.google.com/KP3/3',
+    API_4: 'http://www.google.com/KP3/4',
+  },
+  MANAGEMENT_KPIS_FOUR: {
+    API_1: 'http://www.google.com/KP4/1',
+    API_2: 'http://www.google.com/KP4/2',
+    API_3: 'http://www.google.com/KP4/3',
+    API_4: 'http://www.google.com/KP4/4',
+  },
+  PRODUCTION_AND_INVENTORY: {
+    API_1: 'http://www.google.com/PI1',
+    API_2: 'http://www.google.com/PI2',
+    API_3: 'http://www.google.com/PI3',
+    API_4: 'http://www.google.com/PI4',
+  },
+  PRODUCTION_TRACKING: {
+    API_1: 'http://www.google.com/PT1',
+    API_2: 'http://www.google.com/PT2',
+    API_3: 'http://www.google.com/PT3',
+    API_4: 'http://www.google.com/PT4',
+  },
+  RESOURCE_HEALTH: {
+    API_1: 'http://www.google.com/RH1',
+    API_2: 'http://www.google.com/RH2',
+    API_3: 'http://www.google.com/RH3',
+    API_4: 'http://www.google.com/RH4',
+  },
+  RESOURCE_TRACKING: {
+    API_1: 'http://www.google.com/RT1',
+    API_2: 'http://www.google.com/RT2',
+    API_3: 'http://www.google.com/RT3',
+    API_4: 'http://www.google.com/RT4',
+  },
+  FULFILLMENT: {
+    API_1: 'http://www.google.com/RT1',
+    API_2: 'http://www.google.com/RT2',
+    API_3: 'http://www.google.com/RT3',
+    API_4: 'http://www.google.com/RT4',
+  },
+  LOGISTIC_TRACKING: {
+    API_1: 'http://www.google.com/RT1',
+    API_2: 'http://www.google.com/RT2',
+    API_3: 'http://www.google.com/RT3',
+    API_4: 'http://www.google.com/RT4',
+  },
 };

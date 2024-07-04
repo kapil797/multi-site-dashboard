@@ -27,6 +27,7 @@ export class Fulfilment1Component {
   }
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() api!: string;
   public productionCapacity: number = 92;
   public seriesData = [
     { month: 'Jan', value: 90 },

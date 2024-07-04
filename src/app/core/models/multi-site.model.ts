@@ -7,12 +7,14 @@ export interface Widget {
   subtitle?: string;
   tag?: string;
   featureId?: string;
+  api?: string;
 }
 
 export interface DynamicWidget {
   title: string;
   subtitle: string;
   tag: string;
+  api: string;
 }
 
 export interface Sidebar {
@@ -61,4 +63,10 @@ export interface DashboardOutput {
   navItems: NavItem[];
   columns: number;
   site: string;
+}
+export interface Apis {
+  API_1: string;
+  API_2: string;
+  API_3: string;
+  API_4: string;
 }

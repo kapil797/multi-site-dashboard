@@ -27,6 +27,7 @@ export class MachineStatus1Component {
   }
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() api!: string;
   public powerOffIcon: IconDefinition = faPowerOff;
   public boltIcon: IconDefinition = faBolt;
   public trashIcon: IconDefinition = faTrashCan;

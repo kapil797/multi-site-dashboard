@@ -12,10 +12,12 @@ export class ManagementKPI2Component {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
+  @Input() api!: string;
   constructor(private themeService: ThemeService) {}
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    console.log('managment-Kpis-two', this.api);
   }
   setThemeVariables(): void {
     if (this.theme) {

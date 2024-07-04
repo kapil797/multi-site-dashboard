@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { Widget } from '@core/models/multi-site.model';
+import { ChangeDetectorRef, Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Apis, Widget } from '@core/models/multi-site.model';
 import { FeatureService } from '@core/services/feature.service';
 import { LayoutFiveComponent } from '@shared/components/layout-five/layout-five.component';
 import { LayoutFourComponent } from '@shared/components/layout-four/layout-four.component';
@@ -7,13 +7,14 @@ import { LayoutOneComponent } from '@shared/components/layout-one/layout-one.com
 import { LayoutSixComponent } from '@shared/components/layout-six/layout-six.component';
 import { LayoutThreeComponent } from '@shared/components/layout-three/layout-three.component';
 import { LayoutTwoComponent } from '@shared/components/layout-two/layout-two.component';
+import { environment } from 'src/environments/environment.dev';
 
 @Component({
   selector: 'app-multi-site',
   templateUrl: './multi-site.component.html',
-  styleUrls: ['./multi-site.component.scss'], // Notice the correction from styleUrl to styleUrls
+  styleUrl: './multi-site.component.scss',
 })
-export class MultiSiteComponent implements AfterViewInit {
+export class MultiSiteComponent {
   @ViewChild('layoutHost', { read: ViewContainerRef }) layoutHost: ViewContainerRef;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private componentRefs: ComponentRef<any>[] = [];
@@ -34,6 +35,10 @@ export class MultiSiteComponent implements AfterViewInit {
 
   loadLayout() {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('logistic-tracking');
+    //later need to change if logistic tracking need to be used
+    const widget_apis = environment.LOGISTIC_TRACKING as Apis;
+    console.log('widget_apis', widget_apis);
+
     if (!layoutConfig) return;
 
     const widgets: Widget[] = layoutConfig['widgets'] || [];
@@ -41,7 +46,6 @@ export class MultiSiteComponent implements AfterViewInit {
     const layoutId = layoutConfig.layoutId;
     const sideBarPosition = layoutConfig.sideBar?.position;
     const sideBarText = layoutConfig.sideBar?.text;
-    console.log('layouthost', this.layoutHost);
     switch (layoutId) {
       case 1:
         // eslint-disable-next-line no-case-declarations
@@ -50,15 +54,17 @@ export class MultiSiteComponent implements AfterViewInit {
         componentRefLayOne.instance.widgets = widgets;
         componentRefLayOne.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayOne.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayOne.instance.apis = widget_apis;
+
         break;
       // handle other cases
       case 2:
         // eslint-disable-next-line no-case-declarations
         const componentRefLayTwo = this.layoutHost.createComponent(LayoutTwoComponent);
-        console.log('compnentRef', componentRefLayTwo);
         componentRefLayTwo.instance.widgets = widgets;
         componentRefLayTwo.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayTwo.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayTwo.instance.apis = widget_apis;
         break;
 
       case 3:
@@ -68,6 +74,8 @@ export class MultiSiteComponent implements AfterViewInit {
         componentRefLayThree.instance.widgets = widgets;
         componentRefLayThree.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayThree.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayThree.instance.apis = widget_apis;
+
         break;
       case 4:
         // eslint-disable-next-line no-case-declarations
@@ -76,6 +84,8 @@ export class MultiSiteComponent implements AfterViewInit {
         componentRefLayFour.instance.widgets = widgets;
         componentRefLayFour.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFour.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayFour.instance.apis = widget_apis;
+
         break;
       case 5:
         // eslint-disable-next-line no-case-declarations
@@ -84,6 +94,9 @@ export class MultiSiteComponent implements AfterViewInit {
         componentRefLayFive.instance.widgets = widgets;
         componentRefLayFive.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFive.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayFive.instance.apis = widget_apis;
+        componentRefLayFive.instance.apis = widget_apis;
+        //
         break;
       case 6:
         // eslint-disable-next-line no-case-declarations
@@ -92,6 +105,7 @@ export class MultiSiteComponent implements AfterViewInit {
         componentRefLaySix.instance.widgets = widgets;
         componentRefLaySix.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLaySix.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLaySix.instance.apis = widget_apis;
         break;
       // handle other cases
       default:

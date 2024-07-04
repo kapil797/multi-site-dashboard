@@ -8,7 +8,7 @@ import {
   ViewChildren,
   ViewContainerRef,
 } from '@angular/core';
-import { Widget, DynamicWidget } from '@core/models/multi-site.model';
+import { Widget, DynamicWidget, Apis } from '@core/models/multi-site.model';
 import { widgetComponentsMapping } from '@core/constants/widgets-component-mapping';
 
 @Component({
@@ -21,6 +21,7 @@ export class LayoutSixComponent {
   @Input() position: string;
   @Input() text: string;
   @Input() title: string;
+  @Input() apis: Apis;
   @ViewChildren('widgetHost', { read: ViewContainerRef }) widgetHosts: QueryList<ViewContainerRef>;
   widget1!: Widget;
 
@@ -37,7 +38,8 @@ export class LayoutSixComponent {
       });
     }
     this.assignWidgets();
-    console.log('check position', this.getPositionClass());
+    console.log('APIs:', this.apis);
+    console.log('Widgets after assignment:', this.widgets);
   }
 
   getPositionClass(): string {
@@ -49,9 +51,16 @@ export class LayoutSixComponent {
   }
 
   assignWidgets() {
-    if (this.widgets.length == 1) {
-      this.widget1 = this.widgets[0];
+    const apiKeys = Object.keys(this.apis);
+    if (this.widgets.length >= 1) {
+      this.widgets[0] = this.assignApiToWidget(this.widgets[0], apiKeys[0]);
     }
+    this.widget1 = this.widgets[0];
+    console.log('Assigned Widgets:', this.widget1);
+  }
+
+  assignApiToWidget(widget: Widget, apiKey: string): Widget {
+    return { ...widget, api: this.apis[apiKey as keyof Apis] };
   }
 
   loadWidgets() {
@@ -59,6 +68,7 @@ export class LayoutSixComponent {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
+      console.log(`Widget ${index + 1}:`, widget);
       const componentClass = widgetComponentsMapping[widget.name as keyof typeof widgetComponentsMapping];
       if (componentClass) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
@@ -67,6 +77,8 @@ export class LayoutSixComponent {
         componentRef.instance.title = widget.title ?? 'Default Title';
         componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
         componentRef.instance.tag = widget.tag ?? 'Combined';
+        componentRef.instance.api = widget.api ?? '';
+        console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
       } else {
         console.warn(`No component mapped for widget named ${widget.name}`);
       }

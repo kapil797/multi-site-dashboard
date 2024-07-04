@@ -28,7 +28,7 @@ export class ResourceEfficiencies1Component {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
-
+  @Input() api!: string;
   public data = {
     energyEfficiencies: {
       value: '22.55%',

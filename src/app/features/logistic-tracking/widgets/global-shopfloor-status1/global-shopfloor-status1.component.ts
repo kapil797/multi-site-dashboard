@@ -28,4 +28,5 @@ export class GlobalShopfloorStatus1Component {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
+  @Input() api!: string;
 }

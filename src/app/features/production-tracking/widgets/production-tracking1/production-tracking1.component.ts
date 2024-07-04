@@ -33,6 +33,7 @@ export class ProductionTracking1Component implements OnInit {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
+  @Input() api!: string;
 
   public defaultFontColor = '#E4E9EF';
 

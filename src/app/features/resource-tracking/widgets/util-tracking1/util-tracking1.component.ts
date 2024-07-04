@@ -28,6 +28,7 @@ export class UtilTracking1Component {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
+  @Input() api!: string;
 
   // According to Kendo,
   // set the style.height to enable vertical scroll

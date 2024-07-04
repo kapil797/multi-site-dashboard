@@ -24,6 +24,7 @@ export class ProductionCapacity1Component {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
+  @Input() api!: string;
 
   data = {
     MFConnect: {

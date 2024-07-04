@@ -25,6 +25,7 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
   @Input() title: string;
   @Input() subtitle: string;
   @Input() tag: string;
+  @Input() api!: string;
 
   public defaultFontColor = '#E4E9EF';
 
@@ -38,7 +39,6 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
     this.supplierInventoryData = [];
 
     this.loadSupplierInventoryDataFromMock();
-
   }
 
   private loadSupplierInventoryDataFromMock() {
@@ -51,8 +51,8 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
   public setDefaultHeaderStyle() {
     const style = {
       'background-color': '#002540',
-      'color': this.defaultFontColor,
-      'border': '0',
+      color: this.defaultFontColor,
+      border: '0',
       'border-bottom': '.3rem solid #E4E9EF',
       'font-size': '1.5rem',
     };
@@ -62,7 +62,7 @@ export class SupplierInventory1Component extends LayerOneRouter implements OnIni
 
   public setDefaultColumnStyle() {
     const style = {
-      'color': this.defaultFontColor,
+      color: this.defaultFontColor,
       'font-size': '1.5rem',
       'text-align': 'left',
     };

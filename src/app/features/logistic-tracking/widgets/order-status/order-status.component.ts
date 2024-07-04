@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs';
 export class OrderStatusComponent extends CancelSubscription implements OnInit {
   @Input() title: string;
   @Input() subtitle: string;
+  @Input() api!: string;
 
   seriesColors = ['#21D794', '#fa5c5c'];
   BACKGROUND: '#002135';

@@ -10,11 +10,17 @@ import { ThemeService } from '@core/services/theme-service.service';
 export class ManagementKPI1Component implements OnInit {
   theme?: Theme;
 
+  @Input() title!: string;
+  @Input() subtitle!: string;
+  @Input() tag!: string;
+  @Input() api!: string;
+
   constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    console.log('managment-Kpis-one', this.api);
   }
 
   setThemeVariables(): void {
@@ -25,10 +31,6 @@ export class ManagementKPI1Component implements OnInit {
       document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
     }
   }
-
-  @Input() title!: string;
-  @Input() subtitle!: string;
-  @Input() tag!: string;
 
   public item = {
     Id: 12,
