@@ -9,9 +9,9 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { FeatureService } from '@core/services/feature.service';
 import { ManagementKpisOneRoutingModule } from '@mk1/management-kpis-one-routing.module';
-import { ManagementKPI1Component } from '@mk1/widgets/management-kpi1/management-kpi1.component';
-import { ManagementKPI2Component } from '@mk1/widgets/management-kpi2/management-kpi2.component';
-import { ManagementKPI3Component } from '@mk1/widgets/management-kpi3/management-kpi3.component';
+import { ManagementKPI1SmallComponent } from '@mk1/widgets/management-kpi1-small/management-kpi1-small.component';
+import { ManagementKPI2SmallComponent } from '@mk1/widgets/management-kpi2-small/management-kpi2-small.component';
+import { ManagementKPI3SmallComponent } from '@mk1/widgets/management-kpi3-small/management-kpi3-small.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { ManagementKPI3Component } from '@mk1/widgets/management-kpi3/management
     KpiDetailComponent,
     PieChartComponent,
     MultiSiteComponent,
-    ManagementKPI1Component,
-    ManagementKPI2Component,
-    ManagementKPI3Component,
+    ManagementKPI1SmallComponent,
+    ManagementKPI2SmallComponent,
+    ManagementKPI3SmallComponent,
   ],
   imports: [ManagementKpisOneRoutingModule, SharedModule],
   providers: [ManagementKpisOneService, FeatureService],

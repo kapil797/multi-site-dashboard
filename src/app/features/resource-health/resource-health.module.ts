@@ -13,9 +13,9 @@ import { CustomTableComponent } from '@rh/components/custom-table/custom-table.c
 import { MachineConsumptionComponent } from '@rh/components/machine-consumption/machine-consumption.component';
 import { LayerOneComponent } from '@rh/components/layer-one/layer-one.component';
 import { FeatureService } from '@core/services/feature.service';
-import { CurrentOEE1Component } from './widgets/current-oee1/current-oee1.component';
-import { MonthlyOEE1Component } from './widgets/monthly-oee1/monthly-oee1.component';
-import { ResourceEfficiencies1Component } from './widgets/resource-efficiencies1/resource-efficiencies1.component';
+import { CurrentOEE1SmallComponent } from './widgets/current-oee1-small/current-oee1-small.component';
+import { MonthlyOEE1MediumComponent } from './widgets/monthly-oee1-medium/monthly-oee1-medium.component';
+import { ResourceEfficiencies1SmallComponent } from './widgets/resource-efficiencies1-small/resource-efficiencies1-small.component';
 
 
 @NgModule({
@@ -27,9 +27,9 @@ import { ResourceEfficiencies1Component } from './widgets/resource-efficiencies1
     TransposedTableComponent,
     CustomTableComponent,
     MachineConsumptionComponent,
-    CurrentOEE1Component,
-    MonthlyOEE1Component,
-    ResourceEfficiencies1Component
+    CurrentOEE1SmallComponent,
+    MonthlyOEE1MediumComponent,
+    ResourceEfficiencies1SmallComponent
   ],
   imports: [SharedModule, ResourceHealthRoutingModule],
   providers: [ResourceHealthService, FeatureService],

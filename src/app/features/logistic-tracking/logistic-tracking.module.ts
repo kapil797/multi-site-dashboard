@@ -12,11 +12,8 @@ import { OrderStatusIndividualComponent } from './components/order-status-indivi
 import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { FeatureService } from '@core/services/feature.service';
 import { OrderStatusComponent } from './widgets/order-status/order-status.component';
-import { SupplierInventory1Component } from './widgets/supplier-inventory1/supplier-inventory1.component';
-import { InventoryPerformance1Component } from '../production-and-inventory/widgets/inventory-performance1/inventory-performance1.component';
 import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
-import { GlobalShopfloorStatus1Component } from './widgets/global-shopfloor-status1/global-shopfloor-status1.component';
-import { DemandForecast1Component } from './widgets/demand-forecast1/demand-forecast1.component';
+import { SupplierInventory1MediumComponent } from './widgets/supplier-inventory1-medium/supplier-inventory1-medium.component';
 
 @NgModule({
   declarations: [
@@ -29,11 +26,8 @@ import { DemandForecast1Component } from './widgets/demand-forecast1/demand-fore
     OrderStatusIndividualComponent,
     MultiSiteComponent,
     OrderStatusComponent,
-    SupplierInventory1Component,
-    InventoryPerformance1Component,
     Fulfilment1Component,
-    DemandForecast1Component,
-    GlobalShopfloorStatus1Component,
+    SupplierInventory1MediumComponent
   ],
   imports: [LogisticTrackingRoutingModule, SharedModule],
   providers: [LogisticTrackingService, FeatureService],
