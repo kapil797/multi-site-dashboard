@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-management-kpi1-small',
   templateUrl: './management-kpi1-small.component.html',
-  styleUrls: ['./management-kpi1-small.component.scss'], // Fix typo: styleUrl -> styleUrls
+  styleUrls: ['./management-kpi1-small.component.scss'],
 })
 export class ManagementKPI1SmallComponent implements OnInit {
   theme?: Theme;
@@ -15,12 +17,16 @@ export class ManagementKPI1SmallComponent implements OnInit {
   @Input() tag!: string;
   @Input() api!: string;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
-    console.log('managment-Kpis-one', this.api);
+    console.log('management-Kpis-one', this.api);
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -65,5 +71,36 @@ export class ManagementKPI1SmallComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  // Method to test the API
+  testApi(apiUrl: string): void {
+    const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
+
+    this.http
+      .get(apiUrl)
+      .pipe(
+        catchError(error => {
+          console.error('API call failed, switching to mock data', error);
+          return this.http.get(mockDataUrl); // Try to load mock data
+        })
+      )
+      .subscribe(response => {
+        if (response) {
+          console.log('API response:', response);
+          this.handleApiResponse(response);
+        } else {
+          console.warn('No response from API or mock data');
+        }
+      });
+  }
+
+  // Method to handle the API or mock data response
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleApiResponse(response: any): void {
+    // Process the response data
+    console.log('Processed response data:', response);
+    // Example: Update the component's state or UI with the response data
+    this.item = response;
   }
 }

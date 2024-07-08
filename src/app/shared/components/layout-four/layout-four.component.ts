@@ -72,10 +72,10 @@ export class LayoutFourComponent {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
-      const widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      const widgetKey = `${widget.name}Medium` as keyof typeof widgetComponentsMapping; // Append 'Medium' to the widget name
       const componentClass = widgetComponentsMapping[widgetKey];
 
-      if (componentClass && widgetKey.includes('Medium')) {
+      if (componentClass) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
           environmentInjector: this.injector,
         });
@@ -85,9 +85,7 @@ export class LayoutFourComponent {
         componentRef.instance.api = widget.api ?? '';
         console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
       } else {
-        console.warn(
-          `No suitable component mapped for widget named ${widget.name} or component does not match size criteria`
-        );
+        console.warn(`No suitable component mapped for widget named ${widgetKey}`);
       }
     });
   }

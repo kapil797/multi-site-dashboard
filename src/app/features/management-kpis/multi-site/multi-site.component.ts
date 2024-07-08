@@ -39,8 +39,8 @@ export class MultiSiteComponent {
     const widgets: Widget[] = layoutConfig['widgets'] || [];
 
     const layoutId = layoutConfig.layoutId;
-    const sideBarPosition = layoutConfig.sideBar?.position;
-    const sideBarText = layoutConfig.sideBar?.text;
+    const sideBarPosition = layoutConfig.sidebar?.position;
+    const sideBarText = layoutConfig.sidebar?.text;
     console.log('layouthost', this.layoutHost);
     switch (layoutId) {
       case 1:

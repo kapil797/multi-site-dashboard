@@ -33,7 +33,7 @@ export interface NavigationItem {
   widget2?: Widget;
   widget3?: Widget;
   widget4?: Widget;
-  sideBar?: Sidebar;
+  sidebar?: Sidebar;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

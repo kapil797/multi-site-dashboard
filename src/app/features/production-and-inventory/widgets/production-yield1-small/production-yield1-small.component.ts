@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { progressColors } from '@core/constants/progress-bar.constant';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
+import { catchError } from 'rxjs';
 
 export interface PeriodPerformance {
   pastPeriod: number;
@@ -16,8 +18,13 @@ export interface PeriodPerformance {
 })
 export class ProductionYield1SmallComponent {
   theme?: Theme;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  item: any;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
@@ -51,5 +58,35 @@ export class ProductionYield1SmallComponent {
   public formatText(v?: number) {
     if (v === undefined) return '';
     return `${v.toFixed(2)}%`;
+  }
+  // Method to test the API
+  testApi(apiUrl: string): void {
+    const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
+
+    this.http
+      .get(apiUrl)
+      .pipe(
+        catchError(error => {
+          console.error('API call failed, switching to mock data', error);
+          return this.http.get(mockDataUrl); // Try to load mock data
+        })
+      )
+      .subscribe(response => {
+        if (response) {
+          console.log('API response:', response);
+          this.handleApiResponse(response);
+        } else {
+          console.warn('No response from API or mock data');
+        }
+      });
+  }
+
+  // Method to handle the API or mock data response
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleApiResponse(response: any): void {
+    // Process the response data
+    console.log('Processed response data:', response);
+    // Example: Update the component's state or UI with the response data
+    this.item = response;
   }
 }

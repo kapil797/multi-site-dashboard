@@ -74,19 +74,19 @@ export class LayoutTwoComponent {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
-      const widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      let widgetKey;
+
+      if (index === 0) {
+        widgetKey = `${widget.name}Medium` as keyof typeof widgetComponentsMapping;
+      } else if (index === 1 || index === 2) {
+        widgetKey = `${widget.name}Small` as keyof typeof widgetComponentsMapping;
+      } else {
+        widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      }
+
       const componentClass = widgetComponentsMapping[widgetKey];
 
-      if (index === 0 && componentClass && widgetKey.includes('Medium')) {
-        const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
-          environmentInjector: this.injector,
-        });
-        componentRef.instance.title = widget.title ?? 'Default Title';
-        componentRef.instance.subtitle = widget.subtitle ?? 'Default Subtitle';
-        componentRef.instance.tag = widget.tag ?? 'Combined';
-        componentRef.instance.api = widget.api ?? '';
-        console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
-      } else if (index > 0 && componentClass && widgetKey.includes('Small')) {
+      if (componentClass) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
           environmentInjector: this.injector,
         });
@@ -96,9 +96,7 @@ export class LayoutTwoComponent {
         componentRef.instance.api = widget.api ?? '';
         console.log(`Widget ${index + 1} API:`, componentRef.instance.api);
       } else {
-        console.warn(
-          `No suitable component mapped for widget named ${widget.name} or component does not match size criteria`
-        );
+        console.warn(`No suitable component mapped for widget named ${widgetKey}`);
       }
     });
   }

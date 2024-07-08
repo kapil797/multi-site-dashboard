@@ -43,8 +43,8 @@ export class MultiSiteComponent {
     const widgets: Widget[] = layoutConfig['widgets'] || [];
 
     const layoutId = layoutConfig.layoutId;
-    const sideBarPosition = layoutConfig.sideBar?.position;
-    const sideBarText = layoutConfig.sideBar?.text;
+    const sideBarPosition = layoutConfig.sidebar?.position;
+    const sideBarText = layoutConfig.sidebar?.text;
     switch (layoutId) {
       case 1:
         // eslint-disable-next-line no-case-declarations

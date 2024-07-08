@@ -128,6 +128,14 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  // {
+  //   path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.CRITICAL_ISSUES).substring(1),
+  //   loadChildren: () => import('@ci/critical-issues.module').then(m => m.CriticalIssuesModule),
+  //   canMatch: [routeGuard()],
+  //   data: {
+  //     // roles: [Roles.PUBLIC],
+  //   },
+  // },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },

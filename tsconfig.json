@@ -39,6 +39,8 @@
       "@rt/*": ["./src/app/features/resource-tracking/*"],
       "@rh/*": ["./src/app/features/resource-health/*"],
       "@pi/*": ["./src/app/features/production-and-inventory/*"],
+      "@ci/*": ["./src/app/features/critical-issues/*"],
+      "@fav/*": ["./src/app/features/favorites/*"],
     },
   },
   "angularCompilerOptions": {

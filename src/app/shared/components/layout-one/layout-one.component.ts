@@ -78,10 +78,11 @@ export class LayoutOneComponent implements AfterViewInit {
     this.widgetHosts.forEach((viewContainerRef, index) => {
       viewContainerRef.clear();
       const widget = this.widgets[index];
-      const widgetKey = widget.name as keyof typeof widgetComponentsMapping;
+      const widgetKey = `${widget.name}Small` as keyof typeof widgetComponentsMapping; // Append 'Small' to the widget name
+      console.log('test', widgetKey);
       const componentClass = widgetComponentsMapping[widgetKey];
 
-      if (componentClass && widgetKey.includes('Small')) {
+      if (componentClass) {
         const componentRef = viewContainerRef.createComponent(componentClass as Type<DynamicWidget>, {
           environmentInjector: this.injector,
         });
@@ -91,9 +92,7 @@ export class LayoutOneComponent implements AfterViewInit {
         componentRef.instance.api = widget.api ?? '';
         console.log(`Widget API:`, componentRef.instance.api);
       } else {
-        console.warn(
-          `No suitable component mapped for widget named ${widget.name} or component does not match size criteria`
-        );
+        console.warn(`No suitable component mapped for widget named ${widget.name}Small`);
       }
     });
   }

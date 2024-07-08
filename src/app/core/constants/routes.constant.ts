@@ -21,6 +21,8 @@ export const RoutePaths = Object.freeze({
   PRODUCTION_INVENTORY: 'production-inventory',
   RESOURCE_TRACKING: 'resource-tracking',
   RESOURCE_HEALTH: 'resource-health',
+  CRITICAL_ISSUES: 'critical-issues',
+  FAVORITES: 'favorites',
   LAYOUT: 'layout',
   LAYOUT_ONE: 'layout-one',
   LAYOUT_TWO: 'layout-two',

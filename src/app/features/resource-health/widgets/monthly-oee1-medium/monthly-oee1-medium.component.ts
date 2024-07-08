@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
 import { DashType } from '@progress/kendo-angular-charts';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-monthly-oee1-medium',
@@ -10,8 +12,13 @@ import { DashType } from '@progress/kendo-angular-charts';
 })
 export class MonthlyOEE1MediumComponent {
   theme?: Theme;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  item: any;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
@@ -56,4 +63,34 @@ export class MonthlyOEE1MediumComponent {
     averageOEE: [70, 71, 79, 75, 78, 82],
     normalisedOEE: [65, 80, 75, 74, 76, 79],
   };
+  // Method to test the API
+  testApi(apiUrl: string): void {
+    const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
+
+    this.http
+      .get(apiUrl)
+      .pipe(
+        catchError(error => {
+          console.error('API call failed, switching to mock data', error);
+          return this.http.get(mockDataUrl); // Try to load mock data
+        })
+      )
+      .subscribe(response => {
+        if (response) {
+          console.log('API response:', response);
+          this.handleApiResponse(response);
+        } else {
+          console.warn('No response from API or mock data');
+        }
+      });
+  }
+
+  // Method to handle the API or mock data response
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleApiResponse(response: any): void {
+    // Process the response data
+    console.log('Processed response data:', response);
+    // Example: Update the component's state or UI with the response data
+    this.item = response;
+  }
 }
