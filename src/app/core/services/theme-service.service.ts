@@ -6,7 +6,7 @@ import { Theme, ThemeConstant, ThemeKeys } from '@core/constants/theme.constant'
   providedIn: 'root',
 })
 export class ThemeService {
-  private theme: Theme | undefined;
+  private theme: Theme;
 
   constructor() {
     this.loadTheme();
@@ -17,7 +17,7 @@ export class ThemeService {
     this.theme = ThemeConstant.THEMES[themeKey];
   }
 
-  public getTheme(): Theme | undefined {
+  public getTheme(): Theme {
     return this.theme;
   }
 }

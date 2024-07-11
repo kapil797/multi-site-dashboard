@@ -12,6 +12,7 @@ import { ManagementKpisOneRoutingModule } from '@mk1/management-kpis-one-routing
 import { ManagementKPI1SmallComponent } from '@mk1/widgets/management-kpi1-small/management-kpi1-small.component';
 import { ManagementKPI2SmallComponent } from '@mk1/widgets/management-kpi2-small/management-kpi2-small.component';
 import { ManagementKPI3SmallComponent } from '@mk1/widgets/management-kpi3-small/management-kpi3-small.component';
+import { Others1SmallComponent } from './widgets/others1-small/others1-small.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ManagementKPI3SmallComponent } from '@mk1/widgets/management-kpi3-small
     ManagementKPI1SmallComponent,
     ManagementKPI2SmallComponent,
     ManagementKPI3SmallComponent,
+    Others1SmallComponent,
   ],
   imports: [ManagementKpisOneRoutingModule, SharedModule],
   providers: [ManagementKpisOneService, FeatureService],

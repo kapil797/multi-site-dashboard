@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RoutePaths } from '@core/constants/routes.constant';
-import { MultiSiteComponent } from '@mk1/multi-site/multi-site.component';
+import { MultiSiteComponent } from '@ci/multi-site/multi-site.component';
 
 const routes: Routes = [
   {

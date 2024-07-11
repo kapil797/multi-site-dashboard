@@ -7,6 +7,7 @@
   width: 100%;
   border-radius: 0.5rem;
   font-weight: 600;
+  height: 100%;
   box-sizing: border-box;
 
   .card-meta-wrapper {
@@ -32,12 +33,12 @@
   }
 }
 
-.chart-wrapper {
-  width: 40rem;
-}
+// .chart-wrapper {
+//   width: 40rem;
+// }
 
 .benchmark-wrapper {
-  width: 15rem;
+  // width: 15rem;
   margin-top: 1rem;
 }
 

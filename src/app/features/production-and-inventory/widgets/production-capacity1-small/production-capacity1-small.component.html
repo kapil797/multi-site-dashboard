@@ -1,39 +1,40 @@
 <div class="card p-3 m-auto">
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{ tag }}</div>
+  </div>
+  <div class="card-period pb-1">{{ subtitle }}</div>
 
-    <div class="card-meta-wrapper d-flex justify-content-space-between">
-        <span class="card-title">{{title}}</span>
-        <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{tag}}</div>
+  <div class="wrapper pt-5">
+    <div class="bar-wrapper d-flex">
+      <span class="bar-title">MFConnect+</span>
+      <kendo-progressbar
+        [value]="data.MFConnect.value"
+        [max]="data.MFConnect.maxValue"
+        [label]="labelMFConnect"
+        [progressCssStyle]="setProgressPartRowOneStyle()"
+        [emptyCssStyle]="setEmptyPartRowOneStyle()">
+      </kendo-progressbar>
     </div>
-    <div class="card-period pb-5">{{subtitle}}</div>
-
-    <div class="wrapper pt-5">
-        <div class="bar-wrapper d-flex">
-            <span class="bar-title">MFConnect+</span>
-            <kendo-progressbar 
-            [value]="data.MFConnect.value" 
-            [max]="data.MFConnect.maxValue"
-            [label]="labelMFConnect"
-            [progressCssStyle]="setProgressPartRowOneStyle()"
-            [emptyCssStyle]="setEmptyPartRowOneStyle()"> </kendo-progressbar>
-        </div>
-        <div class="bar-wrapper d-flex">
-            <span class="bar-title">E-Scentz</span>
-            <kendo-progressbar 
-            [value]="data.EScentz.value" 
-            [max]="data.EScentz.maxValue"
-            [label]="labelEScentz"
-            [progressCssStyle]="setProgressPartRowTwoStyle()"
-            [emptyCssStyle]="setEmptyPartRowTwoStyle()"> </kendo-progressbar>
-        </div>
-        <div class="bar-wrapper d-flex">
-            <span class="bar-title">Atomiser</span>
-            <kendo-progressbar 
-            [value]="data.Atomiser.value" 
-            [max]="data.Atomiser.maxValue"
-            [label]="labelAtomiser"
-            [progressCssStyle]="setProgressPartRowThreeStyle()"
-            [emptyCssStyle]="setEmptyPartRowThreeStyle()"> </kendo-progressbar>
-        </div>
+    <div class="bar-wrapper d-flex">
+      <span class="bar-title">E-Scentz</span>
+      <kendo-progressbar
+        [value]="data.EScentz.value"
+        [max]="data.EScentz.maxValue"
+        [label]="labelEScentz"
+        [progressCssStyle]="setProgressPartRowTwoStyle()"
+        [emptyCssStyle]="setEmptyPartRowTwoStyle()">
+      </kendo-progressbar>
     </div>
+    <div class="bar-wrapper d-flex">
+      <span class="bar-title">Atomiser</span>
+      <kendo-progressbar
+        [value]="data.Atomiser.value"
+        [max]="data.Atomiser.maxValue"
+        [label]="labelAtomiser"
+        [progressCssStyle]="setProgressPartRowThreeStyle()"
+        [emptyCssStyle]="setEmptyPartRowThreeStyle()">
+      </kendo-progressbar>
+    </div>
+  </div>
 </div>
-

@@ -6,7 +6,7 @@ import { FallbackComponent } from '@core/components/fallback/fallback.component'
 import { RoutePaths } from '@core/constants/routes.constant';
 import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { LayerOneComponent } from '@ci/components/layer-one/layer-one.component';
-import { LayerTwoComponent } from '@mk1/components/layer-two/layer-two.component';
+import { LayerTwoComponent } from '@ci/components/layer-two/layer-two.component';
 
 @Component({
   selector: 'app-mk-layer-resolver',

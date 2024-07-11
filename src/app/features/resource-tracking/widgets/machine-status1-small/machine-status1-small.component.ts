@@ -10,7 +10,7 @@ import { catchError } from 'rxjs';
   styleUrl: './machine-status1-small.component.scss',
 })
 export class MachineStatus1SmallComponent {
-  theme?: Theme;
+  theme: Theme;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
 

@@ -5,24 +5,28 @@ import { ThemeService } from '@core/services/theme-service.service';
 import { catchError } from 'rxjs';
 
 @Component({
-  selector: 'app-fulfilment1-small',
-  templateUrl: './fulfilment1-small.component.html',
-  styleUrl: './fulfilment1-small.component.scss',
+  selector: 'app-others1-small',
+  templateUrl: './others1-small.component.html',
+  styleUrl: './others1-small.component.scss',
 })
-export class Fulfilment1SmallComponent {
-  theme: Theme;
+export class Others1SmallComponent {
+  theme?: Theme;
+  @Input() title: string;
+  @Input() subtitle: string;
+  @Input() tag: string;
+  @Input() api!: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
   constructor(
     private themeService: ThemeService,
     private http: HttpClient
   ) {}
-
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    console.log('managment-Kpis-two', this.api);
+    this.testApi(this.api);
   }
-
   setThemeVariables(): void {
     if (this.theme) {
       document.documentElement.style.setProperty('--ribbon', this.theme.ribbon);
@@ -31,27 +35,6 @@ export class Fulfilment1SmallComponent {
       document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
     }
   }
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() api!: string;
-  public productionCapacity: number = 92;
-  public seriesData = [
-    { month: 'Jan', value: 90 },
-    { month: 'Feb', value: 92 },
-    { month: 'Mar', value: 93 },
-    { month: 'Apr', value: 91 },
-    { month: 'May', value: 92 },
-  ];
-
-  public categories: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
-  public average: number = 92;
-  public greenZoneData = [
-    { month: 'Jan', min: 91, max: 93 },
-    { month: 'Feb', min: 91, max: 93 },
-    { month: 'Mar', min: 91, max: 93 },
-    { month: 'Apr', min: 91, max: 93 },
-    { month: 'May', min: 91, max: 93 },
-  ];
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL

@@ -35,6 +35,7 @@ export class MultiSiteComponent {
 
   loadLayout() {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('fulfillment');
+    const title = 'FULFILLMENT';
     const widget_apis = environment.FULFILLMENT as Apis;
     console.log('widget_apis', widget_apis);
 
@@ -53,6 +54,7 @@ export class MultiSiteComponent {
         componentRefLayOne.instance.widgets = widgets;
         componentRefLayOne.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayOne.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayOne.instance.title = title ? title : '';
         componentRefLayOne.instance.apis = widget_apis;
 
         break;
@@ -63,6 +65,7 @@ export class MultiSiteComponent {
         componentRefLayTwo.instance.widgets = widgets;
         componentRefLayTwo.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayTwo.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayTwo.instance.title = title ? title : '';
         componentRefLayTwo.instance.apis = widget_apis;
         break;
 
@@ -73,6 +76,7 @@ export class MultiSiteComponent {
         componentRefLayThree.instance.widgets = widgets;
         componentRefLayThree.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayThree.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayThree.instance.title = title ? title : '';
         componentRefLayThree.instance.apis = widget_apis;
 
         break;
@@ -83,6 +87,7 @@ export class MultiSiteComponent {
         componentRefLayFour.instance.widgets = widgets;
         componentRefLayFour.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFour.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLayFour.instance.title = title ? title : '';
         componentRefLayFour.instance.apis = widget_apis;
 
         break;
@@ -93,7 +98,7 @@ export class MultiSiteComponent {
         componentRefLayFive.instance.widgets = widgets;
         componentRefLayFive.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFive.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLayFive.instance.apis = widget_apis;
+        componentRefLayFive.instance.title = title ? title : '';
         componentRefLayFive.instance.apis = widget_apis;
         //
         break;
@@ -104,6 +109,7 @@ export class MultiSiteComponent {
         componentRefLaySix.instance.widgets = widgets;
         componentRefLaySix.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLaySix.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
+        componentRefLaySix.instance.title = title ? title : '';
         componentRefLaySix.instance.apis = widget_apis;
         break;
       // handle other cases

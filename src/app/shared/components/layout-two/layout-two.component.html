@@ -3,11 +3,9 @@
   <div>
     <app-navbar header="{{ title }}"></app-navbar>
     <div class="p-5">
-      <div class="lt-2-wrapper gap-4">
+      <div class="lt-2-wrapper gap-5">
         <div class="grid-item grid-item-1">
-          <ng-template #widgetHost *ngIf="widget1">
-            <!-- Directive to load widget1 dynamically -->
-          </ng-template>
+          <ng-template #widgetHost *ngIf="widget1"> </ng-template>
         </div>
         <div class="grid-item grid-item-2">
           <ng-template #widgetHost *ngIf="widget2">

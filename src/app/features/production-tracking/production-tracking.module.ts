@@ -21,6 +21,7 @@ import { MultiSiteComponent } from './multi-site/multi-site.component';
 import { ProductionTracking1LargeComponent } from './widgets/production-tracking1-large/production-tracking1-large.component';
 import { ProductionTracking2LargeComponent } from './widgets/production-tracking2-large/production-tracking2-large.component';
 import { FeatureService } from '@core/services/feature.service';
+import { Others1LargeComponent } from './widgets/others1-large/others1-large.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FeatureService } from '@core/services/feature.service';
     AlertComponent,
     MultiSiteComponent,
     ProductionTracking1LargeComponent,
-    ProductionTracking2LargeComponent
+    ProductionTracking2LargeComponent,
+    Others1LargeComponent,
   ],
   imports: [ProductionTrackingRoutingModule, SharedModule],
   providers: [ProductionTrackingService, FeatureService],

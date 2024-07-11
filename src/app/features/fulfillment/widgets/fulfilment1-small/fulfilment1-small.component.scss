@@ -3,11 +3,11 @@
 @use 'core/styles/grid';
 
 .chart-container {
-  background: #0a233f;
-  padding-top: 3rem;
+  background: var(--secondary);
   border-radius: 5px;
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
+  margin-top: 3rem;
 }
 
 kendo-chart {
@@ -24,15 +24,16 @@ kendo-chart {
   border-radius: variables.$border-radius-1;
   width: 100%;
   box-sizing: border-box;
+  height: 100%;
 
   .card-percentage {
-    width: 150px;
-    padding: 1rem;
-    border-radius: 0.1rem;
+    width: 170px;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 0.5rem;
     color: #7fea8a;
-    background-color: #04162c;
+    background-color: var(--tertiary);
     text-align: right;
-    margin-top: 1rem;
   }
   .card-meta-wrapper {
     justify-content: space-between;

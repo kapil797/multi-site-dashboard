@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DemandProfileService } from '@dp/demand-profile.service';
 
@@ -28,7 +29,7 @@ interface Zone {
   styleUrl: './demand-forecast1-small.component.scss',
 })
 export class DemandForecast1SmallComponent implements OnChanges {
-  theme?: Theme;
+  theme: Theme;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
 

@@ -44,6 +44,9 @@ export class SidebarComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.rotate === 'LEFT') this.sidebar.nativeElement.style.transform = 'rotate(180deg)';
-    if (this.rotate === 'TOP') this.sidebar.nativeElement.style.transform = 'rotate(360deg)';
+    if (this.rotate === 'TOP') {
+      this.sidebar.nativeElement.style.transform = 'rotate(360deg)';
+      this.sidebar.nativeElement.style.writingMode = 'horizontal-tb';
+    }
   }
 }

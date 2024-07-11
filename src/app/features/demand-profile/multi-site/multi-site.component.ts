@@ -35,8 +35,9 @@ export class MultiSiteComponent {
 
   loadLayout() {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('demand-profile');
-    const managementKPI_One_Apis = environment.MANAGEMENT_KPIS_ONE as Apis;
-    console.log('managementKPI_One_Apis', managementKPI_One_Apis);
+    const title = 'DEMAND PROFILE';
+    const widget_apis = environment.DEMAND_PROFILE as Apis;
+    console.log('widget_apis', widget_apis);
 
     if (!layoutConfig) return;
 
@@ -53,7 +54,8 @@ export class MultiSiteComponent {
         componentRefLayOne.instance.widgets = widgets;
         componentRefLayOne.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayOne.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLayOne.instance.apis = managementKPI_One_Apis;
+        componentRefLayOne.instance.title = title ? title : '';
+        componentRefLayOne.instance.apis = widget_apis;
 
         break;
       // handle other cases
@@ -63,7 +65,8 @@ export class MultiSiteComponent {
         componentRefLayTwo.instance.widgets = widgets;
         componentRefLayTwo.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayTwo.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLayTwo.instance.apis = managementKPI_One_Apis;
+        componentRefLayTwo.instance.title = title ? title : '';
+        componentRefLayTwo.instance.apis = widget_apis;
         break;
 
       case 3:
@@ -73,7 +76,8 @@ export class MultiSiteComponent {
         componentRefLayThree.instance.widgets = widgets;
         componentRefLayThree.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayThree.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLayThree.instance.apis = managementKPI_One_Apis;
+        componentRefLayThree.instance.title = title ? title : '';
+        componentRefLayThree.instance.apis = widget_apis;
 
         break;
       case 4:
@@ -83,7 +87,8 @@ export class MultiSiteComponent {
         componentRefLayFour.instance.widgets = widgets;
         componentRefLayFour.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFour.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLayFour.instance.apis = managementKPI_One_Apis;
+        componentRefLayFour.instance.title = title ? title : '';
+        componentRefLayFour.instance.apis = widget_apis;
 
         break;
       case 5:
@@ -93,8 +98,8 @@ export class MultiSiteComponent {
         componentRefLayFive.instance.widgets = widgets;
         componentRefLayFive.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLayFive.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLayFive.instance.apis = managementKPI_One_Apis;
-        componentRefLayFive.instance.apis = managementKPI_One_Apis;
+        componentRefLayFive.instance.title = title ? title : '';
+        componentRefLayFive.instance.apis = widget_apis;
         //
         break;
       case 6:
@@ -104,7 +109,8 @@ export class MultiSiteComponent {
         componentRefLaySix.instance.widgets = widgets;
         componentRefLaySix.instance.position = sideBarPosition ? sideBarPosition : 'none';
         componentRefLaySix.instance.text = sideBarText ? sideBarText : 'SUPPLY CHAIN';
-        componentRefLaySix.instance.apis = managementKPI_One_Apis;
+        componentRefLaySix.instance.title = title ? title : '';
+        componentRefLaySix.instance.apis = widget_apis;
         break;
       // handle other cases
       default:

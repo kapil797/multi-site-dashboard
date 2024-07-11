@@ -23,15 +23,26 @@ export class SupplierInventory1MediumComponent implements OnInit {
   @Input() subtitle: string;
   @Input() tag: string;
   @Input() api!: string;
+  theme: Theme;
+
+  constructor(private themeService: ThemeService) {}
 
   public defaultFontColor = '#E4E9EF';
 
   public isLoading = true;
 
   public supplierInventoryData: SupplierInventoryData[];
-
+  setThemeVariables(): void {
+    if (this.theme) {
+      document.documentElement.style.setProperty('--ribbon', this.theme.ribbon);
+      document.documentElement.style.setProperty('--primary', this.theme.primary);
+      document.documentElement.style.setProperty('--secondary', this.theme.secondary);
+      document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
+    }
+  }
   ngOnInit(): void {
-
+    this.theme = this.themeService.getTheme();
+    this.setThemeVariables();
     this.supplierInventoryData = [];
 
     this.loadSupplierInventoryDataFromMock();
@@ -46,7 +57,7 @@ export class SupplierInventory1MediumComponent implements OnInit {
 
   public setDefaultHeaderStyle() {
     const style = {
-      'background-color': '#002540',
+      'background-color': this.theme.secondary,
       color: this.defaultFontColor,
       border: '0',
       'border-bottom': '.3rem solid #E4E9EF',
@@ -68,7 +79,7 @@ export class SupplierInventory1MediumComponent implements OnInit {
 
   public setStatusHeaderStyle() {
     const style = {
-      'background-color': '#002540',
+      'background-color': this.theme.secondary,
       color: '#E4E9EF',
       border: '0',
       'border-bottom': '.3rem solid #E4E9EF',

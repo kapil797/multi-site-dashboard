@@ -24,13 +24,14 @@
   border-radius: variables.$border-radius-1;
   width: 100%;
   box-sizing: border-box;
+  height: 100%;
   .card-meta-wrapper {
     justify-content: space-between;
   }
 
   .card-title {
     font-size: variables.$font-size-xl;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     letter-spacing: variables.$letter-spacing-sm;
     font-weight: bold;
   }

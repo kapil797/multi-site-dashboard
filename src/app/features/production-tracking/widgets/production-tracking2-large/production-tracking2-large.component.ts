@@ -18,7 +18,7 @@ interface productionTrackingData {
   styleUrl: './production-tracking2-large.component.scss',
 })
 export class ProductionTracking2LargeComponent implements OnInit {
-  theme?: Theme;
+  theme: Theme;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
 
@@ -57,8 +57,8 @@ export class ProductionTracking2LargeComponent implements OnInit {
   }
 
   public setDefaultHeaderStyle() {
-    let style = {
-      'background-color': '#002540',
+    const style = {
+      'background-color': this.theme.secondary,
       color: this.defaultFontColor,
       border: '0',
       'border-bottom': '.3rem solid #E4E9EF',
@@ -69,7 +69,7 @@ export class ProductionTracking2LargeComponent implements OnInit {
   }
 
   public setDefaultColumnStyle() {
-    let style = {
+    const style = {
       color: this.defaultFontColor,
       'font-size': '1.5rem',
       'text-align': 'left',
@@ -79,8 +79,8 @@ export class ProductionTracking2LargeComponent implements OnInit {
   }
 
   public setStatusHeaderStyle() {
-    let style = {
-      'background-color': '#002540',
+    const style = {
+      'background-color': this.theme.secondary,
       color: this.defaultFontColor,
       border: '0',
       'border-bottom': '.3rem solid #E4E9EF',
@@ -91,7 +91,7 @@ export class ProductionTracking2LargeComponent implements OnInit {
   }
 
   public setStatusColumnStyle() {
-    let style = {
+    const style = {
       'font-size': '1.5rem',
       'text-align': 'right',
     };

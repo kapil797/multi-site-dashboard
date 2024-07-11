@@ -17,14 +17,16 @@ import { UtilTracking1SmallComponent } from '@rt/widgets/util-tracking1-small/ut
 import { CurrentOEE1SmallComponent } from '@rh/widgets/current-oee1-small/current-oee1-small.component';
 import { MonthlyOEE1MediumComponent } from '@rh/widgets/monthly-oee1-medium/monthly-oee1-medium.component';
 import { ResourceEfficiencies1SmallComponent } from '@rh/widgets/resource-efficiencies1-small/resource-efficiencies1-small.component';
-
+import { Others1SmallComponent } from '@mk1/widgets/others1-small/others1-small.component';
+import { Others1MediumComponent } from '@si/widgets/others1-medium/others1-medium.component';
+import { Others1LargeComponent } from '@pt/widgets/others1-large/others1-large.component';
 
 export const widgetComponentsMapping = {
   orderStatus: OrderStatusComponent,
   managementKPI1Small: ManagementKPI1SmallComponent,
   managementKPI2Small: ManagementKPI2SmallComponent,
   managementKPI3Small: ManagementKPI3SmallComponent,
-  fulfilment1Small: Fulfilment1SmallComponent,
+  fulfillment1Small: Fulfilment1SmallComponent,
   productionYield1Small: ProductionYield1SmallComponent,
   inventoryPerformance1Small: InventoryPerformance1SmallComponent,
   supplierInventory1Medium: SupplierInventory1MediumComponent,
@@ -39,4 +41,7 @@ export const widgetComponentsMapping = {
   currentOEE1Small: CurrentOEE1SmallComponent,
   monthlyOEE1Medium: MonthlyOEE1MediumComponent,
   resourceEfficiencies1Small: ResourceEfficiencies1SmallComponent,
+  others1Small: Others1SmallComponent,
+  others1Medium: Others1MediumComponent,
+  others1Large: Others1LargeComponent,
 };

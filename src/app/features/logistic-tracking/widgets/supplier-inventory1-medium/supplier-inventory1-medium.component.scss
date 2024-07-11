@@ -3,7 +3,7 @@
 @use 'core/styles/grid';
 
 .card {
-  background: #002540;
+  background: var(--secondary);
   width: 100%;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -35,5 +35,5 @@
 }
 
 .k-grid {
-  background-color: #002540;
+  background-color: transparent;
 }
