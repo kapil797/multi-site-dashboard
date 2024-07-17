@@ -35,7 +35,7 @@ export class MultiSiteComponent {
 
   loadLayout() {
     const layoutConfig = this.featureService.getLayoutWidgetsByFeature('management-kpis-three');
-    const title = 'MANAGEMENT KPIS THREE';
+    const title = 'MANAGEMENT KPIS';
     const widget_apis = environment.MANAGEMENT_KPIS_THREE as Apis;
     console.log('widget_apis', widget_apis);
 

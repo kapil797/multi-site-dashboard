@@ -7,24 +7,26 @@
   padding-top: 3rem;
   border-radius: 5px;
   width: 40rem;
-  height: 15rem; /* Ensure height is automatic */
+  height: 15rem;
   margin: 0 auto;
-  display: flex; /* Add flex display to center the image */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .global-shopfloo-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%; /* Set width to 100% */
+  height: 100%; /* Set height to 100% to cover the container */
+  object-fit: cover; /* Ensure the image covers the container */
 }
+
 .card {
   background: var(--secondary);
   border-radius: variables.$border-radius-1;
   width: 100%;
   box-sizing: border-box;
   height: 100%;
+
   .card-meta-wrapper {
     justify-content: space-between;
   }
