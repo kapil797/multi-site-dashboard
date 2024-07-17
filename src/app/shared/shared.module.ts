@@ -26,6 +26,7 @@ import { ProgressBarModule } from '@progress/kendo-angular-progressbar';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { GaugesModule } from '@progress/kendo-angular-gauges';
+import { ListViewModule } from '@progress/kendo-angular-listview';
 
 // Providers.
 import { NotificationService } from '@progress/kendo-angular-notification';
@@ -42,12 +43,32 @@ import { DropdownDirective } from '@shared/directives/dropdown/dropdown.directiv
 import { SidebarComponent } from '@shared/components/sidebar/sidebar.component';
 import { UiBlockerComponent } from '@shared/components/ui-blocker/ui-blocker.component';
 import { CircleStatusComponent } from '@shared/components/circle-status/circle-status.component';
+import { LayoutOneComponent } from './components/layout-one/layout-one.component';
+import { LayoutTwoComponent } from './components/layout-two/layout-two.component';
+import { LayoutThreeComponent } from './components/layout-three/layout-three.component';
+import { LayoutFourComponent } from './components/layout-four/layout-four.component';
+import { LayoutFiveComponent } from './components/layout-five/layout-five.component';
+import { LayoutSixComponent } from './components/layout-six/layout-six.component';
+import { FileSaverModule } from 'ngx-filesaver';
 
 @NgModule({
-  declarations: [IconTextButtonComponent, NavbarComponent, SidebarComponent, UiBlockerComponent, CircleStatusComponent],
+  declarations: [
+    IconTextButtonComponent,
+    NavbarComponent,
+    SidebarComponent,
+    UiBlockerComponent,
+    CircleStatusComponent,
+    LayoutOneComponent,
+    LayoutTwoComponent,
+    LayoutThreeComponent,
+    LayoutFourComponent,
+    LayoutFiveComponent,
+    LayoutSixComponent,
+  ],
   imports: [
     // Modules.
     CommonModule,
+    FileSaverModule,
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
@@ -72,6 +93,7 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
     ProgressBarModule,
     ChartsModule,
     GaugesModule,
+    ListViewModule,
 
     // Directives.
     OverlayDirective,
@@ -107,6 +129,7 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
     ProgressBarModule,
     ChartsModule,
     GaugesModule,
+    ListViewModule,
 
     // Directives.
     OverlayDirective,
@@ -120,6 +143,12 @@ import { CircleStatusComponent } from '@shared/components/circle-status/circle-s
     SidebarComponent,
     UiBlockerComponent,
     CircleStatusComponent,
+    LayoutOneComponent,
+    LayoutTwoComponent,
+    LayoutThreeComponent,
+    LayoutFourComponent,
+    LayoutFiveComponent,
+    LayoutSixComponent,
   ],
 })
 export class SharedModule {}

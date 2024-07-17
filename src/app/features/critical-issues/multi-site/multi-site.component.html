@@ -1,0 +1,66 @@
+<app-navbar header="{{ title }}"></app-navbar>
+<div class="container">
+  <div class="sidebar">
+    <div
+      class="sidebar-text"
+      [class.active]="activeButton === 'value-chain'"
+      [ngClass]="{ inactive: activeButton !== 'value-chain' }"
+      (click)="setActive('value-chain')"
+      (keydown)="handleKeyDown($event, 'value-chain')"
+      tabindex="0">
+      VALUE CHAIN
+    </div>
+    <div
+      class="sidebar-text"
+      [class.active]="activeButton === 'enterprise'"
+      [ngClass]="{ inactive: activeButton !== 'enterprise' }"
+      (click)="setActive('enterprise')"
+      (keydown)="handleKeyDown($event, 'enterprise')"
+      tabindex="0">
+      ENTERPRISE
+    </div>
+    <div
+      class="sidebar-text"
+      [class.active]="activeButton === 'shopfloor'"
+      [ngClass]="{ inactive: activeButton !== 'shopfloor' }"
+      (click)="setActive('shopfloor')"
+      (keydown)="handleKeyDown($event, 'shopfloor')"
+      tabindex="0">
+      SHOPFLOOR
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="past-day">
+      <h2 class="section-title">PAST DAY</h2>
+      <div class="issue-card">
+        <div class="issue-icon">
+          <img alt="Img" height="40" src="" width="40" />
+        </div>
+        <div class="issue-details">
+          <div class="issue-title">PRODUCT: EScentz</div>
+          <div class="issue-subtitle">FACTORY: ModelFactory</div>
+        </div>
+        <i class="fas fa-check check-icon"> </i>
+      </div>
+      <div class="issue-card">
+        <div class="issue-icon">
+          <img alt="Img" height="40" src="" width="40" />
+        </div>
+        <div class="issue-details">
+          <div class="issue-title">PRODUCT: EScentz</div>
+          <div class="issue-subtitle">FACTORY: ModelFactory</div>
+        </div>
+        <i class="fas fa-check check-icon"> </i>
+      </div>
+    </div>
+    <div class="past-week">
+      <h2 class="section-title">PAST WEEK</h2>
+      <div class="issue-subtitle">(Issues will rollover here if not solved in the same day it arose)</div>
+    </div>
+    <div class="details-panel">
+      <div class="details-box mb-3">Click on an Issue on the left</div>
+      <div class="details-box">Click on an Issue on the left</div>
+    </div>
+  </div>
+</div>

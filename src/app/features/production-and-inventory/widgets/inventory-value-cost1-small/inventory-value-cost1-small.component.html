@@ -1,0 +1,32 @@
+<div class="card p-3 m-auto">
+
+    <div class="card-meta-wrapper d-flex justify-content-space-between">
+        <span class="card-title">{{title}}</span>
+        <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{tag}}</div>
+    </div>
+    <div class="card-period pb-5">{{subtitle}}</div>
+
+    <div class="performances d-flex">
+        <div class="performance-wrapper d-flex flex-column">
+            <div class="title mb-3 d-flex justify-content-center">Value (S$)</div>
+            <div class="figure mb-3 py-2 d-flex justify-content-center" [style]="{'color': data.valueKPI.color}">{{data.valueKPI.value}}</div>
+            <div class="legends d-flex flex-column">
+                <div class="indicator indicator-good">{{data.valueKPI.good}}</div>
+                <div class="indicator indicator-acceptable">{{data.valueKPI.acceptable}}</div>
+                <div class="indicator indicator-poor">{{data.valueKPI.poor}}</div>
+            </div>
+        </div>
+
+        <div class="performance-wrapper d-flex flex-column">
+            <div class="title mb-3 d-flex justify-content-center">Carrying Cost (S$)</div>
+            <div class="figure mb-3 py-2 d-flex justify-content-center" [style]="{'color': data.costKPI.color}">{{data.costKPI.value}}</div>
+            <div class="legends d-flex flex-column">
+                <div class="indicator indicator-good">{{data.costKPI.good}}</div>
+                <div class="indicator indicator-acceptable">{{data.costKPI.acceptable}}</div>
+                <div class="indicator indicator-poor">{{data.costKPI.poor}}</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

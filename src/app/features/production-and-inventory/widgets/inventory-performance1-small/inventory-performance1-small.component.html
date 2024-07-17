@@ -1,0 +1,45 @@
+<div class="card p-3 m-auto">
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{tag}}</div>
+  </div>
+  <div class="card-period pb-5">{{ subtitle }}</div>
+
+  <div class="performances d-flex">
+    <div class="performance-wrapper d-flex flex-column">
+      <div class="title mb-3 d-flex justify-content-center">Fill Rate</div>
+      <div class="figure mb-3 py-2 d-flex justify-content-center" [style]="{ color: data.filterRate.color }">
+        {{ data.filterRate.value }}
+      </div>
+      <div class="legends d-flex flex-column">
+        <div class="indicator indicator-good">{{ data.filterRate.good }}</div>
+        <div class="indicator indicator-acceptable">{{ data.filterRate.acceptable }}</div>
+        <div class="indicator indicator-poor">{{ data.filterRate.poor }}</div>
+      </div>
+    </div>
+
+    <div class="performance-wrapper d-flex flex-column">
+      <div class="title mb-3 d-flex justify-content-center">Turnover</div>
+      <div class="figure mb-3 py-2 d-flex justify-content-center" [style]="{ color: data.turnover.color }">
+        {{ data.turnover.value }}
+      </div>
+      <div class="legends d-flex flex-column">
+        <div class="indicator indicator-good">{{ data.turnover.good }}</div>
+        <div class="indicator indicator-acceptable">{{ data.turnover.acceptable }}</div>
+        <div class="indicator indicator-poor">{{ data.turnover.poor }}</div>
+      </div>
+    </div>
+
+    <div class="performance-wrapper d-flex flex-column">
+      <div class="title mb-3 d-flex justify-content-center">Stockout</div>
+      <div class="figure mb-3 py-2 d-flex justify-content-center" [style]="{ color: data.stockout.color }">
+        {{ data.stockout.value }}
+      </div>
+      <div class="legends d-flex flex-column">
+        <div class="indicator indicator-good">{{ data.stockout.good }}</div>
+        <div class="indicator indicator-acceptable">{{ data.stockout.acceptable }}</div>
+        <div class="indicator indicator-poor">{{ data.stockout.poor }}</div>
+      </div>
+    </div>
+  </div>
+</div>

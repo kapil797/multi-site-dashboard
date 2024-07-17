@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import moment from 'moment';
 
 export function separateStringByDelimiter(input: string, delimiter: RegExp) {
@@ -75,4 +76,14 @@ export function stringToCamelCase(v: string) {
     }
   }
   return result;
+}
+
+export function generateLayerUrlFragments(router: Router, factory: string, feature?: string) {
+  // Removes query parameters if any.
+  const fragments = router.routerState.snapshot.url.split('/');
+  const lastFragment = fragments[fragments.length - 1].split('?')[0];
+  fragments.splice(0, 2, factory);
+  fragments.splice(fragments.length - 1, 1, lastFragment);
+  if (feature) fragments.splice(1, 1, feature.trim());
+  return fragments;
 }

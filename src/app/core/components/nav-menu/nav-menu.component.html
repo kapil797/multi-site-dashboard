@@ -1,8 +1,14 @@
-<kendo-tilelayout
+<!-- <kendo-tilelayout
   #tileLayout
   class="nav-menu-wrapper p-5"
   [gap]="0"
-  [columns]="columns"
+  [columns]="4"
+  [reorderable]="true"
+  (reorder)="onReorder($event)"> -->
+<!-- <kendo-tilelayout
+  class="nav-menu-wrapper p-5"
+  [gap]="0"
+  [columns]="4"
   [reorderable]="true"
   (reorder)="onReorder($event)">
   <kendo-tilelayout-item
@@ -10,14 +16,15 @@
     *ngFor="let item of navItems; index as idx"
     [row]="item.row"
     [col]="item.col"
-    [order]="idx"
-    (dblclick)="onNavigateToLayer(idx, RoutePaths.LAYER_ONE)">
+    [rowSpan]="item.rowSpan"
+    [colSpan]="item.colSpan"
+    (click)="onNavigateToLayer(idx, RoutePaths.SITE)">
     <kendo-tilelayout-item-header class="tile-item">
       <fa-icon class="tile-item__icon" [icon]="item.icon"></fa-icon>
-      <div draggable="true" class="tile-item__text">{{ item.name }}</div>
+      <div draggable="false" class="tile-item__text">{{ item.name }}</div>
     </kendo-tilelayout-item-header>
-  </kendo-tilelayout-item>
-  <kendo-tilelayout-item
+  </kendo-tilelayout-item> -->
+<!-- <kendo-tilelayout-item
     #dropzone
     class="tile-container"
     [row]="2"
@@ -45,5 +52,30 @@
           aria-hidden="true" />
       </div>
     </kendo-tilelayout-item-body>
+  </kendo-tilelayout-item> -->
+<!-- </kendo-tilelayout> -->
+<kendo-tilelayout
+  class="nav-menu-wrapper p-5"
+  [columns]="columns"
+  [gap]="0"
+  [reorderable]="draggableValue"
+  [resizable]="draggableValue"
+  (reorder)="onReorder($event)"
+  (resize)="onResize($event)">
+  <kendo-tilelayout-item
+    *ngFor="let item of navItems; index as idx"
+    [row]="item.row"
+    [col]="item.col"
+    [colSpan]="item.colSpan"
+    [rowSpan]="item.rowSpan"
+    (click)="onNavigateToLayer(idx, RoutePaths.SITE)"
+    [ngClass]="{
+      'tile-container': item.name !== 'Favourites' && item.name !== 'Critical Issues',
+      'tile-container-favCritical': item.name === 'Favourites' || item.name === 'Critical Issues'
+    }">
+    <kendo-tilelayout-item-header class="tile-item">
+      <fa-icon class="tile-item__icon" [icon]="item.icon"></fa-icon>
+      <div draggable="false" class="tile-item__text">{{ item.name }}</div>
+    </kendo-tilelayout-item-header>
   </kendo-tilelayout-item>
 </kendo-tilelayout>

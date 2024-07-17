@@ -29,10 +29,18 @@
       "@pt/*": ["./src/app/features/production-tracking/*"],
       "@dp/*": ["./src/app/features/demand-profile/*"],
       "@mk/*": ["./src/app/features/management-kpis/*"],
+      "@mk1/*": ["./src/app/features/management-kpis-one/*"],
+      "@mk2/*": ["./src/app/features/management-kpis-two/*"],
+      "@mk3/*": ["./src/app/features/management-kpis-three/*"],
+      "@mk4/*": ["./src/app/features/management-kpis-four/*"],
+      "@ful/*": ["./src/app/features/fulfillment/*"],
+      "@si/*": ["./src/app/features/supplier-information/*"],
       "@lt/*": ["./src/app/features/logistic-tracking/*"],
       "@rt/*": ["./src/app/features/resource-tracking/*"],
       "@rh/*": ["./src/app/features/resource-health/*"],
       "@pi/*": ["./src/app/features/production-and-inventory/*"],
+      "@ci/*": ["./src/app/features/critical-issues/*"],
+      "@fav/*": ["./src/app/features/favorites/*"],
     },
   },
   "angularCompilerOptions": {
@@ -40,5 +48,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
 }

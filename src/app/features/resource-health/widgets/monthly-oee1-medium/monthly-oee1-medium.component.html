@@ -1,0 +1,87 @@
+<div class="card p-3 m-auto">
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{ tag }}</div>
+  </div>
+  <div class="card-period pb-5">{{ subtitle }}</div>
+
+  <div class="d-flex">
+    <div class="chart-wrapper">
+      <kendo-chart>
+        <kendo-chart-area [width]="chartWidth" [height]="chartHeight" background="transparent"> </kendo-chart-area>
+
+        <kendo-chart-category-axis>
+          <kendo-chart-category-axis-item
+            [color]="categoryAxisColor"
+            [line]="{ width: 2 }"
+            [majorGridLines]="{
+              color: '#1C4767',
+              visible: false,
+              width: 0.5
+            }"
+            [categories]="data.categories">
+            <kendo-chart-category-axis-item-labels [font]="categoryAxisFont"></kendo-chart-category-axis-item-labels>
+          </kendo-chart-category-axis-item>
+        </kendo-chart-category-axis>
+        <kendo-chart-axis-defaults
+          [majorGridLines]="{
+            color: '#1C4767',
+            visible: true,
+            width: 0.5
+          }">
+        </kendo-chart-axis-defaults>
+        <kendo-chart-value-axis>
+          <kendo-chart-value-axis-item
+            [min]="0"
+            [max]="100"
+            [majorUnit]="10"
+            [color]="valueAxisColor"
+            [line]="{ width: 0.5 }">
+            <kendo-chart-value-axis-item-labels [font]="valueAxisFont"></kendo-chart-value-axis-item-labels>
+          </kendo-chart-value-axis-item>
+        </kendo-chart-value-axis>
+
+        <kendo-chart-legend
+          [labels]="{ color: '#ffffff', font: '1.2rem proxima nova', margin: 10 }"
+          position="bottom"
+          orientation="horizontal"></kendo-chart-legend>
+        <kendo-chart-series>
+          <kendo-chart-series-item
+            type="column"
+            name="Average Availability"
+            [color]="availabilityBarColor"
+            [data]="data.availability">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item name="Average Performance" [color]="performanceBarColor" [data]="data.performance">
+          </kendo-chart-series-item>
+          <kendo-chart-series-item name="Average Quality" [color]="qualityBarColor" [data]="data.quality">
+          </kendo-chart-series-item>
+
+          <kendo-chart-series-item
+            type="line"
+            name="Average OEE of factories"
+            [markers]="{ visible: false }"
+            [color]="averageOEEColor"
+            [dashType]="dashTypeAverageOEE"
+            [data]="data.averageOEE">
+          </kendo-chart-series-item>
+
+          <kendo-chart-series-item
+            type="line"
+            name="Normalised OEE by machines"
+            [markers]="{ visible: false }"
+            [color]="normalisedOEEColor"
+            [dashType]="dashTypeNormalisedOEE"
+            [data]="data.normalisedOEE">
+          </kendo-chart-series-item>
+        </kendo-chart-series>
+      </kendo-chart>
+    </div>
+    <div class="benchmark-wrapper d-flex flex-column">
+      <div class="benchmark-item item-1">World Class</div>
+      <div class="benchmark-item item-2">Target</div>
+      <div class="benchmark-item item-3">Acceptable</div>
+      <div class="benchmark-item item-4">Low</div>
+    </div>
+  </div>
+</div>

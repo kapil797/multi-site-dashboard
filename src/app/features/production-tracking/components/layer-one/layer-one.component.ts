@@ -1,23 +1,22 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, forkJoin, of, switchMap, takeUntil } from 'rxjs';
+import { Component, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
+import { BehaviorSubject, catchError, exhaustMap, forkJoin, of, switchMap, takeUntil } from 'rxjs';
 import { NotificationService } from '@progress/kendo-angular-notification';
+import { Router } from '@angular/router';
 import moment from 'moment';
 
 import { ColumnSetting, getWidth } from '@core/models/grid.model';
-import { AppService } from '@core/services/app.service';
-import { ProductionTrackingService } from '@pt/production-tracking.service';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { createNotif } from '@core/utils/notification';
+import { AppService } from '@core/services/app.service';
+import { filterStreamsFromWebsocketGateway$ } from '@core/models/websocket.model';
+import { ProductionTrackingService } from '@pt/production-tracking.service';
 import {
-  ExecutionStream,
-  LineItemAggregate,
+  RpsSalesOrder,
   RpsWorkOrder,
-  SalesOrder,
   SalesOrderAggregate,
   StatusAggregate,
   WorkOrderAggregate,
 } from '@pt/production-tracking.model';
-
 /*
   Total maximum number of parallel requests:
   - 6 SalesOrders
@@ -48,12 +47,12 @@ interface CompactedWorkOrder {
   styleUrl: './layer-one.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   private placeholder$ = new BehaviorSubject<boolean>(true);
   private rowCount = 6;
   private chunkLineItems = 3;
-  private executionStreamFromRtd$: Observable<unknown>;
   private salesOrderAggregates: SalesOrderAggregate[];
+  private cacheDiscardedSource: number | undefined;
   public isLoading = true;
   public salesOrderCols: ColumnSetting[] = [
     { title: 'SALES ORDER NO.', field: 'salesOrderNumber', width: 450 },
@@ -70,68 +69,37 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
   public getWidth = getWidth;
 
   constructor(
-    private app: AppService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
     private notif: NotificationService,
     private pt: ProductionTrackingService
   ) {
-    super();
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
-    this.executionStreamFromRtd$ = this.pt.initWebSocketStreams();
+  override ngOnInit(): void {
+    super.ngOnInit();
 
-    // Subscribe to websocket stream.
-    this.executionStreamFromRtd$
-      .pipe(
-        switchMap(msg => {
-          const res = msg as ExecutionStream;
-          if (!this.salesOrderAggregates) return of(null);
-
-          let lineItemAgg: LineItemAggregate | undefined;
-          for (const so of this.salesOrderAggregates) {
-            const temp = so.lineItemAggregates.find(row => {
-              const parentWorkOrderNumber = row.workOrderAggregates[0].workOrderNumber;
-              if (res.WOID.includes(parentWorkOrderNumber)) return true;
-              return false;
-            });
-            if (temp) {
-              lineItemAgg = temp;
-              break;
-            }
-          }
-
-          if (!lineItemAgg) {
-            // Refetch everything in the placeholder$ subscription.
-            this.placeholder$.next(true);
-            return of(null);
-          }
-          return this.pt.aggregateLineItem$(lineItemAgg, lineItemAgg.workOrderAggregates[0].workOrderNumber);
-        }),
-        takeUntil(this.ngUnsubscribe$)
-      )
-      .subscribe({
-        next: res => {
-          if (!res) return;
-          for (const so of this.salesOrderAggregates) {
-            const idx = so.lineItemAggregates.findIndex(row => row.productId === res.productId);
-            if (!idx) continue;
-            so.lineItemAggregates.splice(idx, 1, res);
-            break;
-          }
-          this.displayCompactedSalesOrdersAndWorkOrders(this.salesOrderAggregates);
-        },
-        error: (err: Error) => {
-          this.notif.show(createNotif('error', err.message));
-        },
-      });
+    filterStreamsFromWebsocketGateway$(this.app.wsGateway$, []).subscribe({
+      next: msg => {
+        // For any updates, to refetch.
+        if (msg.data) {
+          console.log(JSON.parse(msg.data));
+        }
+        this.cacheRequestFromWebsocket();
+        this.placeholder$.next(true);
+      },
+    });
 
     this.placeholder$
       .pipe(
-        switchMap(_ => {
+        exhaustMap(_ => {
           // Since this is a bulk request of SalesOrders, to fetch all WorkOrderFamilies
           // in parallel instead of querying by WoId synchronously.
+          // For ExhaustMap, new source observables will be discarded.
           const parallelRequests = {
-            salesOrders: this.pt.fetchSalesOrders$(this.app.factory(), 6),
+            salesOrders: this.pt.fetchSalesOrdersFromRps$(this.app.factory()),
             workOrderFamilies: this.pt.fetchWorkOrderFamilies$(this.app.factory()),
           };
           return forkJoin(parallelRequests);
@@ -151,8 +119,6 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
           this.isLoading = false;
           this.salesOrderData = [];
           this.workOrderData = [];
-
-          res.sort((a, b) => this.compareDate(a.lastUpdated, b.lastUpdated));
           this.displayCompactedSalesOrdersAndWorkOrders(res);
         },
         error: error => {
@@ -162,7 +128,19 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
       });
   }
 
-  private aggregateSalesOrderByLineItemsWithErrorWrapper(row: SalesOrder, workOrderFamilies: RpsWorkOrder[]) {
+  private cacheRequestFromWebsocket() {
+    // ExhaustMap will discard new source observables, and this may result
+    // in latest updates being missed.
+    // To cache them with setTimeout and ensure latest changes are reflected.
+    if (!this.cacheDiscardedSource) {
+      this.cacheDiscardedSource = window.setTimeout(() => {
+        this.placeholder$.next(true);
+        this.cacheDiscardedSource = undefined;
+      }, 30000);
+    }
+  }
+
+  private aggregateSalesOrderByLineItemsWithErrorWrapper(row: RpsSalesOrder, workOrderFamilies: RpsWorkOrder[]) {
     // When a SalesOrder fails to load, to return an incomplete SalesOrderAggregate,
     // instead of throwing an error.
     return this.pt
@@ -185,7 +163,7 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
 
   private addCompactedSalesOrder(so: SalesOrderAggregate) {
     const temp: CompactedSalesOrder = {
-      customerName: so.customerName.toUpperCase(),
+      customerName: so.customerName,
       salesOrderNumber: so.salesOrderNumber,
       isLate: this.isLatePredicate(so),
       lastUpdated: this.formatDisplayedTime(so.lastUpdated),
@@ -225,14 +203,17 @@ export class LayerOneComponent extends CancelSubscription implements OnInit {
     return -1;
   }
 
-  private constructSalesOrderAggregate(salesOrder: SalesOrder) {
+  private constructSalesOrderAggregate(salesOrder: RpsSalesOrder) {
     return {
       ...salesOrder,
-      lastUpdated: salesOrder.createdDate,
+      estimatedCompleteDate: salesOrder.dueDate,
+      lastUpdated: salesOrder.orderDate,
       lineItemAggregates: [],
       releasedQty: 0,
       completedQty: 0,
       progress: 0,
+      totalProcesses: 0,
+      completedProcesses: 0,
     } as SalesOrderAggregate;
   }
 

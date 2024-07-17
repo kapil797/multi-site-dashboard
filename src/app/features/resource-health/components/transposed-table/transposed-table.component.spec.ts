@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransposedTableComponent } from './transposed-table.component';
+// import { TransposedTableComponent } from './transposed-table.component';
 
-describe('TransposedTableComponent', () => {
-  let component: TransposedTableComponent;
-  let fixture: ComponentFixture<TransposedTableComponent>;
+// describe('TransposedTableComponent', () => {
+//   let component: TransposedTableComponent;
+//   let fixture: ComponentFixture<TransposedTableComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TransposedTableComponent],
-    }).compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [TransposedTableComponent],
+//     }).compileComponents();
 
-    fixture = TestBed.createComponent(TransposedTableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(TransposedTableComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

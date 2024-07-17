@@ -32,7 +32,7 @@
       [content]="curProcess?.partsCompleted"></app-custom-card>
     <app-projected-completion
       header="PROCESS COMPLETION"
-      [dueDate]="curProcess?.estimateCompleteTime"
+      [dueDate]="curWorkOrder?.dueTime"
       [completedDate]="curProcess?.processEndTime"></app-projected-completion>
   </div>
 </div>

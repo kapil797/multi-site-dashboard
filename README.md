@@ -2,20 +2,6 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
 
-## Todo
-
-- Websocket for production tracking
-
-## Standards
-
-### Screen display
-
-All components should fit in 100% zoom on Chrome, on 22.9" display.
-
-### Table
-
-- Text is left-aligned, numbers are right-aligned, icons are centered
-
 ## First time setup
 
 1. Run npm install
@@ -28,6 +14,76 @@ npm install
 
 ```sh
 npm run husky install
+```
+
+## Products
+
+### MTO
+
+MTO products are dropped from OrderApp:
+
+- EScentz
+- MfConnect
+- MfConnect+
+
+### MTS
+
+MTS products (INTERNAL) cannot be dropped from OrderApp.
+
+## Standards
+
+### Screen display
+
+All components should fit in 100% zoom on Chrome, on 22.9" display.
+
+### Table
+
+- Text is left-aligned, numbers are right-aligned, icons are centered
+
+## Screen display routing
+
+Configurations for each screen are determined through query parameters.
+
+<table>
+<tr>
+<th>
+Query parameter
+</th>
+<th>
+Value
+</th>
+<th>
+Description
+</th>
+</tr>
+
+<tr>
+<td>
+broadcast
+</td>
+<td>
+true
+</td>
+<td>
+Sends a POST request to operation-websocket-svc and trigger an event to switch screens via websocket
+</td>
+</tr>
+
+<tr>
+<td>
+umf/mf
+</td>
+<td>
+name of component e.g. demand-profile, management-kpis
+</td>
+<td>
+Different screens may render different components
+</td>
+</tr>
+</table>
+
+```
+http://localhost:4200/microfactory/management-kpis/layer-one?broadcast=true
 ```
 
 ## Development server
@@ -53,16 +109,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Architecture
-
-- old MF services? .NET?
-- websocket middleware (express JS)
-- Why this architeture is because of HTTP CORS issue; most backend services are using HTTP, but dashboard is using HTTPS
-- websocket is used to push data from rabbitMQ
-- Get the list of APIs required
-- Work order 2401120002, 2401120002.01, .02?
-
-## PoC
-
-- MF: Wang li

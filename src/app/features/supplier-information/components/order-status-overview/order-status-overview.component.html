@@ -1,0 +1,24 @@
+<div class="col-12 col-md-6 content-wrapper h-100">
+  <h3 class="mb-1 mt-md-0">ORDER STATUS OVERVIEW</h3>
+  <div class="chart">
+    <kendo-chart class="h-100" [seriesColors]="seriesColors">
+      <kendo-chart-area background="{{ BACKGROUND }}"></kendo-chart-area>
+      <kendo-chart-category-axis>
+        <kendo-chart-category-axis-item color="white" [categories]="orderStatusCategory">
+        </kendo-chart-category-axis-item>
+      </kendo-chart-category-axis>
+      <kendo-chart-value-axis>
+        <kendo-chart-value-axis-item [color]="'white'"></kendo-chart-value-axis-item>
+      </kendo-chart-value-axis>
+      <kendo-chart-series>
+        <kendo-chart-series-item
+          *ngFor="let item of orderStatusData"
+          type="column"
+          [gap]="2"
+          [spacing]="0.25"
+          [data]="item">
+        </kendo-chart-series-item>
+      </kendo-chart-series>
+    </kendo-chart>
+  </div>
+</div>

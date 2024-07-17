@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { catchError, of, throwError } from 'rxjs';
 
 import { AppService } from '@core/services/app.service';
-import { ProductionAndInventoryModule } from '@pi/production-and-inventory.module';
 import { InventoryPerformance, ProductionPerformance } from './production-and-inventory.model';
 import { getRandomInt, getRandomNumber } from '@core/utils/formatters';
 
 import productionPerformance from './mock-data/production-performance.json';
 
 @Injectable({
-  providedIn: ProductionAndInventoryModule,
+  providedIn: 'any',
 })
 export class ProductionAndInventoryService {
   constructor(private app: AppService) {}

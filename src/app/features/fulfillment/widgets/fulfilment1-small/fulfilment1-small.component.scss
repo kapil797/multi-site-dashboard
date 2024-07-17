@@ -1,0 +1,59 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+.chart-container {
+  background: var(--secondary);
+  border-radius: 5px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+kendo-chart {
+  height: 170px; /* Adjust height to match the target design */
+}
+
+.label {
+  font-size: 12px;
+  color: #fff;
+}
+
+.card {
+  background: var(--secondary);
+  border-radius: variables.$border-radius-1;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+
+  .card-percentage {
+    width: 170px;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 0.5rem;
+    color: #7fea8a;
+    background-color: var(--tertiary);
+    text-align: right;
+  }
+  .card-meta-wrapper {
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: variables.$font-size-xl;
+    text-transform: uppercase;
+    letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
+  }
+
+  .card-tag {
+    color: #809fb8;
+    background-color: #384455;
+    border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
+    font-size: variables.$font-size-regplus;
+  }
+}

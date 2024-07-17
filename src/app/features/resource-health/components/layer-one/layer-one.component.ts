@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { Subject, switchMap, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 import { AppService } from '@core/services/app.service';
 import { periods } from '@core/constants/period.constant';
-import { CancelSubscription } from '@core/classes/cancel-subscription/cancel-subscription.class';
 import { createNotif } from '@core/utils/notification';
+import { LayerOneRouter } from '@core/classes/layer-one-router/layer-one-router.class';
 import { ResourceHealthService } from '@rh/resource-health.service';
 import { OverallResourceHealth } from '@rh/resource-health.model';
 
@@ -14,21 +15,24 @@ import { OverallResourceHealth } from '@rh/resource-health.model';
   templateUrl: './layer-one.component.html',
   styleUrl: './layer-one.component.scss',
 })
-export class LayerOneComponent extends CancelSubscription implements OnInit {
+export class LayerOneComponent extends LayerOneRouter implements OnInit {
   public isLoading = true;
   public data: OverallResourceHealth[];
-  private sub$ = new Subject();
   public periods = periods;
+  private sub$ = new Subject();
 
   constructor(
-    private app: AppService,
-    public rt: ResourceHealthService,
+    protected override route: Router,
+    protected override zone: NgZone,
+    protected override app: AppService,
+    private rt: ResourceHealthService,
     private notif: NotificationService
   ) {
-    super();
+    super(route, zone, app);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.sub$
       .pipe(
         takeUntil(this.ngUnsubscribe$),

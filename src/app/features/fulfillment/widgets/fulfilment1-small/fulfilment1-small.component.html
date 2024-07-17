@@ -1,0 +1,52 @@
+<div class="card p-3 m-auto">
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">combined</div>
+  </div>
+  <div class="card-period pb-2">{{ subtitle }}</div>
+  <div class="card-percentage">{{ productionCapacity }} %</div>
+  <div class="chart-container">
+    <kendo-chart>
+      <kendo-chart-area [background]="theme.secondary"></kendo-chart-area>
+      <kendo-chart-category-axis>
+        <kendo-chart-category-axis-item
+          [categories]="categories"
+          [line]="{ color: '#ffffff', width: 1 }"
+          [majorGridLines]="{ color: '#ffffff', width: 1, dashType: 'longDash' }"
+          [labels]="{ visible: false }">
+        </kendo-chart-category-axis-item>
+      </kendo-chart-category-axis>
+      <kendo-chart-value-axis>
+        <kendo-chart-value-axis-item
+          [min]="85"
+          [max]="100"
+          [line]="{ color: '#ffffff', width: 1 }"
+          [labels]="{ visible: false }"
+          [majorGridLines]="{ visible: false }"
+          [minorGridLines]="{ visible: false }">
+        </kendo-chart-value-axis-item>
+      </kendo-chart-value-axis>
+      <kendo-chart-series>
+        <kendo-chart-series-item
+          type="rangeArea"
+          [data]="greenZoneData"
+          fromField="min"
+          toField="max"
+          categoryField="month"
+          color="#4caf50"
+          [opacity]="0.3">
+        </kendo-chart-series-item>
+        <kendo-chart-series-item
+          type="line"
+          [data]="seriesData"
+          field="value"
+          categoryField="month"
+          color="#ffffff"
+          [line]="{ color: '#ffffff', width: 1 }"
+          [markers]="{ visible: false }">
+        </kendo-chart-series-item>
+      </kendo-chart-series>
+      <kendo-chart-plot-area [background]="theme.secondary"></kendo-chart-plot-area>
+    </kendo-chart>
+  </div>
+</div>

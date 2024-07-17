@@ -2,12 +2,16 @@
 @use 'core/styles/variables';
 @use 'core/styles/grid';
 
-h3 {
+h2 {
   letter-spacing: variables.$letter-spacing-reg;
 }
 
+.header {
+  font-size: variables.$font-size-lg;
+}
+
 .k-table-md {
-  font-size: variables.$font-size-xs;
+  font-size: variables.$font-size-reg;
 }
 
 .rc-wrapper {
@@ -21,8 +25,5 @@ h3 {
 
 .gauge-container {
   height: 100%;
-}
-
-.gauge-width {
-  width: 10rem;
+  min-width: 12rem;
 }

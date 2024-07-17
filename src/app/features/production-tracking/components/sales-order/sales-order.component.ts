@@ -17,7 +17,7 @@ export class SalesOrderComponent {
 
   constructor() {}
 
-  public onLate() {
-    this.isLate = true;
+  public onAlert(event: boolean) {
+    this.isLate = event;
   }
 }

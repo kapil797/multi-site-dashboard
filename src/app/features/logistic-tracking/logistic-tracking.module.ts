@@ -1,8 +1,35 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LayerOneComponent } from '@lt/components/layer-one/layer-one.component';
+import { LayerTwoComponent } from '@lt/components/layer-two/layer-two.component';
+import { LayerResolverComponent } from '@lt/components/layer-resolver/layer-resolver.component';
+import { TrackingMapComponent } from '@lt/components/tracking-map/tracking-map.component';
+import { LogisticTrackingRoutingModule } from '@lt/logistic-tracking-routing.module';
+import { SharedModule } from '@shared/shared.module';
+import { LogisticTrackingService } from './logistic-tracking-service';
+import { DeliveryProgressComponent } from '@lt/components/delivery-progress/delivery-progress.component';
+import { OrderStatusOverviewComponent } from '@lt/components/order-status-overview/order-status-overview.component';
+import { OrderStatusIndividualComponent } from './components/order-status-individual/order-status-individual.component';
+import { MultiSiteComponent } from './multi-site/multi-site.component';
+import { FeatureService } from '@core/services/feature.service';
+import { OrderStatusComponent } from './widgets/order-status/order-status.component';
+import { Fulfilment1Component } from './widgets/fulfilment1/fulfilment1.component';
+import { SupplierInventory1MediumComponent } from './widgets/supplier-inventory1-medium/supplier-inventory1-medium.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  declarations: [
+    LayerOneComponent,
+    LayerTwoComponent,
+    LayerResolverComponent,
+    TrackingMapComponent,
+    DeliveryProgressComponent,
+    OrderStatusOverviewComponent,
+    OrderStatusIndividualComponent,
+    MultiSiteComponent,
+    OrderStatusComponent,
+    Fulfilment1Component,
+    SupplierInventory1MediumComponent
+  ],
+  imports: [LogisticTrackingRoutingModule, SharedModule],
+  providers: [LogisticTrackingService, FeatureService],
 })
 export class LogisticTrackingModule {}

@@ -1,0 +1,360 @@
+{
+    "dashboard": "Manufacturing",
+    "dimensions": [
+        3,
+        4
+    ],
+    "scale": "MultiSite",
+    "Styles": {
+        "colorTheme": "option2",
+        "font": "Proxima"
+    },
+    "features": [
+        {
+            "id": "MM1",
+            "layoutId": 1,
+            "row": 1,
+            "rowSpan": 1,
+            "col": 3,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MM1_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM1"
+                },
+                {
+                    "id": "MM1_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM1"
+                },
+                {
+                    "id": "MM1_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM1"
+                },
+                {
+                    "id": "MM1_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM1"
+                }
+            ],
+            "sidebar": {
+                "position": "",
+                "text": ""
+            }
+        },
+        {
+            "id": "MM2",
+            "layoutId": 1,
+            "row": 1,
+            "rowSpan": 1,
+            "col": 5,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                },
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                },
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                },
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                }
+            ],
+            "sidebar": {
+                "position": "",
+                "text": ""
+            }
+        },
+        {
+            "id": "MS2",
+            "layoutId": 2,
+            "row": 3,
+            "rowSpan": 1,
+            "col": 7,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MS2_MonthlyOEE",
+                    "name": "monthlyOEE1",
+                    "title": "Monthly OEE",
+                    "subtitle": "PAST 6 MONTHS",
+                    "tag": "Combined",
+                    "featureId": "MS2"
+                },
+                {
+                    "id": "MS2_CurrentOEE",
+                    "name": "currentOEE1",
+                    "title": "Current OEE",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MS2"
+                },
+                {
+                    "id": "MS2_ResourceEfficiencies",
+                    "name": "resourceEfficiencies1",
+                    "title": "Resource Efficiencies",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MS2"
+                }
+            ],
+            "sidebar": {
+                "position": "right",
+                "text": "SHOPFLOOR"
+            }
+        },
+        {
+            "id": "MS1",
+            "layoutId": 1,
+            "row": 3,
+            "rowSpan": 1,
+            "col": 1,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MS1_UtilTracking",
+                    "name": "utilTracking1",
+                    "title": "Utilisation Tracking by Product",
+                    "subtitle": "PAST 24 HOURS",
+                    "tag": "Factory A",
+                    "featureId": "MS1"
+                },
+                {
+                    "id": "MS1_MachineStatus",
+                    "name": "machineStatus1",
+                    "title": "Machine A",
+                    "subtitle": "PAST 24 HOURS",
+                    "tag": "Factory A",
+                    "featureId": "MS1"
+                },
+                {
+                    "id": "MS1_UtilTracking",
+                    "name": "utilTracking1",
+                    "title": "Utilisation Tracking by Product",
+                    "subtitle": "PAST 24 HOURS",
+                    "tag": "Factory A",
+                    "featureId": "MS1"
+                },
+                {
+                    "id": "MS1_GlobalShopfloorStatus",
+                    "name": "globalShopfloorStatus1",
+                    "title": "Global Shopfloor Status",
+                    "subtitle": "NOW",
+                    "tag": "Combined",
+                    "featureId": "MS1"
+                }
+            ],
+            "sidebar": {
+                "position": "left",
+                "text": "SHOPFLOOR"
+            }
+        },
+        {
+            "id": "MV1",
+            "layoutId": 4,
+            "row": 1,
+            "rowSpan": 1,
+            "col": 1,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MV1_SupplierInventory",
+                    "name": "supplierInventory1",
+                    "title": "Overall Supplier Inventory",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MV1"
+                },
+                {
+                    "id": "MV1_SupplierInventory",
+                    "name": "supplierInventory1",
+                    "title": "Overall Supplier Inventory",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MV1"
+                }
+            ],
+            "sidebar": {
+                "position": "left",
+                "text": "VALUE CHAIN"
+            }
+        },
+        {
+            "id": "MV2",
+            "layoutId": 1,
+            "row": 1,
+            "rowSpan": 1,
+            "col": 7,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MV2_DemandForecast",
+                    "name": "demandForecast1",
+                    "title": "Demand for Product A",
+                    "subtitle": "MONTHLY",
+                    "tag": "Factory A",
+                    "featureId": "MV2"
+                },
+                {
+                    "id": "MV2_Fulfillment",
+                    "name": "fulfillment1",
+                    "title": "Fulfillment Performance",
+                    "subtitle": "MONTHLY",
+                    "tag": "Combined",
+                    "featureId": "MV2"
+                },
+                {
+                    "id": "MV2_DemandForecast",
+                    "name": "demandForecast1",
+                    "title": "Demand for Product A",
+                    "subtitle": "MONTHLY",
+                    "tag": "Factory A",
+                    "featureId": "MV2"
+                },
+                {
+                    "id": "MV2_Fulfillment",
+                    "name": "fulfillment1",
+                    "title": "Fulfillment Performance",
+                    "subtitle": "MONTHLY",
+                    "tag": "Combined",
+                    "featureId": "MV2"
+                }
+            ],
+            "sidebar": {
+                "position": "right",
+                "text": "VALUE CHAIN"
+            }
+        },
+        {
+            "id": "ME1",
+            "layoutId": 6,
+            "row": 2,
+            "rowSpan": 1,
+            "col": 1,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "ME1_ProductionTracking",
+                    "name": "productionTracking1",
+                    "title": "Production Tracking by All Sales Order",
+                    "subtitle": "LATEST SALESORDERS",
+                    "tag": "Combined",
+                    "featureId": "ME1"
+                }
+            ],
+            "sidebar": {
+                "position": "left",
+                "text": "ENTERPRISE"
+            }
+        },
+        {
+            "id": "ME2",
+            "layoutId": 1,
+            "row": 2,
+            "rowSpan": 1,
+            "col": 7,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "ME2_ProductionYield",
+                    "name": "productionYield1",
+                    "title": "Overall Production Yield",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "ME2"
+                },
+                {
+                    "id": "ME2_ProductionCapacity",
+                    "name": "productionCapacity1",
+                    "title": "Production Capacity",
+                    "subtitle": "CURRENT VS AV PAST 6 MONTHS",
+                    "tag": "Combined",
+                    "featureId": "ME2"
+                },
+                {
+                    "id": "ME2_InventoryPerformance",
+                    "name": "inventoryPerformance1",
+                    "title": "Inventory Performance",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "ME2"
+                },
+                {
+                    "id": "ME2_InventoryValueCost",
+                    "name": "inventoryValueCost1",
+                    "title": "Inventory Value & Cost",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "ME2"
+                }
+            ],
+            "sidebar": {
+                "position": "right",
+                "text": "ENTERPRISE"
+            }
+        },
+        {
+            "id": "MD1",
+            "layoutId": 0,
+            "row": 2,
+            "rowSpan": 2,
+            "col": 3,
+            "colSpan": 2,
+            "widgets": null,
+            "sidebar": {
+                "position": "",
+                "text": ""
+            }
+        },
+        {
+            "id": "MD2",
+            "layoutId": 0,
+            "row": 2,
+            "rowSpan": 2,
+            "col": 5,
+            "colSpan": 2,
+            "widgets": null,
+            "sidebar": {
+                "position": "",
+                "text": ""
+            }
+        }
+    ]
+}

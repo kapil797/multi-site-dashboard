@@ -19,7 +19,6 @@ h3 {
 .pi-2-wrapper {
   @include base.container;;
   grid-template-rows: repeat(2, 1fr);
-  padding-top: unset;
 }
 
 .inventory-container {

@@ -1,0 +1,17 @@
+node_modules
+dist
+.dockerignore
+.gitignore
+.git
+.angular
+.vscode
+.husky
+Deployment
+npm-debug.log
+.editorconfig
+.eslintrc.json
+.lintstagedrc
+.prettierignore
+.prettierrc
+README.md
+

@@ -24,6 +24,7 @@ interface CSSStyle {
   width?: string;
   height?: string;
   padding?: string;
+  letterSpacing?: string;
 }
 
 type Layer = 'LAYER1' | 'LAYER2';
@@ -88,13 +89,13 @@ export class InventoryPerformanceComponent implements OnInit, OnChanges {
   private inlineStylesByLayer() {
     if (this.layer === 'LAYER1') {
       this.inlineStyles = {
-        textHeader: { fontSize: '2rem', padding: '1rem' },
+        textHeader: { fontSize: '2rem', padding: '1rem', letterSpacing: '0.1rem' },
         textNumber: { fontSize: '2.5rem', padding: '1rem' },
         gauge: { width: '265px', height: '200px' },
       };
     } else {
       this.inlineStyles = {
-        textHeader: { fontSize: '1.25rem', padding: '0.5rem' },
+        textHeader: { fontSize: '1.25rem', padding: '0.5rem', letterSpacing: '0.1rem' },
         textNumber: { fontSize: '1.5rem', padding: '0.5rem' },
         gauge: { width: '200px', height: '100px' },
       };

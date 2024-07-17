@@ -1,0 +1,48 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+@use 'core/styles/grid';
+
+.chart-container {
+  background: #002540;
+  padding-top: 3rem;
+  border-radius: 5px;
+  width: 40rem;
+  height: 15rem; /* Ensure height is automatic */
+  margin: 0 auto;
+  display: flex; /* Add flex display to center the image */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.global-shopfloo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.card {
+  background: #002540;
+  border-radius: variables.$border-radius-1;
+  height: 22rem;
+  width: 46rem;
+  .card-meta-wrapper {
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: variables.$font-size-xl;
+    text-transform: uppercase;
+    letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
+  }
+
+  .card-tag {
+    color: #809fb8;
+    background-color: #384455;
+    border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
+    font-size: variables.$font-size-regplus;
+  }
+}

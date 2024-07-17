@@ -1,0 +1,30 @@
+<div class="lt-1-scaffold" [class]="getPositionClass()">
+  <app-sidebar header="{{ text }}" [rotate]="getPositionText()"></app-sidebar>
+  <div>
+    <app-navbar header="{{ title }}"></app-navbar>
+    <div class="p-5">
+      <div class="lt-2-wrapper gap-5">
+        <div class="grid-item">
+          <ng-template #widgetHost *ngIf="widget1">
+            <!-- Directive to load widget1 dynamically -->
+          </ng-template>
+        </div>
+        <div class="grid-item">
+          <ng-template #widgetHost *ngIf="widget2">
+            <!-- Directive to load widget2 dynamically -->
+          </ng-template>
+        </div>
+        <div class="grid-item">
+          <ng-template #widgetHost *ngIf="widget3">
+            <!-- Directive to load widget3 dynamically -->
+          </ng-template>
+        </div>
+        <div class="grid-item">
+          <ng-template #widgetHost *ngIf="widget4">
+            <!-- Directive to load widget4 dynamically -->
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

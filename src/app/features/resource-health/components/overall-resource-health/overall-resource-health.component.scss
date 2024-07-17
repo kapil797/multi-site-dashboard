@@ -14,12 +14,23 @@ h1 {
   font-size: variables.$font-size-xxl;
 }
 
+.k-grid .k-table-td {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
 .orh-wrapper {
   background-color: variables.$bg-2;
   box-sizing: border-box;
 }
 
-.text {
+.header {
   font-size: variables.$font-size-xxxl;
+  letter-spacing: variables.$letter-spacing-reg;
+  font-weight: bold;
+}
+
+.text {
+  font-size: variables.$font-size-5xl;
   font-weight: bold;
 }

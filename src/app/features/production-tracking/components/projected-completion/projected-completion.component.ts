@@ -9,9 +9,9 @@ import moment from 'moment';
 })
 export class ProjectedCompletionComponent implements OnChanges {
   @Input() header: string;
-  @Input() dueDate?: string;
+  @Input() dueDate?: string | null;
   @Input() completedDate?: string | null;
-  @Output() late = new EventEmitter();
+  @Output() alert = new EventEmitter();
   public icon = faClock;
   public displayedDate: string;
   public isLate = false;
@@ -40,11 +40,11 @@ export class ProjectedCompletionComponent implements OnChanges {
     if (timeDiff > 0) {
       this.timeDetails = 'ON TIME';
       this.isLate = false;
-      return;
+    } else {
+      this.isLate = true;
+      this.timeDetails = `LATE BY ${this.getTimeBreakdown(timeDiff * -1)}`;
     }
-    this.isLate = true;
-    this.timeDetails = `LATE BY ${this.getTimeBreakdown(timeDiff * -1)}`;
-    this.late.emit();
+    this.alert.emit(this.isLate);
   }
 
   private calcTimeDiff() {

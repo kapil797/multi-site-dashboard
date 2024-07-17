@@ -1,0 +1,15 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.alert-wrapper {
+  color: variables.$white;
+}
+
+.text-wrapper {
+  font-size: variables.$font-size-lg;
+}
+
+.icon {
+  font-size: variables.$font-size-5xl;
+  color: variables.$error;
+}

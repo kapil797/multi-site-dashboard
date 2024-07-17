@@ -72,6 +72,7 @@ export class ProcessTrackingComponent implements OnChanges {
       for (let j = 0; j < rows; j++) {
         const sentinel: Hexagon = {
           id: -1,
+          processCode: '',
           row: j,
           col: i,
           text: '',
@@ -92,6 +93,8 @@ export class ProcessTrackingComponent implements OnChanges {
       hexagon.id = item.id;
       hexagon.text = item.text;
       hexagon.statusId = item.statusId;
+      hexagon.processCode = item.processCode;
+      hexagon.processId = item.processId;
 
       // Check if need to draw connecting lines.
       if (item.toId) {
@@ -139,12 +142,14 @@ export class ProcessTrackingComponent implements OnChanges {
 
     for (const col of this.gridItems) {
       for (const row of col) {
-        if (!item) {
+        if (!item && row.processId) {
           item = row;
         } else if (row.statusId === 3) {
+          // In progress.
           item = row;
           break;
         } else if (row.statusId === 4) {
+          // Completed.
           item = row;
         }
       }
@@ -154,19 +159,20 @@ export class ProcessTrackingComponent implements OnChanges {
     if (!el) return;
     el.classList.add('selected');
     this.current = el;
-    this.toggle.emit(item.id);
+    this.toggle.emit(item.processId);
   }
 
   public onToggleProcess(event: HTMLDivElement, item: Hexagon) {
     if (this.current) this.current.classList.remove('selected');
     event.classList.add('selected');
     this.current = event;
-    this.toggle.emit(item.id);
+    this.toggle.emit(item.processId || 10000);
   }
 
   public getHexStatusClass(statusId?: number) {
+    if (statusId === undefined) return 'disabled';
     switch (statusId) {
-      case 3:
+      case 8:
         return 'ongoing';
       case 4:
         return 'completed';

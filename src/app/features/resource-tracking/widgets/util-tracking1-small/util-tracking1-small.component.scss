@@ -1,0 +1,82 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.card {
+  background: var(--secondary);
+  border-radius: variables.$border-radius-1;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+
+  .card-meta-wrapper {
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: variables.$font-size-xl;
+    letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
+  }
+
+  .card-tag {
+    color: #809fb8;
+    background-color: #384455;
+    border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
+    font-size: variables.$font-size-regplus;
+    text-transform: uppercase;
+  }
+}
+
+.lists-wrapper {
+  justify-content: space-around;
+}
+
+.title {
+  font-size: 1rem;
+  color: #809fb8;
+}
+
+.title > span {
+  background: #0b1524;
+  padding: 0.4rem 1rem;
+  border: 0.4rem #384455 solid;
+  border-radius: 2rem;
+}
+
+.title > span > img {
+  transform: translateY(0.2rem);
+  padding-right: 0.5rem;
+  max-width: 1.2rem;
+}
+
+.k-listview {
+  color: #ffffff;
+  background: #002540;
+}
+
+.has-right-border {
+  border-right: 0.3rem #ddefef solid;
+}
+
+.item-wrapper {
+  width: 15rem;
+  justify-content: space-between;
+
+  .item-title {
+    font-size: 1rem;
+  }
+  .item-subtitle {
+    font-size: 0.8rem;
+  }
+  .item-figure {
+    font-size: 1.3rem;
+    background: #1e3552;
+    padding: 0.2rem 0.8rem;
+    height: 2rem;
+    line-height: 2rem;
+  }
+}

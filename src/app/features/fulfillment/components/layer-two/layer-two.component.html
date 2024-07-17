@@ -1,0 +1,17 @@
+<app-ui-blocker *ngIf="isLoading"></app-ui-blocker>
+<div class="dp-2-scaffold">
+  <app-navbar
+    header="Supply Chain - Demand Profile"
+    [dropdownOne]="products"
+    dropdownOneLabel="PRODUCT"
+    (toggleDropdownOne)="onToggleProduct($event)"
+    [dropdownTwo]="algos"
+    dropdownTwoLabel="ALGO"
+    (toggleDropdownTwo)="onToggleAlgo($event)"
+    [dropdownThree]="forecastingHorizon"
+    dropdownThreeLabel="HORIZON"
+    (toggleDropdownThree)="onToggleHorizon($event)"></app-navbar>
+  <div class="dp-2-wrapper">
+    <app-profile-chart [title]="title" [data]="demandProfile"></app-profile-chart>
+  </div>
+</div>

@@ -9,9 +9,17 @@ import { LayerTwoComponent } from '@dp/components/layer-two/layer-two.component'
 import { LayerResolverComponent } from '@dp/components/layer-resolver/layer-resolver.component';
 import { ProfileChartComponent } from '@dp/components/profile-chart/profile-chart.component';
 import { AlertComponent } from '@dp/components/alert/alert.component';
+import { MultiSiteComponent } from './multi-site/multi-site.component';
 
 @NgModule({
-  declarations: [LayerOneComponent, LayerTwoComponent, LayerResolverComponent, ProfileChartComponent, AlertComponent],
+  declarations: [
+    LayerOneComponent,
+    LayerTwoComponent,
+    LayerResolverComponent,
+    ProfileChartComponent,
+    AlertComponent,
+    MultiSiteComponent,
+  ],
   imports: [SharedModule, DemandProfileRoutingModule],
   providers: [DemandProfileService],
 })

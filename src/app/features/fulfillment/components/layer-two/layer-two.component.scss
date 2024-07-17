@@ -1,0 +1,11 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+
+.dp-2-scaffold {
+  @include base.layer-two-scaffold;
+}
+
+.dp-2-wrapper {
+  @include base.container;;
+}

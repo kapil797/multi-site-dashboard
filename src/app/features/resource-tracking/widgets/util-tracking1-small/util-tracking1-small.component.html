@@ -1,0 +1,77 @@
+<div class="card p-3 m-auto">
+    <div class="card-meta-wrapper d-flex justify-content-space-between">
+      <span class="card-title">{{ title }}</span>
+      <div class="card-tag d-flex px-4 py-2 flex-column justify-content-center">{{ tag }}</div>
+    </div>
+    <div class="card-period">{{ subtitle }}</div>
+  
+    <div class="lists-wrapper d-flex pt-3">
+        <div class="list-wrapper pe-3 has-right-border">
+            <div class="title py-3 ps-2">
+                <span>
+                    <img [src]="'assets/images/widgets/utilTracking1/indicator-eScentz.png'"/>
+                    E-Scentz</span>
+            </div>
+            <kendo-listview
+            [data]="data.eScentz"
+            [style]="{'height': viewListHeight}">
+                <ng-template
+                    kendoListViewItemTemplate
+                    let-dataItem="dataItem">
+                    <div class="item-wrapper d-flex p-2">
+                        <div class="titles">
+                            <div class="item-title">{{dataItem.title}}</div>
+                            <div class="item-subtitle">{{dataItem.subtitle}}</div>
+                        </div>
+                        <div [style]= "{'color': dataItem.color}" class="item-figure">{{dataItem.value}}</div>
+                    </div>      
+                </ng-template>
+            </kendo-listview>
+        </div>
+
+        <div class="list-wrapper pe-3 has-right-border">
+            <div class="title py-3 ps-2"><span>
+                                        <img [src]="'assets/images/widgets/utilTracking1/indicator-mfconnect-plus.png'"/>
+                                        MFConnect+</span></div>
+            <kendo-listview
+            [data]="data.mfConnectPlus"
+            [style]="{'height': viewListHeight}">
+                <ng-template
+                    kendoListViewItemTemplate
+                    let-dataItem="dataItem">
+                    <div class="item-wrapper d-flex p-2">
+                        <div class="titles">
+                            <div class="item-title">{{dataItem.title}}</div>
+                            <div class="item-subtitle">{{dataItem.subtitle}}</div>
+                        </div>
+                        <div [style]= "{'color': dataItem.color}" class="item-figure">{{dataItem.value}}</div>
+                    </div>      
+                </ng-template>
+            </kendo-listview>
+        </div>
+
+        <div class="list-wrapper">
+            <div class="title py-3 ps-2"><span>
+                                         <img [src]="'assets/images/widgets/utilTracking1/indicator-atomiser-mts.png'"/>
+                                         Atomiser MTS</span></div>
+            <kendo-listview
+                [data]="data.atomiserMTS"
+                [style]="{'height': viewListHeight}">
+                    <ng-template
+                        kendoListViewItemTemplate
+                        let-dataItem="dataItem">
+                        <div class="item-wrapper d-flex p-2">
+                            <div class="titles">
+                                <div class="item-title">{{dataItem.title}}</div>
+                                <div class="item-subtitle">{{dataItem.subtitle}}</div>
+                            </div>
+                            <div [style]= "{'color': dataItem.color}" class="item-figure">{{dataItem.value}}</div>
+                        </div>      
+                    </ng-template>
+            </kendo-listview>
+        </div>
+        
+    </div>
+
+  </div>
+  

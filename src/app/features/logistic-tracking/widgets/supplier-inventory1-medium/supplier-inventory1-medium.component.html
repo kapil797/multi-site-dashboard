@@ -1,0 +1,35 @@
+<div class="card p-3 m-auto">
+  <div class="card-meta-wrapper d-flex justify-content-space-between">
+    <span class="card-title">{{ title }}</span>
+    <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">{{ tag }}</div>
+  </div>
+  <div class="card-period pb-5">{{ subtitle }}</div>
+
+  <div class="pt-1-wrapper d-grid gap-5">
+    <kendo-grid scrollable="none" [kendoGridBinding]="supplierInventoryData" class="h-100">
+      <kendo-grid-column title="COMPANY" [headerStyle]="setDefaultHeaderStyle()" [style]="setDefaultColumnStyle()">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div [style.color]="dataItem.company.color !== null ? dataItem.company.color : defaultFontColor">
+            {{ dataItem.company.value }}
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="TURNOVER" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div [style.color]="dataItem.turnover.color">{{ dataItem.turnover.value }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="FILL RATE" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div [style.color]="dataItem.fillRate.color">{{ dataItem.fillRate.value }}</div>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column title="STOCKOUT" [headerStyle]="setStatusHeaderStyle()" [style]="setStatusColumnStyle()">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div [style.color]="dataItem.stockout.color">{{ dataItem.stockout.value }}</div>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </div>
+</div>

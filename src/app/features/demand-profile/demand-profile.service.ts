@@ -4,7 +4,6 @@ import { catchError, of, throwError } from 'rxjs';
 import { AppService } from '@core/services/app.service';
 import { getRandomInt } from '@core/utils/formatters';
 import { DemandProfile, DemandSeries, Product } from '@dp/demand-profile.model';
-import { DemandProfileModule } from '@dp/demand-profile.module';
 
 interface Zone {
   value: number;
@@ -12,7 +11,7 @@ interface Zone {
 }
 
 @Injectable({
-  providedIn: DemandProfileModule,
+  providedIn: 'any',
 })
 export class DemandProfileService {
   constructor(private app: AppService) {}
@@ -36,11 +35,11 @@ export class DemandProfileService {
       range = 200;
       zones = [
         {
-          value: 0.1,
+          value: 0.3,
           direction: 'UP',
         },
         {
-          value: 0.5,
+          value: 0.2,
           direction: 'DOWN',
         },
         {

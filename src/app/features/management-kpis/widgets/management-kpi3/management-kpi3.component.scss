@@ -1,0 +1,129 @@
+@use 'core/styles/base';
+@use 'core/styles/variables';
+
+.card {
+  background: #002540;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  width: 100%;
+  box-sizing: border-box;
+
+  .card-meta-wrapper {
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: variables.$font-size-xl;
+    letter-spacing: variables.$letter-spacing-sm;
+    font-weight: bold;
+  }
+
+  .card-tag {
+    color: #809fb8;
+    background-color: #384455;
+    border-radius: 2rem;
+    font-size: variables.$font-size-regplus;
+  }
+
+  .card-period {
+    font-size: variables.$font-size-regplus;
+    text-transform: uppercase;
+  }
+
+  .projection-details {
+    flex-grow: 1;
+  }
+
+  .projection {
+    flex-grow: 1;
+    .title {
+      font-size: 2rem;
+    }
+    .figure {
+      font-weight: bolder;
+      font-size: 5rem;
+    }
+  }
+
+  .projection-wrapper {
+    background: #475e72;
+    justify-content: space-around;
+  }
+
+  .right-wrapper {
+    flex-grow: 1;
+  }
+
+  .target-wrapper {
+    flex-grow: 1;
+  }
+
+  .target {
+    .title {
+      font-size: 1.5rem;
+    }
+    .target-figure {
+      background: #1e3552;
+      font-weight: bolder;
+      font-size: 3rem;
+    }
+  }
+
+  .current-title {
+    font-size: 1.5rem;
+  }
+
+  .current-figure {
+    background: #1e3552;
+    font-size: 3rem;
+    font-weight: bolder;
+    margin-bottom: 3rem;
+  }
+
+  .projection-figure {
+    background: #1e3552;
+  }
+  .projection-figure-wrapper {
+    justify-content: space-between;
+  }
+  .projection-chart {
+    //padding: 0.75rem;
+    //background: #1AD59833;
+    border-radius: 0.5rem;
+    font-size: 3rem;
+    font-weight: lighter;
+
+    &.Green {
+      background: variables.$success;
+    }
+    &.Red {
+      background: variables.$error-alt;
+    }
+    &.Yellow {
+      background: variables.$warning;
+    }
+  }
+
+  .Green {
+    color: variables.$success;
+  }
+  .Yellow {
+    color: variables.$warning;
+  }
+  .Red {
+    color: variables.$error-alt;
+  }
+}
+
+.thumb-size {
+  width: 4rem;
+}
+.img-size {
+  width: 100%;
+  height: 50%;
+  max-width: 4rem;
+  max-height: 4rem;
+  padding-top: 0.5rem;
+  padding-right: 2rem;
+}
