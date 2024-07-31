@@ -25,7 +25,7 @@ pipeline {
         BITBUCKET_PROJECT_SA_CREDENTIALS_ID = "jenkins-sa"
         HARBOR_CREDENTIALS_ID = "harbor-dis-devops"
         NEXUS_CREDENTIALS_ID = "eyujy"
-        SONAR_LOGIN_HASH = "sqp_670bdbe82b67746f151e2bbd5acac1d7cfec9787"
+        SONAR_LOGIN_HASH = "sqp_1d26db0970e0bb286e3978d47b0b990239ced805"
 
         // Secret files to be injected by Jenkins when deploying to k8s.
         // Comment out if not required, else it will run the creating secrets stage.
