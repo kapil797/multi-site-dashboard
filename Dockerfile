@@ -1,5 +1,5 @@
-ARG WORKINGPATH=/dashboard
-ARG ENTRYPATH=/dashboard
+ARG WORKINGPATH=/dashboard/multi
+ARG ENTRYPATH=/dashboard/multi
 ARG PORT=80
 ARG CONFIG=development
 ARG BASEHREF=/dashboard/multi
@@ -40,6 +40,6 @@ ARG PORT
 WORKDIR ${ENTRYPATH}
 
 COPY nginx/default.conf /etc/nginx/conf.d/
-COPY --from=build ${ENTRYPATH}/dist/dashboard/browser /usr/share/nginx/html/dashboard
+COPY --from=build ${ENTRYPATH}/dist/dashboard/multi/browser /usr/share/nginx/html/dashboard/multi
 EXPOSE ${PORT}
 CMD ["nginx", "-g", "daemon off;"]
