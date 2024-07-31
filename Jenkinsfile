@@ -32,11 +32,11 @@ pipeline {
         // SECRET_FILE_ENV_PREFIX = "$SERVICE_NAME-secret-env"
 
         // For Angular.
-        BASEHREF = "/dashboard/"
+        BASEHREF = "/dashboard/multi"
 
         // DAST ZAP.
         // for backend api, give path to .json file eg http://dev.mf.platform/<SERVICE_NAME>/swagger/v1/swagger.json
-        ZAP_TARGET_URL = "http://dev.mf.platform/dashboard" 
+        ZAP_TARGET_URL = "http://dev.mf.platform/dashboard/multi" 
     }
     stages {
         stage('Continuous Integration') {
