@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 import { OnInit } from '@angular/core';
-
-import supplierInventoryJson from '../../../../../assets/mock-data/supplier-inventory.json';
 import { ThemeService } from '@core/services/theme-service.service';
 import { Theme } from '@core/constants/theme.constant';
+import { HttpClient } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
 
 interface SupplierInventoryData {
   company: object;
@@ -24,8 +24,13 @@ export class SupplierInventory1MediumComponent implements OnInit {
   @Input() tag: string;
   @Input() api!: string;
   theme: Theme;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  item: any;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    private http: HttpClient
+  ) {}
 
   public defaultFontColor = '#E4E9EF';
 
@@ -44,15 +49,8 @@ export class SupplierInventory1MediumComponent implements OnInit {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
     this.supplierInventoryData = [];
-
-    this.loadSupplierInventoryDataFromMock();
-  }
-
-  private loadSupplierInventoryDataFromMock() {
-    this.supplierInventoryData = supplierInventoryJson;
-
-    // console.log(this.supplierInventoryData);
-    // console.log(supplierInventoryJson);
+    console.log('hello', this.api);
+    this.testApi(this.api);
   }
 
   public setDefaultHeaderStyle() {
@@ -96,5 +94,36 @@ export class SupplierInventory1MediumComponent implements OnInit {
     };
 
     return style;
+  }
+  testApi(apiUrl: string): void {
+    const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
+
+    this.http
+      .get(apiUrl)
+      .pipe(
+        catchError(error => {
+          console.error('API call failed, switching to mock data', error);
+          return this.http.get(mockDataUrl).pipe(
+            catchError(mockError => {
+              console.error('Mock data load failed', mockError);
+              return of(null); // Return null observable if both API and mock data fail
+            })
+          );
+        })
+      )
+      .subscribe(response => {
+        if (response) {
+          console.log('API response:', response);
+          this.handleApiResponse(response);
+        } else {
+          console.warn('No response from API or mock data');
+        }
+      });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleApiResponse(response: any): void {
+    console.log('Processed response data:', response);
+    this.item = response;
   }
 }

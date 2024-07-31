@@ -1,0 +1,11 @@
+{
+    "Value": 1.97,
+    "Value_Unit":"$/$",
+    "Projection": 95.02,
+    "Projection_Unit": "K",
+    "ProjectionHealth": "Green",
+    "Target": 99.91,
+    "Target_Unit": "K",
+    "Period": "Weekly",
+    "ProjectionDay": "7 days"
+}

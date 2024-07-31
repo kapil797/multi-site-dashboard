@@ -2,17 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SupplierInformationModule } from './supplier-information.module';
 import { AppService } from '@core/services/app.service';
-import {
-  DeliveryDetail,
-  EndPostalCode,
-  IndividualOrderStatus,
-  MapToken,
-  OrderStatusSummary,
-  TrackingPostalCode,
-} from './supplier-information-model';
-import EndPostal from '@si/mock-data/endpostal.json';
-import logisticTrackingJobs from '@si/mock-data/logistic-tracking-jobs.json';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { IndividualOrderStatus, MapToken, OrderStatusSummary, TrackingPostalCode } from './supplier-information-model';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: SupplierInformationModule,
@@ -47,15 +38,15 @@ export class SupplierInformationService {
     );
   }
 
-  public fetchLogisticTrackingEndPostalCode$(_postal: string) {
-    const data: EndPostalCode[] = EndPostal;
-    return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
-  }
+  // public fetchLogisticTrackingEndPostalCode$(_postal: string) {
+  //   const data: EndPostalCode[] = EndPostal;
+  //   return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
+  // }
 
-  public fetchLogisticTrackingJobs$() {
-    const data: DeliveryDetail[] = logisticTrackingJobs;
-    return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
-  }
+  // public fetchLogisticTrackingJobs$() {
+  //   const data: DeliveryDetail[] = logisticTrackingJobs;
+  //   return of(data).pipe(catchError(err => throwError(() => new Error(this.app.api.mapHttpError(err)))));
+  // }
 
   public fetchOrderStatusSummary$(factory: string) {
     const suffix = '/nexus?topic=GetOrderStatusSummary';

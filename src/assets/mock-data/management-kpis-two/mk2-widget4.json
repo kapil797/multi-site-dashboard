@@ -1,0 +1,11 @@
+{
+    "Value": "5,021",
+    "Value_Unit":"incident/year",
+    "Projection": "6,391",
+    "Projection_Unit":"",
+    "ProjectionHealth": "Green",
+    "Target": 8,
+    "Target_Unit": "K",
+    "Period": "Weekly",
+    "ProjectionDay": "7 days"
+}

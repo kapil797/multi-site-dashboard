@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-management-kpi2-small',
@@ -11,20 +11,26 @@ import { catchError } from 'rxjs';
 })
 export class ManagementKPI2SmallComponent {
   theme?: Theme;
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() tag: string;
+
+  @Input() title!: string;
+  @Input() subtitle!: string;
+  @Input() tag!: string;
   @Input() api!: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  item: any;
+
   constructor(
     private themeService: ThemeService,
     private http: HttpClient
   ) {}
+
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
-    console.log('managment-Kpis-two', this.api);
+    console.log('management-Kpis-one', this.api);
     this.testApi(this.api);
   }
+
   setThemeVariables(): void {
     if (this.theme) {
       document.documentElement.style.setProperty('--ribbon', this.theme.ribbon);
@@ -33,43 +39,7 @@ export class ManagementKPI2SmallComponent {
       document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
     }
   }
-  public item = {
-    Id: 12,
-    Category: 'Capacity Utilisation',
-    Value: '64.58',
-    Projection: '95.02',
-    ProjectionHealth: 'Yellow',
-    Target: '99.91',
-    Period: 'Weekly',
-    ProjectionDay: '7 days',
-  };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  isVolumeRelated(item: any) {
-    return ['Profit', 'Inventory', 'Production Volume', 'Cost'].includes(item.Category);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getUnits(item: any): string {
-    switch (item.Category) {
-      case 'Profit':
-      case 'Inventory':
-      case 'Cost':
-        return 'SGD';
-      case 'On-Time Delivery':
-      case 'Capacity Utilisation':
-        return '%';
-      case 'Safety':
-        return 'INCIDENT/MIL HRS';
-      case 'Total Productivity':
-        return '$/$';
-      case 'Production Volume':
-        return 'UNITS';
-      default:
-        return '';
-    }
-  }
-  // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
 
@@ -78,7 +48,12 @@ export class ManagementKPI2SmallComponent {
       .pipe(
         catchError(error => {
           console.error('API call failed, switching to mock data', error);
-          return this.http.get(mockDataUrl); // Try to load mock data
+          return this.http.get(mockDataUrl).pipe(
+            catchError(mockError => {
+              console.error('Mock data load failed', mockError);
+              return of(null); // Return null observable if both API and mock data fail
+            })
+          );
         })
       )
       .subscribe(response => {
@@ -91,12 +66,9 @@ export class ManagementKPI2SmallComponent {
       });
   }
 
-  // Method to handle the API or mock data response
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleApiResponse(response: any): void {
-    // Process the response data
     console.log('Processed response data:', response);
-    // Example: Update the component's state or UI with the response data
     this.item = response;
   }
 }

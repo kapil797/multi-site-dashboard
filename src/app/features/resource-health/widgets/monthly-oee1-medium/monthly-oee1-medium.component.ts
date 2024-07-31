@@ -4,7 +4,15 @@ import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
 import { DashType } from '@progress/kendo-angular-charts';
 import { catchError } from 'rxjs';
-
+// Define the OEEData interface
+interface OEEData {
+  categories: string[];
+  availability: number[];
+  performance: number[];
+  quality: number[];
+  averageOEE: number[];
+  normalisedOEE: number[];
+}
 @Component({
   selector: 'app-monthly-oee1-medium',
   templateUrl: './monthly-oee1-medium.component.html',
@@ -23,6 +31,7 @@ export class MonthlyOEE1MediumComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -55,14 +64,7 @@ export class MonthlyOEE1MediumComponent {
   public chartHeight = 600;
   public chartWidth = 600;
 
-  public data = {
-    categories: ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
-    availability: [69, 74, 81, 72, 73, 85],
-    performance: [70, 70, 78, 70, 81, 82],
-    quality: [71, 75, 80, 81, 82, 83],
-    averageOEE: [70, 71, 79, 75, 78, 82],
-    normalisedOEE: [65, 80, 75, 74, 76, 79],
-  };
+  public data: OEEData;
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
@@ -91,6 +93,6 @@ export class MonthlyOEE1MediumComponent {
     // Process the response data
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.data = response;
   }
 }

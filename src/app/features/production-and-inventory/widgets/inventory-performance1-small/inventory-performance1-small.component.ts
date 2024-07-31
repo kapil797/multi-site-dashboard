@@ -3,7 +3,36 @@ import { Component, Input } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
 import { catchError } from 'rxjs';
+// Define the interfaces
+interface FilterRate {
+  value: string;
+  color: string;
+  good: string;
+  acceptable: string;
+  poor: string;
+}
 
+interface Turnover {
+  value: string;
+  color: string;
+  good: string;
+  acceptable: string;
+  poor: string;
+}
+
+interface Stockout {
+  value: string;
+  color: string;
+  good: string;
+  acceptable: string;
+  poor: string;
+}
+
+interface ProductionMetrics {
+  filterRate: FilterRate;
+  turnover: Turnover;
+  stockout: Stockout;
+}
 @Component({
   selector: 'app-inventory-performance1-small',
   templateUrl: './inventory-performance1-small.component.html',
@@ -22,6 +51,7 @@ export class InventoryPerformance1SmallComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -38,29 +68,7 @@ export class InventoryPerformance1SmallComponent {
   @Input() tag: string;
   @Input() api!: string;
 
-  data = {
-    filterRate: {
-      value: '90.54%',
-      color: '#60EA80',
-      good: '>90%',
-      acceptable: '85-90%',
-      poor: '<85%',
-    },
-    turnover: {
-      value: '4',
-      color: '#F9B959',
-      good: '5-10',
-      acceptable: '1-5 or 10-15',
-      poor: '<1 or >15',
-    },
-    stockout: {
-      value: '2%',
-      color: '#60EA80',
-      good: '<5%',
-      acceptable: '>5% and <10%',
-      poor: '>10%',
-    },
-  };
+  data: ProductionMetrics;
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
@@ -89,6 +97,6 @@ export class InventoryPerformance1SmallComponent {
     // Process the response data
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.data = response;
   }
 }

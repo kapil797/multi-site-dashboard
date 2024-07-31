@@ -4,7 +4,7 @@
     <div class="card-tag px-4 py-2 d-flex flex-column justify-content-center">combined</div>
   </div>
   <div class="card-period pb-2">{{ subtitle }}</div>
-  <div class="card-percentage">{{ productionCapacity }} %</div>
+  <div class="card-percentage" [ngStyle]="{ color: textColor }">{{ productionCapacity }}</div>
   <div class="chart-container">
     <kendo-chart>
       <kendo-chart-area [background]="theme.secondary"></kendo-chart-area>

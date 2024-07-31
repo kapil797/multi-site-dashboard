@@ -3,7 +3,19 @@ import { Component, Input } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
 import { catchError } from 'rxjs';
+interface MachineStatus {
+  title: string;
+  subtitle: string;
+  value: string;
+  color: string;
+}
 
+// Define the interface for each category
+interface EScentz {
+  eScentz: MachineStatus[];
+  mfConnectPlus: MachineStatus[];
+  atomiserMTS: MachineStatus[];
+}
 @Component({
   selector: 'app-util-tracking1-small',
   templateUrl: './util-tracking1-small.component.html',
@@ -22,6 +34,7 @@ export class UtilTracking1SmallComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -42,74 +55,7 @@ export class UtilTracking1SmallComponent {
   // when exceed viewList height.
   public viewListHeight = '14rem';
 
-  public data = {
-    eScentz: [
-      {
-        title: 'Injection Moulding:',
-        subtitle: 'Past 1 Hr',
-        value: '73%',
-        color: '#60EA80',
-      },
-      {
-        title: 'Oven 1 & 2:',
-        subtitle: 'Past 1 Hr',
-        value: '56%',
-        color: '#60EA80',
-      },
-      {
-        title: 'Scent Filling:',
-        subtitle: 'Past 1 Hr',
-        value: '97%',
-        color: '#F9B959',
-      },
-      {
-        title: 'Screen Printing:',
-        subtitle: 'Past 1 Hr',
-        value: '85%',
-        color: '#60EA80',
-      },
-      {
-        title: 'Screen Printing:',
-        subtitle: 'Past 1 Hr',
-        value: '85%',
-        color: '#60EA80',
-      },
-      {
-        title: 'Screen Printing:',
-        subtitle: 'Past 1 Hr',
-        value: '85%',
-        color: '#60EA80',
-      },
-    ],
-    mfConnectPlus: [
-      {
-        title: 'Injection Moulding:',
-        subtitle: 'Past 1 Hr',
-        value: '12%',
-        color: '#60EA80',
-      },
-      {
-        title: 'Oven 1 & 2:',
-        subtitle: 'Past 1 Hr',
-        value: '43%',
-        color: '#60EA80',
-      },
-      {
-        title: 'Screen Printing:',
-        subtitle: 'Past 1 Hr',
-        value: '10%',
-        color: '#60EA80',
-      },
-    ],
-    atomiserMTS: [
-      {
-        title: 'Injection Moulding:',
-        subtitle: 'Past 1 Hr',
-        value: '10%',
-        color: '#60EA80',
-      },
-    ],
-  };
+  public data: EScentz;
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
@@ -138,6 +84,6 @@ export class UtilTracking1SmallComponent {
     // Process the response data
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.data = response;
   }
 }

@@ -1,16 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
-import productionTrackingJson from '../../../../../assets/mock-data/production-tracking/production-tracking-2.json';
+
 import { ThemeService } from '@core/services/theme-service.service';
 import { Theme } from '@core/constants/theme.constant';
 import { catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-interface productionTrackingData {
-  salesOrderNumber: {};
-  factory: {};
-  expectedCompleted: {};
-  status: {};
+interface ValueWrapper {
+  value: string | boolean;
 }
+
+// Define the interface for each item in the array
+export interface SalesOrder {
+  salesOrderNumber: ValueWrapper;
+  factory: ValueWrapper;
+  expectedCompleted: ValueWrapper;
+  status: ValueWrapper;
+  isLate: ValueWrapper;
+}
+
+// Define the interface for the entire response
+export type SalesOrderResponse = SalesOrder[];
 
 @Component({
   selector: 'app-production-tracking2-large',
@@ -42,18 +51,13 @@ export class ProductionTracking2LargeComponent implements OnInit {
 
   public defaultFontColor = '#E4E9EF';
 
-  public productionTrackingData: productionTrackingData[];
+  public productionTrackingData: SalesOrderResponse;
 
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
-    this.productionTrackingData;
 
-    this.loadProductionTrackingDataFromMock();
-  }
-
-  private loadProductionTrackingDataFromMock() {
-    this.productionTrackingData = productionTrackingJson;
+    this.testApi(this.api);
   }
 
   public setDefaultHeaderStyle() {
@@ -124,8 +128,8 @@ export class ProductionTracking2LargeComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleApiResponse(response: any): void {
     // Process the response data
-    console.log('Processed response data:', response);
+    console.log('Inside pt Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.productionTrackingData = response;
   }
 }

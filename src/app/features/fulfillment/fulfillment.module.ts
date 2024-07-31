@@ -20,7 +20,7 @@ import { Fulfilment1SmallComponent } from './widgets/fulfilment1-small/fulfilmen
     AlertComponent,
     MultiSiteComponent,
     DemandForecast1SmallComponent,
-    Fulfilment1SmallComponent
+    Fulfilment1SmallComponent,
   ],
   imports: [SharedModule, FulfillmentRoutingModule],
   providers: [FulfillmentService],

@@ -29,6 +29,7 @@ export class ProductionYield1SmallComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -46,11 +47,7 @@ export class ProductionYield1SmallComponent {
 
   //@Input() data?: PeriodPerformance;
 
-  data: PeriodPerformance = {
-    pastPeriod: 51.46497961264991,
-    currentPeriod: 83.02090628646826,
-    projectedPeriod: 71.92240757886837,
-  };
+  data: PeriodPerformance;
 
   public progressColors = progressColors;
   public progressStyle = { width: '250px', height: '250px' };
@@ -87,6 +84,6 @@ export class ProductionYield1SmallComponent {
     // Process the response data
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.data = response;
   }
 }

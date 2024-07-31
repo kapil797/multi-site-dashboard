@@ -21,32 +21,32 @@
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Enterprise Productivity",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM1"
                 },
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "On-time Delivery",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM1"
                 },
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Enterprise Capacity Utilisation",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM1"
                 },
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Total Safety Incidences",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM1"
                 }
@@ -67,32 +67,32 @@
                 {
                     "id": "MM2_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Enterprise Profits",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM2"
                 },
                 {
                     "id": "MM2_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Enterprise Inventory Value",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM2"
                 },
                 {
                     "id": "MM2_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Total Production Cost",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM2"
                 },
                 {
                     "id": "MM2_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Performance Indicator",
-                    "subtitle": "PAST MONTH",
+                    "title": "Weighted Production Volume",
+                    "subtitle": "",
                     "tag": "Combined",
                     "featureId": "MM2"
                 }
@@ -159,7 +159,7 @@
                 {
                     "id": "MS1_MachineStatus",
                     "name": "machineStatus1",
-                    "title": "Machine A",
+                    "title": "Injection Molding",
                     "subtitle": "PAST 24 HOURS",
                     "tag": "Factory A",
                     "featureId": "MS1"
@@ -197,7 +197,7 @@
                 {
                     "id": "MV1_SupplierInventory",
                     "name": "supplierInventory1",
-                    "title": "Overall Supplier Inventory",
+                    "title": "Overall Supplier Inventory (RM)",
                     "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MV1"
@@ -205,7 +205,7 @@
                 {
                     "id": "MV1_SupplierInventory",
                     "name": "supplierInventory1",
-                    "title": "Overall Supplier Inventory",
+                    "title": "Overall Supplier Inventory (FG)",
                     "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MV1"
@@ -227,23 +227,15 @@
                 {
                     "id": "MV2_DemandForecast",
                     "name": "demandForecast1",
-                    "title": "Demand for Product A",
+                    "title": "Demand for MFConnect+ (Pcs)",
                     "subtitle": "MONTHLY",
                     "tag": "Factory A",
-                    "featureId": "MV2"
-                },
-                {
-                    "id": "MV2_Fulfillment",
-                    "name": "fulfillment1",
-                    "title": "Fulfillment Performance",
-                    "subtitle": "MONTHLY",
-                    "tag": "Combined",
                     "featureId": "MV2"
                 },
                 {
                     "id": "MV2_DemandForecast",
                     "name": "demandForecast1",
-                    "title": "Demand for Product A",
+                    "title": "Demand for EScentz (Pcs)",
                     "subtitle": "MONTHLY",
                     "tag": "Factory A",
                     "featureId": "MV2"
@@ -251,7 +243,15 @@
                 {
                     "id": "MV2_Fulfillment",
                     "name": "fulfillment1",
-                    "title": "Fulfillment Performance",
+                    "title": "Av On-time Delivery",
+                    "subtitle": "MONTHLY",
+                    "tag": "Combined",
+                    "featureId": "MV2"
+                },
+                {
+                    "id": "MV2_Fulfillment",
+                    "name": "fulfillment1",
+                    "title": "Av On-time Delivery",
                     "subtitle": "MONTHLY",
                     "tag": "Combined",
                     "featureId": "MV2"
@@ -292,19 +292,20 @@
             "col": 7,
             "colSpan": 2,
             "widgets": [
-                {
-                    "id": "ME2_ProductionYield",
-                    "name": "productionYield1",
-                    "title": "Overall Production Yield",
-                    "subtitle": "PAST MONTH",
-                    "tag": "Combined",
-                    "featureId": "ME2"
-                },
+               
                 {
                     "id": "ME2_ProductionCapacity",
                     "name": "productionCapacity1",
                     "title": "Production Capacity",
                     "subtitle": "CURRENT VS AV PAST 6 MONTHS",
+                    "tag": "Combined",
+                    "featureId": "ME2"
+                },
+                {
+                    "id": "ME2_ProductionYield",
+                    "name": "productionYield1",
+                    "title": "Overall Production Yield",
+                    "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "ME2"
                 },
