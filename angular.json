@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "single-site-dashboard": {
+    "multi-site-dashboard": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -80,10 +80,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "single-site-dashboard:build:production"
+              "buildTarget": "multi-site-dashboard:build:production"
             },
             "development": {
-              "buildTarget": "single-site-dashboard:build:development"
+              "buildTarget": "multi-site-dashboard:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "single-site-dashboard:build"
+            "buildTarget": "multi-site-dashboard:build"
           }
         },
         "test": {
