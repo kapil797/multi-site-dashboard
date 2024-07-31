@@ -42,6 +42,9 @@ export class DemandForecast1SmallComponent implements OnChanges {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
     this.data = this.getMockDemandForcast('MFCONNECT+', 3);
+
+    //this.testApi(this.api);
+
     this.seriesColor = '#8829C3';
     this.alertContent = 'Spike detected: > 2000 pcs';
   }
@@ -126,6 +129,9 @@ export class DemandForecast1SmallComponent implements OnChanges {
       zones,
       futureForecast
     );
+    console.log('pf', pastForecast);
+    console.log('ac', actual);
+    console.log('ff', futureForecast);
 
     const data: DemandProfile = {
       pastForecast,
@@ -221,7 +227,25 @@ export class DemandForecast1SmallComponent implements OnChanges {
   handleApiResponse(response: any): void {
     // Process the response data
     console.log('Processed response data:', response);
-    // Example: Update the component's state or UI with the response data
     this.item = response;
+    this.convertDatesInItem();
+    console.log('item after response:', this.item);
+  }
+
+  // Helper method to convert ISO date strings to JavaScript Date objects
+  private convertISOToDate(isoDateString: string): Date {
+    return new Date(isoDateString);
+  }
+
+  // Method to convert dates in the item
+  private convertDatesInItem(): void {
+    ['pastForecast', 'actual', 'futureForecast'].forEach(key => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.item[key] = this.item[key].map((entry: any) => ({
+        ...entry,
+        createdDate: this.convertISOToDate(entry.createdDate),
+        _date_createdDate: this.convertISOToDate(entry._date_createdDate),
+      }));
+    });
   }
 }

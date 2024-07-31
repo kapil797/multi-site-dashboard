@@ -22,6 +22,7 @@ export class MachineStatus1SmallComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -38,24 +39,12 @@ export class MachineStatus1SmallComponent {
   public powerOffIcon: IconDefinition = faPowerOff;
   public boltIcon: IconDefinition = faBolt;
   public trashIcon: IconDefinition = faTrashCan;
-  public productionCapacity: number = 92;
-  public seriesData = [
-    { month: 'Jan', value: 90 },
-    { month: 'Feb', value: 92 },
-    { month: 'Mar', value: 93 },
-    { month: 'Apr', value: 91 },
-    { month: 'May', value: 92 },
-  ];
-
-  public categories: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
-  public average: number = 92;
-  public greenZoneData = [
-    { month: 'Jan', min: 91, max: 93 },
-    { month: 'Feb', min: 91, max: 93 },
-    { month: 'Mar', min: 91, max: 93 },
-    { month: 'Apr', min: 91, max: 93 },
-    { month: 'May', min: 91, max: 93 },
-  ];
+  public productionCapacity: number;
+  public seriesData = [];
+  public categories: string[];
+  public average: number;
+  public greenZoneData = [];
+  public textColor: string;
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
@@ -85,5 +74,13 @@ export class MachineStatus1SmallComponent {
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
     this.item = response;
+    if (this.item) {
+      this.productionCapacity = this.item.productionCapacity;
+      this.seriesData = this.item.seriesData;
+      this.categories = this.item.categories;
+      this.average = this.item.average;
+      this.greenZoneData = this.item.greenZoneData;
+      this.textColor = this.item.textColor;
+    }
   }
 }

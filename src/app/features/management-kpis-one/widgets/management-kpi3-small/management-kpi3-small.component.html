@@ -9,19 +9,20 @@
 
   <div class="d-flex">
     <div class="projection-details d-flex justify-content-start">
-      <div class="projection ms-2d-flex flex-column justify-content-center">
-        <div class="mt-5"><span class="title">PROJECTION:</span></div>
-
+      <div class="projection ms-2 d-flex flex-column justify-content-center">
+        <div class="mt-5">
+          <span class="title">PROJECTION:</span>
+        </div>
         <div class="projection-figure p-2 px-3 pt-4">
           <div class="projection-figure-wrapper d-flex">
-            <span class="figure" [ngClass]="item.ProjectionHealth">
-              {{ item.Projection }}{{ isVolumeRelated(item) ? 'K' : '' }} {{ getUnits(item) }}
+            <span class="figure" [ngClass]="item?.ProjectionHealth">
+              {{ item?.Projection }}{{ item?.Projection_Unit }}
             </span>
             <div class="projection-chart ms-3 mt-3">
               <img
-                *ngIf="['Green', 'Red', 'Yellow'].includes(item.ProjectionHealth)"
-                [src]="'assets/images/indicators/ic-trend-arrow-' + item.ProjectionHealth.toLowerCase() + '.png'"
-                [alt]="item.ProjectionHealth"
+                *ngIf="['Green', 'Red', 'Yellow'].includes(item?.ProjectionHealth)"
+                [src]="'assets/images/indicators/ic-trend-arrow-' + item?.ProjectionHealth.toLowerCase() + '.png'"
+                [alt]="item?.ProjectionHealth"
                 class="img-size" />
             </div>
           </div>
@@ -31,19 +32,12 @@
     <div class="right-wrapper p-t flex-column justify-content-center">
       <div class="d-flex ms-3 flex-column">
         <span class="current-title">CURRENT:</span>
-        <span class="current-figure p-3">
-          <ng-container *ngIf="isVolumeRelated(item); else nonVolumeRelated">
-            {{ item.Value | currency: '' : '' : '1.0-0' }}
-          </ng-container>
-          <ng-template #nonVolumeRelated>{{ item.Value }} {{ getUnits(item) }}</ng-template>
-        </span>
+        <span class="current-figure p-3"> {{ item?.Value }} {{ item?.Value_Unit }} </span>
       </div>
 
       <div class="target ms-3 d-flex flex-column">
         <span class="title">TARGET:</span>
-        <span class="target-figure p-3">
-          {{ item.Target }}{{ isVolumeRelated(item) ? 'K' : '' }} {{ getUnits(item) }}</span
-        >
+        <span class="target-figure p-3"> {{ item?.Target }}{{ item?.Target_Unit }} </span>
       </div>
     </div>
   </div>

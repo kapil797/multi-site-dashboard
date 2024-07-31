@@ -3,7 +3,10 @@ import { Component, Input } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
 import { catchError } from 'rxjs';
-
+interface currentOEE {
+  value: string;
+  color: string;
+}
 @Component({
   selector: 'app-current-oee1-small',
   templateUrl: './current-oee1-small.component.html',
@@ -22,6 +25,7 @@ export class CurrentOEE1SmallComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -37,10 +41,7 @@ export class CurrentOEE1SmallComponent {
   @Input() tag: string;
   @Input() api!: string;
 
-  public data = {
-    value: '81%',
-    color: '#60EA80',
-  };
+  public data: currentOEE;
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
@@ -69,6 +70,6 @@ export class CurrentOEE1SmallComponent {
     // Process the response data
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.data = response;
   }
 }

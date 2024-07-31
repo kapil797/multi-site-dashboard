@@ -3,7 +3,16 @@ import { Component, Input } from '@angular/core';
 import { Theme } from '@core/constants/theme.constant';
 import { ThemeService } from '@core/services/theme-service.service';
 import { catchError } from 'rxjs';
+interface Efficiency {
+  value: string;
+  color: string;
+}
 
+// Define the EfficiencyMetrics interface
+interface EfficiencyMetrics {
+  energyEfficiencies: Efficiency;
+  resourceEfficiencies: Efficiency;
+}
 @Component({
   selector: 'app-resource-efficiencies1-small',
   templateUrl: './resource-efficiencies1-small.component.html',
@@ -22,6 +31,7 @@ export class ResourceEfficiencies1SmallComponent {
   ngOnInit(): void {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
+    this.testApi(this.api);
   }
 
   setThemeVariables(): void {
@@ -36,16 +46,7 @@ export class ResourceEfficiencies1SmallComponent {
   @Input() subtitle: string;
   @Input() tag: string;
   @Input() api!: string;
-  public data = {
-    energyEfficiencies: {
-      value: '22.55%',
-      color: '#E95459',
-    },
-    resourceEfficiencies: {
-      value: '81%',
-      color: '#60EA80',
-    },
-  };
+  public data: EfficiencyMetrics;
   // Method to test the API
   testApi(apiUrl: string): void {
     const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
@@ -74,6 +75,6 @@ export class ResourceEfficiencies1SmallComponent {
     // Process the response data
     console.log('Processed response data:', response);
     // Example: Update the component's state or UI with the response data
-    this.item = response;
+    this.data = response;
   }
 }

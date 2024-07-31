@@ -1,0 +1,10 @@
+{ 
+    "energyEfficiencies": {
+    "value": "22.55%",
+    "color": "#E95459"
+  },
+  "resourceEfficiencies": {
+    "value": "81%",
+    "color": "#60EA80"
+  }
+}

@@ -1,0 +1,8 @@
+{ 
+    "categories": ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
+    "availability": [69, 74, 81, 72, 73, 85],
+    "performance": [70, 70, 78, 70, 81, 82],
+    "quality": [71, 75, 80, 81, 82, 83],
+    "averageOEE": [70, 71, 79, 75, 78, 82],
+    "normalisedOEE": [65, 80, 75, 74, 76, 79]
+}
