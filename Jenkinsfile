@@ -21,10 +21,10 @@ pipeline {
         IMAGE_BUILD_TAG_PREFIX = "harbor.mf.platform/$PROJECT_NAME/$SERVICE_NAME"
 
         // Credentials.
-        BITBUCKET_CREDENTIALS_ID = "eyujy"
+        BITBUCKET_CREDENTIALS_ID = "bitbucket-daronphang"
         BITBUCKET_PROJECT_SA_CREDENTIALS_ID = "jenkins-sa"
-        HARBOR_CREDENTIALS_ID = "harbor-dis-devops"
-        NEXUS_CREDENTIALS_ID = "eyujy"
+        HARBOR_CREDENTIALS_ID = "harbor-dashboard"
+        NEXUS_CREDENTIALS_ID = "bitbucket-tanggy"
         SONAR_LOGIN_HASH = "sqp_1d26db0970e0bb286e3978d47b0b990239ced805"
 
         // Secret files to be injected by Jenkins when deploying to k8s.
