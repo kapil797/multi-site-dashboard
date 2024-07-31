@@ -13,7 +13,7 @@ pipeline {
 
         // Application.
         PROJECT_NAME = "dashboard"
-        SERVICE_NAME = "single-site-dashboard-angular"
+        SERVICE_NAME = "multi-site-dashboard-angular"
         LANGUAGE = 'angular' // angular, dotnet, nodejs, go, python
         K8S_MANIFESTS_URL = "http://tools.mf.platform/bitbucket/scm/dash/kubernetes-manifests.git"
 
