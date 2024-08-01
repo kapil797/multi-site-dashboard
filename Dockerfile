@@ -2,7 +2,7 @@ ARG WORKINGPATH=/dashboard-multi
 ARG ENTRYPATH=/dashboard-multi
 ARG PORT=80
 ARG CONFIG=development
-ARG BASEHREF=/dashboard-multi
+ARG BASEHREF=/dashboard-multi/
 ARG DEPLOYMENT_IMAGE=nginx:1.25.4-alpine 
 
 # Stage: BUILD
@@ -40,6 +40,6 @@ ARG PORT
 WORKDIR ${ENTRYPATH}
 
 COPY nginx/default.conf /etc/nginx/conf.d/
-COPY --from=build ${ENTRYPATH}/dist/dashboard/browser /usr/share/nginx/html/dashboard-multi
+COPY --from=build ${ENTRYPATH}/dist/dashboard/browser /usr/share/nginx/html/dashboard
 EXPOSE ${PORT}
 CMD ["nginx", "-g", "daemon off;"]
