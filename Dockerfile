@@ -20,7 +20,7 @@ RUN npm ci && npm cache clean --force && \
     npx kendo-ui-license activate && \
     npm link @angular/cli
 
-# Install Chrome for running UI tests.
+# Install Google Chrome for running UI tests.
 RUN apt-get install -y gnupg wget curl unzip --no-install-recommends; \
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | \
     gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/google.gpg --import; \
