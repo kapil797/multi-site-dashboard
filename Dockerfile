@@ -1,5 +1,5 @@
-ARG WORKINGPATH=/dashboard-multi
-ARG ENTRYPATH=/dashboard-multi
+ARG WORKINGPATH=/dashboard
+ARG ENTRYPATH=/dashboard
 ARG PORT=80
 ARG CONFIG=development
 ARG BASEHREF=/dashboard-multi/
