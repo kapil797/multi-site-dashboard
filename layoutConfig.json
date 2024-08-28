@@ -1,12 +1,12 @@
 {
     "dashboard": "Manufacturing",
     "dimensions": [
-        3,
-        4
+        2,
+        3
     ],
     "scale": "MultiSite",
     "Styles": {
-        "colorTheme": "option2",
+        "colorTheme": "option1",
         "font": "Proxima"
     },
     "features": [
@@ -21,32 +21,32 @@
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Enterprise Productivity",
-                    "subtitle": "",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MM1"
                 },
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "On-time Delivery",
-                    "subtitle": "",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MM1"
                 },
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Enterprise Capacity Utilisation",
-                    "subtitle": "",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MM1"
                 },
                 {
                     "id": "MM1_ManagementKPI",
                     "name": "managementKPI1",
-                    "title": "Total Safety Incidences",
-                    "subtitle": "",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MM1"
                 }
@@ -54,136 +54,6 @@
             "sidebar": {
                 "position": "",
                 "text": ""
-            }
-        },
-        {
-            "id": "MM2",
-            "layoutId": 1,
-            "row": 1,
-            "rowSpan": 1,
-            "col": 5,
-            "colSpan": 2,
-            "widgets": [
-                {
-                    "id": "MM2_ManagementKPI",
-                    "name": "managementKPI1",
-                    "title": "Enterprise Profits",
-                    "subtitle": "",
-                    "tag": "Combined",
-                    "featureId": "MM2"
-                },
-                {
-                    "id": "MM2_ManagementKPI",
-                    "name": "managementKPI1",
-                    "title": "Enterprise Inventory Value",
-                    "subtitle": "",
-                    "tag": "Combined",
-                    "featureId": "MM2"
-                },
-                {
-                    "id": "MM2_ManagementKPI",
-                    "name": "managementKPI1",
-                    "title": "Total Production Cost",
-                    "subtitle": "",
-                    "tag": "Combined",
-                    "featureId": "MM2"
-                },
-                {
-                    "id": "MM2_ManagementKPI",
-                    "name": "managementKPI1",
-                    "title": "Weighted Production Volume",
-                    "subtitle": "",
-                    "tag": "Combined",
-                    "featureId": "MM2"
-                }
-            ],
-            "sidebar": {
-                "position": "",
-                "text": ""
-            }
-        },
-        {
-            "id": "MS2",
-            "layoutId": 2,
-            "row": 3,
-            "rowSpan": 1,
-            "col": 7,
-            "colSpan": 2,
-            "widgets": [
-                {
-                    "id": "MS2_MonthlyOEE",
-                    "name": "monthlyOEE1",
-                    "title": "Monthly OEE",
-                    "subtitle": "PAST 6 MONTHS",
-                    "tag": "Combined",
-                    "featureId": "MS2"
-                },
-                {
-                    "id": "MS2_CurrentOEE",
-                    "name": "currentOEE1",
-                    "title": "Current OEE",
-                    "subtitle": "PAST MONTH",
-                    "tag": "Combined",
-                    "featureId": "MS2"
-                },
-                {
-                    "id": "MS2_ResourceEfficiencies",
-                    "name": "resourceEfficiencies1",
-                    "title": "Resource Efficiencies",
-                    "subtitle": "PAST MONTH",
-                    "tag": "Combined",
-                    "featureId": "MS2"
-                }
-            ],
-            "sidebar": {
-                "position": "right",
-                "text": "SHOPFLOOR"
-            }
-        },
-        {
-            "id": "MS1",
-            "layoutId": 1,
-            "row": 3,
-            "rowSpan": 1,
-            "col": 1,
-            "colSpan": 2,
-            "widgets": [
-                {
-                    "id": "MS1_UtilTracking",
-                    "name": "utilTracking1",
-                    "title": "Utilisation Tracking by Product",
-                    "subtitle": "PAST 24 HOURS",
-                    "tag": "Factory A",
-                    "featureId": "MS1"
-                },
-                {
-                    "id": "MS1_MachineStatus",
-                    "name": "machineStatus1",
-                    "title": "Injection Molding",
-                    "subtitle": "PAST 24 HOURS",
-                    "tag": "Factory A",
-                    "featureId": "MS1"
-                },
-                {
-                    "id": "MS1_UtilTracking",
-                    "name": "utilTracking1",
-                    "title": "Utilisation Tracking by Product",
-                    "subtitle": "PAST 24 HOURS",
-                    "tag": "Factory A",
-                    "featureId": "MS1"
-                },
-                {
-                    "id": "MS1_GlobalShopfloorStatus",
-                    "name": "globalShopfloorStatus1",
-                    "title": "Global Shopfloor Status",
-                    "subtitle": "NOW",
-                    "tag": "Combined",
-                    "featureId": "MS1"
-                }
-            ],
-            "sidebar": {
-                "position": "left",
-                "text": "SHOPFLOOR"
             }
         },
         {
@@ -197,7 +67,7 @@
                 {
                     "id": "MV1_SupplierInventory",
                     "name": "supplierInventory1",
-                    "title": "Overall Supplier Inventory (RM)",
+                    "title": "Overall Supplier Inventory",
                     "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MV1"
@@ -205,7 +75,7 @@
                 {
                     "id": "MV1_SupplierInventory",
                     "name": "supplierInventory1",
-                    "title": "Overall Supplier Inventory (FG)",
+                    "title": "Overall Supplier Inventory",
                     "subtitle": "PAST MONTH",
                     "tag": "Combined",
                     "featureId": "MV1"
@@ -221,21 +91,13 @@
             "layoutId": 1,
             "row": 1,
             "rowSpan": 1,
-            "col": 7,
+            "col": 5,
             "colSpan": 2,
             "widgets": [
                 {
                     "id": "MV2_DemandForecast",
                     "name": "demandForecast1",
-                    "title": "Demand for MFConnect+ (Pcs)",
-                    "subtitle": "MONTHLY",
-                    "tag": "Factory A",
-                    "featureId": "MV2"
-                },
-                {
-                    "id": "MV2_DemandForecast",
-                    "name": "demandForecast1",
-                    "title": "Demand for EScentz (Pcs)",
+                    "title": "Demand for Product A",
                     "subtitle": "MONTHLY",
                     "tag": "Factory A",
                     "featureId": "MV2"
@@ -243,15 +105,23 @@
                 {
                     "id": "MV2_Fulfillment",
                     "name": "fulfillment1",
-                    "title": "Av On-time Delivery",
+                    "title": "Fulfillment Performance",
                     "subtitle": "MONTHLY",
                     "tag": "Combined",
                     "featureId": "MV2"
                 },
                 {
+                    "id": "MV2_DemandForecast",
+                    "name": "demandForecast1",
+                    "title": "Demand for Product A",
+                    "subtitle": "MONTHLY",
+                    "tag": "Factory A",
+                    "featureId": "MV2"
+                },
+                {
                     "id": "MV2_Fulfillment",
                     "name": "fulfillment1",
-                    "title": "Av On-time Delivery",
+                    "title": "Fulfillment Performance",
                     "subtitle": "MONTHLY",
                     "tag": "Combined",
                     "featureId": "MV2"
@@ -285,27 +155,26 @@
             }
         },
         {
-            "id": "ME2",
+            "id": "ME2TT",
             "layoutId": 1,
             "row": 2,
             "rowSpan": 1,
-            "col": 7,
+            "col": 5,
             "colSpan": 2,
             "widgets": [
-               
-                {
-                    "id": "ME2_ProductionCapacity",
-                    "name": "productionCapacity1",
-                    "title": "Production Capacity",
-                    "subtitle": "CURRENT VS AV PAST 6 MONTHS",
-                    "tag": "Combined",
-                    "featureId": "ME2"
-                },
                 {
                     "id": "ME2_ProductionYield",
                     "name": "productionYield1",
                     "title": "Overall Production Yield",
                     "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "ME2"
+                },
+                {
+                    "id": "ME2_ProductionCapacity",
+                    "name": "productionCapacity1",
+                    "title": "Production Capacity",
+                    "subtitle": "CURRENT VS AV PAST 6 MONTHS",
                     "tag": "Combined",
                     "featureId": "ME2"
                 },
@@ -335,9 +204,9 @@
             "id": "MD1",
             "layoutId": 0,
             "row": 2,
-            "rowSpan": 2,
+            "rowSpan": 1,
             "col": 3,
-            "colSpan": 2,
+            "colSpan": 1,
             "widgets": null,
             "sidebar": {
                 "position": "",
@@ -348,9 +217,9 @@
             "id": "MD2",
             "layoutId": 0,
             "row": 2,
-            "rowSpan": 2,
-            "col": 5,
-            "colSpan": 2,
+            "rowSpan": 1,
+            "col": 4,
+            "colSpan": 1,
             "widgets": null,
             "sidebar": {
                 "position": "",
