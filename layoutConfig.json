@@ -1,8 +1,8 @@
 {
     "dashboard": "Manufacturing",
     "dimensions": [
-        2,
-        3
+        3,
+        4
     ],
     "scale": "MultiSite",
     "Styles": {
@@ -57,6 +57,136 @@
             }
         },
         {
+            "id": "MM2",
+            "layoutId": 1,
+            "row": 1,
+            "rowSpan": 1,
+            "col": 5,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                },
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                },
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                },
+                {
+                    "id": "MM2_ManagementKPI",
+                    "name": "managementKPI1",
+                    "title": "Performance Indicator",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MM2"
+                }
+            ],
+            "sidebar": {
+                "position": "",
+                "text": ""
+            }
+        },
+        {
+            "id": "MS2",
+            "layoutId": 2,
+            "row": 3,
+            "rowSpan": 1,
+            "col": 7,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MS2_MonthlyOEE",
+                    "name": "monthlyOEE1",
+                    "title": "Monthly OEE",
+                    "subtitle": "PAST 6 MONTHS",
+                    "tag": "Combined",
+                    "featureId": "MS2"
+                },
+                {
+                    "id": "MS2_CurrentOEE",
+                    "name": "currentOEE1",
+                    "title": "Current OEE",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MS2"
+                },
+                {
+                    "id": "MS2_ResourceEfficiencies",
+                    "name": "resourceEfficiencies1",
+                    "title": "Resource Efficiencies",
+                    "subtitle": "PAST MONTH",
+                    "tag": "Combined",
+                    "featureId": "MS2"
+                }
+            ],
+            "sidebar": {
+                "position": "right",
+                "text": "SHOPFLOOR"
+            }
+        },
+        {
+            "id": "MS1",
+            "layoutId": 1,
+            "row": 3,
+            "rowSpan": 1,
+            "col": 1,
+            "colSpan": 2,
+            "widgets": [
+                {
+                    "id": "MS1_UtilTracking",
+                    "name": "utilTracking1",
+                    "title": "Utilisation Tracking by Product",
+                    "subtitle": "PAST 24 HOURS",
+                    "tag": "Factory A",
+                    "featureId": "MS1"
+                },
+                {
+                    "id": "MS1_MachineStatus",
+                    "name": "machineStatus1",
+                    "title": "Machine A",
+                    "subtitle": "PAST 24 HOURS",
+                    "tag": "Factory A",
+                    "featureId": "MS1"
+                },
+                {
+                    "id": "MS1_UtilTracking",
+                    "name": "utilTracking1",
+                    "title": "Utilisation Tracking by Product",
+                    "subtitle": "PAST 24 HOURS",
+                    "tag": "Factory A",
+                    "featureId": "MS1"
+                },
+                {
+                    "id": "MS1_GlobalShopfloorStatus",
+                    "name": "globalShopfloorStatus1",
+                    "title": "Global Shopfloor Status",
+                    "subtitle": "NOW",
+                    "tag": "Combined",
+                    "featureId": "MS1"
+                }
+            ],
+            "sidebar": {
+                "position": "left",
+                "text": "SHOPFLOOR"
+            }
+        },
+        {
             "id": "MV1",
             "layoutId": 4,
             "row": 1,
@@ -91,7 +221,7 @@
             "layoutId": 1,
             "row": 1,
             "rowSpan": 1,
-            "col": 5,
+            "col": 7,
             "colSpan": 2,
             "widgets": [
                 {
@@ -155,11 +285,11 @@
             }
         },
         {
-            "id": "ME2TT",
+            "id": "ME2",
             "layoutId": 1,
             "row": 2,
             "rowSpan": 1,
-            "col": 5,
+            "col": 7,
             "colSpan": 2,
             "widgets": [
                 {
@@ -204,9 +334,9 @@
             "id": "MD1",
             "layoutId": 0,
             "row": 2,
-            "rowSpan": 1,
+            "rowSpan": 2,
             "col": 3,
-            "colSpan": 1,
+            "colSpan": 2,
             "widgets": null,
             "sidebar": {
                 "position": "",
@@ -217,9 +347,9 @@
             "id": "MD2",
             "layoutId": 0,
             "row": 2,
-            "rowSpan": 1,
-            "col": 4,
-            "colSpan": 1,
+            "rowSpan": 2,
+            "col": 5,
+            "colSpan": 2,
             "widgets": null,
             "sidebar": {
                 "position": "",
