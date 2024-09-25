@@ -2,7 +2,7 @@ ARG WORKINGPATH=/dashboard
 ARG ENTRYPATH=/dashboard
 ARG PORT=80
 ARG CONFIG=development
-ARG BASEHREF=/dashboard/
+ARG BASEHREF=/dashboard
 ARG DEPLOYMENT_IMAGE=nginx:1.25.4-alpine 
 
 # Stage: BUILD
