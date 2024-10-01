@@ -136,6 +136,14 @@ export const routes: Routes = [
       // roles: [Roles.PUBLIC],
     },
   },
+  {
+    path: urlJoin(`:${RoutePaths.HOME}`, RoutePaths.FAVOURITES).substring(1),
+    loadChildren: () => import('@fav/favourites.module').then(m => m.FavouritesModule),
+    canMatch: [routeGuard()],
+    data: {
+      // roles: [Roles.PUBLIC],
+    },
+  },
 
   // Redirects.
   { path: RoutePaths.BASE, redirectTo: RoutePaths.DEFAULT, pathMatch: 'full' },

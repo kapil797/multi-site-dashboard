@@ -1,0 +1,13 @@
+<app-navbar
+  header="Management KPI"
+  [dropdownOne]="projection"
+  dropdownOneLabel="PROJECTION"
+  (toggleDropdownOne)="onToggleProjection($event)"
+  [dropdownTwo]="period"
+  dropdownTwoLabel="PERIOD"
+  (toggleDropdownTwo)="onTogglePeriod($event)"></app-navbar>
+<div class="px-5 py-5">
+  <div class="mk-2-wrapper d-grid gap-4">
+    <ng-container *ngFor="let item of displayDataSetOne"> </ng-container>
+  </div>
+</div>

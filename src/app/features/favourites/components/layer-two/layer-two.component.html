@@ -1,0 +1,21 @@
+<app-navbar
+  header="Management KPI"
+  [dropdownOne]="projection"
+  dropdownOneLabel="PROJECTION"
+  (toggleDropdownOne)="onToggleProjection($event)"
+  [dropdownTwo]="period"
+  dropdownTwoLabel="PERIOD"
+  (toggleDropdownTwo)="onTogglePeriod($event)"></app-navbar>
+<div>
+  <div class="kpi-selection">
+    <button (click)="onKPIChange(1)" [ngClass]="{ selected: selectedKPI === 1 }" class="tab">Financials</button>
+    <button (click)="onKPIChange(2)" [ngClass]="{ selected: selectedKPI === 2 }" class="tab">Inventory</button>
+    <button (click)="onKPIChange(3)" [ngClass]="{ selected: selectedKPI === 3 }" class="tab">Operations</button>
+    <button (click)="onKPIChange(4)" [ngClass]="{ selected: selectedKPI === 4 }" class="tab">Productivity</button>
+    <button (click)="onKPIChange(5)" [ngClass]="{ selected: selectedKPI === 5 }" class="tab">
+      Customer Satisfaction
+    </button>
+    <button (click)="onKPIChange(6)" [ngClass]="{ selected: selectedKPI === 6 }" class="tab">Safety</button>
+  </div>
+  <div class="kpi-wrapper d-grid gap-4"></div>
+</div>

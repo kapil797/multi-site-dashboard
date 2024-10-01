@@ -50,8 +50,8 @@ export const environment = {
     API_4: 'http://www.google.com/KP4/4',
   },
   PRODUCTION_AND_INVENTORY: {
-    API_1: 'assets/mock-data/production-and-inventory/pi-widget1.json',
-    API_2: 'assets/mock-data/production-and-inventory/pi-widget2.json',
+    API_1: 'assets/mock-data/production-and-inventory/pi-widget2.json',
+    API_2: 'assets/mock-data/production-and-inventory/pi-widget1.json',
     API_3: 'assets/mock-data/production-and-inventory/pi-widget3.json',
     API_4: 'assets/mock-data/production-and-inventory/pi-widget4.json',
   },
@@ -75,8 +75,8 @@ export const environment = {
   },
   FULFILLMENT: {
     API_1: 'assets/mock-data/fulfillment/ful-widget1.json',
-    API_2: 'assets/mock-data/fulfillment/ful-widget2.json',
-    API_3: 'assets/mock-data/fulfillment/ful-widget3.json',
+    API_2: 'assets/mock-data/fulfillment/ful-widget3.json',
+    API_3: 'assets/mock-data/fulfillment/ful-widget2.json',
     API_4: 'assets/mock-data/fulfillment/ful-widget4.json',
   },
   LOGISTIC_TRACKING: {

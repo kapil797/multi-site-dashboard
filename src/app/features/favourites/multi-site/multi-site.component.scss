@@ -1,0 +1,260 @@
+.backdrop {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+dialog {
+  font-family: 'Proxima Nova', Helvetica, Arial;
+  width: 90%;
+  max-width: 30rem;
+  height: 450px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  //   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  padding: 0.5rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+p {
+  margin: 0;
+  color: white;
+  font-size: 1.2em;
+  padding: 0rem 0rem 1rem;
+}
+
+label {
+  padding: 0rem 3rem 1rem 0rem;
+}
+
+input,
+textarea {
+  width: 95.4%;
+  height: 19.85px;
+  font: inherit;
+  font-size: 16px;
+  position: relative;
+  top: 1px;
+  padding: 7px 11px;
+  border: none;
+  color: white;
+  background-color: #04162c;
+  opacity: 1;
+}
+
+.actions {
+  margin: 1rem 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+button {
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  padding: 0.35rem 1.25rem;
+  background-color: transparent;
+}
+
+button[type='button'] {
+  color: #a1b8c1;
+}
+
+button[type='button']:hover,
+button[type='button']:active {
+  color: #1e3552;
+}
+
+button[type='submit'] {
+  background-color: transparent;
+  border: solid 1px #ddefee;
+  color: #a1b8c1;
+  width: 6rem;
+  padding: 0.5rem;
+  //   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0s ease;
+}
+
+button[type='submit']:hover,
+button[type='submit']:active {
+  background-color: #1e3552;
+  //   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  dialog {
+    padding: 2rem;
+  }
+}
+
+.k-appbar {
+  display: flex;
+  align-items: center;
+  padding: 24px 48px 0px;
+  background-color: #04162c;
+  color: #ffffff;
+}
+
+.navbar-header {
+  flex-grow: 1;
+}
+
+.header {
+  font-size: 28px;
+  font-family: 'Proxima Nova', Helvetica, Arial;
+  font-weight: bold;
+}
+
+.flex-spacer {
+  flex: 0.15;
+}
+
+.savebutton {
+  background-color: transparent;
+  color: #a1b8c1;
+  padding: 13px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Proxima Nova', Helvetica, Arial;
+  width: 300px;
+  border: solid 1px #ddefee;
+  cursor: pointer;
+}
+
+.savebutton:hover {
+  background-color: #1e3552;
+}
+
+.border-wrapper {
+  border: solid 1px #ddefee;
+  display: flex;
+  height: 49.95px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .k-label {
+  color: #a1b8c1;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Proxima Nova', Helvetica, Arial;
+}
+
+::ng-deep .grid-template-dropdown {
+  background-color: transparent;
+  color: #a1b8c1;
+  padding: 13px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Proxima Nova', Helvetica, Arial;
+  cursor: pointer;
+}
+
+.k-dropdownlist {
+  padding: 3px;
+  font-size: 16px;
+  font-family: 'Proxima Nova', Helvetica, Arial;
+  cursor: pointer;
+}
+
+.k-dropdownlist:hover {
+  background-color: #04162c;
+  border-radius: 0;
+}
+
+// ::ng-deep .k-list-container {
+//   width: 300px;
+//   position: relative;
+//   right: 127.5px;
+// }
+
+// ::ng-deep .available-machines-dropdown .k-dropdownlist {
+//   background-color: #04162c;
+//   padding: 13px;
+//   font-size: 16px;
+//   font-weight: bold;
+//   font-family: 'Proxima Nova', Helvetica, Arial;
+//   cursor: pointer;
+//   border-radius: 0;
+// }
+
+// ::ng-deep .available-machines-dropdown .k-dropdownlist:hover {
+//   background-color: #04162c !important;
+// }
+
+.img__tiles {
+  color: #ffffff;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr) 2fr;
+  column-gap: 40px;
+  row-gap: 25px;
+  height: 80vh;
+  width: 94vw;
+  margin: 0 auto;
+  padding: 48px;
+}
+.container div {
+  background-color: #1d3355;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background-color 0s,
+    border 0s,
+    color 0s;
+}
+
+.container div:hover {
+  background-color: #001220; //tbc
+  border: solid #5f9dff;
+  color: transparent;
+}
+
+.container div::after {
+  content: 'Click here to add Widget';
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0s;
+}
+
+.container div:hover::after {
+  opacity: 1;
+}
+
+.container .rowspan-2 {
+  grid-row: span 2;
+}

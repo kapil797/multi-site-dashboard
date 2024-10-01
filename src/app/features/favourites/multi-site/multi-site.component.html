@@ -1,0 +1,123 @@
+<kendo-appbar
+  position="top"
+  themecolor="inherit"
+  class="navbar p-5 pt-4 pb-0 k-appbar k-appbar-top k-appbar-static k-appbar-inherit"
+  ng-reflect-position="top"
+  ng-reflect-theme-color="inherit"
+  dir="ltr">
+  <div class="navbar-header">
+    <h1 class="header">FAVOURITES</h1>
+  </div>
+  <kendo-appbar-spacer class="k-appbar-spacer"></kendo-appbar-spacer>
+  <button class="savebutton" aria-label="Save Layout">Save Layout</button>
+  <div class="flex-spacer"></div>
+  <div class="dropdown-wrapper border-wrapper d-flex align-items-center me-5 p-2">
+    <kendo-label class="me-3" [for]="gridTemplateDropdown">Grid template:</kendo-label>
+    <kendo-dropdownlist
+      #gridTemplateDropdown
+      appDropdown
+      class="grid-template-dropdown"
+      [data]="gridTemplate"
+      textField="name"
+      valueField="id"
+      [(ngModel)]="selectedTemplate"
+      aria-label="Select grid template">
+    </kendo-dropdownlist>
+  </div>
+  <img
+    alt="Grid layout tiles"
+    class="img__tiles"
+    src="assets/images/utilities/tiles.png"
+    (click)="onOpenNavMenu()"
+    (keydown.enter)="onOpenNavMenu()"
+    tabindex="0"
+    role="button" />
+</kendo-appbar>
+
+<div class="container" role="grid">
+  <div
+    *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]"
+    (click)="onClick()"
+    (keydown.enter)="onClick()"
+    tabindex="0"
+    role="button"
+    aria-label="Empty widget space">
+    No Widget to display
+  </div>
+  <div
+    *ngFor="let i of [1, 2, 3, 4]"
+    class="rowspan-2"
+    (click)="onClick()"
+    (keydown.enter)="onClick()"
+    tabindex="0"
+    role="button"
+    aria-label="Empty large widget space">
+    No Widget to display
+  </div>
+</div>
+
+<div class="backdrop" *ngIf="showDialog" (click)="onCancel()" aria-hidden="true"></div>
+<dialog *ngIf="showDialog" open aria-labelledby="dialogTitle">
+  <h2 id="dialogTitle">Select Monitoring Options</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="performance-indicator">Performance Indicator:</label>
+      <kendo-dropdownlist
+        id="performance-indicator"
+        appDropdown
+        class="available-pi-dropdown"
+        [data]="availablePerformanceIndicators"
+        textField="name"
+        valueField="id"
+        [(ngModel)]="selectedPerformanceIndicator"
+        name="PerformanceIndicator"
+        aria-label="Select performance indicator">
+      </kendo-dropdownlist>
+    </div>
+
+    <div>
+      <label for="factory">Factory:</label>
+      <kendo-dropdownlist
+        id="factory"
+        appDropdown
+        class="available-factories-dropdown"
+        [data]="availableFactories"
+        textField="name"
+        valueField="id"
+        [(ngModel)]="selectedFactory"
+        name="Factory"
+        aria-label="Select factory">
+      </kendo-dropdownlist>
+    </div>
+
+    <div>
+      <label for="product">Product:</label>
+      <input type="text" id="product" name="product" [(ngModel)]="selectedProduct" />
+    </div>
+
+    <div>
+      <label for="machine">Machine:</label>
+      <kendo-dropdownlist
+        id="machine"
+        appDropdown
+        class="available-machines-dropdown"
+        [data]="availableMachines"
+        textField="name"
+        valueField="id"
+        [(ngModel)]="selectedMachine"
+        name="Machine"
+        aria-label="Select machine">
+      </kendo-dropdownlist>
+    </div>
+
+    <div>
+      <label for="time-period">Time Period:</label>
+      <input type="text" id="time-period" name="timePeriod" [(ngModel)]="selectedTimePeriod" />
+    </div>
+
+    <div class="actions">
+      <button type="submit">Go</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</dialog>

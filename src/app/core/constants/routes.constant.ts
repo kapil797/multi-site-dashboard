@@ -22,7 +22,7 @@ export const RoutePaths = Object.freeze({
   RESOURCE_TRACKING: 'resource-tracking',
   RESOURCE_HEALTH: 'resource-health',
   CRITICAL_ISSUES: 'critical-issues',
-  FAVORITES: 'favorites',
+  FAVOURITES: 'favourites',
   LAYOUT: 'layout',
   LAYOUT_ONE: 'layout-one',
   LAYOUT_TWO: 'layout-two',
