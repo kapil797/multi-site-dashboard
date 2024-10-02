@@ -1,4 +1,5 @@
 export const environment = {
+  MACHINE_DATA_API: 'http://13.236.23.61/api/v1/rt/machines/machine1',
   ENVIRONMENT: 'DEVELOPMENT',
   KEYCLOAK_URL: 'https://auth.mf.platform',
   KEYCLOAK_REALM: 'master',

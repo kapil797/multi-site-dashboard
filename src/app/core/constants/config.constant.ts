@@ -14,4 +14,5 @@ export interface Config {
   MAP_ACCESS_TOKEN: string;
   MAP_API_URL: string;
   ROUTE_API_URL: string;
+  MACHINE_DATA_API: string;
 }

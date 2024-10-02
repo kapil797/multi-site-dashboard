@@ -26,6 +26,7 @@ export class BaseApi {
   public MAP_API_URL: string;
   public MAP_ACCESS_TOKEN: string;
   public ROUTE_API_URL: string;
+  public MACHINE_DATA_API: string;
 
   // Define API endpoints here.
   // Override in different environments if necessary,
@@ -106,6 +107,7 @@ export class BaseApi {
     this.MAP_API_URL = config.MAP_API_URL;
     this.MAP_ACCESS_TOKEN = config.MAP_ACCESS_TOKEN;
     this.ROUTE_API_URL = config.ROUTE_API_URL;
+    this.MACHINE_DATA_API = config.MACHINE_DATA_API;
 
     // TODO: to add UMF URLs later.
   }
