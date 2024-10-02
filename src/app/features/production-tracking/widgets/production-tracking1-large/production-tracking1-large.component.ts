@@ -4,6 +4,7 @@ import { ThemeService } from '@core/services/theme-service.service';
 import { Theme } from '@core/constants/theme.constant';
 import { catchError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { MachineService } from '@core/services/machine.service';
 
 interface ValueWrapper {
   value: string | boolean;
@@ -30,10 +31,13 @@ export class ProductionTracking1LargeComponent implements OnInit {
   theme: Theme;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  machineData: any;
 
   constructor(
     private themeService: ThemeService,
-    private http: HttpClient
+    private http: HttpClient,
+    private machineService: MachineService
   ) {}
 
   setThemeVariables(): void {
@@ -57,8 +61,19 @@ export class ProductionTracking1LargeComponent implements OnInit {
     this.theme = this.themeService.getTheme();
     this.setThemeVariables();
     this.testApi(this.api);
+    this.getMachineData();
   }
-
+  getMachineData() {
+    this.machineService.getMachineData('10 days', '1 days').subscribe(
+      data => {
+        this.machineData = data;
+        console.log('here the machine data', this.machineData);
+      },
+      error => {
+        console.error('Error fetching machine data:', error);
+      }
+    );
+  }
   public setDefaultHeaderStyle() {
     const style = {
       'background-color': this.theme?.secondary,
