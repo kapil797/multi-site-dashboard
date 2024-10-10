@@ -17,68 +17,15 @@
             <kendo-chart-category-axis>
               <kendo-chart-category-axis-item
                 [categories]="categories"
-                [line]="{ visible: false }"
+                [line]="{ color: '#ffffff', width: 1 }"
                 [majorGridLines]="{ color: '#ffffff', width: 1, dashType: 'longDash' }"
                 [labels]="{ visible: false }">
               </kendo-chart-category-axis-item>
             </kendo-chart-category-axis>
             <kendo-chart-value-axis>
               <kendo-chart-value-axis-item
-                [min]="85"
-                [max]="100"
-                [line]="{ color: '#ffffff', width: 1 }"
-                [labels]="{ visible: false }"
-                [majorGridLines]="{ visible: false }"
-                [minorGridLines]="{ visible: false }">
-              </kendo-chart-value-axis-item>
-            </kendo-chart-value-axis>
-            <kendo-chart-series>
-              <kendo-chart-series-item
-                type="rangeArea"
-                [data]="greenZoneData"
-                fromField="min"
-                toField="max"
-                categoryField="month"
-                color="#4caf50"
-                [opacity]="0.3">
-              </kendo-chart-series-item>
-              <kendo-chart-series-item
-                type="line"
-                [data]="seriesData"
-                field="value"
-                categoryField="month"
-                color="#ffffff"
-                [line]="{ color: '#ffffff', width: 1 }"
-                [markers]="{ visible: false }">
-              </kendo-chart-series-item>
-            </kendo-chart-series>
-            <kendo-chart-plot-area [background]="theme.secondary"></kendo-chart-plot-area>
-          </kendo-chart>
-        </div>
-      </div>
-      <div class="col col3"></div>
-    </div>
-    <div class="row">
-      <div class="col col1">
-        <fa-icon class="tile-item__icon" [icon]="boltIcon"></fa-icon>
-        <div>Av. Power</div>
-      </div>
-      <div class="col col2">
-        <div class="chart-container">
-          <kendo-chart>
-            <kendo-chart-area [background]="theme.secondary"></kendo-chart-area>
-            <kendo-chart-category-axis>
-              <kendo-chart-category-axis-item
-                [categories]="categories"
-                [line]="{ visible: false }"
-                [majorGridLines]="{ color: '#ffffff', width: 1, dashType: 'longDash' }"
-                [labels]="{ visible: false }">
-              </kendo-chart-category-axis-item>
-            </kendo-chart-category-axis>
-            <kendo-chart-value-axis>
-              <kendo-chart-value-axis-item
-                [min]="85"
-                [max]="100"
+                [min]="0"
+                [max]="0.05"
                 [line]="{ color: '#ffffff', width: 1 }"
                 [labels]="{ visible: false }"
                 [majorGridLines]="{ visible: false }"
@@ -121,59 +68,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col col1">
-        <fa-icon class="tile-item__icon" [icon]="trashIcon"></fa-icon>
-        <div>Waste Output</div>
-      </div>
-      <div class="col col2">
-        <div class="chart-container">
-          <kendo-chart>
-            <kendo-chart-area [background]="theme.secondary"></kendo-chart-area>
-            <kendo-chart-category-axis>
-              <kendo-chart-category-axis-item
-                [categories]="categories"
-                [line]="{ visible: false }"
-                [majorGridLines]="{ color: '#ffffff', width: 1, dashType: 'longDash' }"
-                [labels]="{ visible: false }">
-              </kendo-chart-category-axis-item>
-            </kendo-chart-category-axis>
-            <kendo-chart-value-axis>
-              <kendo-chart-value-axis-item
-                [min]="85"
-                [max]="100"
-                [line]="{ color: '#ffffff', width: 1 }"
-                [labels]="{ visible: false }"
-                [majorGridLines]="{ visible: false }"
-                [minorGridLines]="{ visible: false }">
-              </kendo-chart-value-axis-item>
-            </kendo-chart-value-axis>
-            <kendo-chart-series>
-              <kendo-chart-series-item
-                type="rangeArea"
-                [data]="greenZoneData"
-                fromField="min"
-                toField="max"
-                categoryField="month"
-                color="#4caf50"
-                [opacity]="0.3">
-              </kendo-chart-series-item>
-              <kendo-chart-series-item
-                type="line"
-                [data]="seriesData"
-                field="value"
-                categoryField="month"
-                color="#ffffff"
-                [line]="{ color: '#ffffff', width: 1 }"
-                [markers]="{ visible: false }">
-              </kendo-chart-series-item>
-            </kendo-chart-series>
-            <kendo-chart-plot-area [background]="theme.secondary"></kendo-chart-plot-area>
-          </kendo-chart>
-        </div>
-      </div>
-      <div class="col col3"></div>
     </div>
   </div>
 </div>

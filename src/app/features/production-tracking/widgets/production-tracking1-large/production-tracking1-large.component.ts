@@ -1,44 +1,66 @@
-import { Component, Input } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ThemeService } from '@core/services/theme-service.service';
 import { Theme } from '@core/constants/theme.constant';
-import { catchError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { MachineService } from '@core/services/machine.service';
+import { catchError, interval, Subscription, switchMap } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-interface ValueWrapper {
-  value: string | boolean;
+interface ApiSalesOrder {
+  salesOrderId: string;
+  salesOrderNumber: string;
+  customerName: string;
+  locationName: string;
+  completedPercentage: number;
+  expectedCompletionDate: string;
+  createdAt: string;
 }
 
-// Define the interface for each item in the array
-export interface SalesOrder {
-  salesOrderNumber: ValueWrapper;
-  factory: ValueWrapper;
-  expectedCompleted: ValueWrapper;
-  status: ValueWrapper;
-  isLate: ValueWrapper;
+interface TransformedSalesOrder {
+  salesOrderNumber: { value: string };
+  factory: { value: string };
+  customer: { value: string };
+  expectedCompleted: { value: string };
+  status: { value: string };
+  isLate: { value: boolean };
 }
-
-// Define the interface for the entire response
-export type SalesOrderResponse = SalesOrder[];
 
 @Component({
   selector: 'app-production-tracking1-large',
   templateUrl: './production-tracking1-large.component.html',
-  styleUrl: './production-tracking1-large.component.scss',
+  styleUrls: ['./production-tracking1-large.component.scss'],
 })
-export class ProductionTracking1LargeComponent implements OnInit {
+export class ProductionTracking1LargeComponent implements OnInit, OnDestroy {
   theme: Theme;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   machineData: any;
+  lookBackPeriod = '1 days';
+  productionTrackingData: TransformedSalesOrder[];
+  private apiSubscription: Subscription;
+
+  @Input() title: string;
+  @Input() subtitle: string;
+  @Input() tag: string;
+  @Input() api!: string;
+
+  public defaultFontColor = '#E4E9EF';
 
   constructor(
     private themeService: ThemeService,
-    private http: HttpClient,
-    private machineService: MachineService
+    private http: HttpClient
   ) {}
+
+  ngOnInit(): void {
+    this.theme = this.themeService.getTheme();
+    this.setThemeVariables();
+    this.startApiPolling();
+  }
+
+  ngOnDestroy(): void {
+    if (this.apiSubscription) {
+      this.apiSubscription.unsubscribe();
+    }
+  }
 
   setThemeVariables(): void {
     if (this.theme) {
@@ -48,102 +70,88 @@ export class ProductionTracking1LargeComponent implements OnInit {
       document.documentElement.style.setProperty('--tertiary', this.theme.tertiary);
     }
   }
-  @Input() title: string;
-  @Input() subtitle: string;
-  @Input() tag: string;
-  @Input() api!: string;
 
-  public defaultFontColor = '#E4E9EF';
-
-  public productionTrackingData: SalesOrderResponse;
-
-  ngOnInit(): void {
-    this.theme = this.themeService.getTheme();
-    this.setThemeVariables();
-    this.testApi(this.api);
-    this.getMachineData();
+  startApiPolling(): void {
+    this.apiSubscription = interval(5000)
+      .pipe(switchMap(() => this.fetchApiData()))
+      .subscribe(
+        response => {
+          this.productionTrackingData = this.transformApiResponse(response);
+          console.log('Updated production tracking data:', this.productionTrackingData);
+        },
+        error => console.error('Error fetching API data:', error)
+      );
   }
-  getMachineData() {
-    this.machineService.getMachineData('10 days', '1 days').subscribe(
-      data => {
-        this.machineData = data;
-        console.log('here the machine data', this.machineData);
-      },
-      error => {
-        console.error('Error fetching machine data:', error);
-      }
+
+  fetchApiData() {
+    const params = new HttpParams().set('lookBackPeriod', this.lookBackPeriod);
+    return this.http.get<ApiSalesOrder[]>(this.api, { params }).pipe(
+      catchError(error => {
+        console.error('API call failed, switching to mock data', error);
+        return this.http.get<ApiSalesOrder[]>('assets/mock-data.json');
+      })
     );
   }
+
   public setDefaultHeaderStyle() {
-    const style = {
+    return {
       'background-color': this.theme?.secondary,
       color: this.defaultFontColor,
       border: '0',
       'border-bottom': '.3rem solid #E4E9EF',
       'font-size': '1.5rem',
     };
-
-    return style;
   }
 
   public setDefaultColumnStyle() {
-    const style = {
+    return {
       color: this.defaultFontColor,
       'font-size': '1.5rem',
       'text-align': 'left',
     };
-
-    return style;
   }
 
   public setStatusHeaderStyle() {
-    const style = {
+    return {
       'background-color': this.theme?.secondary,
       color: this.defaultFontColor,
       border: '0',
       'border-bottom': '.3rem solid #E4E9EF',
       'font-size': '1.5rem',
-      // 'justify-content': 'right'
     };
-    return style;
   }
 
   public setStatusColumnStyle() {
-    const style = {
+    return {
       'font-size': '1.5rem',
       'text-align': 'right',
     };
-
-    return style;
   }
-  // Method to test the API
-  testApi(apiUrl: string): void {
-    const mockDataUrl = 'assets/mock-data.json'; // Replace with your actual mock data URL
 
-    this.http
-      .get(apiUrl)
-      .pipe(
-        catchError(error => {
-          console.error('API call failed, switching to mock data', error);
-          return this.http.get(mockDataUrl); // Try to load mock data
-        })
-      )
-      .subscribe(response => {
-        if (response) {
-          console.log('API response:', response);
-          this.handleApiResponse(response);
-        } else {
-          console.warn('No response from API or mock data');
-        }
+  transformApiResponse(apiResponse: ApiSalesOrder[]): TransformedSalesOrder[] {
+    return apiResponse
+      .slice(0, 10) // Get the latest 10 records
+      .map(order => {
+        const expectedCompletionDate = new Date(order.expectedCompletionDate);
+        const now = new Date();
+
+        return {
+          salesOrderNumber: { value: order.salesOrderNumber },
+          factory: { value: order.locationName },
+          customer: { value: order.customerName },
+          expectedCompleted: {
+            value: expectedCompletionDate.toLocaleString('en-GB', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
+            }),
+          },
+          status: { value: `${Math.round(order.completedPercentage * 100)}%` },
+          isLate: { value: expectedCompletionDate < now },
+        };
       });
-  }
-
-  // Method to handle the API or mock data response
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleApiResponse(response: any): void {
-    // Process the response data
-    console.log('Processed response data:', response);
-    // Example: Update the component's state or UI with the response data
-    this.productionTrackingData = response;
   }
 }

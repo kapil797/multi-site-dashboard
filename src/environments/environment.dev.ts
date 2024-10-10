@@ -13,6 +13,7 @@ export const environment = {
   MAP_ACCESS_TOKEN: 'pk.eyJ1Ijoia2dsYXlrZ2xheSIsImEiOiJjamQxZGlwZnMwOG91MzRxcTdscXhmYjNvIn0.1Cfts_Qesd4LJlu3uyo2kQ',
   MAP_API_URL: 'https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/256/{z}/{x}/{y}?access_token=',
   ROUTE_API_URL: 'https://api.mapbox.com/directions/v5/mapbox/cycling',
+
   //Please provide the API EndPoints Here for the respective widgets(feature-based)
   SUPPLIER_INFORMATION: {
     API_1: 'assets/mock-data/supplier-information/sp-widget1.json',
@@ -57,7 +58,7 @@ export const environment = {
     API_4: 'assets/mock-data/production-and-inventory/pi-widget4.json',
   },
   PRODUCTION_TRACKING: {
-    API_1: 'assets/mock-data/production-tracking/pt-widget1.json',
+    API_1: 'http://13.236.23.61/api/v1/pt/salesorder',
     API_2: 'http://www.google.com/PT2',
     API_3: 'http://www.google.com/PT3',
     API_4: 'http://www.google.com/PT4',
@@ -70,7 +71,7 @@ export const environment = {
   },
   RESOURCE_TRACKING: {
     API_1: 'assets/mock-data/resource-tracking/rt-widget1.json',
-    API_2: 'assets/mock-data/resource-tracking/rt-widget2.json',
+    API_2: 'http://13.236.23.61/api/v1/rt/machines/Holder Assembly',
     API_3: 'assets/mock-data/resource-tracking/rt-widget3.json',
     API_4: 'assets/mock-data/resource-tracking/rt-widget4.json',
   },

@@ -2,18 +2,18 @@
     "productionCapacity": "92 %",
     "textColor": "#7fea8a",
     "seriesData":[
-    { "month": "Jan", "value": 90 },
-    { "month": "Feb", "value": 92 },
-    { "month": "Mar", "value": 93 },
-    { "month": "Apr", "value": 91 },
-    { "month": "May", "value": 92 }],
+    { "month": "Jan", "value": 0.013 },
+    { "month": "Feb", "value": 0.012 },
+    { "month": "Mar", "value": 0.014 },
+    { "month": "Apr", "value": 0.012 },
+    { "month": "May", "value": 0.014 }],
     "categories":["Jan", "Feb", "Mar", "Apr", "May"],
     "average":92,
     "greenZoneData":[
-        { "month": "Jan", "min": 91, "max": 93 },
-        { "month": "Feb", "min": 91, "max": 93 },
-        { "month": "Mar", "min": 91, "max": 93 },
-        { "month": "Apr", "min": 91, "max": 93 },
-        { "month": "May", "min": 91, "max": 93 }
+        { "month": "Jan", "min": 0.01, "max": 0.03 },
+        { "month": "Feb", "min": 0.01, "max": 0.03 },
+        { "month": "Mar", "min": 0.01, "max": 0.03 },
+        { "month": "Apr", "min": 0.01, "max": 0.03 },
+        { "month": "May", "min": 0.01, "max": 0.03 }
     ]
 }

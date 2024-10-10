@@ -159,7 +159,7 @@
                 {
                     "id": "MS1_MachineStatus",
                     "name": "machineStatus1",
-                    "title": "Machine A",
+                    "title": "Holder Assembly",
                     "subtitle": "PAST 24 HOURS",
                     "tag": "Factory A",
                     "featureId": "MS1"

@@ -5,7 +5,7 @@
 .chart-container {
   background: #0a233f;
   border-radius: 5px;
-  width: 400px;
+  width: 450px;
   margin: 0 auto;
 }
 
@@ -32,7 +32,8 @@ kendo-chart {
 }
 .container {
   display: grid;
-  grid-template-columns: 1fr 3fr 0.5fr;
+  grid-template-columns: 0.7fr 3fr 0.5fr;
+  margin-top: 4rem;
 }
 
 .row {
